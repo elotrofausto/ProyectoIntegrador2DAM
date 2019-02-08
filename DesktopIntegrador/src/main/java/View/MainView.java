@@ -10,6 +10,7 @@ import Models.XCsModel;
 import Models.XDependienteModel;
 import Models.XMedicoModel;
 import Models.XViviendaModel;
+import Utils.Utils;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -1249,7 +1250,8 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         genero.addElement("Mujer");
         genero.addElement("Indefinido");
 
-        //Llenar tablas
+        //Llenar tablas. 
+        this.jTableAlarmas.setModel(controller.cargarResultSet("Select * FROM x_alarma_model"));
     }
 
     private void initCombos() {

@@ -10,11 +10,17 @@ import Utils.HibernateUtil;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.UnknownHostException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.TableModel;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.jdbc.ReturningWork;
 
 /**
  *
@@ -31,7 +37,6 @@ public class HibernateController {
 
     //Métodos para el logueo de la aplicación desktop
     //--------------------------------------------------------------------------
-    
     //Loguea la aplicación en la BD, marcándola como disponible.
     public void logDesktopApp(ServerSocket server) {
         InetAddress ip = null;
@@ -54,9 +59,8 @@ public class HibernateController {
 
     //Métodos 
     //--------------------------------------------------------------------------
-    
     //Elimina un objeto de la BD
-    public void remove(Object object) throws HibernateException{
+    public void remove(Object object) throws HibernateException {
         session.beginTransaction();
         session.remove(object);
         session.getTransaction().commit();
@@ -64,30 +68,49 @@ public class HibernateController {
     }
 
     //Guarda un objeto en la BD
-    public void save(Object object) throws HibernateException{
+    public void save(Object object) throws HibernateException {
         session.beginTransaction();
         session.save(object);
         session.getTransaction().commit();
         session.close();
     }
-    
+
     //Actualiza un objeto en la BD
-    public void update(Object object) throws HibernateException{
+    public void update(Object object) throws HibernateException {
         session.beginTransaction();
         session.update(object);
         session.getTransaction().commit();
         session.close();
     }
-    
+
     //Devuelve todos los registros de la BD del tipo recibido como parámetro
-    public List<Object> read(Class c){
+    public List<Object> read(Class c) {
         List<Object> list = session.createQuery("from " + c.getName()).list();
         return list;
     }
-    
+
     //Consulta y recupera una lista de objetos de la BD dada una query concreta
-    public List<Object> readWithQuery(String query) throws HibernateException{
+    public List<Object> readWithQuery(String query) throws HibernateException {
         List<Object> list = session.createQuery(query).list();
         return list;
     }
+
+    public TableModel getRs(String query) {
+        session.beginTransaction();
+        TableModel tm;
+        tm = session.doReturningWork(new ReturningWork<TableModel>() {
+            @Override
+            public TableModel execute(Connection connection) throws SQLException {
+                TableModel dtm;
+                try (PreparedStatement stmt = connection.prepareStatement(query)) {
+                ResultSet rs = stmt.executeQuery();
+                dtm = Utils.Utils.buildTableModel(rs);
+            }
+            return dtm;
+            }
+        });
+        session.getTransaction().commit();
+        return tm;
+    }
+
 }

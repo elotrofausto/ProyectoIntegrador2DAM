@@ -7,8 +7,10 @@ package Controller;
 
 import View.MainView;
 import java.net.ServerSocket;
+import java.sql.ResultSet;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -59,5 +61,9 @@ public class BLogic {
     //Getters and Setters
     public HibernateController getHibernate() {
         return hibernate;
+    }
+
+    public TableModel cargarResultSet(String query) {
+        return hibernate.getRs(query);
     }
 }
