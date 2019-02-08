@@ -127,7 +127,7 @@ public class XDireccionModel  implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "XDireccionModel{" + "id=" + id + ", XCiudadModel=" + XCiudadModel + ", tipovia=" + tipovia + ", direccion=" + direccion + ", num=" + num + ", piso=" + piso + ", letra=" + letra + ", escalera=" + escalera + ", XFamiliarModels=" + XFamiliarModels + ", XViviendaModels=" + XViviendaModels + ", XCsModels=" + XCsModels + '}';
+        return tipovia + " " + direccion + " " + num + " " + piso + " " + letra + " " + escalera;
     }
 
 

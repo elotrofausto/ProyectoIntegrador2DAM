@@ -8,6 +8,7 @@ package Controller;
 import View.MainView;
 import java.net.ServerSocket;
 import java.util.List;
+import javax.swing.JFrame;
 
 /**
  *
@@ -29,6 +30,7 @@ public class BLogic {
 
     private void initView() {
         mainView = new MainView(this);
+        mainView.setExtendedState(JFrame.MAXIMIZED_BOTH); 
         mainView.setVisible(true);
     }
 
@@ -41,14 +43,21 @@ public class BLogic {
         return appServer.getServer();
     }
 
-    //Getters and Setters
-    public HibernateController getHibernate() {
-        return hibernate;
-    }
-
+    //Gestión de la BD
+    //--------------------------------------------------------------------------
+    
     //Consultas recurrentes
     public List<Object> cargarDatos(Class c) {
         return hibernate.read(c);
     }
+    
+    //Consultas personalizadas
+    public List<Object> cargarDatos(String query){
+        return hibernate.readWithQuery(query);
+    }
 
+    //Getters and Setters
+    public HibernateController getHibernate() {
+        return hibernate;
+    }
 }

@@ -6,11 +6,10 @@
 package View;
 
 import Controller.BLogic;
-import Controller.HibernateController;
 import Models.XCsModel;
 import Models.XDependienteModel;
 import Models.XMedicoModel;
-import View.MainView;
+import Models.XViviendaModel;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -183,7 +182,7 @@ public class MainView extends javax.swing.JFrame {
 
         jPaneldependiente.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos principales del dependiente"));
 
-        jComboBoxDependienteVivienda.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxDependienteVivienda.setModel(vivienda);
         jComboBoxDependienteVivienda.setBorder(javax.swing.BorderFactory.createTitledBorder("Vivienda"));
 
         tfDependienteId.setToolTipText("");
@@ -215,7 +214,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
     new java.awt.Font("Dialog", java.awt.Font.PLAIN, 12),
     new java.awt.Color(187, 187, 187)));
 
-    jComboBoxDependienteGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+    jComboBoxDependienteGenero.setModel(genero);
     jComboBoxDependienteGenero.setBorder(javax.swing.BorderFactory.createTitledBorder("Género"));
 
     tfDependienteNSS.setToolTipText("");
@@ -819,7 +818,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         .addGroup(jPanelLlamadasLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(jPanelLlamadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 651, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLlamadasLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jButton5)
@@ -870,21 +869,21 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
 
     jScrollPaneMaps.setViewportView(jLabelMaps);
 
-    jButtonCenterMap.setIcon(new javax.swing.ImageIcon("/home/vesprada/Descargas/Desktop Integrador/Desktop Integrador/DesktopIntegrador/img/center.png")); // NOI18N
+    jButtonCenterMap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/center.png"))); // NOI18N
     jButtonCenterMap.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButtonCenterMapActionPerformed(evt);
         }
     });
 
-    jButtonZoomOut.setIcon(new javax.swing.ImageIcon("/home/vesprada/Descargas/Desktop Integrador/Desktop Integrador/DesktopIntegrador/img/zoomout.png")); // NOI18N
+    jButtonZoomOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zoomout.png"))); // NOI18N
     jButtonZoomOut.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButtonZoomOutActionPerformed(evt);
         }
     });
 
-    jButtonZoomIn.setIcon(new javax.swing.ImageIcon("/home/vesprada/Descargas/Desktop Integrador/Desktop Integrador/DesktopIntegrador/img/zoomin.png")); // NOI18N
+    jButtonZoomIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zoomin.png"))); // NOI18N
     jButtonZoomIn.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButtonZoomInActionPerformed(evt);
@@ -898,7 +897,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         .addGroup(jPanelGeoLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(jPanelGeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabelMapcaption, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 673, Short.MAX_VALUE)
+                .addComponent(jLabelMapcaption, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
                 .addComponent(jScrollPaneMaps)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelGeoLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -1058,7 +1057,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
     private javax.swing.JButton jButtonZoomOut;
     private javax.swing.JComboBox<XCsModel> jComboBoxCS;
     private javax.swing.JComboBox<String> jComboBoxDependienteGenero;
-    private javax.swing.JComboBox<String> jComboBoxDependienteVivienda;
+    private javax.swing.JComboBox<XViviendaModel> jComboBoxDependienteVivienda;
     private javax.swing.JComboBox<XMedicoModel> jComboBoxMedico;
     private javax.swing.JLabel jLabelCS;
     private javax.swing.JLabel jLabelMapcaption;
@@ -1242,6 +1241,13 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         for (Object o : listaCs) {
             cSalud.addElement((XCsModel) o);
         }
+        List<Object> listaViviendas = this.controller.cargarDatos("from XViviendaModel order by habitual desc");
+        for (Object o : listaViviendas) {
+            vivienda.addElement((XViviendaModel) o);
+        }
+        genero.addElement("Hombre");
+        genero.addElement("Mujer");
+        genero.addElement("Indefinido");
 
         //Llenar tablas
     }
@@ -1249,6 +1255,8 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
     private void initCombos() {
         medico = new DefaultComboBoxModel();
         cSalud = new DefaultComboBoxModel();
+        vivienda = new DefaultComboBoxModel();
+        genero = new DefaultComboBoxModel();
     }
 
     private void cargadependiente(Object dependiente) {
@@ -1278,6 +1286,8 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
     private void setCombos(XDependienteModel dep) {
         medico.setSelectedItem(dep.getXMedicoModel());
         cSalud.setSelectedItem(dep.getXCsModel());
+        genero.setSelectedItem(dep.getGenero());
+        // Las viviendas ya están ordenadas de modo que la primera es la actual. no es necesario seleccionarlas aquí
     }
 
     private void setTables(XDependienteModel dep) {
@@ -1296,6 +1306,8 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         this.tfDependienteNSS.setEnabled(enabled);
         this.dateChooserDependienteAlta.setEnabled(enabled);
         this.dateChooserDependienteNac.setEnabled(enabled);
+        this.jComboBoxDependienteVivienda.setEnabled(enabled);
+        this.jComboBoxDependienteGenero.setEnabled(enabled);
     }
 
 }
