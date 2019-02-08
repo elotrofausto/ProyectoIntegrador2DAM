@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-feb-2019 19:46:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="Models.XFamiliarModel" optimistic-lock="version" schema="public" table="x_familiar_model">
+    <comment>x_familiar.model</comment>
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="Models.XDireccionModel" fetch="select" name="XDireccionModel">
+      <column name="direccion" not-null="true">
+        <comment>Direccion</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="Models.XPersonaModel" fetch="select" name="XPersonaModel">
+      <column name="persona_id" not-null="true">
+        <comment>Persona</comment>
+      </column>
+    </many-to-one>
+    <property name="llaves" type="java.lang.Boolean">
+      <column name="llaves">
+        <comment>Llaves</comment>
+      </column>
+    </property>
+    <property name="relacion" type="string">
+      <column name="relacion">
+        <comment>Relacion</comment>
+      </column>
+    </property>
+    <property name="observaciones" type="string">
+      <column name="observaciones">
+        <comment>Observaciones</comment>
+      </column>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="XContactofamiliarModels" table="x_contactofamiliar_model">
+      <key>
+        <column name="familiar_id" not-null="true">
+          <comment>Familiar</comment>
+        </column>
+      </key>
+      <one-to-many class="Models.XContactofamiliarModel"/>
+    </set>
+  </class>
+</hibernate-mapping>

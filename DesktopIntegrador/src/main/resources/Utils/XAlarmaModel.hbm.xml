@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-feb-2019 19:46:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="Models.XAlarmaModel" optimistic-lock="version" schema="public" table="x_alarma_model">
+    <comment>x_alarma.model</comment>
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="Models.XAsistenteModel" fetch="select" name="XAsistenteModel">
+      <column name="id_asistente_atiende" not-null="true">
+        <comment>Id Asistente Atiende</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="Models.XDependienteModel" fetch="select" name="XDependienteModel">
+      <column name="id_dependiente" not-null="true">
+        <comment>Id Dependiente</comment>
+      </column>
+    </many-to-one>
+    <property name="fechaHora" type="timestamp">
+      <column length="29" name="fecha_hora">
+        <comment>Fecha_Hora</comment>
+      </column>
+    </property>
+    <property name="descripcion" type="string">
+      <column name="descripcion">
+        <comment>Observaciones</comment>
+      </column>
+    </property>
+    <property name="tipo" type="string">
+      <column name="tipo" not-null="true">
+        <comment>Tipo</comment>
+      </column>
+    </property>
+  </class>
+</hibernate-mapping>

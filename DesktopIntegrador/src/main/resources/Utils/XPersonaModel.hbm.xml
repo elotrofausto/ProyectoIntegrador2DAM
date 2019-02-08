@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-feb-2019 19:46:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="Models.XPersonaModel" optimistic-lock="version" schema="public" table="x_persona_model">
+    <comment>x_persona.model</comment>
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="name" type="string">
+      <column name="name" not-null="true">
+        <comment>Nombre</comment>
+      </column>
+    </property>
+    <property name="apellido1" type="string">
+      <column name="apellido1" not-null="true">
+        <comment>Apellido1</comment>
+      </column>
+    </property>
+    <property name="apellido2" type="string">
+      <column name="apellido2" not-null="true">
+        <comment>Apellido2</comment>
+      </column>
+    </property>
+    <property name="dni" type="string">
+      <column length="9" name="dni" not-null="true">
+        <comment>DNI</comment>
+      </column>
+    </property>
+    <property name="telefono" type="string">
+      <column name="telefono" not-null="true">
+        <comment>TelÃ©fono</comment>
+      </column>
+    </property>
+    <property name="email" type="string">
+      <column name="email" not-null="true">
+        <comment>Email</comment>
+      </column>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="XDependienteModels" table="x_dependiente_model">
+      <key>
+        <column name="persona_id" not-null="true">
+          <comment>Persona</comment>
+        </column>
+      </key>
+      <one-to-many class="Models.XDependienteModel"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="XAsistenteModels" table="x_asistente_model">
+      <key>
+        <column name="persona_id" not-null="true">
+          <comment>Persona</comment>
+        </column>
+      </key>
+      <one-to-many class="Models.XAsistenteModel"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="XFamiliarModels" table="x_familiar_model">
+      <key>
+        <column name="persona_id" not-null="true">
+          <comment>Persona</comment>
+        </column>
+      </key>
+      <one-to-many class="Models.XFamiliarModel"/>
+    </set>
+  </class>
+</hibernate-mapping>

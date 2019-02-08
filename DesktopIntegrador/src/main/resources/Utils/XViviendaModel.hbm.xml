@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-feb-2019 19:46:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="Models.XViviendaModel" optimistic-lock="version" schema="public" table="x_vivienda_model">
+    <comment>x_vivienda.model</comment>
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="Models.XDependienteModel" fetch="select" name="XDependienteModel">
+      <column name="id_dependiente" not-null="true">
+        <comment>Id Dependiente</comment>
+      </column>
+    </many-to-one>
+    <many-to-one class="Models.XDireccionModel" fetch="select" name="XDireccionModel">
+      <column name="id_direccion" not-null="true">
+        <comment>Id Direccion</comment>
+      </column>
+    </many-to-one>
+    <property name="tipo" type="string">
+      <column name="tipo">
+        <comment>Tipo_Vivienda</comment>
+      </column>
+    </property>
+    <property name="habitual" type="java.lang.Boolean">
+      <column name="habitual">
+        <comment>Habitual</comment>
+      </column>
+    </property>
+    <property name="modoAcceso" type="string">
+      <column name="modo_acceso">
+        <comment>Modo_Acceso</comment>
+      </column>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="XDependienteModels" table="x_dependiente_model">
+      <key>
+        <column name="id_vivienda_actual" not-null="true">
+          <comment>Id Vivienda Actual</comment>
+        </column>
+      </key>
+      <one-to-many class="Models.XDependienteModel"/>
+    </set>
+  </class>
+</hibernate-mapping>

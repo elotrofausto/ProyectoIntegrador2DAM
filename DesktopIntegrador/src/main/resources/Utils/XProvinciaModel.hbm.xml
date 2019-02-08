@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04-feb-2019 19:46:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class name="Models.XProvinciaModel" optimistic-lock="version" schema="public" table="x_provincia_model">
+    <comment>x_provincia.model</comment>
+    <id name="id" type="int">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="name" type="string">
+      <column name="name" not-null="true">
+        <comment>Nombre</comment>
+      </column>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="XCiudadModels" table="x_ciudad_model">
+      <key>
+        <column name="id_provincia" not-null="true">
+          <comment>Id Provincia</comment>
+        </column>
+      </key>
+      <one-to-many class="Models.XCiudadModel"/>
+    </set>
+  </class>
+</hibernate-mapping>
