@@ -95,7 +95,7 @@
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/vesprada/Descargas/Desktop Integrador/Desktop Integrador/DesktopIntegrador/img/title background.png"/>
+              <Image iconType="3" name="/title background.png"/>
             </Property>
           </Properties>
         </Component>
@@ -518,7 +518,7 @@
                 <Component class="javax.swing.JLabel" name="jLabelMedico">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="/home/vesprada/Descargas/Desktop Integrador/Desktop Integrador/DesktopIntegrador/img/doctor.png"/>
+                      <Image iconType="3" name="/doctor.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="jLabel1"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -550,7 +550,7 @@
                 <Component class="javax.swing.JLabel" name="jLabelCS">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="2" name="/home/vesprada/Descargas/Desktop Integrador/Desktop Integrador/DesktopIntegrador/img/centrosalud.png"/>
+                      <Image iconType="3" name="/centrosalud.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="jLabel1"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">

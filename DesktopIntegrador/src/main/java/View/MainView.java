@@ -158,7 +158,7 @@ public class MainView extends javax.swing.JFrame {
 
         jLabelTitle.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitle.setIcon(new javax.swing.ImageIcon("/home/vesprada/Descargas/Desktop Integrador/Desktop Integrador/DesktopIntegrador/img/title background.png")); // NOI18N
+        jLabelTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/title background.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelTitleLayout = new javax.swing.GroupLayout(jPanelTitle);
         jPanelTitle.setLayout(jPanelTitleLayout);
@@ -359,7 +359,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         }
     });
 
-    jLabelMedico.setIcon(new javax.swing.ImageIcon("/home/vesprada/Descargas/Desktop Integrador/Desktop Integrador/DesktopIntegrador/img/doctor.png")); // NOI18N
+    jLabelMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doctor.png"))); // NOI18N
     jLabelMedico.setText("jLabel1");
     jLabelMedico.setBorder(javax.swing.BorderFactory.createEtchedBorder());
     jLabelMedico.setPreferredSize(new java.awt.Dimension(232, 122));
@@ -368,7 +368,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
     jComboBoxCS.setModel(cSalud);
     jComboBoxCS.setBorder(javax.swing.BorderFactory.createTitledBorder("Centro de Salud"));
 
-    jLabelCS.setIcon(new javax.swing.ImageIcon("/home/vesprada/Descargas/Desktop Integrador/Desktop Integrador/DesktopIntegrador/img/centrosalud.png")); // NOI18N
+    jLabelCS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/centrosalud.png"))); // NOI18N
     jLabelCS.setText("jLabel1");
     jLabelCS.setBorder(javax.swing.BorderFactory.createEtchedBorder());
     jLabelCS.setPreferredSize(new java.awt.Dimension(232, 122));
