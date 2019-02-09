@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Utils;
 
 import java.awt.Component;
@@ -22,11 +17,12 @@ import javax.swing.table.TableModel;
  */
 public class Utils {
     
-    public static JTable buildTable(ResultSet rs) {
+ /*   public static JTable buildTable(ResultSet rs) {
         JTable table = new JTable(buildTableModel(rs));
         return table;
-    }
-
+    }*/
+    
+    //Genera la estructura y modelo de la tabla
     public static TableModel buildTableModel(ResultSet rs) {
         Vector<String> columnNames = new Vector<>();
         Vector<Vector<Object>> data = new Vector<>();

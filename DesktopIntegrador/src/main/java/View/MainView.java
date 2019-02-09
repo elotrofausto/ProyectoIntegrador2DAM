@@ -10,6 +10,7 @@ import Models.XCsModel;
 import Models.XDependienteModel;
 import Models.XMedicoModel;
 import Models.XViviendaModel;
+import Utils.SentenciasSQL;
 import Utils.Utils;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -104,13 +105,16 @@ public class MainView extends javax.swing.JFrame {
         jPanelHistorial = new javax.swing.JPanel();
         jPanelViviendas = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable4 = new javax.swing.JTable();
+        jTableViviendas = new javax.swing.JTable();
         jPanelHistorialMed = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jPanelAllegados = new javax.swing.JPanel();
+        jTableHistorialMed = new javax.swing.JTable();
+        jPanelHistorialSoc = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        jTableHistorialSoc = new javax.swing.JTable();
+        jPanelAllegados = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTableAllegados = new javax.swing.JTable();
         jPanelAsistente = new javax.swing.JPanel();
         jPanelAsistenteMod = new javax.swing.JPanel();
         tfAsistenteNombre = new javax.swing.JTextField();
@@ -450,7 +454,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
 
     jPanelViviendas.setBorder(javax.swing.BorderFactory.createTitledBorder("Viviendas"));
 
-    jTable4.setModel(new javax.swing.table.DefaultTableModel(
+    jTableViviendas.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
             {null, null, null, null},
             {null, null, null, null},
@@ -461,7 +465,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
             "Title 1", "Title 2", "Title 3", "Title 4"
         }
     ));
-    jScrollPane4.setViewportView(jTable4);
+    jScrollPane4.setViewportView(jTableViviendas);
 
     javax.swing.GroupLayout jPanelViviendasLayout = new javax.swing.GroupLayout(jPanelViviendas);
     jPanelViviendas.setLayout(jPanelViviendasLayout);
@@ -482,7 +486,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
 
     jPanelHistorialMed.setBorder(javax.swing.BorderFactory.createTitledBorder("Historial médico"));
 
-    jTable1.setModel(new javax.swing.table.DefaultTableModel(
+    jTableHistorialMed.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
             {null, null, null, null},
             {null, null, null, null},
@@ -493,7 +497,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
             "Title 1", "Title 2", "Title 3", "Title 4"
         }
     ));
-    jScrollPane1.setViewportView(jTable1);
+    jScrollPane1.setViewportView(jTableHistorialMed);
 
     javax.swing.GroupLayout jPanelHistorialMedLayout = new javax.swing.GroupLayout(jPanelHistorialMed);
     jPanelHistorialMed.setLayout(jPanelHistorialMedLayout);
@@ -512,9 +516,9 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
-    jPanelAllegados.setBorder(javax.swing.BorderFactory.createTitledBorder("Allegados"));
+    jPanelHistorialSoc.setBorder(javax.swing.BorderFactory.createTitledBorder("Historial social"));
 
-    jTable3.setModel(new javax.swing.table.DefaultTableModel(
+    jTableHistorialSoc.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
             {null, null, null, null},
             {null, null, null, null},
@@ -525,7 +529,39 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
             "Title 1", "Title 2", "Title 3", "Title 4"
         }
     ));
-    jScrollPane3.setViewportView(jTable3);
+    jScrollPane3.setViewportView(jTableHistorialSoc);
+
+    javax.swing.GroupLayout jPanelHistorialSocLayout = new javax.swing.GroupLayout(jPanelHistorialSoc);
+    jPanelHistorialSoc.setLayout(jPanelHistorialSocLayout);
+    jPanelHistorialSocLayout.setHorizontalGroup(
+        jPanelHistorialSocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanelHistorialSocLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(207, Short.MAX_VALUE))
+    );
+    jPanelHistorialSocLayout.setVerticalGroup(
+        jPanelHistorialSocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanelHistorialSocLayout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    );
+
+    jPanelAllegados.setBorder(javax.swing.BorderFactory.createTitledBorder("Allegados"));
+
+    jTableAllegados.setModel(new javax.swing.table.DefaultTableModel(
+        new Object [][] {
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null}
+        },
+        new String [] {
+            "Title 1", "Title 2", "Title 3", "Title 4"
+        }
+    ));
+    jScrollPane6.setViewportView(jTableAllegados);
 
     javax.swing.GroupLayout jPanelAllegadosLayout = new javax.swing.GroupLayout(jPanelAllegados);
     jPanelAllegados.setLayout(jPanelAllegadosLayout);
@@ -533,14 +569,14 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         jPanelAllegadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelAllegadosLayout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
     jPanelAllegadosLayout.setVerticalGroup(
         jPanelAllegadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelAllegadosLayout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
@@ -552,6 +588,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
             .addContainerGap()
             .addGroup(jPanelHistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                 .addComponent(jPanelAllegados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelHistorialSoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanelHistorialMed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanelViviendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGap(28, 28, 28))
@@ -564,8 +601,10 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelHistorialMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jPanelHistorialSoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jPanelAllegados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(219, Short.MAX_VALUE))
+            .addContainerGap(92, Short.MAX_VALUE))
     );
 
     jTabbedPaneIzq.addTab("Dependiente (Historial, vivienda y allegados)", jPanelHistorial);
@@ -1075,6 +1114,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
     private javax.swing.JPanel jPanelGeo;
     private javax.swing.JPanel jPanelHistorial;
     private javax.swing.JPanel jPanelHistorialMed;
+    private javax.swing.JPanel jPanelHistorialSoc;
     private javax.swing.JPanel jPanelLlamadas;
     private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JPanel jPanelProfesionales;
@@ -1087,16 +1127,18 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPaneMaps;
     private javax.swing.JTabbedPane jTabbedPaneDcha;
     private javax.swing.JTabbedPane jTabbedPaneIzq;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable3;
-    private javax.swing.JTable jTable4;
     private javax.swing.JTable jTableAlarmas;
+    private javax.swing.JTable jTableAllegados;
     private javax.swing.JTable jTableAsistente;
+    private javax.swing.JTable jTableHistorialMed;
+    private javax.swing.JTable jTableHistorialSoc;
     private javax.swing.JTable jTableLlamadas;
+    private javax.swing.JTable jTableViviendas;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTextField tfAsistenteApe1;
     private javax.swing.JTextField tfAsistenteApe4;
@@ -1214,7 +1256,8 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
             }
         });
     }
-
+    
+    //Crontolamos los botones del zoom del maps, en base a la valor de la variable currentZoom
     private void mapButtonsAvailable() {
         if (currentZoom > MIN_MAPS_ZOOM && currentZoom < MAX_MAPS_ZOOM) {
             this.jButtonZoomOut.setEnabled(true);
@@ -1227,7 +1270,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
             this.jButtonZoomIn.setEnabled(false);
         }
     }
-
+    //Llenamos las tablas y los combos de la aplicacion
     private void initData() {
         //Llenamos datos del dependiente (primer id por defecto)
         List<Object> listaDependientes = this.controller.cargarDatos(XDependienteModel.class);
@@ -1251,7 +1294,12 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         genero.addElement("Indefinido");
 
         //Llenar tablas. 
-        this.jTableAlarmas.setModel(controller.cargarResultSet("Select * FROM x_alarma_model"));
+        this.jTableAlarmas.setModel(controller.cargarResultSet(SentenciasSQL.alarmasTM));
+        this.jTableLlamadas.setModel(controller.cargarResultSet(SentenciasSQL.avisosTM));
+        this.jTableViviendas.setModel(controller.cargarResultSet(SentenciasSQL.viviendasTM));
+        this.jTableHistorialMed.setModel(controller.cargarResultSet(SentenciasSQL.avisosTM));
+        this.jTableHistorialSoc.setModel(controller.cargarResultSet(SentenciasSQL.avisosTM));
+        this.jTableAllegados.setModel(controller.cargarResultSet(SentenciasSQL.allegadosTM));
     }
 
     private void initCombos() {
@@ -1260,7 +1308,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         vivienda = new DefaultComboBoxModel();
         genero = new DefaultComboBoxModel();
     }
-
+    //Asignamos los datos del dependiente seleccionado en los respectivos campos del panel
     private void cargadependiente(Object dependiente) {
         XDependienteModel dep = (XDependienteModel) dependiente;
         this.tfDependienteNombre.setText(dep.getXPersonaModel().getName());
