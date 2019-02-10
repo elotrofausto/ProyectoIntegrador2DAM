@@ -32,7 +32,7 @@ import javax.swing.event.ChangeListener;
  * @author vesprada
  */
 public class MainView extends javax.swing.JFrame {
-
+    
     private final static String MAPS_KEY = "%20AIzaSyBXkyYwknSg-vZ446hxBHmVEMshcbujIyo";
     private final static int MAX_MAPS_ZOOM = 21;
     private final static int MIN_MAPS_ZOOM = 5;
@@ -41,7 +41,7 @@ public class MainView extends javax.swing.JFrame {
     private int currentZoom;
     private BLogic controller;
     private List<Object> listaDependientes;
-
+    
     private DefaultComboBoxModel medico;
     private DefaultComboBoxModel cSalud;
     private DefaultComboBoxModel vivienda;
@@ -55,7 +55,7 @@ public class MainView extends javax.swing.JFrame {
         initTabs();
         initMaps();
     }
-
+    
     public MainView(BLogic controller) {
         this.controller = controller;
         initCombos();
@@ -148,6 +148,11 @@ public class MainView extends javax.swing.JFrame {
         jButtonCenterMap = new javax.swing.JButton();
         jButtonZoomOut = new javax.swing.JButton();
         jButtonZoomIn = new javax.swing.JButton();
+        menuBarAsist = new javax.swing.JMenuBar();
+        menuAsist = new javax.swing.JMenu();
+        itemCerrarSesion = new javax.swing.JMenuItem();
+        itemInfo = new javax.swing.JMenuItem();
+        itemSalir = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -447,7 +452,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
             .addComponent(jPaneldependiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelProfesionales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(70, Short.MAX_VALUE))
+            .addContainerGap(47, Short.MAX_VALUE))
     );
 
     jTabbedPaneIzq.addTab("Dependiente (Datos principales)", null, jPanelPrincipal, "");
@@ -604,7 +609,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
             .addComponent(jPanelHistorialSoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jPanelAllegados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(92, Short.MAX_VALUE))
+            .addContainerGap(69, Short.MAX_VALUE))
     );
 
     jTabbedPaneIzq.addTab("Dependiente (Historial, vivienda y allegados)", jPanelHistorial);
@@ -766,7 +771,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
             .addComponent(jPanelAsistenteMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelAsistenteDeps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(325, Short.MAX_VALUE))
+            .addContainerGap(308, Short.MAX_VALUE))
     );
 
     jTabbedPaneIzq.addTab("Asistente", null, jPanelAsistente, "");
@@ -960,10 +965,30 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
                 .addComponent(jButtonZoomIn)
                 .addComponent(jButtonZoomOut)
                 .addComponent(jButtonCenterMap))
-            .addContainerGap(78, Short.MAX_VALUE))
+            .addContainerGap(63, Short.MAX_VALUE))
     );
 
     jTabbedPaneDcha.addTab("Geolocalización", jPanelGeo);
+
+    menuAsist.setText("Inicio");
+
+    itemCerrarSesion.setText("Cerrar Sesion");
+    menuAsist.add(itemCerrarSesion);
+
+    itemInfo.setText("Información");
+    menuAsist.add(itemInfo);
+
+    itemSalir.setText("Salir");
+    itemSalir.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            itemSalirActionPerformed(evt);
+        }
+    });
+    menuAsist.add(itemSalir);
+
+    menuBarAsist.add(menuAsist);
+
+    setJMenuBar(menuBarAsist);
 
     javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
     getContentPane().setLayout(layout);
@@ -1081,10 +1106,17 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxMedicoActionPerformed
 
+    private void itemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_itemSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private datechooser.beans.DateChooserCombo dateChooserDependienteAlta;
     private datechooser.beans.DateChooserCombo dateChooserDependienteNac;
+    private javax.swing.JMenuItem itemCerrarSesion;
+    private javax.swing.JMenuItem itemInfo;
+    private javax.swing.JMenuItem itemSalir;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1140,6 +1172,8 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
     private javax.swing.JTable jTableLlamadas;
     private javax.swing.JTable jTableViviendas;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JMenu menuAsist;
+    private javax.swing.JMenuBar menuBarAsist;
     private javax.swing.JTextField tfAsistenteApe1;
     private javax.swing.JTextField tfAsistenteApe4;
     private javax.swing.JTextField tfAsistenteEmail;
@@ -1165,7 +1199,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
             currentZoom = 18;
             currentLat = 38.346041;
             currentLng = -0.484756;
-
+            
             String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?"
                     + "markers=icon:https://img.icons8.com/windows/32/000000/mental-state.png|" + currentLat + "," + currentLng
                     //+ "markers=|38.346041,-0.484756"
@@ -1179,14 +1213,14 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
             URL url = new URL(imageUrl);
             InputStream is = url.openStream();
             OutputStream os = new FileOutputStream(destinationFile);
-
+            
             byte[] b = new byte[2048];
             int length;
-
+            
             while ((length = is.read(b)) != -1) {
                 os.write(b, 0, length);
             }
-
+            
             is.close();
             os.close();
         } catch (IOException e) {
@@ -1196,9 +1230,9 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         this.jLabelMaps.setIcon(new ImageIcon((new ImageIcon("img/image.jpg")).getImage().getScaledInstance(1280, 1280,
                 java.awt.Image.SCALE_SMOOTH)));
         jPanelGeo.repaint();
-
+        
     }
-
+    
     private void initMaps(double lat, double lng, int zoom) {
         try {
             String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?"
@@ -1215,14 +1249,14 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
             URL url = new URL(imageUrl);
             InputStream is = url.openStream();
             OutputStream os = new FileOutputStream(destinationFile);
-
+            
             byte[] b = new byte[2048];
             int length;
-
+            
             while ((length = is.read(b)) != -1) {
                 os.write(b, 0, length);
             }
-
+            
             is.close();
             os.close();
         } catch (IOException e) {
@@ -1232,20 +1266,20 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         this.jLabelMaps.setIcon(new ImageIcon((new ImageIcon("img/image.jpg")).getImage().getScaledInstance(1280, 1280,
                 java.awt.Image.SCALE_SMOOTH)));
         jPanelGeo.repaint();
-
+        
     }
-
+    
     public void centerScroll() {
         //Set the scrollPane to the middle
         Rectangle bounds = this.jScrollPaneMaps.getViewport().getViewRect();
         Dimension size = this.jScrollPaneMaps.getViewport().getViewSize();
-
+        
         int x = (size.width - bounds.width) / 2;
         int y = (size.height - bounds.height) / 2;
-
+        
         this.jScrollPaneMaps.getViewport().setViewPosition(new Point(x, y));
     }
-
+    
     private void initTabs() {
         this.jTabbedPaneDcha.addChangeListener(new ChangeListener() {
             @Override
@@ -1256,7 +1290,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
             }
         });
     }
-    
+
     //Crontolamos los botones del zoom del maps, en base a la valor de la variable currentZoom
     private void mapButtonsAvailable() {
         if (currentZoom > MIN_MAPS_ZOOM && currentZoom < MAX_MAPS_ZOOM) {
@@ -1270,6 +1304,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
             this.jButtonZoomIn.setEnabled(false);
         }
     }
+
     //Llenamos las tablas y los combos de la aplicacion
     private void initData() {
         //Llenamos datos del dependiente (primer id por defecto)
@@ -1297,17 +1332,18 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         this.jTableAlarmas.setModel(controller.cargarResultSet(SentenciasSQL.alarmasTM));
         this.jTableLlamadas.setModel(controller.cargarResultSet(SentenciasSQL.avisosTM));
         this.jTableViviendas.setModel(controller.cargarResultSet(SentenciasSQL.viviendasTM));
-        this.jTableHistorialMed.setModel(controller.cargarResultSet(SentenciasSQL.avisosTM));
-        this.jTableHistorialSoc.setModel(controller.cargarResultSet(SentenciasSQL.avisosTM));
+        this.jTableHistorialMed.setModel(controller.cargarResultSet(SentenciasSQL.historialMedicoTM));
+        this.jTableHistorialSoc.setModel(controller.cargarResultSet(SentenciasSQL.historialSocialTM));
         this.jTableAllegados.setModel(controller.cargarResultSet(SentenciasSQL.allegadosTM));
     }
-
+    
     private void initCombos() {
         medico = new DefaultComboBoxModel();
         cSalud = new DefaultComboBoxModel();
         vivienda = new DefaultComboBoxModel();
         genero = new DefaultComboBoxModel();
     }
+
     //Asignamos los datos del dependiente seleccionado en los respectivos campos del panel
     private void cargadependiente(Object dependiente) {
         XDependienteModel dep = (XDependienteModel) dependiente;
@@ -1324,26 +1360,26 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         Calendar alta = Calendar.getInstance();
         alta.setTime(dep.getFecAlta());
         this.dateChooserDependienteAlta.setSelectedDate(alta);
-
+        
         Calendar nac = Calendar.getInstance();
         nac.setTime(dep.getFecNacim());
         this.dateChooserDependienteAlta.setSelectedDate(nac);
-
+        
         setCombos(dep);
         setTables(dep);
     }
-
+    
     private void setCombos(XDependienteModel dep) {
         medico.setSelectedItem(dep.getXMedicoModel());
         cSalud.setSelectedItem(dep.getXCsModel());
         genero.setSelectedItem(dep.getGenero());
         // Las viviendas ya están ordenadas de modo que la primera es la actual. no es necesario seleccionarlas aquí
     }
-
+    
     private void setTables(XDependienteModel dep) {
-
+        
     }
-
+    
     private void lockEnabled(boolean enabled) {
         //Panel dependiente
         this.tfDependienteNombre.setEnabled(enabled);
@@ -1359,5 +1395,5 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         this.jComboBoxDependienteVivienda.setEnabled(enabled);
         this.jComboBoxDependienteGenero.setEnabled(enabled);
     }
-
+    
 }
