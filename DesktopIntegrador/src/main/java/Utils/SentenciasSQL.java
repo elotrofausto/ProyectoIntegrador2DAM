@@ -46,4 +46,8 @@ public class SentenciasSQL {
     public static final String historialMedicoTM = "SELECT descripcion FROM public.x_histmedico_model WHERE name = 'medico' AND id_dependiente=4";
 
     public static final String historialSocialTM = "SELECT descripcion FROM public.x_histmedico_model WHERE name = 'social' AND id_dependiente=4";
+    
+    public static final String asistenteDatos="SELECT  asi.id, asi.password, per.id, per.name, per.apellido1, per.apellido2,"
+            + " per.dni, per.telefono, per.email FROM x_asistente_model AS asi, x_persona_model AS per WHERE"
+            + " asi.persona_id = per.id AND per.name =? AND asi.password =?";
 }

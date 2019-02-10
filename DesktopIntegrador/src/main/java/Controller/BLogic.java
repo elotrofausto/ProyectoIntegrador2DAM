@@ -5,10 +5,15 @@
  */
 package Controller;
 
+import Models.XAsistenteModel;
+import View.AccessAsist;
 import View.MainView;
 import java.net.ServerSocket;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.table.TableModel;
 
@@ -22,6 +27,7 @@ public class BLogic {
     private AppServer appServer;
     private HibernateController hibernate;
     private ServerSocket serverSocket;
+    private XAsistenteModel asistente;
 
     public BLogic() {
         initHibernate();
@@ -32,12 +38,23 @@ public class BLogic {
 
     private void initView() {
         mainView = new MainView(this);
-        mainView.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+        mainView.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mainView.setVisible(true);
     }
 
     private void initHibernate() {
-        hibernate = new HibernateController();
+        try {
+            AccessAsist access = new AccessAsist(null, true);
+            asistente = access.getAsistente();
+            System.err.println(asistente.toString());
+            //definir la vista del gif de espera
+            hibernate = new HibernateController();
+            //hacer join
+            //cerrar vista, para que se visualice el panel cargado
+        } catch (SQLException ex) {
+            System.err.println("PROBLEMAS ACCEDIENDO A LA BD");
+        }
+
     }
 
     private ServerSocket initServerSocket() {
@@ -47,14 +64,13 @@ public class BLogic {
 
     //Gestión de la BD
     //--------------------------------------------------------------------------
-    
     //Consultas recurrentes
     public List<Object> cargarDatos(Class c) {
         return hibernate.read(c);
     }
-    
+
     //Consultas personalizadas
-    public List<Object> cargarDatos(String query){
+    public List<Object> cargarDatos(String query) {
         return hibernate.readWithQuery(query);
     }
 
