@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Models.XDependienteModel;
 import Models.XIpModel;
 import Utils.HibernateUtil;
 import java.net.InetAddress;
@@ -95,7 +96,7 @@ public class HibernateController {
         return list;
     }
 
-    public TableModel getRs(String query) {
+    public TableModel getRs(String query, Object dependiente) {
         session.beginTransaction();
         TableModel tm;
         tm = session.doReturningWork(new ReturningWork<TableModel>() {
@@ -103,10 +104,13 @@ public class HibernateController {
             public TableModel execute(Connection connection) throws SQLException {
                 TableModel dtm;
                 try (PreparedStatement stmt = connection.prepareStatement(query)) {
-                ResultSet rs = stmt.executeQuery();
-                dtm = Utils.Utils.buildTableModel(rs);
-            }
-            return dtm;
+                    if (dependiente != null) {
+                        stmt.setInt(1, ((XDependienteModel) dependiente).getId());
+                    }
+                    ResultSet rs = stmt.executeQuery();
+                    dtm = Utils.Utils.buildTableModel(rs);
+                }
+                return dtm;
             }
         });
         session.getTransaction().commit();

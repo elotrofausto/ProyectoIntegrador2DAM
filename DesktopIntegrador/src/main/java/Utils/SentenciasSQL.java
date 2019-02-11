@@ -31,7 +31,7 @@ public class SentenciasSQL {
             + " as \"vivienda actual\", viv.modo_acceso AS acceso FROM x_vivienda_model AS viv,"
             + " x_direccion_model AS dir, x_ciudad_model AS ciu, x_provincia_model AS pro WHERE"
             + " viv.id_direccion = dir.id and dir.id_ciudad = ciu.id AND ciu.id_provincia = pro.id"
-            + " AND viv.id_dependiente=4 order by viv.habitual desc";
+            + " AND viv.id_dependiente=? order by viv.habitual desc";
 
     public static final String allegadosTM = "SELECT con.disponibilidad,"
             + " CONCAT(per.name,' ', per.apellido1,' ', per.apellido2) AS allegado,"
@@ -41,13 +41,13 @@ public class SentenciasSQL {
             + " x_ciudad_model AS ciu, x_provincia_model AS pro, x_persona_model AS per,"
             + " x_contactofamiliar_model AS con WHERE fam.direccion = dir.id AND"
             + " dir.id_ciudad = ciu.id AND ciu.id_provincia = pro.id AND fam.persona_id = per.id AND"
-            + " fam.id = con.familiar_id AND con.dependiente_id=4 Order by con.prioridad desc, fam.llaves desc";
+            + " fam.id = con.familiar_id AND con.dependiente_id=? Order by con.prioridad desc, fam.llaves desc";
 
-    public static final String historialMedicoTM = "SELECT descripcion FROM public.x_histmedico_model WHERE name = 'medico' AND id_dependiente=4";
+    public static final String historialMedicoTM = "SELECT descripcion FROM public.x_histmedico_model WHERE name = 'medico' AND id_dependiente=?";
 
-    public static final String historialSocialTM = "SELECT descripcion FROM public.x_histmedico_model WHERE name = 'social' AND id_dependiente=4";
+    public static final String historialSocialTM = "SELECT descripcion FROM public.x_histmedico_model WHERE name = 'social' AND id_dependiente=?";
 
-    public static final String coordenadasTM = "SELECT fecha_hora, latitud, longitud FROM x_geolocaliz_model WHERE id_dependiente=4";
+    public static final String coordenadasTM = "SELECT fecha_hora, latitud, longitud FROM x_geolocaliz_model WHERE id_dependiente=?";
     
     public static final String asistenteDatos = "SELECT  asi.id, asi.password, per.id, per.name, per.apellido1, per.apellido2,"
             + " per.dni, per.telefono, per.email FROM x_asistente_model AS asi, x_persona_model AS per WHERE"

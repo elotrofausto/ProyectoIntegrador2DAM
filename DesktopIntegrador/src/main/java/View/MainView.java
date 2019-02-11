@@ -1367,13 +1367,8 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         genero.addElement("Indefinido");
 
         //Llenar tablas. 
-        this.jTableAlarmas.setModel(controller.cargarResultSet(SentenciasSQL.alarmasTM));
-        this.jTableLlamadas.setModel(controller.cargarResultSet(SentenciasSQL.avisosTM));
-        this.jTableViviendas.setModel(controller.cargarResultSet(SentenciasSQL.viviendasTM));
-        this.jTableHistorialMed.setModel(controller.cargarResultSet(SentenciasSQL.historialMedicoTM));
-        this.jTableHistorialSoc.setModel(controller.cargarResultSet(SentenciasSQL.historialSocialTM));
-        this.jTableAllegados.setModel(controller.cargarResultSet(SentenciasSQL.allegadosTM));
-        this.jTableCoordenadas.setModel(controller.cargarResultSet(SentenciasSQL.coordenadasTM));
+        this.jTableAlarmas.setModel(controller.cargarResultSet(SentenciasSQL.alarmasTM,null));
+        this.jTableLlamadas.setModel(controller.cargarResultSet(SentenciasSQL.avisosTM,null));
     }
 
     private void initCombos() {
@@ -1416,7 +1411,11 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
     }
 
     private void setTables(XDependienteModel dep) {
-
+        this.jTableViviendas.setModel(controller.cargarResultSet(SentenciasSQL.viviendasTM,dep));
+        this.jTableHistorialMed.setModel(controller.cargarResultSet(SentenciasSQL.historialMedicoTM,dep));
+        this.jTableHistorialSoc.setModel(controller.cargarResultSet(SentenciasSQL.historialSocialTM,dep));
+        this.jTableAllegados.setModel(controller.cargarResultSet(SentenciasSQL.allegadosTM,dep));
+        this.jTableCoordenadas.setModel(controller.cargarResultSet(SentenciasSQL.coordenadasTM,dep));
     }
 
     private void lockEnabled(boolean enabled) {
@@ -1433,6 +1432,8 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         this.dateChooserDependienteNac.setEnabled(enabled);
         this.jComboBoxDependienteVivienda.setEnabled(enabled);
         this.jComboBoxDependienteGenero.setEnabled(enabled);
+        this.jComboBoxMedico.setEnabled(enabled);
+        this.jComboBoxCS.setEnabled(enabled);
     }
 
 }

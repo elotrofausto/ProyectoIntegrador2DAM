@@ -27,7 +27,7 @@ public class BLogic {
     private XAsistenteModel asistente;
 
     public BLogic() {
-        asistente = getAssistant();
+      //  asistente = getAssistant();
         initHibernate();
         initView();
         serverSocket = initServerSocket();
@@ -80,8 +80,8 @@ public class BLogic {
         return hibernate;
     }
 
-    public TableModel cargarResultSet(String query) {
-        return hibernate.getRs(query);
+    public TableModel cargarResultSet(String query, Object dependiente) {
+        return hibernate.getRs(query,dependiente);
     }
 
 }
