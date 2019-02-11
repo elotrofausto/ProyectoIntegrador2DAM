@@ -9,11 +9,8 @@ import Models.XAsistenteModel;
 import View.AccessAsist;
 import View.MainView;
 import java.net.ServerSocket;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.table.TableModel;
 
@@ -30,6 +27,7 @@ public class BLogic {
     private XAsistenteModel asistente;
 
     public BLogic() {
+        asistente = getAssistant();
         initHibernate();
         initView();
         serverSocket = initServerSocket();
@@ -37,24 +35,27 @@ public class BLogic {
     }
 
     private void initView() {
-        mainView = new MainView(this);
+        mainView = new MainView(this,asistente);
         mainView.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mainView.setVisible(true);
     }
 
     private void initHibernate() {
+        //definir la vista del gif de espera
+        hibernate = new HibernateController();
+        //hacer join
+        //cerrar vista, para que se visualice el panel cargado
+
+    }
+
+    private XAsistenteModel getAssistant() {
         try {
             AccessAsist access = new AccessAsist(null, true);
-            asistente = access.getAsistente();
-            System.err.println(asistente.toString());
-            //definir la vista del gif de espera
-            hibernate = new HibernateController();
-            //hacer join
-            //cerrar vista, para que se visualice el panel cargado
+            return access.getAsistente();
         } catch (SQLException ex) {
             System.err.println("PROBLEMAS ACCEDIENDO A LA BD");
         }
-
+        return null;
     }
 
     private ServerSocket initServerSocket() {
@@ -82,4 +83,5 @@ public class BLogic {
     public TableModel cargarResultSet(String query) {
         return hibernate.getRs(query);
     }
+
 }

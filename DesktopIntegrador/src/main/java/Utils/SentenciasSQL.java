@@ -33,7 +33,7 @@ public class SentenciasSQL {
             + " viv.id_direccion = dir.id and dir.id_ciudad = ciu.id AND ciu.id_provincia = pro.id"
             + " AND viv.id_dependiente=4 order by viv.habitual desc";
 
-    public static final String allegadosTM = "SELECT con.prioridad, con.disponibilidad,"
+    public static final String allegadosTM = "SELECT con.disponibilidad,"
             + " CONCAT(per.name,' ', per.apellido1,' ', per.apellido2) AS allegado,"
             + " relacion, CONCAT(dir.tipovia,' ',dir.direccion,' ',dir.num,', ',ciu.name,' (',pro.name,')') AS direccion,"
             + " CASE WHEN fam.llaves = false THEN 'no' ELSE 'si' END AS \"tiene llaves\","
@@ -46,8 +46,10 @@ public class SentenciasSQL {
     public static final String historialMedicoTM = "SELECT descripcion FROM public.x_histmedico_model WHERE name = 'medico' AND id_dependiente=4";
 
     public static final String historialSocialTM = "SELECT descripcion FROM public.x_histmedico_model WHERE name = 'social' AND id_dependiente=4";
+
+    public static final String coordenadasTM = "SELECT fecha_hora, latitud, longitud FROM x_geolocaliz_model WHERE id_dependiente=4";
     
-    public static final String asistenteDatos="SELECT  asi.id, asi.password, per.id, per.name, per.apellido1, per.apellido2,"
+    public static final String asistenteDatos = "SELECT  asi.id, asi.password, per.id, per.name, per.apellido1, per.apellido2,"
             + " per.dni, per.telefono, per.email FROM x_asistente_model AS asi, x_persona_model AS per WHERE"
-            + " asi.persona_id = per.id AND per.name =? AND asi.password =?";
+            + " asi.persona_id = per.id AND per.dni =? AND asi.password =?";
 }
