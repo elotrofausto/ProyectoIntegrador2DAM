@@ -106,13 +106,10 @@ public class MainView extends javax.swing.JFrame {
         jPanelViviendas = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTableViviendas = new javax.swing.JTable();
-        jPanelHistorialMed = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableHistorialMed = new javax.swing.JTable();
-        jPanelHistorialSoc = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableHistorialSoc = new javax.swing.JTable();
-        jPanelAllegados = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         jTableAllegados = new javax.swing.JTable();
         jPanelAsistente = new javax.swing.JPanel();
@@ -212,6 +209,7 @@ public class MainView extends javax.swing.JFrame {
 
         tfDependienteId.setToolTipText("");
         tfDependienteId.setBorder(javax.swing.BorderFactory.createTitledBorder("ID Dependiente"));
+        tfDependienteId.setPreferredSize(new java.awt.Dimension(10, 47));
         tfDependienteId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfDependienteIdActionPerformed(evt);
@@ -220,6 +218,7 @@ public class MainView extends javax.swing.JFrame {
 
         tfDependientePass.setText("jPasswordField1");
         tfDependientePass.setBorder(javax.swing.BorderFactory.createTitledBorder("Password"));
+        tfDependientePass.setPreferredSize(new java.awt.Dimension(115, 47));
 
         dateChooserDependienteNac.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.LOWERED,
             (java.awt.Color)null,
@@ -241,6 +240,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
 
     jComboBoxDependienteGenero.setModel(genero);
     jComboBoxDependienteGenero.setBorder(javax.swing.BorderFactory.createTitledBorder("Género"));
+    jComboBoxDependienteGenero.setPreferredSize(new java.awt.Dimension(154, 47));
 
     tfDependienteNSS.setToolTipText("");
     tfDependienteNSS.setBorder(javax.swing.BorderFactory.createTitledBorder("Nº Seguridad Social"));
@@ -260,7 +260,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
     );
     jPanelEstadoLayout.setVerticalGroup(
         jPanelEstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 154, Short.MAX_VALUE)
+        .addGap(0, 175, Short.MAX_VALUE)
     );
 
     tfDependienteTelf.setToolTipText("");
@@ -313,30 +313,30 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
                 .addGroup(jPaneldependienteLayout.createSequentialGroup()
                     .addComponent(tfDependienteNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(tfDependienteApe1)
+                    .addComponent(tfDependienteApe1, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(tfDependienteApe2)
+                    .addComponent(tfDependienteApe2, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(tfDependienteEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPaneldependienteLayout.createSequentialGroup()
                     .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPaneldependienteLayout.createSequentialGroup()
-                            .addComponent(tfDependienteId, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(tfDependientePass, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPaneldependienteLayout.createSequentialGroup()
-                            .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(dateChooserDependienteNac, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                                .addComponent(jComboBoxDependienteVivienda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jComboBoxDependienteGenero, 0, 154, Short.MAX_VALUE)
-                                .addComponent(dateChooserDependienteAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
+                        .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPaneldependienteLayout.createSequentialGroup()
+                                .addComponent(dateChooserDependienteNac, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dateChooserDependienteAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBoxDependienteVivienda, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(jPaneldependienteLayout.createSequentialGroup()
                             .addComponent(tfDependienteTelf, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(tfDependienteNSS, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(tfDependienteNSS, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPaneldependienteLayout.createSequentialGroup()
+                            .addComponent(tfDependienteId, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(tfDependientePass, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jComboBoxDependienteGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jPanelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
             .addContainerGap())
     );
@@ -352,11 +352,10 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
                 .addGroup(jPaneldependienteLayout.createSequentialGroup()
                     .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tfDependienteId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tfDependientePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBoxDependienteVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBoxDependienteGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tfDependientePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBoxDependienteGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(12, 12, 12)
+                    .addComponent(jComboBoxDependienteVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(dateChooserDependienteNac, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -366,7 +365,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
                         .addComponent(tfDependienteTelf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tfDependienteNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPaneldependienteLayout.createSequentialGroup()
-                    .addGap(10, 10, 10)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jPanelEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
@@ -403,15 +402,15 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
     jPanelProfesionalesLayout.setHorizontalGroup(
         jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
-            .addGap(31, 31, 31)
+            .addGap(30, 30, 30)
             .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addComponent(jLabelMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jComboBoxMedico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-            .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                .addComponent(jLabelCS, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jComboBoxCS, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGap(269, 269, 269))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jComboBoxCS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabelCS, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(30, 30, 30))
     );
     jPanelProfesionalesLayout.setVerticalGroup(
         jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -464,7 +463,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
                 .addComponent(jButton1)
                 .addComponent(jButton6))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPaneldependiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPaneldependiente, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelProfesionales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap(47, Short.MAX_VALUE))
@@ -472,7 +471,9 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
 
     jTabbedPaneIzq.addTab("Dependiente (Datos principales)", null, jPanelPrincipal, "");
 
-    jPanelViviendas.setBorder(javax.swing.BorderFactory.createTitledBorder("Viviendas"));
+    jPanelViviendas.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos adicionales del dependiente"));
+
+    jScrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder("Viviendas"));
 
     jTableViviendas.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
@@ -487,24 +488,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
     ));
     jScrollPane4.setViewportView(jTableViviendas);
 
-    javax.swing.GroupLayout jPanelViviendasLayout = new javax.swing.GroupLayout(jPanelViviendas);
-    jPanelViviendas.setLayout(jPanelViviendasLayout);
-    jPanelViviendasLayout.setHorizontalGroup(
-        jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelViviendasLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-    jPanelViviendasLayout.setVerticalGroup(
-        jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelViviendasLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-
-    jPanelHistorialMed.setBorder(javax.swing.BorderFactory.createTitledBorder("Historial médico"));
+    jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Historial medico"));
 
     jTableHistorialMed.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
@@ -519,24 +503,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
     ));
     jScrollPane1.setViewportView(jTableHistorialMed);
 
-    javax.swing.GroupLayout jPanelHistorialMedLayout = new javax.swing.GroupLayout(jPanelHistorialMed);
-    jPanelHistorialMed.setLayout(jPanelHistorialMedLayout);
-    jPanelHistorialMedLayout.setHorizontalGroup(
-        jPanelHistorialMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelHistorialMedLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-    jPanelHistorialMedLayout.setVerticalGroup(
-        jPanelHistorialMedLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelHistorialMedLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-
-    jPanelHistorialSoc.setBorder(javax.swing.BorderFactory.createTitledBorder("Historial social"));
+    jScrollPane3.setBorder(javax.swing.BorderFactory.createTitledBorder("Historial social"));
 
     jTableHistorialSoc.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
@@ -551,24 +518,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
     ));
     jScrollPane3.setViewportView(jTableHistorialSoc);
 
-    javax.swing.GroupLayout jPanelHistorialSocLayout = new javax.swing.GroupLayout(jPanelHistorialSoc);
-    jPanelHistorialSoc.setLayout(jPanelHistorialSocLayout);
-    jPanelHistorialSocLayout.setHorizontalGroup(
-        jPanelHistorialSocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelHistorialSocLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(207, Short.MAX_VALUE))
-    );
-    jPanelHistorialSocLayout.setVerticalGroup(
-        jPanelHistorialSocLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelHistorialSocLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-
-    jPanelAllegados.setBorder(javax.swing.BorderFactory.createTitledBorder("Allegados"));
+    jScrollPane6.setBorder(javax.swing.BorderFactory.createTitledBorder("Allegados"));
 
     jTableAllegados.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
@@ -583,48 +533,50 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
     ));
     jScrollPane6.setViewportView(jTableAllegados);
 
-    javax.swing.GroupLayout jPanelAllegadosLayout = new javax.swing.GroupLayout(jPanelAllegados);
-    jPanelAllegados.setLayout(jPanelAllegadosLayout);
-    jPanelAllegadosLayout.setHorizontalGroup(
-        jPanelAllegadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelAllegadosLayout.createSequentialGroup()
+    javax.swing.GroupLayout jPanelViviendasLayout = new javax.swing.GroupLayout(jPanelViviendas);
+    jPanelViviendas.setLayout(jPanelViviendasLayout);
+    jPanelViviendasLayout.setHorizontalGroup(
+        jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelViviendasLayout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING))
+            .addContainerGap())
     );
-    jPanelAllegadosLayout.setVerticalGroup(
-        jPanelAllegadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelAllegadosLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    jPanelViviendasLayout.setVerticalGroup(
+        jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelViviendasLayout.createSequentialGroup()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(16, 16, 16))
     );
+
+    jPanelViviendasLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jScrollPane1, jScrollPane3, jScrollPane4, jScrollPane6});
 
     javax.swing.GroupLayout jPanelHistorialLayout = new javax.swing.GroupLayout(jPanelHistorial);
     jPanelHistorial.setLayout(jPanelHistorialLayout);
     jPanelHistorialLayout.setHorizontalGroup(
         jPanelHistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHistorialLayout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(jPanelHistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(jPanelAllegados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelHistorialSoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelHistorialMed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelViviendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGap(28, 28, 28))
+        .addGroup(jPanelHistorialLayout.createSequentialGroup()
+            .addGap(16, 16, 16)
+            .addComponent(jPanelViviendas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(18, 18, 18))
     );
     jPanelHistorialLayout.setVerticalGroup(
         jPanelHistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelHistorialLayout.createSequentialGroup()
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelHistorialLayout.createSequentialGroup()
             .addGap(16, 16, 16)
             .addComponent(jPanelViviendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanelHistorialMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanelHistorialSoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jPanelAllegados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(69, Short.MAX_VALUE))
+            .addGap(15, 15, 15))
     );
 
     jTabbedPaneIzq.addTab("Dependiente (Historial, vivienda y allegados)", jPanelHistorial);
@@ -786,7 +738,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
             .addComponent(jPanelAsistenteMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelAsistenteDeps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(308, Short.MAX_VALUE))
+            .addContainerGap(317, Short.MAX_VALUE))
     );
 
     jTabbedPaneIzq.addTab("Asistente", null, jPanelAsistente, "");
@@ -878,7 +830,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         .addGroup(jPanelLlamadasLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(jPanelLlamadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLlamadasLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jButton5)
@@ -970,7 +922,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
         .addGroup(jPanelGeoLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(jPanelGeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabelMapcaption, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 659, Short.MAX_VALUE)
+                .addComponent(jLabelMapcaption, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
                 .addGroup(jPanelGeoLayout.createSequentialGroup()
                     .addGap(6, 6, 6)
                     .addGroup(jPanelGeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -999,7 +951,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
                 .addComponent(jButtonZoomOut)
                 .addComponent(jButtonCenterMap)
                 .addComponent(jScrollPane10, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(26, Short.MAX_VALUE))
+            .addContainerGap(28, Short.MAX_VALUE))
     );
 
     jTabbedPaneDcha.addTab("Geolocalización", jPanelGeo);
@@ -1034,7 +986,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
                 .addComponent(jPanelTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jTabbedPaneIzq, javax.swing.GroupLayout.PREFERRED_SIZE, 858, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jTabbedPaneDcha)))
             .addContainerGap())
     );
@@ -1172,15 +1124,12 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JPanel jPanelAlarmas;
     private javax.swing.JPanel jPanelAlertas;
-    private javax.swing.JPanel jPanelAllegados;
     private javax.swing.JPanel jPanelAsistente;
     private javax.swing.JPanel jPanelAsistenteDeps;
     private javax.swing.JPanel jPanelAsistenteMod;
     private javax.swing.JPanel jPanelEstado;
     private javax.swing.JPanel jPanelGeo;
     private javax.swing.JPanel jPanelHistorial;
-    private javax.swing.JPanel jPanelHistorialMed;
-    private javax.swing.JPanel jPanelHistorialSoc;
     private javax.swing.JPanel jPanelLlamadas;
     private javax.swing.JPanel jPanelPrincipal;
     private javax.swing.JPanel jPanelProfesionales;
@@ -1368,7 +1317,7 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
 
         //Llenar tablas. 
         this.jTableAlarmas.setModel(controller.cargarResultSet(SentenciasSQL.alarmasTM,null));
-        this.jTableLlamadas.setModel(controller.cargarResultSet(SentenciasSQL.avisosTM,null));
+        Utils.resizeColumnWidth(this.jTableAlarmas);
     }
 
     private void initCombos() {
@@ -1412,10 +1361,17 @@ dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorde
 
     private void setTables(XDependienteModel dep) {
         this.jTableViviendas.setModel(controller.cargarResultSet(SentenciasSQL.viviendasTM,dep));
+        Utils.resizeColumnWidth(this.jTableViviendas);
         this.jTableHistorialMed.setModel(controller.cargarResultSet(SentenciasSQL.historialMedicoTM,dep));
+        Utils.resizeColumnWidth(this.jTableHistorialMed);
         this.jTableHistorialSoc.setModel(controller.cargarResultSet(SentenciasSQL.historialSocialTM,dep));
+        Utils.resizeColumnWidth(this.jTableHistorialSoc);
         this.jTableAllegados.setModel(controller.cargarResultSet(SentenciasSQL.allegadosTM,dep));
+        Utils.resizeColumnWidth(this.jTableAllegados);
         this.jTableCoordenadas.setModel(controller.cargarResultSet(SentenciasSQL.coordenadasTM,dep));
+        Utils.resizeColumnWidth(this.jTableCoordenadas);
+        this.jTableLlamadas.setModel(controller.cargarResultSet(SentenciasSQL.avisosTM,dep));
+        Utils.resizeColumnWidth(this.jTableLlamadas);
     }
 
     private void lockEnabled(boolean enabled) {

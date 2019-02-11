@@ -27,8 +27,8 @@ public class BLogic {
     private XAsistenteModel asistente;
 
     public BLogic() {
-      //  asistente = getAssistant();
         initHibernate();
+        asistente = getAssistant();
         initView();
         serverSocket = initServerSocket();
         hibernate.logDesktopApp(serverSocket);
@@ -49,13 +49,13 @@ public class BLogic {
     }
 
     private XAsistenteModel getAssistant() {
+       AccessAsist access=null;
         try {
-            AccessAsist access = new AccessAsist(null, true);
-            return access.getAsistente();
+            access = new AccessAsist(null, true,hibernate);
         } catch (SQLException ex) {
             System.err.println("PROBLEMAS ACCEDIENDO A LA BD");
         }
-        return null;
+        return access.getAsistente();
     }
 
     private ServerSocket initServerSocket() {

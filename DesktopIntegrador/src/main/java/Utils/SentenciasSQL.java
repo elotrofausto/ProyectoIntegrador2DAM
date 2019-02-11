@@ -23,7 +23,7 @@ public class SentenciasSQL {
     public static final String avisosTM = " SELECT tipo AS aviso, name AS elemento,"
             + " fec_desde as inicio,fec_hasta as fin, periodicidad as descripcion,"
             + " CASE WHEN recibido isnull THEN 'no' WHEN recibido= false THEN 'no' ELSE 'si' END"
-            + " as recibido FROM public.x_aviso_model WHERE id_dependiente=4";
+            + " as recibido FROM public.x_aviso_model WHERE id_dependiente=?";
 
     public static final String viviendasTM = "SELECT "
             + "CONCAT(dir.tipovia,' ',dir.direccion,' ',dir.num,', ',ciu.name,' (',pro.name,')') AS direccion,"

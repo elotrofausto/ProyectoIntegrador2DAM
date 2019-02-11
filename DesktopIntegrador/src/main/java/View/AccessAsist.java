@@ -1,5 +1,6 @@
 package View;
 
+import Controller.HibernateController;
 import Models.XAsistenteModel;
 import Models.XPersonaModel;
 import Utils.SentenciasSQL;
@@ -7,8 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 import org.postgresql.ds.PGSimpleDataSource;
@@ -21,10 +20,12 @@ public class AccessAsist extends javax.swing.JDialog {
 
     private XAsistenteModel asistente;
     private Connection connection;
+    private HibernateController hibernate;
 
-    public AccessAsist(java.awt.Frame parent, boolean modal) throws SQLException {
+    public AccessAsist(java.awt.Frame parent, boolean modal, HibernateController hibernate) throws SQLException {
         super(parent, modal);
         initComponents();
+        this.hibernate = hibernate;
         this.connection = initConnection();
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null);
@@ -148,8 +149,8 @@ public class AccessAsist extends javax.swing.JDialog {
         ds.setUser("grup2");
         ds.setPassword("Grupo-312");
         ds.setDatabaseName("BDgrup2");
-        ds.setServerName("149.202.8.235");
-        ds.setPortNumber(5432);
+        ds.setServerName("localhost");
+        ds.setPortNumber(9999);
         return ds.getConnection();
     }
 
@@ -160,12 +161,10 @@ public class AccessAsist extends javax.swing.JDialog {
             PreparedStatement ps = connection.prepareStatement(SentenciasSQL.asistenteDatos);
             ps.setString(1, tFieldUser.getText());
             ps.setString(2, String.valueOf(tFieldPass.getPassword()));
-            if (ps.execute()) {
-                ResultSet rs = ps.getResultSet();
-                if (rs.first()) {
-                    persona = new XPersonaModel(rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
-                    asistente = new XAsistenteModel(rs.getInt(1), persona, rs.getString(2));
-                }
+            ResultSet rs = ps.executeQuery();
+            if (rs.first()) {
+                persona = new XPersonaModel(rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
+                asistente = new XAsistenteModel(rs.getInt(1), persona, rs.getString(2));
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Usuario no encontrado");
