@@ -53,6 +53,7 @@ public class Utils {
     //Ajusta automáticamente el tamaño de las columnas de la tabla
     public static void resizeColumnWidth(JTable table) {
         final TableColumnModel columnModel = table.getColumnModel();
+        columnModel.removeColumn(table.getColumnModel().getColumn(0));
         for (int column = 0; column < table.getColumnCount(); column++) {
             int width = 15; // Min width
             for (int row = 0; row < table.getRowCount(); row++) {
