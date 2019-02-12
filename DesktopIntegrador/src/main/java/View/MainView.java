@@ -34,7 +34,7 @@ import javax.swing.event.ChangeListener;
  * @author vesprada
  */
 public class MainView extends javax.swing.JFrame {
-
+    
     private final static String MAPS_KEY = "%20AIzaSyBXkyYwknSg-vZ446hxBHmVEMshcbujIyo";
     private final static int MAX_MAPS_ZOOM = 21;
     private final static int MIN_MAPS_ZOOM = 5;
@@ -45,7 +45,7 @@ public class MainView extends javax.swing.JFrame {
     private XAsistenteModel asistente;
     private XDependienteModel dep;
     private List<Object> listaDependientes;
-
+    
     private DefaultComboBoxModel medico;
     private DefaultComboBoxModel cSalud;
     private DefaultComboBoxModel vivienda;
@@ -59,7 +59,7 @@ public class MainView extends javax.swing.JFrame {
         initTabs();
         initMaps();
     }
-
+    
     public MainView(BLogic controller, XAsistenteModel asistente) {
         this.controller = controller;
         this.asistente = asistente;
@@ -70,7 +70,7 @@ public class MainView extends javax.swing.JFrame {
         initMaps();
         lockEnabled(false);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -314,33 +314,36 @@ public class MainView extends javax.swing.JFrame {
         jPaneldependienteLayout.setHorizontalGroup(
             jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPaneldependienteLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
+                .addContainerGap()
                 .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPaneldependienteLayout.createSequentialGroup()
-                        .addComponent(tfDependienteNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(tfDependienteApe1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(tfDependienteApe2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(tfDependienteEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPaneldependienteLayout.createSequentialGroup()
                         .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfDependienteId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxDependienteGenero, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
+                            .addComponent(jComboBoxDependienteGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
                         .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(dateChooserDependienteNac, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfDependientePass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(20, 20, 20)
+                        .addGap(30, 30, 30)
                         .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfDependienteTelf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dateChooserDependienteAlta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(20, 20, 20)
                         .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfDependienteNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxDependienteVivienda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(36, 36, 36))
+                            .addGroup(jPaneldependienteLayout.createSequentialGroup()
+                                .addGap(30, 30, 30)
+                                .addComponent(jComboBoxDependienteVivienda, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPaneldependienteLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(tfDependienteNSS, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPaneldependienteLayout.createSequentialGroup()
+                        .addComponent(tfDependienteNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(tfDependienteApe1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(tfDependienteApe2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(tfDependienteEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPaneldependienteLayout.setVerticalGroup(
             jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -357,14 +360,19 @@ public class MainView extends javax.swing.JFrame {
                     .addComponent(tfDependienteTelf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfDependienteNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfDependienteId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
                 .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(dateChooserDependienteNac, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(dateChooserDependienteAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jComboBoxDependienteGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxDependienteVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(8, 8, 8))
+                    .addGroup(jPaneldependienteLayout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(dateChooserDependienteNac, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(dateChooserDependienteAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBoxDependienteVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPaneldependienteLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBoxDependienteGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         jComboBoxDependienteGenero.getAccessibleContext().setAccessibleName("Genero");
@@ -406,15 +414,19 @@ public class MainView extends javax.swing.JFrame {
         jPanelProfesionales.setLayout(jPanelProfesionalesLayout);
         jPanelProfesionalesLayout.setHorizontalGroup(
             jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfesionalesLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jComboBoxMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jLabelMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jComboBoxCS, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelCS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32))
+            .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfesionalesLayout.createSequentialGroup()
+                        .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelMedico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxMedico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
+                        .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jComboBoxCS, 0, 262, Short.MAX_VALUE)
+                            .addComponent(jLabelCS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanelProfesionalesLayout.setVerticalGroup(
             jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,6 +443,11 @@ public class MainView extends javax.swing.JFrame {
         );
 
         jButtonSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoBuscar25x25.png"))); // NOI18N
+        jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchActionPerformed(evt);
+            }
+        });
 
         jToggleButtonEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoEditar25x25.png"))); // NOI18N
         jToggleButtonEdit.setText("Editar");
@@ -448,6 +465,11 @@ public class MainView extends javax.swing.JFrame {
         });
 
         jButtonCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoCancelar25x25.png"))); // NOI18N
+        jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelActionPerformed(evt);
+            }
+        });
 
         jPanelEstado.setBorder(javax.swing.BorderFactory.createTitledBorder("Estado del dependiente"));
 
@@ -467,21 +489,21 @@ public class MainView extends javax.swing.JFrame {
         jTableEstado.setPreferredSize(new java.awt.Dimension(500, 80));
         jScrollPaneestado.setViewportView(jTableEstado);
 
-        jbtnMod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoGuardar25x25.png"))); // NOI18N
+        jbtnMod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoEditar25x25.png"))); // NOI18N
         jbtnMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnModActionPerformed(evt);
             }
         });
 
-        jbtnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoGuardar25x25.png"))); // NOI18N
+        jbtnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
         jbtnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnAddActionPerformed(evt);
             }
         });
 
-        jbtnRemov.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoGuardar25x25.png"))); // NOI18N
+        jbtnRemov.setIcon(new javax.swing.ImageIcon(getClass().getResource("/remove.png"))); // NOI18N
         jbtnRemov.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnRemovActionPerformed(evt);
@@ -1299,7 +1321,8 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_itemGenerarInfoActionPerformed
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
-        // TODO add your handling code here:
+        cargadependiente(dep);
+        lockEnabled(false);
     }//GEN-LAST:event_jButtonSaveActionPerformed
 
     private void jbtnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModActionPerformed
@@ -1313,6 +1336,19 @@ public class MainView extends javax.swing.JFrame {
     private void jbtnRemovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRemovActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnRemovActionPerformed
+
+    private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
+        Search search = new Search(null, true, listaDependientes);
+        if (search.getDependiente() != null) {
+            dep = search.getDependiente();
+            cargadependiente(dep);
+        }
+    }//GEN-LAST:event_jButtonSearchActionPerformed
+
+    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
+        cargadependiente(dep);
+        lockEnabled(false);
+    }//GEN-LAST:event_jButtonCancelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1419,7 +1455,7 @@ public class MainView extends javax.swing.JFrame {
             currentZoom = 18;
             currentLat = 38.346041;
             currentLng = -0.484756;
-
+            
             String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?"
                     + "markers=icon:https://img.icons8.com/windows/32/000000/mental-state.png|" + currentLat + "," + currentLng
                     //+ "markers=|38.346041,-0.484756"
@@ -1433,14 +1469,14 @@ public class MainView extends javax.swing.JFrame {
             URL url = new URL(imageUrl);
             InputStream is = url.openStream();
             OutputStream os = new FileOutputStream(destinationFile);
-
+            
             byte[] b = new byte[2048];
             int length;
-
+            
             while ((length = is.read(b)) != -1) {
                 os.write(b, 0, length);
             }
-
+            
             is.close();
             os.close();
         } catch (IOException e) {
@@ -1450,9 +1486,9 @@ public class MainView extends javax.swing.JFrame {
         this.jLabelMaps.setIcon(new ImageIcon((new ImageIcon("img/image.jpg")).getImage().getScaledInstance(1280, 1280,
                 java.awt.Image.SCALE_SMOOTH)));
         jPanelGeo.repaint();
-
+        
     }
-
+    
     private void initMaps(double lat, double lng, int zoom) {
         try {
             String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?"
@@ -1469,14 +1505,14 @@ public class MainView extends javax.swing.JFrame {
             URL url = new URL(imageUrl);
             InputStream is = url.openStream();
             OutputStream os = new FileOutputStream(destinationFile);
-
+            
             byte[] b = new byte[2048];
             int length;
-
+            
             while ((length = is.read(b)) != -1) {
                 os.write(b, 0, length);
             }
-
+            
             is.close();
             os.close();
         } catch (IOException e) {
@@ -1486,20 +1522,20 @@ public class MainView extends javax.swing.JFrame {
         this.jLabelMaps.setIcon(new ImageIcon((new ImageIcon("img/image.jpg")).getImage().getScaledInstance(1280, 1280,
                 java.awt.Image.SCALE_SMOOTH)));
         jPanelGeo.repaint();
-
+        
     }
-
+    
     public void centerScroll() {
         //Set the scrollPane to the middle
         Rectangle bounds = this.jScrollPaneMaps.getViewport().getViewRect();
         Dimension size = this.jScrollPaneMaps.getViewport().getViewSize();
-
+        
         int x = (size.width - bounds.width) / 2;
         int y = (size.height - bounds.height) / 2;
-
+        
         this.jScrollPaneMaps.getViewport().setViewPosition(new Point(x, y));
     }
-
+    
     private void initTabs() {
         this.jTabbedPaneDcha.addChangeListener(new ChangeListener() {
             @Override
@@ -1527,10 +1563,10 @@ public class MainView extends javax.swing.JFrame {
 
     //Llenamos las tablas y los combos de la aplicacion
     private void initData() {
-        
+
         //Llenamos datos del asistente
         cargarAsistente();
-        
+
         //Llenamos datos del dependiente (primer id por defecto)
         listaDependientes = this.controller.cargarDatos(XDependienteModel.class);
         cargadependiente(listaDependientes.get(0));
@@ -1556,7 +1592,7 @@ public class MainView extends javax.swing.JFrame {
         this.jTableAlarmas.setModel(controller.cargarResultSet(SentenciasSQL.alarmasTM, null));
         Utils.resizeColumnWidth(this.jTableAlarmas);
     }
-
+    
     private void initCombos() {
         medico = new DefaultComboBoxModel();
         cSalud = new DefaultComboBoxModel();
@@ -1580,22 +1616,23 @@ public class MainView extends javax.swing.JFrame {
         Calendar alta = Calendar.getInstance();
         alta.setTime(dep.getFecAlta());
         this.dateChooserDependienteAlta.setSelectedDate(alta);
-
+        
         Calendar nac = Calendar.getInstance();
         nac.setTime(dep.getFecNacim());
         this.dateChooserDependienteNac.setSelectedDate(nac);
-
+        
         setCombos(dep);
         setTables(dep);
     }
-
+    
     private void setCombos(XDependienteModel dep) {
         medico.setSelectedItem(dep.getXMedicoModel());
         cSalud.setSelectedItem(dep.getXCsModel());
         genero.setSelectedItem(dep.getGenero());
+        vivienda.setSelectedItem(vivienda.getElementAt(0));
         // Las viviendas ya están ordenadas de modo que la primera es la actual. no es necesario seleccionarlas aquí
     }
-
+    
     private void setTables(XDependienteModel dep) {
         this.jTableViviendas.setModel(controller.cargarResultSet(SentenciasSQL.viviendasTM, dep));
         Utils.resizeColumnWidth(this.jTableViviendas);
@@ -1612,7 +1649,7 @@ public class MainView extends javax.swing.JFrame {
         this.jTableEstado.setModel(controller.cargarResultSet(SentenciasSQL.estadoTM, dep));
         Utils.resizeColumnWidth(this.jTableEstado);
     }
-
+    
     private void lockEnabled(boolean enabled) {
         //Panel dependiente
         this.tfDependienteNombre.setEnabled(enabled);
@@ -1629,8 +1666,11 @@ public class MainView extends javax.swing.JFrame {
         this.jComboBoxDependienteGenero.setEnabled(enabled);
         this.jComboBoxMedico.setEnabled(enabled);
         this.jComboBoxCS.setEnabled(enabled);
+        this.jButtonSave.setEnabled(enabled);
+        this.jButtonCancel.setEnabled(enabled);
+        this.jToggleButtonEdit.setEnabled(!enabled);
     }
-
+    
     private void cargarAsistente() {
         this.tfAsistenteNombre.setText(asistente.getXPersonaModel().getName());
         this.tfAsistenteApe1.setText(asistente.getXPersonaModel().getApellido1());
@@ -1641,5 +1681,5 @@ public class MainView extends javax.swing.JFrame {
         this.tfIdAsistenteNSS.setText(asistente.getXPersonaModel().getDni());
         this.tfIdAsistenteTelf1.setText(asistente.getXPersonaModel().getTelefono());
     }
-
+    
 }
