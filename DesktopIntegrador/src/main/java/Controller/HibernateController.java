@@ -27,12 +27,16 @@ import org.hibernate.jdbc.ReturningWork;
  *
  * @author vesprada
  */
-public class HibernateController {
-
+public class HibernateController extends Thread {
+    
     private static Session session;
     private static XIpModel ipLog;
-
+    
     public HibernateController() {
+    }
+    
+    @Override
+    public void run() {
         session = HibernateUtil.getSessionFactory().openSession();
     }
 
@@ -89,13 +93,21 @@ public class HibernateController {
         List<Object> list = session.createQuery("from " + c.getName()).list();
         return list;
     }
+    
+    public Object read(Class c, String critery, Object opc) {
+        List<Object> list = session.createQuery("from " + c.getName() + critery).setParameter(1, opc).list();
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
 
     //Consulta y recupera una lista de objetos de la BD dada una query concreta
     public List<Object> readWithQuery(String query) throws HibernateException {
         List<Object> list = session.createQuery(query).list();
         return list;
     }
-
+    
     public TableModel getRs(String query, Object dependiente) {
         session.beginTransaction();
         TableModel tm;
@@ -116,5 +128,5 @@ public class HibernateController {
         session.getTransaction().commit();
         return tm;
     }
-
+    
 }

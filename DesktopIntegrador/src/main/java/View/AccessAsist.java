@@ -4,13 +4,11 @@ import Controller.HibernateController;
 import Models.XAsistenteModel;
 import Models.XPersonaModel;
 import Utils.SentenciasSQL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
-import org.postgresql.ds.PGSimpleDataSource;
 
 /**
  *
@@ -19,14 +17,12 @@ import org.postgresql.ds.PGSimpleDataSource;
 public class AccessAsist extends javax.swing.JDialog {
 
     private XAsistenteModel asistente;
-    private Connection connection;
     private HibernateController hibernate;
 
     public AccessAsist(java.awt.Frame parent, boolean modal, HibernateController hibernate) throws SQLException {
         super(parent, modal);
         initComponents();
         this.hibernate = hibernate;
-        this.connection = initConnection();
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -117,9 +113,15 @@ public class AccessAsist extends javax.swing.JDialog {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         if (tFieldPass.getPassword().length > 0 && tFieldUser.getText().length() > 0) {
-            asistente = getAssistant();
-            if (asistente != null) {
-                dispose();
+            getAssistant();
+            if (asistente == null) {
+                JOptionPane.showMessageDialog(this, "El usuario introducido no existe");
+            } else {
+                if (asistente.getPassword().equals(String.valueOf(tFieldPass.getPassword()))) {
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "La contraseña introducida es incorrecta");
+                }
             }
         } else {
             JOptionPane.showMessageDialog(this, "Rellene los campos, por favor");
@@ -144,38 +146,17 @@ public class AccessAsist extends javax.swing.JDialog {
         return asistente;
     }
 
-    private Connection initConnection() throws SQLException {
-        PGSimpleDataSource ds = new PGSimpleDataSource();
-        ds.setUser("grup2");
-        ds.setPassword("Grupo-312");
-        ds.setDatabaseName("BDgrup2");
-        ds.setServerName("localhost");
-        ds.setPortNumber(9999);
-        return ds.getConnection();
-    }
-
-    private XAsistenteModel getAssistant() {
-        XPersonaModel persona = null;
-        XAsistenteModel asistente = null;
+    private void getAssistant() {
         try {
-            PreparedStatement ps = connection.prepareStatement(SentenciasSQL.asistenteDatos);
-            ps.setString(1, tFieldUser.getText());
-            ps.setString(2, String.valueOf(tFieldPass.getPassword()));
-            ResultSet rs = ps.executeQuery();
-            if (rs.first()) {
-                persona = new XPersonaModel(rs.getInt(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9));
-                asistente = new XAsistenteModel(rs.getInt(1), persona, rs.getString(2));
+            hibernate.join();
+            XPersonaModel persona = (XPersonaModel) hibernate.read(XPersonaModel.class, SentenciasSQL.personaDatos, tFieldUser.getText());
+            if (persona != null) {
+                asistente = (XAsistenteModel) hibernate.read(XAsistenteModel.class, SentenciasSQL.asistenteDatos, persona.getId());
+            } else {
+                asistente = null;
             }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Usuario no encontrado");
-        } finally {
-            try {
-                connection.close();
-            } catch (SQLException ex) {
-                System.out.println("ERROR CON LA CONEXION. " + ex.getMessage());
-            }
+        } catch (InterruptedException ex) {
+            Logger.getLogger(AccessAsist.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return asistente;
     }
-
 }

@@ -35,23 +35,20 @@ public class BLogic {
     }
 
     private void initView() {
-        mainView = new MainView(this,asistente);
+        mainView = new MainView(this, asistente);
         mainView.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mainView.setVisible(true);
     }
 
     private void initHibernate() {
-        //definir la vista del gif de espera
         hibernate = new HibernateController();
-        //hacer join
-        //cerrar vista, para que se visualice el panel cargado
-
+        hibernate.start();
     }
 
     private XAsistenteModel getAssistant() {
-       AccessAsist access=null;
+        AccessAsist access = null;
         try {
-            access = new AccessAsist(null, true,hibernate);
+            access = new AccessAsist(null, true, hibernate);
         } catch (SQLException ex) {
             System.err.println("PROBLEMAS ACCEDIENDO A LA BD");
         }
@@ -81,7 +78,7 @@ public class BLogic {
     }
 
     public TableModel cargarResultSet(String query, Object dependiente) {
-        return hibernate.getRs(query,dependiente);
+        return hibernate.getRs(query, dependiente);
     }
 
 }

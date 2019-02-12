@@ -18,7 +18,7 @@ public class SentenciasSQL {
             + " (SELECT CONCAT(persona.name,' ', persona.apellido1,' ', persona.apellido2) AS asistente"
             + " FROM x_asistente_model AS asistente, x_persona_model AS persona WHERE"
             + " alarma.id_asistente_atiende = asistente.id AND asistente.persona_id = persona.id)"
-            + " FROM x_alarma_model AS alarma WHERE id_dependiente=4";
+            + " FROM x_alarma_model AS alarma";
 
     public static final String avisosTM = " SELECT tipo AS aviso, name AS elemento,"
             + " fec_desde as inicio,fec_hasta as fin, periodicidad as descripcion,"
@@ -43,13 +43,18 @@ public class SentenciasSQL {
             + " dir.id_ciudad = ciu.id AND ciu.id_provincia = pro.id AND fam.persona_id = per.id AND"
             + " fam.id = con.familiar_id AND con.dependiente_id=? Order by con.prioridad desc, fam.llaves desc";
 
-    public static final String historialMedicoTM = "SELECT descripcion FROM public.x_histmedico_model WHERE name = 'medico' AND id_dependiente=?";
+    public static final String historialMedicoTM = "SELECT descripcion FROM public.x_histmedico_model WHERE name = 'medico' AND"
+            + " id_dependiente=?";
 
-    public static final String historialSocialTM = "SELECT descripcion FROM public.x_histmedico_model WHERE name = 'social' AND id_dependiente=?";
+    public static final String historialSocialTM = "SELECT descripcion FROM public.x_histmedico_model WHERE name = 'social' AND"
+            + " id_dependiente=?";
 
+    public static final String estadoTM = "SELECT fecha_hora AS \"Registro de llamada\", fecha_hora_inicio AS \"Registro de Suceso\","
+            + " descripcion AS \"Descripción\"	FROM x_estado_model WHERE id_dependiente =? ";
+    
     public static final String coordenadasTM = "SELECT fecha_hora, latitud, longitud FROM x_geolocaliz_model WHERE id_dependiente=?";
     
-    public static final String asistenteDatos = "SELECT  asi.id, asi.password, per.id, per.name, per.apellido1, per.apellido2,"
-            + " per.dni, per.telefono, per.email FROM x_asistente_model AS asi, x_persona_model AS per WHERE"
-            + " asi.persona_id = per.id AND per.dni =? AND asi.password =?";
+    public static final String personaDatos = " WHERE dni =?1";
+    
+    public static final String asistenteDatos = " WHERE persona_id = ?1";
 }
