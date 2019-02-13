@@ -1,6 +1,6 @@
 package View;
 
-import Controller.HibernateController;
+import Controller.BLogic;
 import Models.XAsistenteModel;
 import Models.XPersonaModel;
 import Utils.SentenciasSQL;
@@ -17,12 +17,12 @@ import javax.swing.WindowConstants;
 public class AccessAsist extends javax.swing.JDialog {
 
     private XAsistenteModel asistente;
-    private HibernateController hibernate;
+    private BLogic controler;
 
-    public AccessAsist(java.awt.Frame parent, boolean modal, HibernateController hibernate) throws SQLException {
+    public AccessAsist(java.awt.Frame parent, boolean modal, BLogic controler) throws SQLException {
         super(parent, modal);
         initComponents();
-        this.hibernate = hibernate;
+        this.controler = controler;
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -148,10 +148,10 @@ public class AccessAsist extends javax.swing.JDialog {
 
     private void getAssistant() {
         try {
-            hibernate.join();
-            XPersonaModel persona = (XPersonaModel) hibernate.read(XPersonaModel.class, SentenciasSQL.personaDatos, tFieldUser.getText());
+            controler.getHibernate().join();
+            XPersonaModel persona = (XPersonaModel) controler.cargarDatos(XPersonaModel.class, SentenciasSQL.personaDatos, tFieldUser.getText());
             if (persona != null) {
-                asistente = (XAsistenteModel) hibernate.read(XAsistenteModel.class, SentenciasSQL.asistenteDatos, persona.getId());
+                asistente = (XAsistenteModel) controler.cargarDatos(XAsistenteModel.class, SentenciasSQL.asistenteDatos, persona.getId());
             } else {
                 asistente = null;
             }

@@ -48,7 +48,7 @@ public class BLogic {
     private XAsistenteModel getAssistant() {
         AccessAsist access = null;
         try {
-            access = new AccessAsist(null, true, hibernate);
+            access = new AccessAsist(null, true, this);
         } catch (SQLException ex) {
             System.err.println("PROBLEMAS ACCEDIENDO A LA BD");
         }
@@ -70,6 +70,10 @@ public class BLogic {
     //Consultas personalizadas
     public List<Object> cargarDatos(String query) {
         return hibernate.readWithQuery(query);
+    }
+
+    public Object cargarDatos(Class c, String critery, Object opc) {
+        return hibernate.read(c, critery, opc);
     }
 
     //Getters and Setters

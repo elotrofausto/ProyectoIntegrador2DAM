@@ -28,13 +28,13 @@ import org.hibernate.jdbc.ReturningWork;
  * @author vesprada
  */
 public class HibernateController extends Thread {
-    
+
     private static Session session;
     private static XIpModel ipLog;
-    
+
     public HibernateController() {
     }
-    
+
     @Override
     public void run() {
         session = HibernateUtil.getSessionFactory().openSession();
@@ -69,7 +69,6 @@ public class HibernateController extends Thread {
         session.beginTransaction();
         session.remove(object);
         session.getTransaction().commit();
-        session.close();
     }
 
     //Guarda un objeto en la BD
@@ -77,7 +76,6 @@ public class HibernateController extends Thread {
         session.beginTransaction();
         session.save(object);
         session.getTransaction().commit();
-        session.close();
     }
 
     //Actualiza un objeto en la BD
@@ -85,7 +83,6 @@ public class HibernateController extends Thread {
         session.beginTransaction();
         session.update(object);
         session.getTransaction().commit();
-        session.close();
     }
 
     //Devuelve todos los registros de la BD del tipo recibido como parámetro
@@ -93,7 +90,7 @@ public class HibernateController extends Thread {
         List<Object> list = session.createQuery("from " + c.getName()).list();
         return list;
     }
-    
+
     public Object read(Class c, String critery, Object opc) {
         List<Object> list = session.createQuery("from " + c.getName() + critery).setParameter(1, opc).list();
         if (list.isEmpty()) {
@@ -107,7 +104,7 @@ public class HibernateController extends Thread {
         List<Object> list = session.createQuery(query).list();
         return list;
     }
-    
+
     public TableModel getRs(String query, Object dependiente) {
         session.beginTransaction();
         TableModel tm;
@@ -128,5 +125,5 @@ public class HibernateController extends Thread {
         session.getTransaction().commit();
         return tm;
     }
-    
+
 }

@@ -76,10 +76,4 @@ public class XCsModel  implements java.io.Serializable {
     public String toString() {
         return name;
     }
-
-
-
-
 }
-
-
