@@ -6,10 +6,13 @@
 package Controller;
 
 import Models.XAsistenteModel;
+import Models.XDependienteModel;
+import Models.XViviendaModel;
 import View.AccessAsist;
 import View.MainView;
 import java.net.ServerSocket;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.table.TableModel;
@@ -76,13 +79,13 @@ public class BLogic {
         return hibernate.read(c, critery, opc);
     }
 
+    public TableModel cargarResultSet(String query, Object dependiente) {
+        return hibernate.getRs(query, dependiente);
+    }
+
     //Getters and Setters
     public HibernateController getHibernate() {
         return hibernate;
-    }
-
-    public TableModel cargarResultSet(String query, Object dependiente) {
-        return hibernate.getRs(query, dependiente);
     }
 
 }
