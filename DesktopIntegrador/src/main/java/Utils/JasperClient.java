@@ -25,7 +25,7 @@ import org.apache.commons.io.IOUtils;
 /**
  *
  * https://github.com/Jaspersoft/jrs-rest-java-client#report-services
- *
+ *149.202.8.235:8080/jasperserver/rest_v2/reports/reports/grup2/AnalisisGestion.jrprint?j_username=grup2&j_password=Grupo-312
  * @author Yop
  */
 public class JasperClient {
