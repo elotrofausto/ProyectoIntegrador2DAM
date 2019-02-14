@@ -1,23 +1,22 @@
 package Utils;
 
-import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
- * 
+ *
  *
  * @author vesprada
  */
 public class PdfFromXmlFile {
 
-    //http://149.202.8.235:8080/jasperserver/rest_v2/reports/reports/grup2/InformeMedicamentoList.html?user=4&j_username=grup2&j_password=Grupo-312
     private static final String INIT = "http:";
     private static final String HOST = "//149.202.8.235";
     private static final String PORT = ":8080";
@@ -30,32 +29,26 @@ public class PdfFromXmlFile {
     private URL urlForGetRequest;
     private HttpURLConnection conection;
 
-    public PdfFromXmlFile(String DOC) {
+    public PdfFromXmlFile(String DOC) throws MalformedURLException, IOException {
         this.DOC = DOC;
-        try {
-            Setui();
-        } catch (IOException ex) {
-            Logger.getLogger(PdfFromXmlFile.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        SetUI();
     }
 
-    private void Setui() throws MalformedURLException, IOException {
+    private void SetUI() throws FileNotFoundException, MalformedURLException, IOException {
+        OutputStream fos = null;
         int responseCode;
-        String readLine = null;
-        BufferedReader br = null;
-        StringBuffer sb = new StringBuffer();
-
-            urlForGetRequest = new URL(INIT + HOST + PORT + REPOSITORY + DOC + ESPANSE + "?" + USER + "&" + PASS);
-            conection = (HttpURLConnection) urlForGetRequest.openConnection();
-            conection.setRequestMethod("GET");
-            responseCode = conection.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                br = new BufferedReader(new InputStreamReader(conection.getInputStream()));
-                while ((readLine = br.readLine()) != null) {
-                    sb.append(readLine);
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "ERROR EN LA EXTRACCION");
+        File pdfFile = new File("Informe.pdf");
+        fos = new FileOutputStream(pdfFile);
+        urlForGetRequest = new URL(INIT + HOST + PORT + REPOSITORY + DOC + ESPANSE + "?" + USER + "&" + PASS);
+        conection = (HttpURLConnection) urlForGetRequest.openConnection();
+        conection.setRequestMethod("GET");
+        responseCode = conection.getResponseCode();
+        if (responseCode == HttpURLConnection.HTTP_OK) {
+            InputStream is = conection.getInputStream();
+            while (is.available() > 0) {
+                fos.write(is.read());
+                fos.flush();
             }
+        }
     }
 }

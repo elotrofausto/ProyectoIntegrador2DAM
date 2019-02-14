@@ -1483,7 +1483,7 @@ public class MainView extends javax.swing.JFrame {
     private void itemGenerarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemGenerarInfoActionPerformed
         try {
             new JasperClient();
-            new PdfFromXmlFile("InformeMedicamentoList");
+          //  new PdfFromXmlFile("AnalisisGestion");
         } catch (IOException ex) {
             Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1568,7 +1568,7 @@ public class MainView extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 System.err.println("PROBLEMAS ACCEDIENDO A LA BD");
             }
-            asistente=access.getAsistente();
+            asistente = access.getAsistente();
             this.setVisible(true);
         }
     }//GEN-LAST:event_itemCerrarSesionActionPerformed
