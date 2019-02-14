@@ -40,32 +40,32 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-configuration>
-  <session-factory>
-    <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-    <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-   <!-- <property name="hibernate.connection.url">jdbc:postgresql://149.202.8.235:5432/BDgrup2</property> -->
-    <property name="hibernate.connection.url">jdbc:postgresql://localhost:9999/BDgrup2</property> 
-    <property name="hibernate.connection.username">grup2</property>
-    <property name="hibernate.connection.password">Grupo-312</property>
-    <mapping resource="Utils/XOfrecerrcModel.hbm.xml"/>
-    <mapping resource="Utils/XMedicoModel.hbm.xml"/>
-    <mapping resource="Utils/XHistmedicoModel.hbm.xml"/>
-    <mapping resource="Utils/XAsistenteModel.hbm.xml"/>
-    <mapping resource="Utils/XEstadoModel.hbm.xml"/>
-    <mapping resource="Utils/XRecursocomModel.hbm.xml"/>
-    <mapping resource="Utils/XGeolocalizModel.hbm.xml"/>
-    <mapping resource="Utils/XAvisoModel.hbm.xml"/>
-    <mapping resource="Utils/XDireccionModel.hbm.xml"/>
-    <mapping resource="Utils/XDependienteModel.hbm.xml"/>
-    <mapping resource="Utils/XAlarmaModel.hbm.xml"/>
-    <mapping resource="Utils/XProvinciaModel.hbm.xml"/>
-    <mapping resource="Utils/XViviendaModel.hbm.xml"/>
-    <mapping resource="Utils/XLlamadaModel.hbm.xml"/>
-    <mapping resource="Utils/XContactofamiliarModel.hbm.xml"/>
-    <mapping resource="Utils/XCiudadModel.hbm.xml"/>
-    <mapping resource="Utils/XCsModel.hbm.xml"/>
-    <mapping resource="Utils/XPersonaModel.hbm.xml"/>
-    <mapping resource="Utils/XFamiliarModel.hbm.xml"/>
-    <mapping resource="Utils/XIpModel.hbm.xml"/>
-  </session-factory>
+    <session-factory>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://149.202.8.235:5432/BDgrup2</property> 
+        <!-- <property name="hibernate.connection.url">jdbc:postgresql://localhost:9999/BDgrup2</property> -->
+        <property name="hibernate.connection.username">grup2</property>
+        <property name="hibernate.connection.password">Grupo-312</property>
+        <mapping resource="Utils/XOfrecerrcModel.hbm.xml"/>
+        <mapping resource="Utils/XMedicoModel.hbm.xml"/>
+        <mapping resource="Utils/XHistmedicoModel.hbm.xml"/>
+        <mapping resource="Utils/XAsistenteModel.hbm.xml"/>
+        <mapping resource="Utils/XEstadoModel.hbm.xml"/>
+        <mapping resource="Utils/XRecursocomModel.hbm.xml"/>
+        <mapping resource="Utils/XGeolocalizModel.hbm.xml"/>
+        <mapping resource="Utils/XAvisoModel.hbm.xml"/>
+        <mapping resource="Utils/XDireccionModel.hbm.xml"/>
+        <mapping resource="Utils/XDependienteModel.hbm.xml"/>
+        <mapping resource="Utils/XAlarmaModel.hbm.xml"/>
+        <mapping resource="Utils/XProvinciaModel.hbm.xml"/>
+        <mapping resource="Utils/XViviendaModel.hbm.xml"/>
+        <mapping resource="Utils/XLlamadaModel.hbm.xml"/>
+        <mapping resource="Utils/XContactofamiliarModel.hbm.xml"/>
+        <mapping resource="Utils/XCiudadModel.hbm.xml"/>
+        <mapping resource="Utils/XCsModel.hbm.xml"/>
+        <mapping resource="Utils/XPersonaModel.hbm.xml"/>
+        <mapping resource="Utils/XFamiliarModel.hbm.xml"/>
+        <mapping resource="Utils/XIpModel.hbm.xml"/>
+    </session-factory>
 </hibernate-configuration>

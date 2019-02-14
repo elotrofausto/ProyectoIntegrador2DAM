@@ -11,6 +11,8 @@ import Models.XCsModel;
 import Models.XDependienteModel;
 import Models.XMedicoModel;
 import Models.XViviendaModel;
+import Utils.JasperClient;
+import Utils.PdfFromXmlFile;
 import Utils.SentenciasSQL;
 import Utils.Utils;
 import java.awt.Dimension;
@@ -24,6 +26,8 @@ import java.net.URL;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -1447,7 +1451,12 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTogleEditActionPerformed
 
     private void itemGenerarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemGenerarInfoActionPerformed
-        // TODO add your handling code here:
+        try {
+            new JasperClient();
+            new PdfFromXmlFile("InformeMedicamentoList");
+        } catch (IOException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_itemGenerarInfoActionPerformed
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
