@@ -15,6 +15,8 @@ import org.apache.commons.io.IOUtils;
 
 /**
  *
+ * https://github.com/Jaspersoft/jrs-rest-java-client#report-services
+ * 
  * @author Yop
  */
 public class JasperClient {

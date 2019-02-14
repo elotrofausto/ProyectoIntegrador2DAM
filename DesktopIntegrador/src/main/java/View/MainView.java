@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
@@ -133,18 +134,18 @@ public class MainView extends javax.swing.JFrame {
         jPanelAsistenteMod = new javax.swing.JPanel();
         tfAsistenteNombre = new javax.swing.JTextField();
         tfAsistenteApe1 = new javax.swing.JTextField();
-        tfAsistenteApe4 = new javax.swing.JTextField();
+        tfAsistenteApe2 = new javax.swing.JTextField();
         tfAsistenteEmail = new javax.swing.JTextField();
-        tfAsistenteId1 = new javax.swing.JTextField();
-        tfAsistentePass1 = new javax.swing.JPasswordField();
-        tfIdAsistenteNSS = new javax.swing.JTextField();
-        tfIdAsistenteTelf1 = new javax.swing.JTextField();
+        tfAsistenteId = new javax.swing.JTextField();
+        tfAsistentePass = new javax.swing.JPasswordField();
+        tfAsistenteDni = new javax.swing.JTextField();
+        tfAsistenteTelf = new javax.swing.JTextField();
         jPanelAsistenteDeps = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTableAsistente = new javax.swing.JTable();
         jBtnCancel = new javax.swing.JButton();
         jBtnSave = new javax.swing.JButton();
-        jTogleEdit = new javax.swing.JToggleButton();
+        jBtnEditAsi = new javax.swing.JButton();
         jTabbedPaneDcha = new javax.swing.JTabbedPane();
         jPanelAlertas = new javax.swing.JPanel();
         jPanelRecursos = new javax.swing.JPanel();
@@ -232,14 +233,14 @@ public class MainView extends javax.swing.JFrame {
 
         jPaneldependiente.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos principales del dependiente"));
 
-        jComboBoxDependienteVivienda.setBackground(new java.awt.Color(204, 204, 204));
+        jComboBoxDependienteVivienda.setBackground(new java.awt.Color(224, 224, 224));
         jComboBoxDependienteVivienda.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jComboBoxDependienteVivienda.setModel(vivienda);
         jComboBoxDependienteVivienda.setBorder(javax.swing.BorderFactory.createTitledBorder("Vivienda Actual"));
         jComboBoxDependienteVivienda.setPreferredSize(new java.awt.Dimension(34, 55));
 
         tfDependienteId.setEditable(false);
-        tfDependienteId.setBackground(new java.awt.Color(204, 204, 204));
+        tfDependienteId.setBackground(new java.awt.Color(224, 224, 224));
         tfDependienteId.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDependienteId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteId.setToolTipText("");
@@ -251,19 +252,19 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
-        tfDependientePass.setBackground(new java.awt.Color(204, 204, 204));
+        tfDependientePass.setBackground(new java.awt.Color(224, 224, 224));
         tfDependientePass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependientePass.setText("jPasswordField1");
         tfDependientePass.setBorder(javax.swing.BorderFactory.createTitledBorder("Password"));
         tfDependientePass.setPreferredSize(new java.awt.Dimension(150, 55));
 
-        jComboBoxDependienteGenero.setBackground(new java.awt.Color(204, 204, 204));
+        jComboBoxDependienteGenero.setBackground(new java.awt.Color(224, 224, 224));
         jComboBoxDependienteGenero.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jComboBoxDependienteGenero.setModel(genero);
         jComboBoxDependienteGenero.setBorder(javax.swing.BorderFactory.createTitledBorder("Género"));
         jComboBoxDependienteGenero.setPreferredSize(new java.awt.Dimension(150, 55));
 
-        tfDependienteNSS.setBackground(new java.awt.Color(204, 204, 204));
+        tfDependienteNSS.setBackground(new java.awt.Color(224, 224, 224));
         tfDependienteNSS.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDependienteNSS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteNSS.setToolTipText("");
@@ -275,7 +276,7 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
-        tfDependienteTelf.setBackground(new java.awt.Color(204, 204, 204));
+        tfDependienteTelf.setBackground(new java.awt.Color(224, 224, 224));
         tfDependienteTelf.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDependienteTelf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteTelf.setToolTipText("");
@@ -287,7 +288,7 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
-        tfDependienteNombre.setBackground(new java.awt.Color(204, 204, 204));
+        tfDependienteNombre.setBackground(new java.awt.Color(224, 224, 224));
         tfDependienteNombre.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDependienteNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteNombre.setToolTipText("");
@@ -299,7 +300,7 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
-        tfDependienteApe1.setBackground(new java.awt.Color(204, 204, 204));
+        tfDependienteApe1.setBackground(new java.awt.Color(224, 224, 224));
         tfDependienteApe1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDependienteApe1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteApe1.setToolTipText("");
@@ -311,7 +312,7 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
-        tfDependienteApe2.setBackground(new java.awt.Color(204, 204, 204));
+        tfDependienteApe2.setBackground(new java.awt.Color(224, 224, 224));
         tfDependienteApe2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDependienteApe2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteApe2.setToolTipText("");
@@ -323,7 +324,7 @@ public class MainView extends javax.swing.JFrame {
             }
         });
 
-        tfDependienteEmail.setBackground(new java.awt.Color(204, 204, 204));
+        tfDependienteEmail.setBackground(new java.awt.Color(224, 224, 224));
         tfDependienteEmail.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDependienteEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteEmail.setToolTipText("");
@@ -382,7 +383,7 @@ public class MainView extends javax.swing.JFrame {
     dateChooserDependienteNac.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha Nacimiento"));
     dateChooserDependienteNac.setFieldFont(new java.awt.Font("Dialog", java.awt.Font.BOLD, 14));
 
-    tfDependienteDNI.setBackground(new java.awt.Color(204, 204, 204));
+    tfDependienteDNI.setBackground(new java.awt.Color(224, 224, 224));
     tfDependienteDNI.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
     tfDependienteDNI.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     tfDependienteDNI.setToolTipText("");
@@ -570,6 +571,7 @@ public class MainView extends javax.swing.JFrame {
     );
 
     jButtonSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoBuscar25x25.png"))); // NOI18N
+    jButtonSearch.setPreferredSize(new java.awt.Dimension(50, 40));
     jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButtonSearchActionPerformed(evt);
@@ -577,6 +579,7 @@ public class MainView extends javax.swing.JFrame {
     });
 
     jButtonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoGuardar25x25.png"))); // NOI18N
+    jButtonSave.setPreferredSize(new java.awt.Dimension(50, 40));
     jButtonSave.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButtonSaveActionPerformed(evt);
@@ -584,6 +587,7 @@ public class MainView extends javax.swing.JFrame {
     });
 
     jButtonCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoCancelar25x25.png"))); // NOI18N
+    jButtonCancel.setPreferredSize(new java.awt.Dimension(50, 40));
     jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButtonCancelActionPerformed(evt);
@@ -663,6 +667,7 @@ public class MainView extends javax.swing.JFrame {
 
     jbtnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoEditar25x25.png"))); // NOI18N
     jbtnEditar.setText("Editar");
+    jbtnEditar.setPreferredSize(new java.awt.Dimension(95, 40));
     jbtnEditar.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jbtnEditarActionPerformed(evt);
@@ -670,6 +675,7 @@ public class MainView extends javax.swing.JFrame {
     });
 
     jbtnAddDepen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+    jbtnAddDepen.setPreferredSize(new java.awt.Dimension(50, 40));
     jbtnAddDepen.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jbtnAddDepenActionPerformed(evt);
@@ -685,15 +691,15 @@ public class MainView extends javax.swing.JFrame {
             .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                 .addComponent(jPanelProfesionales, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelPrincipalLayout.createSequentialGroup()
-                    .addComponent(jbtnEditar)
+                    .addComponent(jbtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jButtonSave)
+                    .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jButtonCancel)
+                    .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbtnAddDepen)
+                    .addComponent(jbtnAddDepen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jButtonSearch)
+                    .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(34, 34, 34))
                 .addComponent(jPaneldependiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanelEstado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -705,11 +711,11 @@ public class MainView extends javax.swing.JFrame {
             .addGap(10, 10, 10)
             .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSave)
-                    .addComponent(jButtonCancel))
-                .addComponent(jbtnEditar)
-                .addComponent(jbtnAddDepen)
-                .addComponent(jButtonSearch))
+                    .addComponent(jButtonSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jbtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbtnAddDepen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPaneldependiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -834,6 +840,7 @@ public class MainView extends javax.swing.JFrame {
 
     tfAsistenteNombre.setToolTipText("");
     tfAsistenteNombre.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre"));
+    tfAsistenteNombre.setPreferredSize(new java.awt.Dimension(150, 50));
     tfAsistenteNombre.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             tfAsistenteNombreActionPerformed(evt);
@@ -842,52 +849,60 @@ public class MainView extends javax.swing.JFrame {
 
     tfAsistenteApe1.setToolTipText("");
     tfAsistenteApe1.setBorder(javax.swing.BorderFactory.createTitledBorder("Primer Apellido"));
+    tfAsistenteApe1.setPreferredSize(new java.awt.Dimension(150, 50));
     tfAsistenteApe1.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             tfAsistenteApe1ActionPerformed(evt);
         }
     });
 
-    tfAsistenteApe4.setToolTipText("");
-    tfAsistenteApe4.setBorder(javax.swing.BorderFactory.createTitledBorder("Segundo Apellido"));
-    tfAsistenteApe4.addActionListener(new java.awt.event.ActionListener() {
+    tfAsistenteApe2.setToolTipText("");
+    tfAsistenteApe2.setBorder(javax.swing.BorderFactory.createTitledBorder("Segundo Apellido"));
+    tfAsistenteApe2.setPreferredSize(new java.awt.Dimension(150, 50));
+    tfAsistenteApe2.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            tfAsistenteApe4ActionPerformed(evt);
+            tfAsistenteApe2ActionPerformed(evt);
         }
     });
 
     tfAsistenteEmail.setToolTipText("");
     tfAsistenteEmail.setBorder(javax.swing.BorderFactory.createTitledBorder("email"));
+    tfAsistenteEmail.setPreferredSize(new java.awt.Dimension(150, 50));
     tfAsistenteEmail.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             tfAsistenteEmailActionPerformed(evt);
         }
     });
 
-    tfAsistenteId1.setToolTipText("");
-    tfAsistenteId1.setBorder(javax.swing.BorderFactory.createTitledBorder("ID Dependiente"));
-    tfAsistenteId1.addActionListener(new java.awt.event.ActionListener() {
+    tfAsistenteId.setEditable(false);
+    tfAsistenteId.setToolTipText("");
+    tfAsistenteId.setBorder(javax.swing.BorderFactory.createTitledBorder("ID Dependiente"));
+    tfAsistenteId.setPreferredSize(new java.awt.Dimension(150, 50));
+    tfAsistenteId.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            tfAsistenteId1ActionPerformed(evt);
+            tfAsistenteIdActionPerformed(evt);
         }
     });
 
-    tfAsistentePass1.setText("jPasswordField1");
-    tfAsistentePass1.setBorder(javax.swing.BorderFactory.createTitledBorder("Password"));
+    tfAsistentePass.setText("jPasswordField1");
+    tfAsistentePass.setBorder(javax.swing.BorderFactory.createTitledBorder("Password"));
+    tfAsistentePass.setPreferredSize(new java.awt.Dimension(150, 50));
 
-    tfIdAsistenteNSS.setToolTipText("");
-    tfIdAsistenteNSS.setBorder(javax.swing.BorderFactory.createTitledBorder("DNI"));
-    tfIdAsistenteNSS.addActionListener(new java.awt.event.ActionListener() {
+    tfAsistenteDni.setToolTipText("");
+    tfAsistenteDni.setBorder(javax.swing.BorderFactory.createTitledBorder("DNI"));
+    tfAsistenteDni.setPreferredSize(new java.awt.Dimension(150, 50));
+    tfAsistenteDni.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            tfIdAsistenteNSSActionPerformed(evt);
+            tfAsistenteDniActionPerformed(evt);
         }
     });
 
-    tfIdAsistenteTelf1.setToolTipText("");
-    tfIdAsistenteTelf1.setBorder(javax.swing.BorderFactory.createTitledBorder("Teléfono"));
-    tfIdAsistenteTelf1.addActionListener(new java.awt.event.ActionListener() {
+    tfAsistenteTelf.setToolTipText("");
+    tfAsistenteTelf.setBorder(javax.swing.BorderFactory.createTitledBorder("Teléfono"));
+    tfAsistenteTelf.setPreferredSize(new java.awt.Dimension(150, 50));
+    tfAsistenteTelf.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            tfIdAsistenteTelf1ActionPerformed(evt);
+            tfAsistenteTelfActionPerformed(evt);
         }
     });
 
@@ -896,45 +911,45 @@ public class MainView extends javax.swing.JFrame {
     jPanelAsistenteModLayout.setHorizontalGroup(
         jPanelAsistenteModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelAsistenteModLayout.createSequentialGroup()
-            .addContainerGap()
+            .addGap(16, 16, 16)
+            .addGroup(jPanelAsistenteModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanelAsistenteModLayout.createSequentialGroup()
+                    .addComponent(tfAsistenteNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(16, 16, 16)
+                    .addComponent(tfAsistenteApe1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(tfAsistenteEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanelAsistenteModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelAsistenteModLayout.createSequentialGroup()
-                    .addComponent(tfAsistenteNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(tfAsistenteApe1)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(tfAsistenteApe4)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(tfAsistenteEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(16, 16, 16)
+                    .addComponent(tfAsistenteApe2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(16, 16, 16)
+                    .addComponent(tfAsistenteDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(16, 16, 16)
+                    .addComponent(tfAsistenteId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE))
                 .addGroup(jPanelAsistenteModLayout.createSequentialGroup()
-                    .addGroup(jPanelAsistenteModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanelAsistenteModLayout.createSequentialGroup()
-                            .addComponent(tfAsistenteId1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(tfAsistentePass1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanelAsistenteModLayout.createSequentialGroup()
-                            .addComponent(tfIdAsistenteTelf1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(tfIdAsistenteNSS, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(18, 18, 18)
+                    .addComponent(tfAsistenteTelf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(tfAsistentePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addContainerGap())
     );
     jPanelAsistenteModLayout.setVerticalGroup(
         jPanelAsistenteModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelAsistenteModLayout.createSequentialGroup()
+            .addGap(16, 16, 16)
             .addGroup(jPanelAsistenteModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(tfAsistenteNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(tfAsistenteApe1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(tfAsistenteApe4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(tfAsistenteEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(tfAsistenteApe2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfAsistenteDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfAsistenteId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(16, 16, 16)
             .addGroup(jPanelAsistenteModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(tfAsistenteId1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(tfAsistentePass1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(jPanelAsistenteModLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(tfIdAsistenteTelf1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(tfIdAsistenteNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tfAsistenteTelf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfAsistenteEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfAsistentePass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(19, 19, 19))
     );
 
     jPanelAsistenteDeps.setBorder(javax.swing.BorderFactory.createTitledBorder("Dependientes asociados"));
@@ -970,14 +985,27 @@ public class MainView extends javax.swing.JFrame {
     );
 
     jBtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoCancelar25x25.png"))); // NOI18N
+    jBtnCancel.setPreferredSize(new java.awt.Dimension(50, 40));
+    jBtnCancel.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jBtnCancelActionPerformed(evt);
+        }
+    });
 
     jBtnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoGuardar25x25.png"))); // NOI18N
-
-    jTogleEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoEditar25x25.png"))); // NOI18N
-    jTogleEdit.setText("Editar");
-    jTogleEdit.addActionListener(new java.awt.event.ActionListener() {
+    jBtnSave.setPreferredSize(new java.awt.Dimension(50, 40));
+    jBtnSave.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jTogleEditActionPerformed(evt);
+            jBtnSaveActionPerformed(evt);
+        }
+    });
+
+    jBtnEditAsi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoEditar25x25.png"))); // NOI18N
+    jBtnEditAsi.setText("Editar");
+    jBtnEditAsi.setPreferredSize(new java.awt.Dimension(95, 40));
+    jBtnEditAsi.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jBtnEditAsiActionPerformed(evt);
         }
     });
 
@@ -991,27 +1019,28 @@ public class MainView extends javax.swing.JFrame {
                 .addComponent(jPanelAsistenteMod, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanelAsistenteDeps, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAsistenteLayout.createSequentialGroup()
-                    .addComponent(jTogleEdit)
+                    .addComponent(jBtnEditAsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jBtnSave)
+                    .addComponent(jBtnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jBtnCancel)
+                    .addComponent(jBtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
             .addContainerGap())
     );
     jPanelAsistenteLayout.setVerticalGroup(
         jPanelAsistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelAsistenteLayout.createSequentialGroup()
-            .addGap(6, 6, 6)
-            .addGroup(jPanelAsistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jTogleEdit)
-                .addComponent(jBtnSave)
-                .addComponent(jBtnCancel))
+            .addContainerGap()
+            .addGroup(jPanelAsistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanelAsistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jBtnEditAsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelAsistenteMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGap(30, 30, 30)
             .addComponent(jPanelAsistenteDeps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addContainerGap(276, Short.MAX_VALUE))
     );
 
     jTabbedPaneIzq.addTab("Asistente", null, jPanelAsistente, "");
@@ -1123,7 +1152,7 @@ public class MainView extends javax.swing.JFrame {
         jPanelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelAlarmasLayout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPaneAlarm, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+            .addComponent(jScrollPaneAlarm, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jButton2)
@@ -1286,6 +1315,11 @@ public class MainView extends javax.swing.JFrame {
     menuAsist.setText("Inicio");
 
     itemCerrarSesion.setText("Cerrar Sesion");
+    itemCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            itemCerrarSesionActionPerformed(evt);
+        }
+    });
     menuAsist.add(itemCerrarSesion);
 
     itemGenerarInfo.setText("Generar Informe");
@@ -1379,25 +1413,25 @@ public class MainView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfAsistenteApe1ActionPerformed
 
-    private void tfAsistenteApe4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAsistenteApe4ActionPerformed
+    private void tfAsistenteApe2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAsistenteApe2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfAsistenteApe4ActionPerformed
+    }//GEN-LAST:event_tfAsistenteApe2ActionPerformed
 
     private void tfAsistenteEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAsistenteEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfAsistenteEmailActionPerformed
 
-    private void tfAsistenteId1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAsistenteId1ActionPerformed
+    private void tfAsistenteIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAsistenteIdActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfAsistenteId1ActionPerformed
+    }//GEN-LAST:event_tfAsistenteIdActionPerformed
 
-    private void tfIdAsistenteNSSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfIdAsistenteNSSActionPerformed
+    private void tfAsistenteDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAsistenteDniActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfIdAsistenteNSSActionPerformed
+    }//GEN-LAST:event_tfAsistenteDniActionPerformed
 
-    private void tfIdAsistenteTelf1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfIdAsistenteTelf1ActionPerformed
+    private void tfAsistenteTelfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAsistenteTelfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfIdAsistenteTelf1ActionPerformed
+    }//GEN-LAST:event_tfAsistenteTelfActionPerformed
 
     private void jButtonCenterMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCenterMapActionPerformed
         this.centerScroll();
@@ -1445,10 +1479,6 @@ public class MainView extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Se esta llamando al servicio de Bomberos");
         //Necesita ser probado
     }//GEN-LAST:event_jButtonLlamadaBomberosActionPerformed
-
-    private void jTogleEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTogleEditActionPerformed
-
-    }//GEN-LAST:event_jTogleEditActionPerformed
 
     private void itemGenerarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemGenerarInfoActionPerformed
         try {
@@ -1513,6 +1543,36 @@ public class MainView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnAddMedicoActionPerformed
 
+    private void jBtnEditAsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditAsiActionPerformed
+        lockEnabledAsist(true);
+    }//GEN-LAST:event_jBtnEditAsiActionPerformed
+
+    private void jBtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelActionPerformed
+        cargarAsistente();
+        lockEnabledAsist(false);
+    }//GEN-LAST:event_jBtnCancelActionPerformed
+
+    private void jBtnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSaveActionPerformed
+        guardarAsistente();
+        cargarAsistente();
+        lockEnabledAsist(false);
+    }//GEN-LAST:event_jBtnSaveActionPerformed
+
+    private void itemCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCerrarSesionActionPerformed
+        int resp = JOptionPane.showConfirmDialog(this, "¿Desea cambiar de usuario?", "AVISO", JOptionPane.YES_NO_OPTION);
+        if (resp == 0) {
+            this.setVisible(false);
+            AccessAsist access = null;
+            try {
+                access = new AccessAsist(null, true, controller);
+            } catch (SQLException ex) {
+                System.err.println("PROBLEMAS ACCEDIENDO A LA BD");
+            }
+            asistente=access.getAsistente();
+            this.setVisible(true);
+        }
+    }//GEN-LAST:event_itemCerrarSesionActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private datechooser.beans.DateChooserCombo dateChooserDependienteAlta;
@@ -1522,6 +1582,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemInfo;
     private javax.swing.JMenuItem itemSalir;
     private javax.swing.JButton jBtnCancel;
+    private javax.swing.JButton jBtnEditAsi;
     private javax.swing.JButton jBtnSave;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1586,7 +1647,6 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JTable jTableHistorialMed;
     private javax.swing.JTable jTableHistorialSoc;
     private javax.swing.JTable jTableViviendas;
-    private javax.swing.JToggleButton jTogleEdit;
     private javax.swing.JButton jbtnAdd;
     private javax.swing.JButton jbtnAddCasa;
     private javax.swing.JButton jbtnAddCenSal;
@@ -1598,11 +1658,13 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JMenu menuAsist;
     private javax.swing.JMenuBar menuBarAsist;
     private javax.swing.JTextField tfAsistenteApe1;
-    private javax.swing.JTextField tfAsistenteApe4;
+    private javax.swing.JTextField tfAsistenteApe2;
+    private javax.swing.JTextField tfAsistenteDni;
     private javax.swing.JTextField tfAsistenteEmail;
-    private javax.swing.JTextField tfAsistenteId1;
+    private javax.swing.JTextField tfAsistenteId;
     private javax.swing.JTextField tfAsistenteNombre;
-    private javax.swing.JPasswordField tfAsistentePass1;
+    private javax.swing.JPasswordField tfAsistentePass;
+    private javax.swing.JTextField tfAsistenteTelf;
     private javax.swing.JTextField tfDependienteApe1;
     private javax.swing.JTextField tfDependienteApe2;
     private javax.swing.JTextField tfDependienteDNI;
@@ -1612,8 +1674,6 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JTextField tfDependienteNombre;
     private javax.swing.JPasswordField tfDependientePass;
     private javax.swing.JTextField tfDependienteTelf;
-    private javax.swing.JTextField tfIdAsistenteNSS;
-    private javax.swing.JTextField tfIdAsistenteTelf1;
     // End of variables declaration//GEN-END:variables
 
     //Métodos de la vista
@@ -1851,12 +1911,12 @@ public class MainView extends javax.swing.JFrame {
     private void cargarAsistente() {
         this.tfAsistenteNombre.setText(asistente.getXPersonaModel().getName());
         this.tfAsistenteApe1.setText(asistente.getXPersonaModel().getApellido1());
-        this.tfAsistenteApe4.setText(asistente.getXPersonaModel().getApellido2());
+        this.tfAsistenteApe2.setText(asistente.getXPersonaModel().getApellido2());
         this.tfAsistenteEmail.setText(asistente.getXPersonaModel().getEmail());
-        this.tfAsistenteId1.setText(String.valueOf(asistente.getId()));
-        this.tfAsistentePass1.setText(asistente.getPassword());
-        this.tfIdAsistenteNSS.setText(asistente.getXPersonaModel().getDni());
-        this.tfIdAsistenteTelf1.setText(asistente.getXPersonaModel().getTelefono());
+        this.tfAsistenteId.setText(String.valueOf(asistente.getId()));
+        this.tfAsistentePass.setText(asistente.getPassword());
+        this.tfAsistenteDni.setText(asistente.getXPersonaModel().getDni());
+        this.tfAsistenteTelf.setText(asistente.getXPersonaModel().getTelefono());
     }
 
     private void guardardependiente() {
@@ -1882,6 +1942,30 @@ public class MainView extends javax.swing.JFrame {
             }
         }
         controller.getHibernate().update(dep);
+    }
+
+    private void lockEnabledAsist(boolean enable) {
+        this.tfAsistenteApe1.setEditable(enable);
+        this.tfAsistenteApe2.setEditable(enable);
+        this.tfAsistenteEmail.setEditable(enable);
+        this.tfAsistenteNombre.setEditable(enable);
+        this.tfAsistentePass.setEditable(enable);
+        this.tfAsistenteDni.setEditable(enable);
+        this.tfAsistenteTelf.setEditable(enable);
+        this.jBtnCancel.setVisible(enable);
+        this.jBtnSave.setVisible(enable);
+        this.jBtnEditAsi.setVisible(!enable);
+    }
+
+    private void guardarAsistente() {
+        asistente.setPassword(String.valueOf(this.tfAsistentePass.getPassword()));
+        asistente.getXPersonaModel().setName(this.tfAsistenteNombre.getText());
+        asistente.getXPersonaModel().setApellido1(this.tfAsistenteApe1.getText());
+        asistente.getXPersonaModel().setApellido2(this.tfAsistenteApe2.getText());
+        asistente.getXPersonaModel().setDni(this.tfAsistenteDni.getText());
+        asistente.getXPersonaModel().setEmail(this.tfAsistenteEmail.getText());
+        asistente.getXPersonaModel().setTelefono(this.tfAsistenteTelf.getText());
+        controller.getHibernate().update(asistente);
     }
 
 }
