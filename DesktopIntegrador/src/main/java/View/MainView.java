@@ -12,7 +12,6 @@ import Models.XDependienteModel;
 import Models.XMedicoModel;
 import Models.XViviendaModel;
 import Utils.JasperClient;
-import Utils.PdfFromXmlFile;
 import Utils.SentenciasSQL;
 import Utils.Utils;
 import java.awt.Dimension;
@@ -34,6 +33,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import net.sf.jasperreports.engine.JRException;
 
 /**
  *
@@ -56,6 +56,7 @@ public class MainView extends javax.swing.JFrame {
     private DefaultComboBoxModel cSalud;
     private DefaultComboBoxModel vivienda;
     private DefaultComboBoxModel genero;
+    private JasperClient jClient;
 
     /**
      * Creates new form View
@@ -69,11 +70,13 @@ public class MainView extends javax.swing.JFrame {
     public MainView(BLogic controller, XAsistenteModel asistente) {
         this.controller = controller;
         this.asistente = asistente;
+        
         initCombos();
         initComponents();
         initTabs();
         initData();
         initMaps();
+        initJasper();
         lockEnabled(false);
     }
 
@@ -140,9 +143,8 @@ public class MainView extends javax.swing.JFrame {
         tfAsistentePass = new javax.swing.JPasswordField();
         tfAsistenteDni = new javax.swing.JTextField();
         tfAsistenteTelf = new javax.swing.JTextField();
-        jPanelAsistenteDeps = new javax.swing.JPanel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTableAsistente = new javax.swing.JTable();
+        jPanelAnalisis = new javax.swing.JPanel();
+        jlPlantilla = new javax.swing.JLabel();
         jBtnCancel = new javax.swing.JButton();
         jBtnSave = new javax.swing.JButton();
         jBtnEditAsi = new javax.swing.JButton();
@@ -952,36 +954,24 @@ public class MainView extends javax.swing.JFrame {
             .addGap(19, 19, 19))
     );
 
-    jPanelAsistenteDeps.setBorder(javax.swing.BorderFactory.createTitledBorder("Dependientes asociados"));
+    jPanelAnalisis.setBorder(javax.swing.BorderFactory.createTitledBorder("ANALISIS"));
 
-    jTableAsistente.setModel(new javax.swing.table.DefaultTableModel(
-        new Object [][] {
-            {null, null, null, null},
-            {null, null, null, null},
-            {null, null, null, null},
-            {null, null, null, null}
-        },
-        new String [] {
-            "Title 1", "Title 2", "Title 3", "Title 4"
-        }
-    ));
-    jScrollPane7.setViewportView(jTableAsistente);
+    jlPlantilla.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-    javax.swing.GroupLayout jPanelAsistenteDepsLayout = new javax.swing.GroupLayout(jPanelAsistenteDeps);
-    jPanelAsistenteDeps.setLayout(jPanelAsistenteDepsLayout);
-    jPanelAsistenteDepsLayout.setHorizontalGroup(
-        jPanelAsistenteDepsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelAsistenteDepsLayout.createSequentialGroup()
+    javax.swing.GroupLayout jPanelAnalisisLayout = new javax.swing.GroupLayout(jPanelAnalisis);
+    jPanelAnalisis.setLayout(jPanelAnalisisLayout);
+    jPanelAnalisisLayout.setHorizontalGroup(
+        jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAnalisisLayout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 599, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(229, Short.MAX_VALUE))
+            .addComponent(jlPlantilla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addContainerGap())
     );
-    jPanelAsistenteDepsLayout.setVerticalGroup(
-        jPanelAsistenteDepsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelAsistenteDepsLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+    jPanelAnalisisLayout.setVerticalGroup(
+        jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanelAnalisisLayout.createSequentialGroup()
+            .addComponent(jlPlantilla, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+            .addContainerGap())
     );
 
     jBtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoCancelar25x25.png"))); // NOI18N
@@ -1017,14 +1007,14 @@ public class MainView extends javax.swing.JFrame {
             .addContainerGap()
             .addGroup(jPanelAsistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanelAsistenteMod, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelAsistenteDeps, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelAnalisis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAsistenteLayout.createSequentialGroup()
                     .addComponent(jBtnEditAsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jBtnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jBtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 637, Short.MAX_VALUE)))
             .addContainerGap())
     );
     jPanelAsistenteLayout.setVerticalGroup(
@@ -1038,9 +1028,9 @@ public class MainView extends javax.swing.JFrame {
                 .addComponent(jBtnEditAsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelAsistenteMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(30, 30, 30)
-            .addComponent(jPanelAsistenteDeps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(276, Short.MAX_VALUE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jPanelAnalisis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addContainerGap())
     );
 
     jTabbedPaneIzq.addTab("Asistente", null, jPanelAsistente, "");
@@ -1482,8 +1472,7 @@ public class MainView extends javax.swing.JFrame {
 
     private void itemGenerarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemGenerarInfoActionPerformed
         try {
-            new JasperClient();
-          //  new PdfFromXmlFile("AnalisisGestion");
+            jClient.exportPdf();
         } catch (IOException ex) {
             Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1611,8 +1600,8 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JPanel jPanelAlarmas;
     private javax.swing.JPanel jPanelAlertas;
+    private javax.swing.JPanel jPanelAnalisis;
     private javax.swing.JPanel jPanelAsistente;
-    private javax.swing.JPanel jPanelAsistenteDeps;
     private javax.swing.JPanel jPanelAsistenteMod;
     private javax.swing.JPanel jPanelEstado;
     private javax.swing.JPanel jPanelGeo;
@@ -1624,7 +1613,6 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelTitle;
     private javax.swing.JPanel jPanelViviendas;
     private javax.swing.JPanel jPaneldependiente;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JScrollPane jScrollPaneAlarm;
     private javax.swing.JScrollPane jScrollPaneAlleg;
@@ -1640,7 +1628,6 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTableAlarmas;
     private javax.swing.JTable jTableAllegados;
-    private javax.swing.JTable jTableAsistente;
     private javax.swing.JTable jTableAvisos;
     private javax.swing.JTable jTableCoordenadas;
     private javax.swing.JTable jTableEstado;
@@ -1655,6 +1642,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton jbtnEditar;
     private javax.swing.JButton jbtnMod;
     private javax.swing.JButton jbtnRemov;
+    private javax.swing.JLabel jlPlantilla;
     private javax.swing.JMenu menuAsist;
     private javax.swing.JMenuBar menuBarAsist;
     private javax.swing.JTextField tfAsistenteApe1;
@@ -1966,6 +1954,17 @@ public class MainView extends javax.swing.JFrame {
         asistente.getXPersonaModel().setEmail(this.tfAsistenteEmail.getText());
         asistente.getXPersonaModel().setTelefono(this.tfAsistenteTelf.getText());
         controller.getHibernate().update(asistente);
+    }
+
+    private void initJasper() {
+        try {
+            jClient = new JasperClient();
+            this.jlPlantilla.add(jClient.insertReport());
+        } catch (IOException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (JRException ex) {
+            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
