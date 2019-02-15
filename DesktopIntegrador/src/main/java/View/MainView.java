@@ -14,6 +14,7 @@ import Models.XViviendaModel;
 import Utils.JasperClient;
 import Utils.SentenciasSQL;
 import Utils.Utils;
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -34,6 +35,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.swing.JRViewer;
 
 /**
  *
@@ -70,7 +72,7 @@ public class MainView extends javax.swing.JFrame {
     public MainView(BLogic controller, XAsistenteModel asistente) {
         this.controller = controller;
         this.asistente = asistente;
-        
+
         initCombos();
         initComponents();
         initTabs();
@@ -144,7 +146,6 @@ public class MainView extends javax.swing.JFrame {
         tfAsistenteDni = new javax.swing.JTextField();
         tfAsistenteTelf = new javax.swing.JTextField();
         jPanelAnalisis = new javax.swing.JPanel();
-        jlPlantilla = new javax.swing.JLabel();
         jBtnCancel = new javax.swing.JButton();
         jBtnSave = new javax.swing.JButton();
         jBtnEditAsi = new javax.swing.JButton();
@@ -955,23 +956,17 @@ public class MainView extends javax.swing.JFrame {
     );
 
     jPanelAnalisis.setBorder(javax.swing.BorderFactory.createTitledBorder("ANALISIS"));
-
-    jlPlantilla.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+    jPanelAnalisis.setPreferredSize(new java.awt.Dimension(840, 440));
 
     javax.swing.GroupLayout jPanelAnalisisLayout = new javax.swing.GroupLayout(jPanelAnalisis);
     jPanelAnalisis.setLayout(jPanelAnalisisLayout);
     jPanelAnalisisLayout.setHorizontalGroup(
         jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAnalisisLayout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jlPlantilla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addContainerGap())
+        .addGap(0, 830, Short.MAX_VALUE)
     );
     jPanelAnalisisLayout.setVerticalGroup(
         jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelAnalisisLayout.createSequentialGroup()
-            .addComponent(jlPlantilla, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-            .addContainerGap())
+        .addGap(0, 417, Short.MAX_VALUE)
     );
 
     jBtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoCancelar25x25.png"))); // NOI18N
@@ -1007,14 +1002,14 @@ public class MainView extends javax.swing.JFrame {
             .addContainerGap()
             .addGroup(jPanelAsistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanelAsistenteMod, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelAnalisis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelAnalisis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAsistenteLayout.createSequentialGroup()
                     .addComponent(jBtnEditAsi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jBtnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jBtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 637, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
             .addContainerGap())
     );
     jPanelAsistenteLayout.setVerticalGroup(
@@ -1029,7 +1024,7 @@ public class MainView extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelAsistenteMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanelAnalisis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelAnalisis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
     );
 
@@ -1142,7 +1137,7 @@ public class MainView extends javax.swing.JFrame {
         jPanelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelAlarmasLayout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPaneAlarm, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
+            .addComponent(jScrollPaneAlarm, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jButton2)
@@ -1357,7 +1352,7 @@ public class MainView extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jTabbedPaneIzq)
-                .addComponent(jTabbedPaneDcha, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(jTabbedPaneDcha))
             .addContainerGap())
     );
 
@@ -1642,7 +1637,6 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton jbtnEditar;
     private javax.swing.JButton jbtnMod;
     private javax.swing.JButton jbtnRemov;
-    private javax.swing.JLabel jlPlantilla;
     private javax.swing.JMenu menuAsist;
     private javax.swing.JMenuBar menuBarAsist;
     private javax.swing.JTextField tfAsistenteApe1;
@@ -1959,7 +1953,15 @@ public class MainView extends javax.swing.JFrame {
     private void initJasper() {
         try {
             jClient = new JasperClient();
-            this.jlPlantilla.add(jClient.insertReport());
+            JRViewer jrv = jClient.insertReport();
+            jrv.setSize(840, 440);
+            this.jPanelAnalisis.add(jrv, BorderLayout.CENTER);
+            jrv.setVisible(true);
+            jrv.setZoomRatio(0.5F);
+            jrv.setEnabled(true);
+            this.jPanelAnalisis.repaint();
+            this.jPanelAnalisis.update(this.jPanelAnalisis.getGraphics());
+            this.jPanelAnalisis.validate();
         } catch (IOException ex) {
             Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JRException ex) {
