@@ -249,11 +249,6 @@ public class MainView extends javax.swing.JFrame {
         tfDependienteId.setToolTipText("");
         tfDependienteId.setBorder(javax.swing.BorderFactory.createTitledBorder("ID Dependiente"));
         tfDependienteId.setPreferredSize(new java.awt.Dimension(150, 55));
-        tfDependienteId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDependienteIdActionPerformed(evt);
-            }
-        });
 
         tfDependientePass.setBackground(new java.awt.Color(224, 224, 224));
         tfDependientePass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -273,11 +268,6 @@ public class MainView extends javax.swing.JFrame {
         tfDependienteNSS.setToolTipText("");
         tfDependienteNSS.setBorder(javax.swing.BorderFactory.createTitledBorder("Nº Seg. Social"));
         tfDependienteNSS.setPreferredSize(new java.awt.Dimension(150, 55));
-        tfDependienteNSS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDependienteNSSActionPerformed(evt);
-            }
-        });
 
         tfDependienteTelf.setBackground(new java.awt.Color(224, 224, 224));
         tfDependienteTelf.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -285,11 +275,6 @@ public class MainView extends javax.swing.JFrame {
         tfDependienteTelf.setToolTipText("");
         tfDependienteTelf.setBorder(javax.swing.BorderFactory.createTitledBorder("Teléfono"));
         tfDependienteTelf.setPreferredSize(new java.awt.Dimension(150, 55));
-        tfDependienteTelf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDependienteTelfActionPerformed(evt);
-            }
-        });
 
         tfDependienteNombre.setBackground(new java.awt.Color(224, 224, 224));
         tfDependienteNombre.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -297,11 +282,6 @@ public class MainView extends javax.swing.JFrame {
         tfDependienteNombre.setToolTipText("");
         tfDependienteNombre.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre"));
         tfDependienteNombre.setPreferredSize(new java.awt.Dimension(150, 55));
-        tfDependienteNombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDependienteNombreActionPerformed(evt);
-            }
-        });
 
         tfDependienteApe1.setBackground(new java.awt.Color(224, 224, 224));
         tfDependienteApe1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -309,11 +289,6 @@ public class MainView extends javax.swing.JFrame {
         tfDependienteApe1.setToolTipText("");
         tfDependienteApe1.setBorder(javax.swing.BorderFactory.createTitledBorder("Primer Apellido"));
         tfDependienteApe1.setPreferredSize(new java.awt.Dimension(150, 55));
-        tfDependienteApe1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDependienteApe1ActionPerformed(evt);
-            }
-        });
 
         tfDependienteApe2.setBackground(new java.awt.Color(224, 224, 224));
         tfDependienteApe2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -321,11 +296,6 @@ public class MainView extends javax.swing.JFrame {
         tfDependienteApe2.setToolTipText("");
         tfDependienteApe2.setBorder(javax.swing.BorderFactory.createTitledBorder("Segundo Apellido"));
         tfDependienteApe2.setPreferredSize(new java.awt.Dimension(150, 55));
-        tfDependienteApe2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDependienteApe2ActionPerformed(evt);
-            }
-        });
 
         tfDependienteEmail.setBackground(new java.awt.Color(224, 224, 224));
         tfDependienteEmail.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -333,11 +303,6 @@ public class MainView extends javax.swing.JFrame {
         tfDependienteEmail.setToolTipText("");
         tfDependienteEmail.setBorder(javax.swing.BorderFactory.createTitledBorder("email"));
         tfDependienteEmail.setPreferredSize(new java.awt.Dimension(250, 55));
-        tfDependienteEmail.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDependienteEmailActionPerformed(evt);
-            }
-        });
 
         dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha Alta"));
         dateChooserDependienteAlta.setFieldFont(new java.awt.Font("Dialog", java.awt.Font.BOLD, 14));
@@ -392,15 +357,15 @@ public class MainView extends javax.swing.JFrame {
     tfDependienteDNI.setToolTipText("");
     tfDependienteDNI.setBorder(javax.swing.BorderFactory.createTitledBorder("D.N.I"));
     tfDependienteDNI.setPreferredSize(new java.awt.Dimension(150, 55));
-    tfDependienteDNI.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            tfDependienteDNIActionPerformed(evt);
-        }
-    });
 
     jbtnAddCasa.setBackground(new java.awt.Color(204, 204, 204));
     jbtnAddCasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
     jbtnAddCasa.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnAddCasa.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jbtnAddCasaActionPerformed(evt);
+        }
+    });
 
     javax.swing.GroupLayout jPaneldependienteLayout = new javax.swing.GroupLayout(jPaneldependiente);
     jPaneldependiente.setLayout(jPaneldependienteLayout);
@@ -844,48 +809,23 @@ public class MainView extends javax.swing.JFrame {
     tfAsistenteNombre.setToolTipText("");
     tfAsistenteNombre.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre"));
     tfAsistenteNombre.setPreferredSize(new java.awt.Dimension(150, 50));
-    tfAsistenteNombre.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            tfAsistenteNombreActionPerformed(evt);
-        }
-    });
 
     tfAsistenteApe1.setToolTipText("");
     tfAsistenteApe1.setBorder(javax.swing.BorderFactory.createTitledBorder("Primer Apellido"));
     tfAsistenteApe1.setPreferredSize(new java.awt.Dimension(150, 50));
-    tfAsistenteApe1.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            tfAsistenteApe1ActionPerformed(evt);
-        }
-    });
 
     tfAsistenteApe2.setToolTipText("");
     tfAsistenteApe2.setBorder(javax.swing.BorderFactory.createTitledBorder("Segundo Apellido"));
     tfAsistenteApe2.setPreferredSize(new java.awt.Dimension(150, 50));
-    tfAsistenteApe2.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            tfAsistenteApe2ActionPerformed(evt);
-        }
-    });
 
     tfAsistenteEmail.setToolTipText("");
     tfAsistenteEmail.setBorder(javax.swing.BorderFactory.createTitledBorder("email"));
     tfAsistenteEmail.setPreferredSize(new java.awt.Dimension(150, 50));
-    tfAsistenteEmail.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            tfAsistenteEmailActionPerformed(evt);
-        }
-    });
 
     tfAsistenteId.setEditable(false);
     tfAsistenteId.setToolTipText("");
     tfAsistenteId.setBorder(javax.swing.BorderFactory.createTitledBorder("ID Dependiente"));
     tfAsistenteId.setPreferredSize(new java.awt.Dimension(150, 50));
-    tfAsistenteId.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            tfAsistenteIdActionPerformed(evt);
-        }
-    });
 
     tfAsistentePass.setText("jPasswordField1");
     tfAsistentePass.setBorder(javax.swing.BorderFactory.createTitledBorder("Password"));
@@ -894,20 +834,10 @@ public class MainView extends javax.swing.JFrame {
     tfAsistenteDni.setToolTipText("");
     tfAsistenteDni.setBorder(javax.swing.BorderFactory.createTitledBorder("DNI"));
     tfAsistenteDni.setPreferredSize(new java.awt.Dimension(150, 50));
-    tfAsistenteDni.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            tfAsistenteDniActionPerformed(evt);
-        }
-    });
 
     tfAsistenteTelf.setToolTipText("");
     tfAsistenteTelf.setBorder(javax.swing.BorderFactory.createTitledBorder("Teléfono"));
     tfAsistenteTelf.setPreferredSize(new java.awt.Dimension(150, 50));
-    tfAsistenteTelf.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            tfAsistenteTelfActionPerformed(evt);
-        }
-    });
 
     javax.swing.GroupLayout jPanelAsistenteModLayout = new javax.swing.GroupLayout(jPanelAsistenteMod);
     jPanelAsistenteMod.setLayout(jPanelAsistenteModLayout);
@@ -1362,62 +1292,6 @@ public class MainView extends javax.swing.JFrame {
     pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void tfDependienteEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDependienteEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfDependienteEmailActionPerformed
-
-    private void tfDependienteApe2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDependienteApe2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfDependienteApe2ActionPerformed
-
-    private void tfDependienteApe1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDependienteApe1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfDependienteApe1ActionPerformed
-
-    private void tfDependienteNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDependienteNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfDependienteNombreActionPerformed
-
-    private void tfDependienteTelfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDependienteTelfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfDependienteTelfActionPerformed
-
-    private void tfDependienteNSSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDependienteNSSActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfDependienteNSSActionPerformed
-
-    private void tfDependienteIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDependienteIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfDependienteIdActionPerformed
-
-    private void tfAsistenteNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAsistenteNombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfAsistenteNombreActionPerformed
-
-    private void tfAsistenteApe1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAsistenteApe1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfAsistenteApe1ActionPerformed
-
-    private void tfAsistenteApe2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAsistenteApe2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfAsistenteApe2ActionPerformed
-
-    private void tfAsistenteEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAsistenteEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfAsistenteEmailActionPerformed
-
-    private void tfAsistenteIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAsistenteIdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfAsistenteIdActionPerformed
-
-    private void tfAsistenteDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAsistenteDniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfAsistenteDniActionPerformed
-
-    private void tfAsistenteTelfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfAsistenteTelfActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfAsistenteTelfActionPerformed
-
     private void jButtonCenterMapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCenterMapActionPerformed
         this.centerScroll();
     }//GEN-LAST:event_jButtonCenterMapActionPerformed
@@ -1493,9 +1367,9 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnRemovActionPerformed
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
-        Search search = new Search(null, true, listaDependientes);
+        Search search = new Search(null, true, listaDependientes, "DEPENDIENTES");
         if (search.getDependiente() != null) {
-            dep = search.getDependiente();
+            dep = (XDependienteModel) search.getDependiente();
             lockEnabled(true);
             cargadependiente(dep);
             lockEnabled(false);
@@ -1511,16 +1385,15 @@ public class MainView extends javax.swing.JFrame {
         lockEnabled(true);
     }//GEN-LAST:event_jbtnEditarActionPerformed
 
-    private void tfDependienteDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDependienteDNIActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfDependienteDNIActionPerformed
-
     private void jbtnAddDepenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddDepenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnAddDepenActionPerformed
 
     private void jbtnAddCenSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddCenSalActionPerformed
-        // TODO add your handling code here:
+        DoctorMan doctorMan = new DoctorMan(this, true);
+        if (doctorMan.getMedico() != null) {
+            controller.guardarObjeto(doctorMan.getMedico());
+        }
     }//GEN-LAST:event_jbtnAddCenSalActionPerformed
 
     private void jbtnAddMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddMedicoActionPerformed
@@ -1556,6 +1429,10 @@ public class MainView extends javax.swing.JFrame {
             this.setVisible(true);
         }
     }//GEN-LAST:event_itemCerrarSesionActionPerformed
+
+    private void jbtnAddCasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddCasaActionPerformed
+        HealthCenterMan center = new HealthCenterMan(this, true, controller);
+    }//GEN-LAST:event_jbtnAddCasaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1923,7 +1800,7 @@ public class MainView extends javax.swing.JFrame {
                 next.setHabitual(false);
             }
         }
-        controller.getHibernate().update(dep);
+        controller.actualizarObjeto(dep);
     }
 
     private void lockEnabledAsist(boolean enable) {
@@ -1947,7 +1824,7 @@ public class MainView extends javax.swing.JFrame {
         asistente.getXPersonaModel().setDni(this.tfAsistenteDni.getText());
         asistente.getXPersonaModel().setEmail(this.tfAsistenteEmail.getText());
         asistente.getXPersonaModel().setTelefono(this.tfAsistenteTelf.getText());
-        controller.getHibernate().update(asistente);
+        controller.actualizarObjeto(asistente);
     }
 
     private void initJasper() {

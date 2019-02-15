@@ -54,6 +54,7 @@ public class AccessAsist extends javax.swing.JDialog {
         tFieldUser.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ASISTENTE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tFieldUser.setPreferredSize(new java.awt.Dimension(150, 40));
 
+        btnAceptar.setForeground(new java.awt.Color(0, 102, 102));
         btnAceptar.setText("ACEPTAR");
         btnAceptar.setPreferredSize(new java.awt.Dimension(150, 35));
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -62,6 +63,7 @@ public class AccessAsist extends javax.swing.JDialog {
             }
         });
 
+        btnCancelar.setForeground(new java.awt.Color(0, 102, 102));
         btnCancelar.setText("CANCELAR");
         btnCancelar.setPreferredSize(new java.awt.Dimension(150, 35));
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
