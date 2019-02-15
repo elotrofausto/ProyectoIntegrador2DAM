@@ -34,13 +34,10 @@ public class SentenciasSQL {
             + " AND viv.id_dependiente=? order by viv.habitual desc";
 
     public static final String allegadosTM = "SELECT con.id, con.disponibilidad,"
-            + " CONCAT(per.name,' ', per.apellido1,' ', per.apellido2) AS allegado,"
-            + " relacion, CONCAT(dir.tipovia,' ',dir.direccion,' ',dir.num,', ',ciu.name,' (',pro.name,')') AS direccion,"
-            + " CASE WHEN fam.llaves = false THEN 'no' ELSE 'si' END AS \"tiene llaves\","
-            + " fam.observaciones FROM x_familiar_model AS fam, x_direccion_model AS dir,"
-            + " x_ciudad_model AS ciu, x_provincia_model AS pro, x_persona_model AS per,"
-            + " x_contactofamiliar_model AS con WHERE fam.direccion = dir.id AND"
-            + " dir.id_ciudad = ciu.id AND ciu.id_provincia = pro.id AND fam.persona_id = per.id AND"
+            + " CONCAT(per.name,' ', per.apellido1,' ', per.apellido2) AS allegado, per.telefono,"
+            + " relacion, CASE WHEN fam.llaves = false THEN 'no' ELSE 'si' END AS \"tiene llaves\","
+            + " fam.observaciones FROM x_familiar_model AS fam, x_persona_model AS per,"
+            + " x_contactofamiliar_model AS con WHERE fam.persona_id = per.id AND"
             + " fam.id = con.familiar_id AND con.dependiente_id=? Order by con.prioridad desc, fam.llaves desc";
 
     public static final String historialMedicoTM = "SELECT id, descripcion FROM public.x_histmedico_model WHERE name = 'medico' AND"

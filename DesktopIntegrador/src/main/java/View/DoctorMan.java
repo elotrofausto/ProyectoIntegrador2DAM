@@ -16,6 +16,7 @@ public class DoctorMan extends javax.swing.JDialog {
         super(parent, modal);
         medico = new XMedicoModel();
         initComponents();
+        initUI();
     }
 
     public DoctorMan(java.awt.Frame parent, boolean modal, XMedicoModel medico) {
@@ -40,6 +41,7 @@ public class DoctorMan extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanelMedico.setBackground(new java.awt.Color(153, 255, 255));
         jPanelMedico.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS DEL MEDICO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
         tfTelf.setBackground(new java.awt.Color(255, 255, 255));
@@ -107,19 +109,17 @@ public class DoctorMan extends javax.swing.JDialog {
                         .addGap(16, 16, 16)
                         .addComponent(tfApe1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(tfDisponibilidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addGroup(jPanelMedicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelMedicoLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
                         .addComponent(tfApe2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(16, 16, 16)
-                        .addComponent(tfTelf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(16, 16, 16))
+                        .addComponent(tfTelf, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanelMedicoLayout.createSequentialGroup()
-                        .addGap(16, 16, 16)
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16)
-                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16))))
+                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16))
         );
         jPanelMedicoLayout.setVerticalGroup(
             jPanelMedicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

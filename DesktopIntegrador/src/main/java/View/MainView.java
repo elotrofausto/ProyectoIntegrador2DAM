@@ -44,6 +44,7 @@ import net.sf.jasperreports.swing.JRViewer;
 public class MainView extends javax.swing.JFrame {
 
     private final static String MAPS_KEY = "%20AIzaSyBXkyYwknSg-vZ446hxBHmVEMshcbujIyo";
+    private final String HEALTH = "CENTRO MEDICO", HOME = "VIVIENDA";
     private final static int MAX_MAPS_ZOOM = 21;
     private final static int MIN_MAPS_ZOOM = 5;
     private double currentLat;
@@ -180,7 +181,6 @@ public class MainView extends javax.swing.JFrame {
         menuBarAsist = new javax.swing.JMenuBar();
         menuAsist = new javax.swing.JMenu();
         itemCerrarSesion = new javax.swing.JMenuItem();
-        itemGenerarInfo = new javax.swing.JMenuItem();
         itemInfo = new javax.swing.JMenuItem();
         itemSalir = new javax.swing.JMenuItem();
 
@@ -508,13 +508,13 @@ public class MainView extends javax.swing.JFrame {
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfesionalesLayout.createSequentialGroup()
                     .addComponent(jComboBoxCS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jbtnAddMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnAddCenSal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(264, 264, 264)))
             .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
                     .addComponent(jComboBoxMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jbtnAddCenSal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbtnAddMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addComponent(jLabelMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
@@ -526,13 +526,13 @@ public class MainView extends javax.swing.JFrame {
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfesionalesLayout.createSequentialGroup()
                     .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jComboBoxCS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jbtnAddMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jbtnAddCenSal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jLabelCS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfesionalesLayout.createSequentialGroup()
                     .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jComboBoxMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jbtnAddCenSal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jbtnAddMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jLabelMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addContainerGap())
@@ -896,7 +896,7 @@ public class MainView extends javax.swing.JFrame {
     );
     jPanelAnalisisLayout.setVerticalGroup(
         jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 417, Short.MAX_VALUE)
+        .addGap(0, 418, Short.MAX_VALUE)
     );
 
     jBtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoCancelar25x25.png"))); // NOI18N
@@ -1090,9 +1090,14 @@ public class MainView extends javax.swing.JFrame {
     ));
     jScrollPaneAvis.setViewportView(jTableAvisos);
 
-    jButton4.setText("Desactivar alarma");
+    jButton4.setText("CREAR AVISO");
 
-    jButton5.setText("Limpiar alarma desactivadas");
+    jButton5.setText("REFRESCO");
+    jButton5.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton5ActionPerformed(evt);
+        }
+    });
 
     javax.swing.GroupLayout jPanelLlamadasLayout = new javax.swing.GroupLayout(jPanelLlamadas);
     jPanelLlamadas.setLayout(jPanelLlamadasLayout);
@@ -1237,14 +1242,6 @@ public class MainView extends javax.swing.JFrame {
     });
     menuAsist.add(itemCerrarSesion);
 
-    itemGenerarInfo.setText("Generar Informe");
-    itemGenerarInfo.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            itemGenerarInfoActionPerformed(evt);
-        }
-    });
-    menuAsist.add(itemGenerarInfo);
-
     itemInfo.setText("Información");
     menuAsist.add(itemInfo);
 
@@ -1339,14 +1336,6 @@ public class MainView extends javax.swing.JFrame {
         //Necesita ser probado
     }//GEN-LAST:event_jButtonLlamadaBomberosActionPerformed
 
-    private void itemGenerarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemGenerarInfoActionPerformed
-        try {
-            jClient.exportPdf();
-        } catch (IOException ex) {
-            Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_itemGenerarInfoActionPerformed
-
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
         guardardependiente();
         listaDependientes = this.controller.cargarDatos(XDependienteModel.class);
@@ -1390,14 +1379,14 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnAddDepenActionPerformed
 
     private void jbtnAddCenSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddCenSalActionPerformed
+
+    }//GEN-LAST:event_jbtnAddCenSalActionPerformed
+
+    private void jbtnAddMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddMedicoActionPerformed
         DoctorMan doctorMan = new DoctorMan(this, true);
         if (doctorMan.getMedico() != null) {
             controller.guardarObjeto(doctorMan.getMedico());
         }
-    }//GEN-LAST:event_jbtnAddCenSalActionPerformed
-
-    private void jbtnAddMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddMedicoActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jbtnAddMedicoActionPerformed
 
     private void jBtnEditAsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEditAsiActionPerformed
@@ -1431,15 +1420,18 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_itemCerrarSesionActionPerformed
 
     private void jbtnAddCasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddCasaActionPerformed
-        HealthCenterMan center = new HealthCenterMan(this, true, controller);
+        DirectionMan center = new DirectionMan(this, true, controller, HOME);
     }//GEN-LAST:event_jbtnAddCasaActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private datechooser.beans.DateChooserCombo dateChooserDependienteAlta;
     private datechooser.beans.DateChooserCombo dateChooserDependienteNac;
     private javax.swing.JMenuItem itemCerrarSesion;
-    private javax.swing.JMenuItem itemGenerarInfo;
     private javax.swing.JMenuItem itemInfo;
     private javax.swing.JMenuItem itemSalir;
     private javax.swing.JButton jBtnCancel;

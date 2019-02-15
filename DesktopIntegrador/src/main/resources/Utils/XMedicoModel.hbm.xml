@@ -29,7 +29,7 @@
       </column>
     </property>
     <property name="telefono" type="string">
-      <column name="telefono" not-null="true">
+      <column name="telefono" >
         <comment>TelÃ©fono</comment>
       </column>
     </property>
