@@ -7,6 +7,7 @@ package View;
 
 import Controller.BLogic;
 import Models.XAsistenteModel;
+import Models.XCiudadModel;
 import Models.XCsModel;
 import Models.XDependienteModel;
 import Models.XMedicoModel;
@@ -44,7 +45,7 @@ import net.sf.jasperreports.swing.JRViewer;
 public class MainView extends javax.swing.JFrame {
 
     private final static String MAPS_KEY = "%20AIzaSyBXkyYwknSg-vZ446hxBHmVEMshcbujIyo";
-    private final String HEALTH = "CENTRO MEDICO", HOME = "VIVIENDA";
+    private final String HEALTH = "CENTRO MEDICO", HOME = "VIVIENDA", DEP = "DEPENDIENTES";
     private final static int MAX_MAPS_ZOOM = 21;
     private final static int MIN_MAPS_ZOOM = 5;
     private double currentLat;
@@ -54,6 +55,7 @@ public class MainView extends javax.swing.JFrame {
     private XAsistenteModel asistente;
     private XDependienteModel dep;
     private List<Object> listaDependientes;
+    private List<Object> listaCiudades;
 
     private DefaultComboBoxModel medico;
     private DefaultComboBoxModel cSalud;
@@ -77,6 +79,7 @@ public class MainView extends javax.swing.JFrame {
         initCombos();
         initComponents();
         initTabs();
+        initList();
         initData();
         initMaps();
         initJasper();
@@ -358,7 +361,6 @@ public class MainView extends javax.swing.JFrame {
     tfDependienteDNI.setBorder(javax.swing.BorderFactory.createTitledBorder("D.N.I"));
     tfDependienteDNI.setPreferredSize(new java.awt.Dimension(150, 55));
 
-    jbtnAddCasa.setBackground(new java.awt.Color(204, 204, 204));
     jbtnAddCasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
     jbtnAddCasa.setPreferredSize(new java.awt.Dimension(30, 30));
     jbtnAddCasa.addActionListener(new java.awt.event.ActionListener() {
@@ -896,7 +898,7 @@ public class MainView extends javax.swing.JFrame {
     );
     jPanelAnalisisLayout.setVerticalGroup(
         jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 418, Short.MAX_VALUE)
+        .addGap(0, 417, Short.MAX_VALUE)
     );
 
     jBtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoCancelar25x25.png"))); // NOI18N
@@ -1356,7 +1358,7 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnRemovActionPerformed
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
-        Search search = new Search(null, true, listaDependientes, "DEPENDIENTES");
+        Search search = new Search(null, true, listaDependientes, DEP);
         if (search.getDependiente() != null) {
             dep = (XDependienteModel) search.getDependiente();
             lockEnabled(true);
@@ -1379,7 +1381,9 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnAddDepenActionPerformed
 
     private void jbtnAddCenSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddCenSalActionPerformed
-
+        DirectionMan center = new DirectionMan(this, true, controller, HEALTH, listaCiudades);
+        controller.guardarObjeto(center.getObject());
+        fillCombos();
     }//GEN-LAST:event_jbtnAddCenSalActionPerformed
 
     private void jbtnAddMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddMedicoActionPerformed
@@ -1420,11 +1424,18 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_itemCerrarSesionActionPerformed
 
     private void jbtnAddCasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddCasaActionPerformed
-        DirectionMan center = new DirectionMan(this, true, controller, HOME);
+        DirectionMan center = new DirectionMan(this, true, controller, HOME, listaCiudades);
+        XViviendaModel viv = (XViviendaModel) center.getObject();
+        if (viv.getHabitual()) {
+            controller.asignarHabitual(viv, dep);
+        } else {
+            controller.guardarObjeto(viv);
+        }
+        fillCombos();
     }//GEN-LAST:event_jbtnAddCasaActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
 
@@ -1647,22 +1658,11 @@ public class MainView extends javax.swing.JFrame {
         cargarAsistente();
 
         //Llenamos datos del dependiente (primer id por defecto)
-        listaDependientes = this.controller.cargarDatos(XDependienteModel.class);
         cargadependiente(listaDependientes.get(0));
 
         //Llenar combos
-        List<Object> listaMed = this.controller.cargarDatos(XMedicoModel.class);
-        for (Object o : listaMed) {
-            medico.addElement((XMedicoModel) o);
-        }
-        List<Object> listaCs = this.controller.cargarDatos(XCsModel.class);
-        for (Object o : listaCs) {
-            cSalud.addElement((XCsModel) o);
-        }
-        List<Object> listaViviendas = this.controller.cargarDatos("from XViviendaModel order by habitual desc");
-        for (Object o : listaViviendas) {
-            vivienda.addElement((XViviendaModel) o);
-        }
+        fillCombos();
+
         genero.addElement("Hombre");
         genero.addElement("Mujer");
         genero.addElement("Indefinido");
@@ -1835,6 +1835,27 @@ public class MainView extends javax.swing.JFrame {
             Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JRException ex) {
             Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void initList() {
+        listaDependientes = this.controller.cargarDatos(XDependienteModel.class);
+        listaCiudades = this.controller.cargarDatos(XCiudadModel.class);
+    }
+
+    private void fillCombos() {
+        initCombos();
+        List<Object> listaMed = this.controller.cargarDatos(XMedicoModel.class);
+        for (Object o : listaMed) {
+            medico.addElement((XMedicoModel) o);
+        }
+        List<Object> listaCs = this.controller.cargarDatos(XCsModel.class);
+        for (Object o : listaCs) {
+            cSalud.addElement((XCsModel) o);
+        }
+        List<Object> listaViviendas = this.controller.cargarDatos("from XViviendaModel order by habitual desc");
+        for (Object o : listaViviendas) {
+            vivienda.addElement((XViviendaModel) o);
         }
     }
 

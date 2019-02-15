@@ -29,8 +29,17 @@ public class XDireccionModel implements java.io.Serializable {
         this.id = id;
         this.XCiudadModel = XCiudadModel;
     }
-
-    public XDireccionModel(int id, XCiudadModel XCiudadModel, String tipovia, String direccion, Integer num, Integer piso, String letra, String escalera, Integer createUid, Date createDate, Integer writeUid, Date writeDate, Set XFamiliarModels, Set XViviendaModels, Set XCsModels) {
+    public XDireccionModel(XCiudadModel XCiudadModel, String tipovia, String direccion, Integer num, Integer piso, String letra, String escalera) {
+        this.XCiudadModel = XCiudadModel;
+        this.tipovia = tipovia;
+        this.direccion = direccion;
+        this.num = num;
+        this.piso = piso;
+        this.letra = letra;
+        this.escalera = escalera;
+    }
+    
+    public XDireccionModel(int id, XCiudadModel XCiudadModel, String tipovia, String direccion, Integer num, Integer piso, String letra, String escalera, Set XFamiliarModels, Set XViviendaModels, Set XCsModels) {
         this.id = id;
         this.XCiudadModel = XCiudadModel;
         this.tipovia = tipovia;

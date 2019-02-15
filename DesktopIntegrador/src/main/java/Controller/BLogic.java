@@ -6,6 +6,8 @@
 package Controller;
 
 import Models.XAsistenteModel;
+import Models.XDependienteModel;
+import Models.XViviendaModel;
 import View.AccessAsist;
 import View.MainView;
 import java.net.ServerSocket;
@@ -93,6 +95,10 @@ public class BLogic {
     //Getters and Setters
     public HibernateController getHibernate() {
         return hibernate;
+    }
+
+    public void asignarHabitual(XViviendaModel viv, XDependienteModel dep) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

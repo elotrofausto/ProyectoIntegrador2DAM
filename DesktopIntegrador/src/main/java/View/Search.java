@@ -1,6 +1,5 @@
 package View;
 
-import Models.XDependienteModel;
 import Utils.ModelList;
 import java.util.ArrayList;
 import java.util.List;
@@ -140,16 +139,20 @@ public class Search extends javax.swing.JDialog {
         ModelList tempo = new ModelList();
         if (jTfBuscar.getText().length() > 0) {
             for (Object object : lista) {
-                if (((XDependienteModel) object).equals(jTfBuscar.getText())) {
+                Class cla=object.getClass();
+                if ((cla.cast(object)).equals(this.jTfBuscar.getText())) {
                     tempo.addObject(object);
+                } else {
                 }
             }
             jList.setModel(tempo);
             if (tempo.getSize() > 0) {
                 jList.setSelectedIndex(0);
+
             }
         } else {
             jList.setModel(modelo);
+
         }
     }//GEN-LAST:event_jTfBuscarKeyReleased
 
@@ -174,7 +177,7 @@ public class Search extends javax.swing.JDialog {
     }
 
     private void setUI(String name) {
-    jList.setModel(modelo);
+        jList.setModel(modelo);
         jList.setSelectedIndex(0);
         object = null;
         jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, name, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N

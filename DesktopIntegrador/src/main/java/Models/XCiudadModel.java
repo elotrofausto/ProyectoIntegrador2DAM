@@ -87,4 +87,18 @@ public class XCiudadModel implements java.io.Serializable {
     public String toString() {
         return name;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this.toString().toLowerCase().contains(((String)obj).toLowerCase())) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

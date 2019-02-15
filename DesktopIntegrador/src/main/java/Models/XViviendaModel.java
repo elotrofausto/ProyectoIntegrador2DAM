@@ -26,10 +26,16 @@ public class XViviendaModel implements java.io.Serializable {
         this.XDependienteModel = XDependienteModel;
         this.XDireccionModel = XDireccionModel;
     }
-
-    public XViviendaModel(int id, XDependienteModel XDependienteModel, XDireccionModel XDireccionModel, String tipo, Boolean habitual, String modoAcceso, Integer createUid, Date createDate, Integer writeUid, Date writeDate, Set XDependienteModels) {
+    
+    public XViviendaModel(XDireccionModel XDireccionModel, String tipo, Boolean habitual, String modoAcceso) {
+        this.XDireccionModel = XDireccionModel;
+        this.tipo = tipo;
+        this.habitual = habitual;
+        this.modoAcceso = modoAcceso;
+    }
+    
+    public XViviendaModel(int id, XDireccionModel XDireccionModel, String tipo, Boolean habitual, String modoAcceso, Set XDependienteModels) {
         this.id = id;
-        this.XDependienteModel = XDependienteModel;
         this.XDireccionModel = XDireccionModel;
         this.tipo = tipo;
         this.habitual = habitual;

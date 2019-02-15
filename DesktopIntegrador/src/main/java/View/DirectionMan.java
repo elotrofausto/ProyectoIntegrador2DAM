@@ -2,8 +2,13 @@ package View;
 
 import Controller.BLogic;
 import Models.XCiudadModel;
+import Models.XCsModel;
+import Models.XDireccionModel;
 import Models.XProvinciaModel;
+import Models.XViviendaModel;
 import Utils.SentenciasSQL;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 /**
@@ -17,10 +22,12 @@ public class DirectionMan extends javax.swing.JDialog {
     private BLogic controller;
     private Object object;
     private XCiudadModel ciudad;
+    private List<Object> listaCiudades;
 
-    public DirectionMan(java.awt.Frame parent, boolean modal, BLogic controller, String name) {
+    public DirectionMan(MainView parent, boolean modal, BLogic controller, String name, List<Object> listaCiudades) {
         super(parent, modal);
         this.name = name;
+        this.listaCiudades = listaCiudades;
         this.controller = controller;
         this.object = null;
         initComponents();
@@ -31,6 +38,7 @@ public class DirectionMan extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         jPanel = new javax.swing.JPanel();
         tfTelf = new javax.swing.JTextField();
         tfNomEdif = new javax.swing.JTextField();
@@ -47,6 +55,9 @@ public class DirectionMan extends javax.swing.JDialog {
         jbtnSearchCity = new javax.swing.JButton();
         jCheckBox = new javax.swing.JCheckBox();
         tfAcceso = new javax.swing.JTextField();
+        jbtnAyuda = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -65,7 +76,7 @@ public class DirectionMan extends javax.swing.JDialog {
         tfNomEdif.setForeground(new java.awt.Color(0, 0, 0));
         tfNomEdif.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNomEdif.setToolTipText("");
-        tfNomEdif.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "NOMBRE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfNomEdif.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NOMBRE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfNomEdif.setPreferredSize(new java.awt.Dimension(200, 40));
 
         tfNomVia.setBackground(new java.awt.Color(255, 255, 255));
@@ -79,6 +90,11 @@ public class DirectionMan extends javax.swing.JDialog {
         btnAceptar.setForeground(new java.awt.Color(0, 102, 102));
         btnAceptar.setText("ACEPTAR");
         btnAceptar.setPreferredSize(new java.awt.Dimension(150, 40));
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setForeground(new java.awt.Color(0, 102, 102));
         btnCancelar.setText("CANCELAR");
@@ -164,6 +180,14 @@ public class DirectionMan extends javax.swing.JDialog {
         tfAcceso.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ACCESO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfAcceso.setPreferredSize(new java.awt.Dimension(150, 40));
 
+        jbtnAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/info.png"))); // NOI18N
+        jbtnAyuda.setPreferredSize(new java.awt.Dimension(40, 40));
+        jbtnAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnAyudaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
@@ -184,14 +208,14 @@ public class DirectionMan extends javax.swing.JDialog {
                             .addGroup(jPanelLayout.createSequentialGroup()
                                 .addComponent(jbtnSearchCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
-                                .addComponent(tfNomCity, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(16, 16, 16))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                                .addComponent(jCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(16, 16, 16)))
+                                .addComponent(tfNomCity, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jCheckBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
                         .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelLayout.createSequentialGroup()
                                 .addComponent(tfAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16)
+                                .addComponent(jbtnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(16, 16, 16)
@@ -235,7 +259,8 @@ public class DirectionMan extends javax.swing.JDialog {
                         .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tfAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfAcceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbtnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16))
         );
 
@@ -260,7 +285,7 @@ public class DirectionMan extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnSearchCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSearchCityActionPerformed
-        Search search = new Search(null, true, controller.cargarDatos(XCiudadModel.class), CITY);
+        Search search = new Search(null, true, listaCiudades, CITY);
         if (search.getDependiente() != null) {
             ciudad = (XCiudadModel) search.getDependiente();
             this.tfNomCity.setText(ciudad.getName());
@@ -269,16 +294,41 @@ public class DirectionMan extends javax.swing.JDialog {
     }//GEN-LAST:event_jbtnSearchCityActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-
+        object = null;
+        dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        if (this.tfNomProv.getText().length() > 0 && this.tfNomVia.getText().length() > 0
+                && this.tfNum.getText().length() > 0 && this.tfNomEdif.getText().length() > 0) {
+            XDireccionModel direc = new XDireccionModel(ciudad, this.jComboTipo.getSelectedItem().toString(), this.tfNomVia.getText(),
+                    Integer.valueOf(this.tfNum.getText()), Integer.valueOf(this.tfPiso.getText()), this.tfLetra.getText(), this.tfEsc.getText());
+            if (name.equals(HOME)) {
+                XViviendaModel vivi = new XViviendaModel(direc, this.tfNomEdif.getText(), this.jCheckBox.isSelected(), this.tfAcceso.getText());
+                object = vivi;
+            } else {
+                XCsModel cs = new XCsModel(direc, this.tfTelf.getText(), this.tfNomEdif.getText());
+                object = cs;
+            }
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, introduzca los campos obligatorios");
+        }
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void jbtnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAyudaActionPerformed
+        JOptionPane.showMessageDialog(this, "Los campos obligatorios son: La Ciudad, Nombre, Nombre de Via y el Numero");
+    }//GEN-LAST:event_jbtnAyudaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBox jCheckBox;
     private javax.swing.JComboBox<String> jComboTipo;
     private javax.swing.JPanel jPanel;
+    private javax.swing.JButton jbtnAyuda;
     private javax.swing.JButton jbtnSearchCity;
     private javax.swing.JTextField tfAcceso;
     private javax.swing.JTextField tfEsc;
@@ -299,7 +349,7 @@ public class DirectionMan extends javax.swing.JDialog {
             this.jCheckBox.setVisible(false);
             this.tfAcceso.setVisible(false);
         }
-        jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, INIT+name, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
+        jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, INIT + name, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -308,5 +358,5 @@ public class DirectionMan extends javax.swing.JDialog {
     public Object getObject() {
         return object;
     }
-    
+
 }
