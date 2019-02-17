@@ -8,14 +8,18 @@ import Models.XProvinciaModel;
 import Models.XViviendaModel;
 import Utils.SentenciasSQL;
 import com.opencsv.CSVReader;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
+import java.net.URL;
 import java.util.List;
 import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
+import jdk.nashorn.api.scripting.URLReader;
 
 /**
  *
@@ -23,7 +27,8 @@ import javax.swing.WindowConstants;
  */
 public class DirectionMan extends javax.swing.JDialog {
 
-    private final String CITY = "CIUDADES", INIT = "DATOS DE ", HOME = "VIVIENDA", FILE = "src/main/resources/Recursos/Tipos_Via.csv";
+    private final String CITY = "CIUDADES", INIT = "DATOS DE ", HOME = "VIVIENDA";
+    private final URL FILE = DirectionMan.class.getResource("/Recursos/Tipos_Via.csv");
     private String name;
     private BLogic controller;
     private Object object;
@@ -429,7 +434,7 @@ public class DirectionMan extends javax.swing.JDialog {
         DefaultComboBoxModel<String> vias = new DefaultComboBoxModel<>();
         String[] line;
         try {
-            CSVReader reader = new CSVReader(new FileReader(FILE), ',', '"', 1);
+            CSVReader reader = new CSVReader( new BufferedReader(new URLReader(FILE)));
             while ((line = reader.readNext()) != null) {
                 if (line != null) {
                     for (String string : line) {

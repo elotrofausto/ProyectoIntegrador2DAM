@@ -52,7 +52,7 @@ public class AccessAsist extends javax.swing.JDialog {
         tFieldUser.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         tFieldUser.setForeground(new java.awt.Color(0, 0, 0));
         tFieldUser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tFieldUser.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "ASISTENTE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tFieldUser.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ASISTENTE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tFieldUser.setPreferredSize(new java.awt.Dimension(150, 40));
         tFieldUser.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -90,7 +90,7 @@ public class AccessAsist extends javax.swing.JDialog {
         tFieldPass.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         tFieldPass.setForeground(new java.awt.Color(0, 0, 0));
         tFieldPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tFieldPass.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "CONTRASEÑA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tFieldPass.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONTRASEÑA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tFieldPass.setPreferredSize(new java.awt.Dimension(150, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

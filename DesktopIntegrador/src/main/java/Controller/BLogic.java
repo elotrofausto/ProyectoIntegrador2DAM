@@ -92,13 +92,18 @@ public class BLogic {
         hibernate.update(object);
     }
     
+    //Eliminar registro
+    public void borrarObjeto(Object object){
+        hibernate.remove(object);
+    }
+    
     //Getters and Setters
     public HibernateController getHibernate() {
         return hibernate;
     }
 
     public void asignarHabitual(XViviendaModel viv, XDependienteModel dep) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
     }
 
 }

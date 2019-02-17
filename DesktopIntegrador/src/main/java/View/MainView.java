@@ -10,6 +10,7 @@ import Models.XAsistenteModel;
 import Models.XCiudadModel;
 import Models.XCsModel;
 import Models.XDependienteModel;
+import Models.XEstadoModel;
 import Models.XMedicoModel;
 import Models.XViviendaModel;
 import Utils.JasperClient;
@@ -133,6 +134,18 @@ public class MainView extends javax.swing.JFrame {
         jTableHistorialSoc = new javax.swing.JTable();
         jScrollPaneAlleg = new javax.swing.JScrollPane();
         jTableAllegados = new javax.swing.JTable();
+        jbtnAddVivienda = new javax.swing.JButton();
+        jbtnModVivienda = new javax.swing.JButton();
+        jbtnRemovVivienda = new javax.swing.JButton();
+        jbtnAddHisMed = new javax.swing.JButton();
+        jbtnModHisMed = new javax.swing.JButton();
+        jbtnRemovHisMed = new javax.swing.JButton();
+        jbtnAddHisSoc = new javax.swing.JButton();
+        jbtnModHisSoc = new javax.swing.JButton();
+        jbtnRemovHisSoc = new javax.swing.JButton();
+        jbtnAddAlle = new javax.swing.JButton();
+        jbtnModAlle = new javax.swing.JButton();
+        jbtnRemovAlle = new javax.swing.JButton();
         jPanelAsistente = new javax.swing.JPanel();
         jPanelAsistenteMod = new javax.swing.JPanel();
         tfAsistenteNombre = new javax.swing.JTextField();
@@ -150,14 +163,19 @@ public class MainView extends javax.swing.JFrame {
         jTabbedPaneDcha = new javax.swing.JTabbedPane();
         jPanelAlertas = new javax.swing.JPanel();
         jPanelRecursos = new javax.swing.JPanel();
-        jButtonLlamadaEmergencias = new javax.swing.JButton();
-        jButtonLlamadaPolicia = new javax.swing.JButton();
-        jButtonLlamadaBomberos = new javax.swing.JButton();
+        jScrollPaneRecursos = new javax.swing.JScrollPane();
+        jTableRecursos = new javax.swing.JTable();
+        jbtnAddVivienda1 = new javax.swing.JButton();
+        jbtnModVivienda1 = new javax.swing.JButton();
+        jbtnRemovVivienda1 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanelAlarmas = new javax.swing.JPanel();
         jScrollPaneAlarm = new javax.swing.JScrollPane();
         jTableAlarmas = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jScrollPaneAlarm1 = new javax.swing.JScrollPane();
+        jTableAlarmas1 = new javax.swing.JTable();
         jPanelLlamadas = new javax.swing.JPanel();
         jScrollPaneAvis = new javax.swing.JScrollPane();
         jTableAvisos = new javax.swing.JTable();
@@ -814,31 +832,175 @@ public class MainView extends javax.swing.JFrame {
     ));
     jScrollPaneAlleg.setViewportView(jTableAllegados);
 
+    jbtnAddVivienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add.png"))); // NOI18N
+    jbtnAddVivienda.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnAddVivienda.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jbtnAddViviendaActionPerformed(evt);
+        }
+    });
+
+    jbtnModVivienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/iconoEditar25x25.png"))); // NOI18N
+    jbtnModVivienda.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnModVivienda.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jbtnModViviendaActionPerformed(evt);
+        }
+    });
+
+    jbtnRemovVivienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/remove.png"))); // NOI18N
+    jbtnRemovVivienda.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnRemovVivienda.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jbtnRemovViviendaActionPerformed(evt);
+        }
+    });
+
+    jbtnAddHisMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add.png"))); // NOI18N
+    jbtnAddHisMed.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnAddHisMed.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jbtnAddHisMedActionPerformed(evt);
+        }
+    });
+
+    jbtnModHisMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/iconoEditar25x25.png"))); // NOI18N
+    jbtnModHisMed.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnModHisMed.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jbtnModHisMedActionPerformed(evt);
+        }
+    });
+
+    jbtnRemovHisMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/remove.png"))); // NOI18N
+    jbtnRemovHisMed.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnRemovHisMed.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jbtnRemovHisMedActionPerformed(evt);
+        }
+    });
+
+    jbtnAddHisSoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add.png"))); // NOI18N
+    jbtnAddHisSoc.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnAddHisSoc.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jbtnAddHisSocActionPerformed(evt);
+        }
+    });
+
+    jbtnModHisSoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/iconoEditar25x25.png"))); // NOI18N
+    jbtnModHisSoc.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnModHisSoc.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jbtnModHisSocActionPerformed(evt);
+        }
+    });
+
+    jbtnRemovHisSoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/remove.png"))); // NOI18N
+    jbtnRemovHisSoc.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnRemovHisSoc.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jbtnRemovHisSocActionPerformed(evt);
+        }
+    });
+
+    jbtnAddAlle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add.png"))); // NOI18N
+    jbtnAddAlle.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnAddAlle.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jbtnAddAlleActionPerformed(evt);
+        }
+    });
+
+    jbtnModAlle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/iconoEditar25x25.png"))); // NOI18N
+    jbtnModAlle.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnModAlle.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jbtnModAlleActionPerformed(evt);
+        }
+    });
+
+    jbtnRemovAlle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/remove.png"))); // NOI18N
+    jbtnRemovAlle.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnRemovAlle.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jbtnRemovAlleActionPerformed(evt);
+        }
+    });
+
     javax.swing.GroupLayout jPanelViviendasLayout = new javax.swing.GroupLayout(jPanelViviendas);
     jPanelViviendas.setLayout(jPanelViviendasLayout);
     jPanelViviendasLayout.setHorizontalGroup(
         jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelViviendasLayout.createSequentialGroup()
-            .addContainerGap()
+        .addGroup(jPanelViviendasLayout.createSequentialGroup()
+            .addGap(6, 6, 6)
             .addGroup(jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(jScrollPaneAlleg, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
-                .addComponent(jScrollPaneViv, javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPaneHmed, javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPaneHsoc, javax.swing.GroupLayout.Alignment.LEADING))
-            .addContainerGap())
+                .addGroup(jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnModVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnAddVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnRemovVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnModHisMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnAddHisMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnRemovHisMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnModHisSoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnAddHisSoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnRemovHisSoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnModAlle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnAddAlle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnRemovAlle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(6, 6, 6)
+            .addGroup(jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jScrollPaneAlleg, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
+                .addComponent(jScrollPaneHsoc, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jScrollPaneViv)
+                .addComponent(jScrollPaneHmed))
+            .addGap(0, 0, 0))
     );
     jPanelViviendasLayout.setVerticalGroup(
         jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelViviendasLayout.createSequentialGroup()
-            .addContainerGap(26, Short.MAX_VALUE)
-            .addComponent(jScrollPaneViv, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jScrollPaneHmed, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jScrollPaneHsoc, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jScrollPaneAlleg, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(16, 16, 16))
+            .addGap(10, 10, 10)
+            .addGroup(jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanelViviendasLayout.createSequentialGroup()
+                    .addGroup(jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanelViviendasLayout.createSequentialGroup()
+                            .addGroup(jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jScrollPaneViv, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanelViviendasLayout.createSequentialGroup()
+                                    .addComponent(jbtnAddVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jbtnModVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jbtnRemovVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGap(20, 20, 20)
+                            .addComponent(jScrollPaneHmed, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelViviendasLayout.createSequentialGroup()
+                            .addComponent(jbtnAddHisMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jbtnModHisMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jbtnRemovHisMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(20, 20, 20)
+                    .addComponent(jScrollPaneHsoc, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelViviendasLayout.createSequentialGroup()
+                    .addComponent(jbtnAddHisSoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jbtnModHisSoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jbtnRemovHisSoc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(20, 20, 20)
+            .addGroup(jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jScrollPaneAlleg, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelViviendasLayout.createSequentialGroup()
+                    .addComponent(jbtnAddAlle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jbtnModAlle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jbtnRemovAlle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(0, 0, 0))
     );
 
     jPanelViviendasLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jScrollPaneAlleg, jScrollPaneHmed, jScrollPaneHsoc, jScrollPaneViv});
@@ -899,6 +1061,19 @@ public class MainView extends javax.swing.JFrame {
     tfAsistenteDni.setToolTipText("");
     tfAsistenteDni.setBorder(javax.swing.BorderFactory.createTitledBorder("DNI"));
     tfAsistenteDni.setPreferredSize(new java.awt.Dimension(150, 50));
+    tfAsistenteDni.addFocusListener(new java.awt.event.FocusAdapter() {
+        public void focusGained(java.awt.event.FocusEvent evt) {
+            tfAsistenteDniFocusGained(evt);
+        }
+    });
+    tfAsistenteDni.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyReleased(java.awt.event.KeyEvent evt) {
+            tfAsistenteDniKeyReleased(evt);
+        }
+        public void keyTyped(java.awt.event.KeyEvent evt) {
+            tfAsistenteDniKeyTyped(evt);
+        }
+    });
 
     tfAsistenteTelf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     tfAsistenteTelf.setToolTipText("");
@@ -1029,54 +1204,80 @@ public class MainView extends javax.swing.JFrame {
     jPanelAlertas.setBackground(new java.awt.Color(204, 204, 204));
 
     jPanelRecursos.setBorder(javax.swing.BorderFactory.createTitledBorder("Emergencias y otros recursos"));
-    jPanelRecursos.setPreferredSize(new java.awt.Dimension(655, 200));
+    jPanelRecursos.setPreferredSize(new java.awt.Dimension(655, 140));
 
-    jButtonLlamadaEmergencias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/hospital.png"))); // NOI18N
-    jButtonLlamadaEmergencias.setPreferredSize(new java.awt.Dimension(50, 50));
-    jButtonLlamadaEmergencias.addActionListener(new java.awt.event.ActionListener() {
+    jScrollPaneRecursos.setPreferredSize(new java.awt.Dimension(540, 100));
+
+    jTableRecursos.setModel(new javax.swing.table.DefaultTableModel(
+        new Object [][] {
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null}
+        },
+        new String [] {
+            "Title 1", "Title 2", "Title 3", "Title 4"
+        }
+    ));
+    jScrollPaneRecursos.setViewportView(jTableRecursos);
+
+    jbtnAddVivienda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add.png"))); // NOI18N
+    jbtnAddVivienda1.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnAddVivienda1.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButtonLlamadaEmergenciasActionPerformed(evt);
+            jbtnAddVivienda1ActionPerformed(evt);
         }
     });
 
-    jButtonLlamadaPolicia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/policia.png"))); // NOI18N
-    jButtonLlamadaPolicia.setPreferredSize(new java.awt.Dimension(50, 50));
-    jButtonLlamadaPolicia.addActionListener(new java.awt.event.ActionListener() {
+    jbtnModVivienda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/iconoEditar25x25.png"))); // NOI18N
+    jbtnModVivienda1.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnModVivienda1.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButtonLlamadaPoliciaActionPerformed(evt);
+            jbtnModVivienda1ActionPerformed(evt);
         }
     });
 
-    jButtonLlamadaBomberos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bomberos.png"))); // NOI18N
-    jButtonLlamadaBomberos.setPreferredSize(new java.awt.Dimension(50, 50));
-    jButtonLlamadaBomberos.addActionListener(new java.awt.event.ActionListener() {
+    jbtnRemovVivienda1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/remove.png"))); // NOI18N
+    jbtnRemovVivienda1.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnRemovVivienda1.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButtonLlamadaBomberosActionPerformed(evt);
+            jbtnRemovVivienda1ActionPerformed(evt);
         }
     });
+
+    jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/call.png"))); // NOI18N
+    jButton1.setPreferredSize(new java.awt.Dimension(50, 100));
 
     javax.swing.GroupLayout jPanelRecursosLayout = new javax.swing.GroupLayout(jPanelRecursos);
     jPanelRecursos.setLayout(jPanelRecursosLayout);
     jPanelRecursosLayout.setHorizontalGroup(
         jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRecursosLayout.createSequentialGroup()
-            .addGap(16, 16, 16)
-            .addComponent(jButtonLlamadaEmergencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        .addGroup(jPanelRecursosLayout.createSequentialGroup()
+            .addContainerGap()
+            .addGroup(jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jbtnAddVivienda1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbtnRemovVivienda1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbtnModVivienda1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButtonLlamadaPolicia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPaneRecursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButtonLlamadaBomberos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(467, 467, 467))
+            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap())
     );
     jPanelRecursosLayout.setVerticalGroup(
         jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRecursosLayout.createSequentialGroup()
-            .addGap(0, 9, Short.MAX_VALUE)
-            .addGroup(jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jButtonLlamadaBomberos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButtonLlamadaEmergencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButtonLlamadaPolicia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(118, 118, 118))
+            .addContainerGap()
+            .addGroup(jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addComponent(jScrollPaneRecursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelRecursosLayout.createSequentialGroup()
+                    .addComponent(jbtnAddVivienda1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(6, 6, 6)
+                    .addComponent(jbtnModVivienda1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jbtnRemovVivienda1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addContainerGap())
     );
 
     jPanelAlarmas.setBorder(javax.swing.BorderFactory.createTitledBorder("Alarmas"));
@@ -1098,6 +1299,19 @@ public class MainView extends javax.swing.JFrame {
 
     jButton3.setText("Limpiar alarma desactivadas");
 
+    jTableAlarmas1.setModel(new javax.swing.table.DefaultTableModel(
+        new Object [][] {
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null},
+            {null, null, null, null}
+        },
+        new String [] {
+            "Title 1", "Title 2", "Title 3", "Title 4"
+        }
+    ));
+    jScrollPaneAlarm1.setViewportView(jTableAlarmas1);
+
     javax.swing.GroupLayout jPanelAlarmasLayout = new javax.swing.GroupLayout(jPanelAlarmas);
     jPanelAlarmas.setLayout(jPanelAlarmasLayout);
     jPanelAlarmasLayout.setHorizontalGroup(
@@ -1112,17 +1326,27 @@ public class MainView extends javax.swing.JFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jButton2)))
             .addContainerGap())
+        .addGroup(jPanelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelAlarmasLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPaneAlarm1)
+                .addContainerGap()))
     );
     jPanelAlarmasLayout.setVerticalGroup(
         jPanelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelAlarmasLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(jScrollPaneAlarm, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
             .addGroup(jPanelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jButton2)
                 .addComponent(jButton3))
             .addContainerGap())
+        .addGroup(jPanelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAlarmasLayout.createSequentialGroup()
+                .addContainerGap(166, Short.MAX_VALUE)
+                .addComponent(jScrollPaneAlarm1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)))
     );
 
     jPanelLlamadas.setBorder(javax.swing.BorderFactory.createTitledBorder("Avisos"));
@@ -1168,8 +1392,8 @@ public class MainView extends javax.swing.JFrame {
         jPanelLlamadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelLlamadasLayout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPaneAvis, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jScrollPaneAvis, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanelLlamadasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jButton4)
                 .addComponent(jButton5))
@@ -1371,21 +1595,6 @@ public class MainView extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_itemSalirActionPerformed
 
-    private void jButtonLlamadaEmergenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLlamadaEmergenciasActionPerformed
-        JOptionPane.showMessageDialog(null, "Se esta llamando al servicio emergencias");
-        //Necesita ser probado
-    }//GEN-LAST:event_jButtonLlamadaEmergenciasActionPerformed
-
-    private void jButtonLlamadaPoliciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLlamadaPoliciaActionPerformed
-        JOptionPane.showMessageDialog(null, "Se esta llamando al servicio de policía");
-        //Necesita ser probado
-    }//GEN-LAST:event_jButtonLlamadaPoliciaActionPerformed
-
-    private void jButtonLlamadaBomberosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLlamadaBomberosActionPerformed
-        JOptionPane.showMessageDialog(null, "Se esta llamando al servicio de Bomberos");
-        //Necesita ser probado
-    }//GEN-LAST:event_jButtonLlamadaBomberosActionPerformed
-
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
         guardardependiente();
         controller.actualizarObjeto(dep);
@@ -1395,15 +1604,29 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonSaveActionPerformed
 
     private void jbtnModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModActionPerformed
-        // TODO add your handling code here:
+        if (this.jTableEstado.getSelectedRow() >= 0) {
+            DepenStat estado = new DepenStat(this, true, controller, this.jTableEstado.getModel().getValueAt(this.jTableEstado.getSelectedRow(), 0));
+            if (estado.getEstado() != null) {
+                controller.actualizarObjeto(estado.getEstado());
+                manipulateEstadoTable(dep, 0);
+            }
+        }
     }//GEN-LAST:event_jbtnModActionPerformed
 
     private void jbtnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddActionPerformed
-        // TODO add your handling code here:
+        DepenStat estado = new DepenStat(this, true, controller);
+        if (estado.getEstado() != null) {
+            estado.getEstado().setXDependienteModel(dep);
+            controller.guardarObjeto(estado.getEstado());
+            manipulateEstadoTable(dep, 0);
+        }
     }//GEN-LAST:event_jbtnAddActionPerformed
 
     private void jbtnRemovActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRemovActionPerformed
-        // TODO add your handling code here:
+        if (this.jTableEstado.getSelectedRow() >= 0) {
+            controller.borrarObjeto(controller.cargarDatos(XEstadoModel.class, SentenciasSQL.objectDatosId, this.jTableEstado.getModel().getValueAt(this.jTableEstado.getSelectedRow(), 0)));
+            manipulateEstadoTable(dep, 0);
+        }
     }//GEN-LAST:event_jbtnRemovActionPerformed
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
@@ -1426,7 +1649,7 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnEditarActionPerformed
 
     private void jbtnAddDepenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddDepenActionPerformed
-        // TODO add your handling code here:
+        lockEnabled(true);
     }//GEN-LAST:event_jbtnAddDepenActionPerformed
 
     private void jbtnAddCenSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddCenSalActionPerformed
@@ -1544,6 +1767,90 @@ public class MainView extends javax.swing.JFrame {
         this.tfDependienteDNI.selectAll();
     }//GEN-LAST:event_tfDependienteDNIFocusGained
 
+    private void jbtnAddViviendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddViviendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnAddViviendaActionPerformed
+
+    private void jbtnModViviendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModViviendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnModViviendaActionPerformed
+
+    private void jbtnRemovViviendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRemovViviendaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnRemovViviendaActionPerformed
+
+    private void jbtnAddHisMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddHisMedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnAddHisMedActionPerformed
+
+    private void jbtnModHisMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModHisMedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnModHisMedActionPerformed
+
+    private void jbtnRemovHisMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRemovHisMedActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnRemovHisMedActionPerformed
+
+    private void jbtnAddHisSocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddHisSocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnAddHisSocActionPerformed
+
+    private void jbtnModHisSocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModHisSocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnModHisSocActionPerformed
+
+    private void jbtnRemovHisSocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRemovHisSocActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnRemovHisSocActionPerformed
+
+    private void jbtnAddAlleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddAlleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnAddAlleActionPerformed
+
+    private void jbtnModAlleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModAlleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnModAlleActionPerformed
+
+    private void jbtnRemovAlleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRemovAlleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnRemovAlleActionPerformed
+
+    private void tfAsistenteDniFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfAsistenteDniFocusGained
+        this.tfAsistenteDni.selectAll();
+    }//GEN-LAST:event_tfAsistenteDniFocusGained
+
+    private void tfAsistenteDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfAsistenteDniKeyTyped
+        char caracter = evt.getKeyChar();
+        if (this.tfDependienteDNI.getText().length() <= 8) {
+            if (((caracter < '0') || (caracter > '9')) && (caracter != '\b')) {
+                evt.consume();
+            }
+        } else {
+            if (caracter != '\b') {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_tfAsistenteDniKeyTyped
+
+    private void tfAsistenteDniKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfAsistenteDniKeyReleased
+        if (this.tfAsistenteDni.getText().length() == 8) {
+            this.tfAsistenteDni.setText(Utils.laLetra(this.tfAsistenteDni.getText()));
+            this.tfAsistenteDni.selectAll();
+        }
+    }//GEN-LAST:event_tfAsistenteDniKeyReleased
+
+    private void jbtnAddVivienda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddVivienda1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnAddVivienda1ActionPerformed
+
+    private void jbtnModVivienda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModVivienda1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnModVivienda1ActionPerformed
+
+    private void jbtnRemovVivienda1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRemovVivienda1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbtnRemovVivienda1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private datechooser.beans.DateChooserCombo dateChooserDependienteAlta;
@@ -1554,15 +1861,13 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton jBtnCancel;
     private javax.swing.JButton jBtnEditAsi;
     private javax.swing.JButton jBtnSave;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonCancel;
     private javax.swing.JButton jButtonCenterMap;
-    private javax.swing.JButton jButtonLlamadaBomberos;
-    private javax.swing.JButton jButtonLlamadaEmergencias;
-    private javax.swing.JButton jButtonLlamadaPolicia;
     private javax.swing.JButton jButtonSave;
     private javax.swing.JButton jButtonSearch;
     private javax.swing.JButton jButtonZoomIn;
@@ -1593,36 +1898,55 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JPanel jPaneldependiente;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JScrollPane jScrollPaneAlarm;
+    private javax.swing.JScrollPane jScrollPaneAlarm1;
     private javax.swing.JScrollPane jScrollPaneAlleg;
     private javax.swing.JScrollPane jScrollPaneAvis;
     private javax.swing.JScrollPane jScrollPaneCoord;
     private javax.swing.JScrollPane jScrollPaneHmed;
     private javax.swing.JScrollPane jScrollPaneHsoc;
     private javax.swing.JScrollPane jScrollPaneMaps;
+    private javax.swing.JScrollPane jScrollPaneRecursos;
     private javax.swing.JScrollPane jScrollPaneViv;
     private javax.swing.JScrollPane jScrollPaneestado;
     private javax.swing.JTabbedPane jTabbedPaneDcha;
     private javax.swing.JTabbedPane jTabbedPaneIzq;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTableAlarmas;
+    private javax.swing.JTable jTableAlarmas1;
     private javax.swing.JTable jTableAllegados;
     private javax.swing.JTable jTableAvisos;
     private javax.swing.JTable jTableCoordenadas;
     private javax.swing.JTable jTableEstado;
     private javax.swing.JTable jTableHistorialMed;
     private javax.swing.JTable jTableHistorialSoc;
+    private javax.swing.JTable jTableRecursos;
     private javax.swing.JTable jTableViviendas;
     private javax.swing.JButton jbtnAdd;
+    private javax.swing.JButton jbtnAddAlle;
     private javax.swing.JButton jbtnAddCasa;
     private javax.swing.JButton jbtnAddCenSal;
     private javax.swing.JButton jbtnAddDepen;
+    private javax.swing.JButton jbtnAddHisMed;
+    private javax.swing.JButton jbtnAddHisSoc;
     private javax.swing.JButton jbtnAddMedico;
+    private javax.swing.JButton jbtnAddVivienda;
+    private javax.swing.JButton jbtnAddVivienda1;
     private javax.swing.JButton jbtnEditar;
     private javax.swing.JButton jbtnMod;
+    private javax.swing.JButton jbtnModAlle;
     private javax.swing.JButton jbtnModCen;
+    private javax.swing.JButton jbtnModHisMed;
+    private javax.swing.JButton jbtnModHisSoc;
     private javax.swing.JButton jbtnModMed;
     private javax.swing.JButton jbtnModViv;
+    private javax.swing.JButton jbtnModVivienda;
+    private javax.swing.JButton jbtnModVivienda1;
     private javax.swing.JButton jbtnRemov;
+    private javax.swing.JButton jbtnRemovAlle;
+    private javax.swing.JButton jbtnRemovHisMed;
+    private javax.swing.JButton jbtnRemovHisSoc;
+    private javax.swing.JButton jbtnRemovVivienda;
+    private javax.swing.JButton jbtnRemovVivienda1;
     private javax.swing.JMenu menuAsist;
     private javax.swing.JMenuBar menuBarAsist;
     private javax.swing.JTextField tfAsistenteApe1;
@@ -1811,29 +2135,20 @@ public class MainView extends javax.swing.JFrame {
         nac.setTime(dep.getFecNacim());
         this.dateChooserDependienteNac.setSelectedDate(nac);
 
-        //Se muestran los elementos asociados al dependiente
+        //Se muestran los elementos asociados al dependiente en los comboBox
         manipulateMed(dep.getXMedicoModel() != null ? dep.getXMedicoModel() : null, 3);
         manipulateCS(dep.getXCsModel() != null ? dep.getXCsModel() : null, 3);
         manipulateHome(viviendaActual(), 3);
         genero.setSelectedItem(dep.getGenero());
-        setTables(dep);
-    }
 
-    private void setTables(XDependienteModel dep) {
-        this.jTableViviendas.setModel(controller.cargarResultSet(SentenciasSQL.viviendasTM, dep));
-        Utils.resizeColumnWidth(this.jTableViviendas);
-        this.jTableHistorialMed.setModel(controller.cargarResultSet(SentenciasSQL.historialMedicoTM, dep));
-        Utils.resizeColumnWidth(this.jTableHistorialMed);
-        this.jTableHistorialSoc.setModel(controller.cargarResultSet(SentenciasSQL.historialSocialTM, dep));
-        Utils.resizeColumnWidth(this.jTableHistorialSoc);
-        this.jTableAllegados.setModel(controller.cargarResultSet(SentenciasSQL.allegadosTM, dep));
-        Utils.resizeColumnWidth(this.jTableAllegados);
-        this.jTableCoordenadas.setModel(controller.cargarResultSet(SentenciasSQL.coordenadasTM, dep));
-        Utils.resizeColumnWidth(this.jTableCoordenadas);
-        this.jTableAvisos.setModel(controller.cargarResultSet(SentenciasSQL.avisosTM, dep));
-        Utils.resizeColumnWidth(this.jTableAvisos);
-        this.jTableEstado.setModel(controller.cargarResultSet(SentenciasSQL.estadoTM, dep));
-        Utils.resizeColumnWidth(this.jTableEstado);
+        //Se muestran los datos asociados al dependiente en los jTable
+        manipulateAllegadosTable(dep, 0);
+        manipulateAvisosTable(dep, 0);
+        manipulateCoordenadasTable(dep, 0);
+        manipulateEstadoTable(dep, 0);
+        manipulateHisMedTable(dep, 0);
+        manipulateHisSocTable(dep, 0);
+        manipulateViviTable(dep, 0);
     }
 
     private void lockEnabled(boolean enabled) {
@@ -1946,6 +2261,69 @@ public class MainView extends javax.swing.JFrame {
             Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
         } catch (JRException ex) {
             Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void manipulateViviTable(Object obj, int opc) {
+        switch (opc) {
+            case 0:
+                this.jTableViviendas.setModel(controller.cargarResultSet(SentenciasSQL.viviendasTM, obj));
+                Utils.resizeColumnWidth(this.jTableViviendas);
+                break;
+        }
+    }
+
+    private void manipulateHisMedTable(Object obj, int opc) {
+        switch (opc) {
+            case 0:
+                this.jTableHistorialMed.setModel(controller.cargarResultSet(SentenciasSQL.historialMedicoTM, obj));
+                Utils.resizeColumnWidth(this.jTableHistorialMed);
+                break;
+        }
+    }
+
+    private void manipulateHisSocTable(Object obj, int opc) {
+        switch (opc) {
+            case 0:
+                this.jTableHistorialSoc.setModel(controller.cargarResultSet(SentenciasSQL.historialSocialTM, obj));
+                Utils.resizeColumnWidth(this.jTableHistorialSoc);
+                break;
+        }
+    }
+
+    private void manipulateAllegadosTable(Object obj, int opc) {
+        switch (opc) {
+            case 0:
+                this.jTableAllegados.setModel(controller.cargarResultSet(SentenciasSQL.allegadosTM, obj));
+                Utils.resizeColumnWidth(this.jTableAllegados);
+                break;
+        }
+    }
+
+    private void manipulateCoordenadasTable(Object obj, int opc) {
+        switch (opc) {
+            case 0:
+                this.jTableCoordenadas.setModel(controller.cargarResultSet(SentenciasSQL.coordenadasTM, obj));
+                Utils.resizeColumnWidth(this.jTableCoordenadas);
+                break;
+        }
+    }
+
+    private void manipulateAvisosTable(Object obj, int opc) {
+        switch (opc) {
+            case 0:
+                this.jTableAvisos.setModel(controller.cargarResultSet(SentenciasSQL.avisosTM, obj));
+                Utils.resizeColumnWidth(this.jTableAvisos);
+                break;
+        }
+    }
+
+    private void manipulateEstadoTable(Object obj, int opc) {
+        switch (opc) {
+            case 0:
+                this.jTableEstado.setModel(controller.cargarResultSet(SentenciasSQL.estadoTM, obj));
+                Utils.resizeColumnWidth(this.jTableEstado);
+                break;
         }
     }
 
