@@ -7,7 +7,13 @@ import Models.XDireccionModel;
 import Models.XProvinciaModel;
 import Models.XViviendaModel;
 import Utils.SentenciasSQL;
+import com.opencsv.CSVReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.List;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
@@ -17,7 +23,7 @@ import javax.swing.WindowConstants;
  */
 public class DirectionMan extends javax.swing.JDialog {
 
-    private final String CITY = "CIUDADES", INIT = "DATOS DE ", HOME = "VIVIENDA";
+    private final String CITY = "CIUDADES", INIT = "DATOS DE ", HOME = "VIVIENDA", FILE = "src/main/resources/Recursos/Tipos_Via.csv";
     private String name;
     private BLogic controller;
     private Object object;
@@ -32,6 +38,18 @@ public class DirectionMan extends javax.swing.JDialog {
         this.object = null;
         initComponents();
         initUI();
+    }
+
+    DirectionMan(MainView parent, boolean modal, BLogic controller, String name, List<Object> listaCiudades, Object selectedItem) {
+        super(parent, modal);
+        this.object = selectedItem;
+        this.name = name;
+        this.listaCiudades = listaCiudades;
+        this.controller = controller;
+        initComponents();
+        fillUI();
+        initUI();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -159,7 +177,7 @@ public class DirectionMan extends javax.swing.JDialog {
         tfNomProv.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PROVINCIA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfNomProv.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        jbtnSearchCity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+        jbtnSearchCity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add.png"))); // NOI18N
         jbtnSearchCity.setPreferredSize(new java.awt.Dimension(40, 40));
         jbtnSearchCity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,7 +198,7 @@ public class DirectionMan extends javax.swing.JDialog {
         tfAcceso.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ACCESO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfAcceso.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        jbtnAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/info.png"))); // NOI18N
+        jbtnAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/info.png"))); // NOI18N
         jbtnAyuda.setPreferredSize(new java.awt.Dimension(40, 40));
         jbtnAyuda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -286,10 +304,10 @@ public class DirectionMan extends javax.swing.JDialog {
 
     private void jbtnSearchCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSearchCityActionPerformed
         Search search = new Search(null, true, listaCiudades, CITY);
-        if (search.getDependiente() != null) {
-            ciudad = (XCiudadModel) search.getDependiente();
+        if (search.getObject() != null) {
+            ciudad = (XCiudadModel) search.getObject();
             this.tfNomCity.setText(ciudad.getName());
-            this.tfNomProv.setText(((XProvinciaModel) controller.cargarDatos(XProvinciaModel.class, SentenciasSQL.objectDatosId, ciudad.getId())).getName());
+            this.tfNomProv.setText(((XProvinciaModel) controller.cargarDatos(XProvinciaModel.class, SentenciasSQL.objectDatosId, ciudad.getXProvinciaModel().getId())).getName());
         }
     }//GEN-LAST:event_jbtnSearchCityActionPerformed
 
@@ -301,8 +319,8 @@ public class DirectionMan extends javax.swing.JDialog {
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         if (this.tfNomProv.getText().length() > 0 && this.tfNomVia.getText().length() > 0
                 && this.tfNum.getText().length() > 0 && this.tfNomEdif.getText().length() > 0) {
-            XDireccionModel direc = new XDireccionModel(ciudad, this.jComboTipo.getSelectedItem().toString(), this.tfNomVia.getText(),
-                    Integer.valueOf(this.tfNum.getText()), Integer.valueOf(this.tfPiso.getText()), this.tfLetra.getText(), this.tfEsc.getText());
+            XDireccionModel direc = crearDirecc();
+            controller.guardarObjeto(direc);
             if (name.equals(HOME)) {
                 XViviendaModel vivi = new XViviendaModel(direc, this.tfNomEdif.getText(), this.jCheckBox.isSelected(), this.tfAcceso.getText());
                 object = vivi;
@@ -348,8 +366,12 @@ public class DirectionMan extends javax.swing.JDialog {
         } else {
             this.jCheckBox.setVisible(false);
             this.tfAcceso.setVisible(false);
+            this.tfPiso.setVisible(false);
+            this.tfEsc.setVisible(false);
+            this.tfLetra.setVisible(false);
         }
-        jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, INIT + name, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
+        jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, INIT + name, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102)));
+        this.jComboTipo.setModel(listaTipo());
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -359,4 +381,67 @@ public class DirectionMan extends javax.swing.JDialog {
         return object;
     }
 
+    private void fillUI() {
+        if (name.equalsIgnoreCase(HOME)) {
+            this.jCheckBox.setSelected(((XViviendaModel) object).getHabitual());
+            this.tfAcceso.setText(((XViviendaModel) object).getModoAcceso() != null ? ((XViviendaModel) object).getModoAcceso() : "");
+            this.tfNomEdif.setText(((XViviendaModel) object).getTipo());
+            this.tfNomVia.setText(((XViviendaModel) object).getXDireccionModel().getDireccion());
+            this.tfNum.setText(((XViviendaModel) object).getXDireccionModel().getNum().toString());
+            this.tfEsc.setText(((XViviendaModel) object).getXDireccionModel().getEscalera() != null ? ((XViviendaModel) object).getXDireccionModel().getEscalera() : "");
+            this.tfLetra.setText(((XViviendaModel) object).getXDireccionModel().getLetra() != null ? ((XViviendaModel) object).getXDireccionModel().getLetra() : "");
+            this.tfPiso.setText(((XViviendaModel) object).getXDireccionModel().getPiso() != null ? ((XViviendaModel) object).getXDireccionModel().getPiso().toString() : "");
+            this.tfNomCity.setText(((XViviendaModel) object).getXDireccionModel().getXCiudadModel().getName());
+            this.tfNomProv.setText(((XViviendaModel) object).getXDireccionModel().getXCiudadModel().getXProvinciaModel().getName());
+            this.jComboTipo.setSelectedItem(((XViviendaModel) object).getXDireccionModel().getTipovia());
+            this.ciudad=((XViviendaModel) object).getXDireccionModel().getXCiudadModel();
+        } else {
+            this.tfTelf.setText(((XCsModel) object).getTelefono() != null ? ((XCsModel) object).getTelefono() : "");
+            this.tfNomEdif.setText(((XCsModel) object).getName());
+            this.tfNomVia.setText(((XCsModel) object).getXDireccionModel().getDireccion());
+            this.tfNum.setText(((XCsModel) object).getXDireccionModel().getNum().toString());
+            this.tfNomCity.setText(((XCsModel) object).getXDireccionModel().getXCiudadModel().getName());
+            this.tfNomProv.setText(((XCsModel) object).getXDireccionModel().getXCiudadModel().getXProvinciaModel().getName());
+            this.jComboTipo.setSelectedItem(((XCsModel) object).getXDireccionModel().getTipovia());
+            this.ciudad=((XCsModel) object).getXDireccionModel().getXCiudadModel();
+        }
+    }
+
+    private XDireccionModel crearDirecc() {
+        XDireccionModel tempo = new XDireccionModel();
+        tempo.setXCiudadModel(ciudad);
+        tempo.setDireccion(this.tfNomVia.getText());
+        tempo.setNum(Integer.valueOf(this.tfNum.getText()));
+        tempo.setTipovia(this.jComboTipo.getSelectedItem().toString());
+        if (this.tfEsc.getText().length() > 0) {
+            tempo.setEscalera(this.tfEsc.getText());
+        }
+        if (this.tfLetra.getText().length() > 0) {
+            tempo.setLetra(this.tfLetra.getText());
+        }
+        if (this.tfPiso.getText().length() > 0) {
+            tempo.setPiso(Integer.valueOf(this.tfPiso.getText()));
+        }
+        return tempo;
+    }
+
+    private ComboBoxModel<String> listaTipo() {
+        DefaultComboBoxModel<String> vias = new DefaultComboBoxModel<>();
+        String[] line;
+        try {
+            CSVReader reader = new CSVReader(new FileReader(FILE), ',', '"', 1);
+            while ((line = reader.readNext()) != null) {
+                if (line != null) {
+                    for (String string : line) {
+                        vias.addElement(string);
+                    }
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println("FICHERO NO ENCONTRADO");
+        } catch (IOException ex) {
+            System.out.println("ERROR DE ENTRADA/SALIDA");
+        }
+        return vias;
+    }
 }

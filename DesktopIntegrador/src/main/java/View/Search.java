@@ -172,7 +172,7 @@ public class Search extends javax.swing.JDialog {
         }
     }
 
-    public Object getDependiente() {
+    public Object getObject() {
         return object;
     }
 

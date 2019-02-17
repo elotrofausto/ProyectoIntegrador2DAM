@@ -59,7 +59,7 @@
       </key>
       <one-to-many class="Models.XViviendaModel"/>
     </set>
-    <set fetch="select" inverse="true" lazy="true" name="XCsModels" table="x_cs_model">
+    <set fetch="select" inverse="true" lazy="true" name="XCsModels" table="x_cs_model" cascade="all-delete-orphan">
       <key>
         <column name="id_direccion" not-null="true">
           <comment>Id Direccion</comment>

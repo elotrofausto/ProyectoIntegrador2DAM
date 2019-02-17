@@ -68,4 +68,11 @@ public class Utils {
             columnModel.getColumn(column).setPreferredWidth(width);
         }
     }
+    
+    //Asigna automaticamente la letra del dni
+    public static String laLetra(String numeracion) {
+        String juegoCaracteres = "TRWAGMYFPDXBNJZSQVHLCKE";
+        int modulo = Integer.valueOf(numeracion) % 23;
+        return numeracion+juegoCaracteres.charAt(modulo);
+    }
 }

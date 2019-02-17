@@ -23,7 +23,9 @@ public class DoctorMan extends javax.swing.JDialog {
         super(parent, modal);
         this.medico = medico;
         initComponents();
+        fillUI();
         initUI();
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -196,14 +198,17 @@ public class DoctorMan extends javax.swing.JDialog {
     }
 
     private void initUI() {
+        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
+    }
+
+    private void fillUI() {
         this.tfNombre.setText(medico.getName());
         this.tfApe1.setText(medico.getApellido1());
         this.tfApe2.setText(medico.getApellido2());
         this.tfTelf.setText(medico.getTelefono());
         this.tfDisponibilidad.setText(medico.getDisponibilidad());
-        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        this.setLocationRelativeTo(null);
-        this.setVisible(true);
     }
 
 }

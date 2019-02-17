@@ -28,6 +28,7 @@ import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -45,7 +46,7 @@ import net.sf.jasperreports.swing.JRViewer;
 public class MainView extends javax.swing.JFrame {
 
     private final static String MAPS_KEY = "%20AIzaSyBXkyYwknSg-vZ446hxBHmVEMshcbujIyo";
-    private final String HEALTH = "CENTRO MEDICO", HOME = "VIVIENDA", DEP = "DEPENDIENTES";
+    private final String HEALTH = "CENTRO MEDICO", HOME = "VIVIENDA", DEPENDENT = "DEPENDIENTES";
     private final static int MAX_MAPS_ZOOM = 21;
     private final static int MIN_MAPS_ZOOM = 5;
     private double currentLat;
@@ -63,15 +64,6 @@ public class MainView extends javax.swing.JFrame {
     private DefaultComboBoxModel genero;
     private JasperClient jClient;
 
-    /**
-     * Creates new form View
-     */
-    public MainView() {
-        initComponents();
-        initTabs();
-        initMaps();
-    }
-
     public MainView(BLogic controller, XAsistenteModel asistente) {
         this.controller = controller;
         this.asistente = asistente;
@@ -79,7 +71,6 @@ public class MainView extends javax.swing.JFrame {
         initCombos();
         initComponents();
         initTabs();
-        initList();
         initData();
         initMaps();
         initJasper();
@@ -111,6 +102,7 @@ public class MainView extends javax.swing.JFrame {
         dateChooserDependienteNac = new datechooser.beans.DateChooserCombo();
         tfDependienteDNI = new javax.swing.JTextField();
         jbtnAddCasa = new javax.swing.JButton();
+        jbtnModViv = new javax.swing.JButton();
         jPanelProfesionales = new javax.swing.JPanel();
         jComboBoxMedico = new javax.swing.JComboBox<>();
         jLabelMedico = new javax.swing.JLabel();
@@ -118,6 +110,8 @@ public class MainView extends javax.swing.JFrame {
         jLabelCS = new javax.swing.JLabel();
         jbtnAddCenSal = new javax.swing.JButton();
         jbtnAddMedico = new javax.swing.JButton();
+        jbtnModMed = new javax.swing.JButton();
+        jbtnModCen = new javax.swing.JButton();
         jButtonSearch = new javax.swing.JButton();
         jButtonSave = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
@@ -157,11 +151,8 @@ public class MainView extends javax.swing.JFrame {
         jPanelAlertas = new javax.swing.JPanel();
         jPanelRecursos = new javax.swing.JPanel();
         jButtonLlamadaEmergencias = new javax.swing.JButton();
-        jLabelLlamadaEmergencias = new javax.swing.JLabel();
         jButtonLlamadaPolicia = new javax.swing.JButton();
-        jLabelLlamadaPolicia = new javax.swing.JLabel();
         jButtonLlamadaBomberos = new javax.swing.JButton();
-        jLabelLlamadaBomberos = new javax.swing.JLabel();
         jPanelAlarmas = new javax.swing.JPanel();
         jScrollPaneAlarm = new javax.swing.JScrollPane();
         jTableAlarmas = new javax.swing.JTable();
@@ -214,7 +205,7 @@ public class MainView extends javax.swing.JFrame {
 
         jLabelTitle.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabelTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabelTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/title background.png"))); // NOI18N
+        jLabelTitle.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/title background.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanelTitleLayout = new javax.swing.GroupLayout(jPanelTitle);
         jPanelTitle.setLayout(jPanelTitleLayout);
@@ -239,75 +230,86 @@ public class MainView extends javax.swing.JFrame {
 
         jPaneldependiente.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos principales del dependiente"));
 
-        jComboBoxDependienteVivienda.setBackground(new java.awt.Color(224, 224, 224));
+        jComboBoxDependienteVivienda.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxDependienteVivienda.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jComboBoxDependienteVivienda.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxDependienteVivienda.setModel(vivienda);
         jComboBoxDependienteVivienda.setBorder(javax.swing.BorderFactory.createTitledBorder("Vivienda Actual"));
-        jComboBoxDependienteVivienda.setPreferredSize(new java.awt.Dimension(34, 55));
+        jComboBoxDependienteVivienda.setPreferredSize(new java.awt.Dimension(34, 60));
 
         tfDependienteId.setEditable(false);
-        tfDependienteId.setBackground(new java.awt.Color(224, 224, 224));
+        tfDependienteId.setBackground(new java.awt.Color(255, 255, 255));
         tfDependienteId.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tfDependienteId.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteId.setToolTipText("");
         tfDependienteId.setBorder(javax.swing.BorderFactory.createTitledBorder("ID Dependiente"));
         tfDependienteId.setPreferredSize(new java.awt.Dimension(150, 55));
 
-        tfDependientePass.setBackground(new java.awt.Color(224, 224, 224));
+        tfDependientePass.setBackground(new java.awt.Color(255, 255, 255));
+        tfDependientePass.setForeground(new java.awt.Color(0, 0, 0));
         tfDependientePass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependientePass.setText("jPasswordField1");
         tfDependientePass.setBorder(javax.swing.BorderFactory.createTitledBorder("Password"));
         tfDependientePass.setPreferredSize(new java.awt.Dimension(150, 55));
 
-        jComboBoxDependienteGenero.setBackground(new java.awt.Color(224, 224, 224));
+        jComboBoxDependienteGenero.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxDependienteGenero.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jComboBoxDependienteGenero.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxDependienteGenero.setModel(genero);
         jComboBoxDependienteGenero.setBorder(javax.swing.BorderFactory.createTitledBorder("Género"));
-        jComboBoxDependienteGenero.setPreferredSize(new java.awt.Dimension(150, 55));
+        jComboBoxDependienteGenero.setPreferredSize(new java.awt.Dimension(150, 60));
 
-        tfDependienteNSS.setBackground(new java.awt.Color(224, 224, 224));
+        tfDependienteNSS.setBackground(new java.awt.Color(255, 255, 255));
         tfDependienteNSS.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tfDependienteNSS.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteNSS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteNSS.setToolTipText("");
         tfDependienteNSS.setBorder(javax.swing.BorderFactory.createTitledBorder("Nº Seg. Social"));
         tfDependienteNSS.setPreferredSize(new java.awt.Dimension(150, 55));
 
-        tfDependienteTelf.setBackground(new java.awt.Color(224, 224, 224));
+        tfDependienteTelf.setBackground(new java.awt.Color(255, 255, 255));
         tfDependienteTelf.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tfDependienteTelf.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteTelf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteTelf.setToolTipText("");
         tfDependienteTelf.setBorder(javax.swing.BorderFactory.createTitledBorder("Teléfono"));
         tfDependienteTelf.setPreferredSize(new java.awt.Dimension(150, 55));
 
-        tfDependienteNombre.setBackground(new java.awt.Color(224, 224, 224));
+        tfDependienteNombre.setBackground(new java.awt.Color(255, 255, 255));
         tfDependienteNombre.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tfDependienteNombre.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteNombre.setToolTipText("");
         tfDependienteNombre.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre"));
         tfDependienteNombre.setPreferredSize(new java.awt.Dimension(150, 55));
 
-        tfDependienteApe1.setBackground(new java.awt.Color(224, 224, 224));
+        tfDependienteApe1.setBackground(new java.awt.Color(255, 255, 255));
         tfDependienteApe1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tfDependienteApe1.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteApe1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteApe1.setToolTipText("");
         tfDependienteApe1.setBorder(javax.swing.BorderFactory.createTitledBorder("Primer Apellido"));
         tfDependienteApe1.setPreferredSize(new java.awt.Dimension(150, 55));
 
-        tfDependienteApe2.setBackground(new java.awt.Color(224, 224, 224));
+        tfDependienteApe2.setBackground(new java.awt.Color(255, 255, 255));
         tfDependienteApe2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tfDependienteApe2.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteApe2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteApe2.setToolTipText("");
         tfDependienteApe2.setBorder(javax.swing.BorderFactory.createTitledBorder("Segundo Apellido"));
         tfDependienteApe2.setPreferredSize(new java.awt.Dimension(150, 55));
 
-        tfDependienteEmail.setBackground(new java.awt.Color(224, 224, 224));
+        tfDependienteEmail.setBackground(new java.awt.Color(255, 255, 255));
         tfDependienteEmail.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tfDependienteEmail.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteEmail.setToolTipText("");
         tfDependienteEmail.setBorder(javax.swing.BorderFactory.createTitledBorder("email"));
         tfDependienteEmail.setPreferredSize(new java.awt.Dimension(250, 55));
 
         dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha Alta"));
+        dateChooserDependienteAlta.setCalendarPreferredSize(new java.awt.Dimension(350, 250));
         dateChooserDependienteAlta.setFieldFont(new java.awt.Font("Dialog", java.awt.Font.BOLD, 14));
 
         dateChooserDependienteNac.setCurrentView(new datechooser.view.appearance.AppearancesList("Swing",
@@ -352,20 +354,43 @@ public class MainView extends javax.swing.JFrame {
                 false,
                 true)));
     dateChooserDependienteNac.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha Nacimiento"));
+    dateChooserDependienteNac.setCalendarPreferredSize(new java.awt.Dimension(350, 250));
     dateChooserDependienteNac.setFieldFont(new java.awt.Font("Dialog", java.awt.Font.BOLD, 14));
 
-    tfDependienteDNI.setBackground(new java.awt.Color(224, 224, 224));
+    tfDependienteDNI.setBackground(new java.awt.Color(255, 255, 255));
     tfDependienteDNI.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+    tfDependienteDNI.setForeground(new java.awt.Color(0, 0, 0));
     tfDependienteDNI.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     tfDependienteDNI.setToolTipText("");
     tfDependienteDNI.setBorder(javax.swing.BorderFactory.createTitledBorder("D.N.I"));
     tfDependienteDNI.setPreferredSize(new java.awt.Dimension(150, 55));
+    tfDependienteDNI.addFocusListener(new java.awt.event.FocusAdapter() {
+        public void focusGained(java.awt.event.FocusEvent evt) {
+            tfDependienteDNIFocusGained(evt);
+        }
+    });
+    tfDependienteDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+        public void keyReleased(java.awt.event.KeyEvent evt) {
+            tfDependienteDNIKeyReleased(evt);
+        }
+        public void keyTyped(java.awt.event.KeyEvent evt) {
+            tfDependienteDNIKeyTyped(evt);
+        }
+    });
 
-    jbtnAddCasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+    jbtnAddCasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add.png"))); // NOI18N
     jbtnAddCasa.setPreferredSize(new java.awt.Dimension(30, 30));
     jbtnAddCasa.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jbtnAddCasaActionPerformed(evt);
+        }
+    });
+
+    jbtnModViv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/iconoEditar25x25.png"))); // NOI18N
+    jbtnModViv.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnModViv.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jbtnModVivActionPerformed(evt);
         }
     });
 
@@ -389,7 +414,9 @@ public class MainView extends javax.swing.JFrame {
                         .addComponent(tfDependienteTelf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(dateChooserDependienteAlta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(43, 43, 43)
-                    .addComponent(jbtnAddCasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jbtnAddCasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbtnModViv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jComboBoxDependienteVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPaneldependienteLayout.createSequentialGroup()
@@ -424,34 +451,34 @@ public class MainView extends javax.swing.JFrame {
                 .addComponent(tfDependienteNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(tfDependienteId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(tfDependienteDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(16, 16, 16)
             .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPaneldependienteLayout.createSequentialGroup()
-                    .addGap(16, 16, 16)
-                    .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(dateChooserDependienteNac, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateChooserDependienteAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jComboBoxDependienteVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPaneldependienteLayout.createSequentialGroup()
-                            .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(dateChooserDependienteNac, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dateChooserDependienteAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jComboBoxDependienteVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(8, 8, 8))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPaneldependienteLayout.createSequentialGroup()
-                            .addComponent(jComboBoxDependienteGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addContainerGap())))
+                            .addComponent(jbtnAddCasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(jbtnModViv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(8, 8, 8))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPaneldependienteLayout.createSequentialGroup()
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jbtnAddCasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(22, 22, 22))))
+                    .addComponent(jComboBoxDependienteGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap())))
     );
 
     jComboBoxDependienteGenero.getAccessibleContext().setAccessibleName("Genero");
 
     jPanelProfesionales.setBorder(javax.swing.BorderFactory.createTitledBorder("Centro de salud / Profesionales asociados"));
 
+    jComboBoxMedico.setBackground(new java.awt.Color(255, 255, 255));
     jComboBoxMedico.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+    jComboBoxMedico.setForeground(new java.awt.Color(0, 0, 0));
     jComboBoxMedico.setModel(medico);
     jComboBoxMedico.setBorder(javax.swing.BorderFactory.createTitledBorder("Médico"));
-    jComboBoxMedico.setPreferredSize(new java.awt.Dimension(240, 50));
+    jComboBoxMedico.setPreferredSize(new java.awt.Dimension(240, 60));
     jComboBoxMedico.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jComboBoxMedicoActionPerformed(evt);
@@ -459,29 +486,31 @@ public class MainView extends javax.swing.JFrame {
     });
 
     jLabelMedico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-    jLabelMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doctor2.png"))); // NOI18N
+    jLabelMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/doctor.png"))); // NOI18N
     jLabelMedico.setBorder(javax.swing.BorderFactory.createEtchedBorder());
     jLabelMedico.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
     jLabelMedico.setMaximumSize(new java.awt.Dimension(0, 0));
     jLabelMedico.setMinimumSize(new java.awt.Dimension(0, 0));
     jLabelMedico.setOpaque(true);
-    jLabelMedico.setPreferredSize(new java.awt.Dimension(280, 130));
+    jLabelMedico.setPreferredSize(new java.awt.Dimension(280, 110));
     jLabelMedico.setRequestFocusEnabled(false);
 
+    jComboBoxCS.setBackground(new java.awt.Color(255, 255, 255));
     jComboBoxCS.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+    jComboBoxCS.setForeground(new java.awt.Color(0, 0, 0));
     jComboBoxCS.setModel(cSalud);
     jComboBoxCS.setBorder(javax.swing.BorderFactory.createTitledBorder("Centro de Salud"));
-    jComboBoxCS.setPreferredSize(new java.awt.Dimension(240, 50));
+    jComboBoxCS.setPreferredSize(new java.awt.Dimension(240, 60));
 
     jLabelCS.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-    jLabelCS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/centrosalud.png"))); // NOI18N
+    jLabelCS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/centrosalud.png"))); // NOI18N
     jLabelCS.setBorder(javax.swing.BorderFactory.createEtchedBorder());
     jLabelCS.setMaximumSize(new java.awt.Dimension(0, 0));
     jLabelCS.setMinimumSize(new java.awt.Dimension(0, 0));
-    jLabelCS.setPreferredSize(new java.awt.Dimension(280, 130));
+    jLabelCS.setPreferredSize(new java.awt.Dimension(280, 110));
     jLabelCS.setRequestFocusEnabled(false);
 
-    jbtnAddCenSal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+    jbtnAddCenSal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add.png"))); // NOI18N
     jbtnAddCenSal.setPreferredSize(new java.awt.Dimension(30, 30));
     jbtnAddCenSal.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -489,11 +518,27 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
-    jbtnAddMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+    jbtnAddMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add.png"))); // NOI18N
     jbtnAddMedico.setPreferredSize(new java.awt.Dimension(30, 30));
     jbtnAddMedico.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jbtnAddMedicoActionPerformed(evt);
+        }
+    });
+
+    jbtnModMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/iconoEditar25x25.png"))); // NOI18N
+    jbtnModMed.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnModMed.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jbtnModMedActionPerformed(evt);
+        }
+    });
+
+    jbtnModCen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/iconoEditar25x25.png"))); // NOI18N
+    jbtnModCen.setPreferredSize(new java.awt.Dimension(30, 30));
+    jbtnModCen.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jbtnModCenActionPerformed(evt);
         }
     });
 
@@ -510,13 +555,17 @@ public class MainView extends javax.swing.JFrame {
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfesionalesLayout.createSequentialGroup()
                     .addComponent(jComboBoxCS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jbtnAddCenSal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jbtnAddCenSal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbtnModCen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGap(264, 264, 264)))
             .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
                     .addComponent(jComboBoxMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jbtnAddMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jbtnAddMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbtnModMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addComponent(jLabelMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
@@ -524,23 +573,29 @@ public class MainView extends javax.swing.JFrame {
         jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
             .addGap(0, 0, 0)
-            .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfesionalesLayout.createSequentialGroup()
-                    .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
+                    .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jComboBoxCS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jbtnAddCenSal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
+                            .addComponent(jbtnAddCenSal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(jbtnModCen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jLabelCS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfesionalesLayout.createSequentialGroup()
-                    .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
+                    .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jComboBoxMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jbtnAddMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
+                            .addComponent(jbtnAddMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(jbtnModMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(6, 6, 6)
                     .addComponent(jLabelMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addContainerGap())
     );
 
-    jButtonSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoBuscar25x25.png"))); // NOI18N
+    jButtonSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/iconoBuscar25x25.png"))); // NOI18N
     jButtonSearch.setPreferredSize(new java.awt.Dimension(50, 40));
     jButtonSearch.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -548,7 +603,7 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
-    jButtonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoGuardar25x25.png"))); // NOI18N
+    jButtonSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/iconoGuardar25x25.png"))); // NOI18N
     jButtonSave.setPreferredSize(new java.awt.Dimension(50, 40));
     jButtonSave.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -556,7 +611,7 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
-    jButtonCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoCancelar25x25.png"))); // NOI18N
+    jButtonCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IconoCancelar25x25.png"))); // NOI18N
     jButtonCancel.setPreferredSize(new java.awt.Dimension(50, 40));
     jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -565,6 +620,7 @@ public class MainView extends javax.swing.JFrame {
     });
 
     jPanelEstado.setBorder(javax.swing.BorderFactory.createTitledBorder("Estado del dependiente"));
+    jPanelEstado.setPreferredSize(new java.awt.Dimension(658, 120));
 
     jScrollPaneestado.setPreferredSize(new java.awt.Dimension(600, 403));
 
@@ -582,7 +638,7 @@ public class MainView extends javax.swing.JFrame {
     jTableEstado.setPreferredSize(new java.awt.Dimension(500, 80));
     jScrollPaneestado.setViewportView(jTableEstado);
 
-    jbtnMod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoEditar25x25.png"))); // NOI18N
+    jbtnMod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/iconoEditar25x25.png"))); // NOI18N
     jbtnMod.setPreferredSize(new java.awt.Dimension(30, 30));
     jbtnMod.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -590,7 +646,7 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
-    jbtnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+    jbtnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add.png"))); // NOI18N
     jbtnAdd.setPreferredSize(new java.awt.Dimension(30, 30));
     jbtnAdd.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -598,7 +654,7 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
-    jbtnRemov.setIcon(new javax.swing.ImageIcon(getClass().getResource("/remove.png"))); // NOI18N
+    jbtnRemov.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/remove.png"))); // NOI18N
     jbtnRemov.setPreferredSize(new java.awt.Dimension(30, 30));
     jbtnRemov.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -635,7 +691,7 @@ public class MainView extends javax.swing.JFrame {
             .addGap(0, 0, 0))
     );
 
-    jbtnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoEditar25x25.png"))); // NOI18N
+    jbtnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/iconoEditar25x25.png"))); // NOI18N
     jbtnEditar.setText("Editar");
     jbtnEditar.setPreferredSize(new java.awt.Dimension(95, 40));
     jbtnEditar.addActionListener(new java.awt.event.ActionListener() {
@@ -644,7 +700,7 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
-    jbtnAddDepen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add.png"))); // NOI18N
+    jbtnAddDepen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add.png"))); // NOI18N
     jbtnAddDepen.setPreferredSize(new java.awt.Dimension(50, 40));
     jbtnAddDepen.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -672,7 +728,7 @@ public class MainView extends javax.swing.JFrame {
                     .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(34, 34, 34))
                 .addComponent(jPaneldependiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelEstado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelEstado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE))
             .addGap(8, 8, 8))
     );
     jPanelPrincipalLayout.setVerticalGroup(
@@ -687,9 +743,9 @@ public class MainView extends javax.swing.JFrame {
                 .addComponent(jbtnAddDepen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPaneldependiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPaneldependiente, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelProfesionales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
@@ -808,35 +864,43 @@ public class MainView extends javax.swing.JFrame {
 
     jPanelAsistenteMod.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del asistente"));
 
+    tfAsistenteNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     tfAsistenteNombre.setToolTipText("");
     tfAsistenteNombre.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre"));
     tfAsistenteNombre.setPreferredSize(new java.awt.Dimension(150, 50));
 
+    tfAsistenteApe1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     tfAsistenteApe1.setToolTipText("");
     tfAsistenteApe1.setBorder(javax.swing.BorderFactory.createTitledBorder("Primer Apellido"));
     tfAsistenteApe1.setPreferredSize(new java.awt.Dimension(150, 50));
 
+    tfAsistenteApe2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     tfAsistenteApe2.setToolTipText("");
     tfAsistenteApe2.setBorder(javax.swing.BorderFactory.createTitledBorder("Segundo Apellido"));
     tfAsistenteApe2.setPreferredSize(new java.awt.Dimension(150, 50));
 
+    tfAsistenteEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     tfAsistenteEmail.setToolTipText("");
     tfAsistenteEmail.setBorder(javax.swing.BorderFactory.createTitledBorder("email"));
     tfAsistenteEmail.setPreferredSize(new java.awt.Dimension(150, 50));
 
     tfAsistenteId.setEditable(false);
+    tfAsistenteId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     tfAsistenteId.setToolTipText("");
     tfAsistenteId.setBorder(javax.swing.BorderFactory.createTitledBorder("ID Dependiente"));
     tfAsistenteId.setPreferredSize(new java.awt.Dimension(150, 50));
 
+    tfAsistentePass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     tfAsistentePass.setText("jPasswordField1");
     tfAsistentePass.setBorder(javax.swing.BorderFactory.createTitledBorder("Password"));
     tfAsistentePass.setPreferredSize(new java.awt.Dimension(150, 50));
 
+    tfAsistenteDni.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     tfAsistenteDni.setToolTipText("");
     tfAsistenteDni.setBorder(javax.swing.BorderFactory.createTitledBorder("DNI"));
     tfAsistenteDni.setPreferredSize(new java.awt.Dimension(150, 50));
 
+    tfAsistenteTelf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     tfAsistenteTelf.setToolTipText("");
     tfAsistenteTelf.setBorder(javax.swing.BorderFactory.createTitledBorder("Teléfono"));
     tfAsistenteTelf.setPreferredSize(new java.awt.Dimension(150, 50));
@@ -898,10 +962,10 @@ public class MainView extends javax.swing.JFrame {
     );
     jPanelAnalisisLayout.setVerticalGroup(
         jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 417, Short.MAX_VALUE)
+        .addGap(0, 379, Short.MAX_VALUE)
     );
 
-    jBtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IconoCancelar25x25.png"))); // NOI18N
+    jBtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IconoCancelar25x25.png"))); // NOI18N
     jBtnCancel.setPreferredSize(new java.awt.Dimension(50, 40));
     jBtnCancel.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -909,7 +973,7 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
-    jBtnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoGuardar25x25.png"))); // NOI18N
+    jBtnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/iconoGuardar25x25.png"))); // NOI18N
     jBtnSave.setPreferredSize(new java.awt.Dimension(50, 40));
     jBtnSave.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -917,7 +981,7 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
-    jBtnEditAsi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconoEditar25x25.png"))); // NOI18N
+    jBtnEditAsi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/iconoEditar25x25.png"))); // NOI18N
     jBtnEditAsi.setText("Editar");
     jBtnEditAsi.setPreferredSize(new java.awt.Dimension(95, 40));
     jBtnEditAsi.addActionListener(new java.awt.event.ActionListener() {
@@ -956,7 +1020,7 @@ public class MainView extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelAsistenteMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanelAnalisis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanelAnalisis, 402, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
     );
 
@@ -965,70 +1029,54 @@ public class MainView extends javax.swing.JFrame {
     jPanelAlertas.setBackground(new java.awt.Color(204, 204, 204));
 
     jPanelRecursos.setBorder(javax.swing.BorderFactory.createTitledBorder("Emergencias y otros recursos"));
+    jPanelRecursos.setPreferredSize(new java.awt.Dimension(655, 200));
 
-    jButtonLlamadaEmergencias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn_hospital100x100.png"))); // NOI18N
+    jButtonLlamadaEmergencias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/hospital.png"))); // NOI18N
+    jButtonLlamadaEmergencias.setPreferredSize(new java.awt.Dimension(50, 50));
     jButtonLlamadaEmergencias.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButtonLlamadaEmergenciasActionPerformed(evt);
         }
     });
 
-    jLabelLlamadaEmergencias.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabelLlamadaEmergencias.setText("Emergencias");
-
-    jButtonLlamadaPolicia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn_policia100x100px.png"))); // NOI18N
+    jButtonLlamadaPolicia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/policia.png"))); // NOI18N
+    jButtonLlamadaPolicia.setPreferredSize(new java.awt.Dimension(50, 50));
     jButtonLlamadaPolicia.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButtonLlamadaPoliciaActionPerformed(evt);
         }
     });
 
-    jLabelLlamadaPolicia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabelLlamadaPolicia.setText("Policia");
-
-    jButtonLlamadaBomberos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/btn_bomberos100x100px.png"))); // NOI18N
+    jButtonLlamadaBomberos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/bomberos.png"))); // NOI18N
+    jButtonLlamadaBomberos.setPreferredSize(new java.awt.Dimension(50, 50));
     jButtonLlamadaBomberos.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButtonLlamadaBomberosActionPerformed(evt);
         }
     });
 
-    jLabelLlamadaBomberos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabelLlamadaBomberos.setText("Bomberos");
-
     javax.swing.GroupLayout jPanelRecursosLayout = new javax.swing.GroupLayout(jPanelRecursos);
     jPanelRecursos.setLayout(jPanelRecursosLayout);
     jPanelRecursosLayout.setHorizontalGroup(
         jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRecursosLayout.createSequentialGroup()
-            .addGap(32, 32, 32)
-            .addGroup(jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                .addComponent(jLabelLlamadaEmergencias, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonLlamadaEmergencias, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(140, 140, 140)
-            .addGroup(jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                .addComponent(jLabelLlamadaPolicia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonLlamadaPolicia, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(140, 140, 140)
-            .addGroup(jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jButtonLlamadaBomberos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jLabelLlamadaBomberos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(32, 32, 32))
+            .addGap(16, 16, 16)
+            .addComponent(jButtonLlamadaEmergencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jButtonLlamadaPolicia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jButtonLlamadaBomberos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(467, 467, 467))
     );
     jPanelRecursosLayout.setVerticalGroup(
         jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanelRecursosLayout.createSequentialGroup()
-            .addGap(0, 0, 0)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRecursosLayout.createSequentialGroup()
+            .addGap(0, 9, Short.MAX_VALUE)
             .addGroup(jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jButtonLlamadaBomberos, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButtonLlamadaPolicia, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jButtonLlamadaEmergencias, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addGroup(jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabelLlamadaBomberos)
-                .addComponent(jLabelLlamadaPolicia)
-                .addComponent(jLabelLlamadaEmergencias))
-            .addGap(0, 0, 0))
+                .addComponent(jButtonLlamadaBomberos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonLlamadaEmergencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonLlamadaPolicia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(118, 118, 118))
     );
 
     jPanelAlarmas.setBorder(javax.swing.BorderFactory.createTitledBorder("Alarmas"));
@@ -1069,8 +1117,8 @@ public class MainView extends javax.swing.JFrame {
         jPanelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelAlarmasLayout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPaneAlarm, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jScrollPaneAlarm, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
             .addGroup(jPanelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jButton2)
                 .addComponent(jButton3))
@@ -1136,7 +1184,7 @@ public class MainView extends javax.swing.JFrame {
             .addContainerGap()
             .addGroup(jPanelAlertasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanelAlarmas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelRecursos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelRecursos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jPanelLlamadas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
     );
@@ -1159,21 +1207,21 @@ public class MainView extends javax.swing.JFrame {
 
     jScrollPaneMaps.setViewportView(jLabelMaps);
 
-    jButtonCenterMap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/center.png"))); // NOI18N
+    jButtonCenterMap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/center.png"))); // NOI18N
     jButtonCenterMap.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButtonCenterMapActionPerformed(evt);
         }
     });
 
-    jButtonZoomOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zoomout.png"))); // NOI18N
+    jButtonZoomOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/zoomout.png"))); // NOI18N
     jButtonZoomOut.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButtonZoomOutActionPerformed(evt);
         }
     });
 
-    jButtonZoomIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/zoomin.png"))); // NOI18N
+    jButtonZoomIn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/zoomin.png"))); // NOI18N
     jButtonZoomIn.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jButtonZoomInActionPerformed(evt);
@@ -1281,7 +1329,7 @@ public class MainView extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jTabbedPaneIzq)
-                .addComponent(jTabbedPaneDcha))
+                .addComponent(jTabbedPaneDcha, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
             .addContainerGap())
     );
 
@@ -1340,6 +1388,7 @@ public class MainView extends javax.swing.JFrame {
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
         guardardependiente();
+        controller.actualizarObjeto(dep);
         listaDependientes = this.controller.cargarDatos(XDependienteModel.class);
         cargadependiente(dep);
         lockEnabled(false);
@@ -1358,9 +1407,9 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnRemovActionPerformed
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
-        Search search = new Search(null, true, listaDependientes, DEP);
-        if (search.getDependiente() != null) {
-            dep = (XDependienteModel) search.getDependiente();
+        Search search = new Search(null, true, listaDependientes, DEPENDENT);
+        if (search.getObject() != null) {
+            dep = (XDependienteModel) search.getObject();
             lockEnabled(true);
             cargadependiente(dep);
             lockEnabled(false);
@@ -1382,8 +1431,10 @@ public class MainView extends javax.swing.JFrame {
 
     private void jbtnAddCenSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddCenSalActionPerformed
         DirectionMan center = new DirectionMan(this, true, controller, HEALTH, listaCiudades);
-        controller.guardarObjeto(center.getObject());
-        fillCombos();
+        if (center.getObject() != null) {
+            controller.guardarObjeto(center.getObject());
+        }
+
     }//GEN-LAST:event_jbtnAddCenSalActionPerformed
 
     private void jbtnAddMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddMedicoActionPerformed
@@ -1425,18 +1476,73 @@ public class MainView extends javax.swing.JFrame {
 
     private void jbtnAddCasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddCasaActionPerformed
         DirectionMan center = new DirectionMan(this, true, controller, HOME, listaCiudades);
-        XViviendaModel viv = (XViviendaModel) center.getObject();
-        if (viv.getHabitual()) {
-            controller.asignarHabitual(viv, dep);
-        } else {
-            controller.guardarObjeto(viv);
+        if (center.getObject() != null) {
+            if (((XViviendaModel) center.getObject()).getHabitual()) {
+                controller.asignarHabitual(((XViviendaModel) center.getObject()), dep);
+            } else {
+                controller.guardarObjeto(center.getObject());
+            }
         }
-        fillCombos();
     }//GEN-LAST:event_jbtnAddCasaActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jbtnModMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModMedActionPerformed
+        if (this.jComboBoxMedico.getModel().getSelectedItem() != null) {
+            DoctorMan doctorMan = new DoctorMan(this, true, (XMedicoModel) this.jComboBoxMedico.getModel().getSelectedItem());
+            if (doctorMan.getMedico() != null) {
+                controller.guardarObjeto(doctorMan.getMedico());
+            }
+        }
+    }//GEN-LAST:event_jbtnModMedActionPerformed
+
+    private void jbtnModCenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModCenActionPerformed
+        if (this.jComboBoxCS.getModel().getSelectedItem() != null) {
+            DirectionMan center = new DirectionMan(this, true, controller, HEALTH, listaCiudades, (XCsModel) this.jComboBoxCS.getModel().getSelectedItem());
+            if (center.getObject() != null) {
+                controller.actualizarObjeto(center.getObject());
+            }
+        }
+    }//GEN-LAST:event_jbtnModCenActionPerformed
+
+    private void jbtnModVivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModVivActionPerformed
+        if (this.jComboBoxDependienteVivienda.getModel().getSelectedItem() != null) {
+            DirectionMan center = new DirectionMan(this, true, controller, HOME, listaCiudades, (XViviendaModel) this.jComboBoxDependienteVivienda.getModel().getSelectedItem());
+            if (center.getObject() != null) {
+                if (((XViviendaModel) center.getObject()).getHabitual()) {
+                    controller.asignarHabitual(((XViviendaModel) center.getObject()), dep);
+                } else {
+                    controller.guardarObjeto(center.getObject());
+                }
+            }
+        }
+    }//GEN-LAST:event_jbtnModVivActionPerformed
+
+    private void tfDependienteDNIKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDependienteDNIKeyReleased
+        if (this.tfDependienteDNI.getText().length() == 8) {
+            this.tfDependienteDNI.setText(Utils.laLetra(this.tfDependienteDNI.getText()));
+            this.tfDependienteDNI.selectAll();
+        }
+    }//GEN-LAST:event_tfDependienteDNIKeyReleased
+
+    private void tfDependienteDNIKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDependienteDNIKeyTyped
+        char caracter = evt.getKeyChar();
+        if (this.tfDependienteDNI.getText().length() <= 8) {
+            if (((caracter < '0') || (caracter > '9')) && (caracter != '\b')) {
+                evt.consume();
+            }
+        } else {
+            if (caracter != '\b') {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_tfDependienteDNIKeyTyped
+
+    private void tfDependienteDNIFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfDependienteDNIFocusGained
+        this.tfDependienteDNI.selectAll();
+    }//GEN-LAST:event_tfDependienteDNIFocusGained
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1466,9 +1572,6 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JComboBox<XViviendaModel> jComboBoxDependienteVivienda;
     private javax.swing.JComboBox<XMedicoModel> jComboBoxMedico;
     private javax.swing.JLabel jLabelCS;
-    private javax.swing.JLabel jLabelLlamadaBomberos;
-    private javax.swing.JLabel jLabelLlamadaEmergencias;
-    private javax.swing.JLabel jLabelLlamadaPolicia;
     private javax.swing.JLabel jLabelMapcaption;
     private javax.swing.JLabel jLabelMaps;
     private javax.swing.JLabel jLabelMedico;
@@ -1516,6 +1619,9 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton jbtnAddMedico;
     private javax.swing.JButton jbtnEditar;
     private javax.swing.JButton jbtnMod;
+    private javax.swing.JButton jbtnModCen;
+    private javax.swing.JButton jbtnModMed;
+    private javax.swing.JButton jbtnModViv;
     private javax.swing.JButton jbtnRemov;
     private javax.swing.JMenu menuAsist;
     private javax.swing.JMenuBar menuBarAsist;
@@ -1654,18 +1760,20 @@ public class MainView extends javax.swing.JFrame {
     //Llenamos las tablas y los combos de la aplicacion
     private void initData() {
 
+        //Llenar Listas
+        manipulateDepenList(null, 0);
+        dep = (XDependienteModel) listaDependientes.get(0);
+        manipulateCityList(null, 0);
+
+        //Llenar combos
+        manipulateMed(null, 0);
+        manipulateCS(null, 0);
+
         //Llenamos datos del asistente
         cargarAsistente();
 
         //Llenamos datos del dependiente (primer id por defecto)
-        cargadependiente(listaDependientes.get(0));
-
-        //Llenar combos
-        fillCombos();
-
-        genero.addElement("Hombre");
-        genero.addElement("Mujer");
-        genero.addElement("Indefinido");
+        cargadependiente(dep);
 
         //Llenar tablas. 
         this.jTableAlarmas.setModel(controller.cargarResultSet(SentenciasSQL.alarmasTM, null));
@@ -1676,12 +1784,14 @@ public class MainView extends javax.swing.JFrame {
         medico = new DefaultComboBoxModel();
         cSalud = new DefaultComboBoxModel();
         vivienda = new DefaultComboBoxModel();
-        genero = new DefaultComboBoxModel();
+        String[] sex = {"Hobre", "Mujer", "Indefinido"};
+        genero = new DefaultComboBoxModel(sex);
     }
 
     //Asignamos los datos del dependiente seleccionado en los respectivos campos del panel
     private void cargadependiente(Object dependiente) {
         dep = (XDependienteModel) dependiente;
+        manipulateHome(null, 0);
         this.tfDependienteNombre.setText(dep.getXPersonaModel().getName());
         this.tfDependienteApe1.setText(dep.getXPersonaModel().getApellido1());
         this.tfDependienteApe2.setText(dep.getXPersonaModel().getApellido2());
@@ -1701,16 +1811,12 @@ public class MainView extends javax.swing.JFrame {
         nac.setTime(dep.getFecNacim());
         this.dateChooserDependienteNac.setSelectedDate(nac);
 
-        setCombos(dep);
-        setTables(dep);
-    }
-
-    private void setCombos(XDependienteModel dep) {
-        medico.setSelectedItem(dep.getXMedicoModel());
-        cSalud.setSelectedItem(dep.getXCsModel());
+        //Se muestran los elementos asociados al dependiente
+        manipulateMed(dep.getXMedicoModel() != null ? dep.getXMedicoModel() : null, 3);
+        manipulateCS(dep.getXCsModel() != null ? dep.getXCsModel() : null, 3);
+        manipulateHome(viviendaActual(), 3);
         genero.setSelectedItem(dep.getGenero());
-        vivienda.setSelectedItem(vivienda.getElementAt(0));
-        // Las viviendas ya están ordenadas de modo que la primera es la actual. no es necesario seleccionarlas aquí
+        setTables(dep);
     }
 
     private void setTables(XDependienteModel dep) {
@@ -1757,6 +1863,9 @@ public class MainView extends javax.swing.JFrame {
         this.jbtnAdd.setVisible(!enabled);
         this.jbtnMod.setVisible(!enabled);
         this.jbtnRemov.setVisible(!enabled);
+        this.jbtnModCen.setVisible(enabled);
+        this.jbtnModMed.setVisible(enabled);
+        this.jbtnModViv.setVisible(enabled);
     }
 
     private void cargarAsistente() {
@@ -1784,6 +1893,8 @@ public class MainView extends javax.swing.JFrame {
         dep.getXPersonaModel().setEmail(this.tfDependienteEmail.getText());
         dep.getXPersonaModel().setTelefono(this.tfDependienteTelf.getText());
         dep.getXPersonaModel().setDni(this.tfDependienteDNI.getText());
+        dep.setXCsModel((XCsModel) this.jComboBoxCS.getSelectedItem());
+        dep.setXMedicoModel((XMedicoModel) this.jComboBoxMedico.getSelectedItem());
         for (Iterator<XViviendaModel> iterator = dep.getXViviendaModels().iterator(); iterator.hasNext();) {
             XViviendaModel next = iterator.next();
             if (next.getId() == ((XViviendaModel) this.jComboBoxDependienteVivienda.getSelectedItem()).getId()) {
@@ -1792,7 +1903,7 @@ public class MainView extends javax.swing.JFrame {
                 next.setHabitual(false);
             }
         }
-        controller.actualizarObjeto(dep);
+
     }
 
     private void lockEnabledAsist(boolean enable) {
@@ -1838,25 +1949,95 @@ public class MainView extends javax.swing.JFrame {
         }
     }
 
-    private void initList() {
-        listaDependientes = this.controller.cargarDatos(XDependienteModel.class);
-        listaCiudades = this.controller.cargarDatos(XCiudadModel.class);
-    }
-
-    private void fillCombos() {
-        initCombos();
-        List<Object> listaMed = this.controller.cargarDatos(XMedicoModel.class);
-        for (Object o : listaMed) {
-            medico.addElement((XMedicoModel) o);
-        }
-        List<Object> listaCs = this.controller.cargarDatos(XCsModel.class);
-        for (Object o : listaCs) {
-            cSalud.addElement((XCsModel) o);
-        }
-        List<Object> listaViviendas = this.controller.cargarDatos("from XViviendaModel order by habitual desc");
-        for (Object o : listaViviendas) {
-            vivienda.addElement((XViviendaModel) o);
+    private void manipulateDepenList(Object obj, int opc) {
+        switch (opc) {
+            case 0://cargar los datos en la lista
+                listaDependientes = this.controller.cargarDatos(XDependienteModel.class);
+                break;
+            case 1://añadir elemento al modelo
+                listaDependientes.add(obj);
+                break;
+            case 2://eliminar elemento al modelo
+                listaDependientes.remove(obj);
+                break;
         }
     }
 
+    private void manipulateCityList(Object obj, int opc) {
+        switch (opc) {
+            case 0://cargar los datos en la lista
+                listaCiudades = this.controller.cargarDatos(XCiudadModel.class);
+                break;
+            case 1://añadir elemento al modelo
+                listaCiudades.add(obj);
+                break;
+            case 2://eliminar elemento al modelo
+                listaCiudades.remove(obj);
+                break;
+        }
+    }
+
+    private void manipulateMed(Object obj, int opc) {
+        switch (opc) {
+            case 0://cargar los datos en el modelo del combo
+                Vector<Object> lista = new Vector<>(this.controller.cargarDatos(XMedicoModel.class));
+                this.jComboBoxMedico.setModel(new DefaultComboBoxModel(lista));
+                break;
+            case 1://añadir elemento al modelo
+                this.jComboBoxMedico.addItem((XMedicoModel) obj);
+                break;
+            case 2://eliminar elemento al modelo
+                this.jComboBoxMedico.removeItem(obj);
+                break;
+            case 3://elegir elemento del modelo
+                this.jComboBoxMedico.setSelectedItem(obj);
+                break;
+        }
+    }
+
+    private void manipulateCS(Object obj, int opc) {
+        switch (opc) {
+            case 0://cargar los datos en el modelo del combo
+                Vector<Object> lista = new Vector<>(this.controller.cargarDatos(XCsModel.class));
+                this.jComboBoxCS.setModel(new DefaultComboBoxModel(lista));
+                break;
+            case 1://añadir elemento al modelo
+                this.jComboBoxCS.addItem((XCsModel) obj);
+                break;
+            case 2://eliminar elemento al modelo
+                this.jComboBoxCS.removeItem(obj);
+                break;
+            case 3://elegir elemento del modelo
+                this.jComboBoxCS.setSelectedItem(obj);
+                break;
+        }
+    }
+
+    private void manipulateHome(Object obj, int opc) {
+        switch (opc) {
+            case 0://cargar los datos en el modelo del combo
+                Vector<Object> lista = new Vector<>(this.controller.cargarDatos("FROM XViviendaModel WHERE id_dependiente=" + dep.getId() + " ORDER BY habitual DESC"));
+                this.jComboBoxDependienteVivienda.setModel(new DefaultComboBoxModel(lista));
+                break;
+            case 1://añadir elemento al modelo
+                this.jComboBoxDependienteVivienda.addItem((XViviendaModel) obj);
+                break;
+            case 2://eliminar elemento al modelo
+                this.jComboBoxDependienteVivienda.removeItem(obj);
+                break;
+            case 3://elegir elemento del modelo
+                this.jComboBoxDependienteVivienda.setSelectedItem(obj);
+                break;
+        }
+    }
+
+    private Object viviendaActual() {
+        for (Iterator<XViviendaModel> iterator = dep.getXViviendaModels().iterator(); iterator.hasNext();) {
+            XViviendaModel next = iterator.next();
+            if (next.getHabitual()) {
+                return next;
+            }
+        }
+        return null;
+    }
 }

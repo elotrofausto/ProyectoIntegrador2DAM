@@ -4,6 +4,7 @@ import Controller.BLogic;
 import Models.XAsistenteModel;
 import Models.XPersonaModel;
 import Utils.SentenciasSQL;
+import Utils.Utils;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
@@ -51,8 +52,21 @@ public class AccessAsist extends javax.swing.JDialog {
         tFieldUser.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         tFieldUser.setForeground(new java.awt.Color(0, 0, 0));
         tFieldUser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tFieldUser.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ASISTENTE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tFieldUser.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "ASISTENTE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tFieldUser.setPreferredSize(new java.awt.Dimension(150, 40));
+        tFieldUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tFieldUserFocusGained(evt);
+            }
+        });
+        tFieldUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tFieldUserKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tFieldUserKeyTyped(evt);
+            }
+        });
 
         btnAceptar.setForeground(new java.awt.Color(0, 102, 102));
         btnAceptar.setText("ACEPTAR");
@@ -76,7 +90,7 @@ public class AccessAsist extends javax.swing.JDialog {
         tFieldPass.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         tFieldPass.setForeground(new java.awt.Color(0, 0, 0));
         tFieldPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tFieldPass.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CONTRASEÑA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tFieldPass.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "CONTRASEÑA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tFieldPass.setPreferredSize(new java.awt.Dimension(150, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -118,7 +132,7 @@ public class AccessAsist extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        if (tFieldPass.getPassword().length > 0 && tFieldUser.getText().length() > 0) {
+        if (tFieldPass.getPassword().length > 0 && tFieldUser.getText().length() == 9) {
             getAssistant();
             if (asistente == null) {
                 JOptionPane.showMessageDialog(this, "El usuario introducido no existe");
@@ -139,6 +153,30 @@ public class AccessAsist extends javax.swing.JDialog {
             System.exit(0);
         }
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void tFieldUserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tFieldUserKeyTyped
+        char caracter = evt.getKeyChar();
+        if (this.tFieldUser.getText().length() <= 8) {
+            if (((caracter < '0') || (caracter > '9')) && (caracter != '\b')) {
+                evt.consume();
+            }
+        } else {
+            if (caracter != '\b') {
+                evt.consume();
+            }
+        }
+    }//GEN-LAST:event_tFieldUserKeyTyped
+
+    private void tFieldUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tFieldUserKeyReleased
+        if (this.tFieldUser.getText().length() == 8) {
+            this.tFieldUser.setText(Utils.laLetra(this.tFieldUser.getText()));
+            this.tFieldUser.selectAll();
+        }        
+    }//GEN-LAST:event_tFieldUserKeyReleased
+
+    private void tFieldUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tFieldUserFocusGained
+        this.tFieldUser.selectAll();
+    }//GEN-LAST:event_tFieldUserFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;

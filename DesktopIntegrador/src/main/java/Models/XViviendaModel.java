@@ -1,7 +1,6 @@
 package Models;
 // Generated 04-feb-2019 19:46:51 by Hibernate Tools 4.3.1
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
