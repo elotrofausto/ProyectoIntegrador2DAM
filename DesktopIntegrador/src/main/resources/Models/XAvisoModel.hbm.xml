@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-feb-2019 19:03:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Models.XAvisoModel" table="x_aviso_model" schema="public" optimistic-lock="version">
+        <comment>x_aviso.model</comment>
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="XDependienteModel" class="Models.XDependienteModel" fetch="select">
+            <column name="id_dependiente" not-null="true">
+                <comment>Id Dependiente</comment>
+            </column>
+        </many-to-one>
+        <property name="tipo" type="string">
+            <column name="tipo">
+                <comment>Tipo</comment>
+            </column>
+        </property>
+        <property name="name" type="string">
+            <column name="name">
+                <comment>Nombre</comment>
+            </column>
+        </property>
+        <property name="fecDesde" type="date">
+            <column name="fec_desde" length="13" not-null="true">
+                <comment>Fecha_Desde</comment>
+            </column>
+        </property>
+        <property name="fecHasta" type="date">
+            <column name="fec_hasta" length="13">
+                <comment>Fecha_Hasta</comment>
+            </column>
+        </property>
+        <property name="periodicidad" type="string">
+            <column name="periodicidad">
+                <comment>Observaciones</comment>
+            </column>
+        </property>
+        <property name="recibido" type="java.lang.Boolean">
+            <column name="recibido">
+                <comment>Recibido</comment>
+            </column>
+        </property>
+        <property name="tomas" type="java.lang.Integer">
+            <column name="tomas">
+                <comment>Num_Tomas</comment>
+            </column>
+        </property>
+        <property name="createUid" type="java.lang.Integer">
+            <column name="create_uid">
+                <comment>Created by</comment>
+            </column>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="create_date" length="29">
+                <comment>Created on</comment>
+            </column>
+        </property>
+        <property name="writeUid" type="java.lang.Integer">
+            <column name="write_uid">
+                <comment>Last Updated by</comment>
+            </column>
+        </property>
+        <property name="writeDate" type="timestamp">
+            <column name="write_date" length="29">
+                <comment>Last Updated on</comment>
+            </column>
+        </property>
+        <set name="XLlamadaModels" table="x_llamada_model" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_aviso" not-null="true">
+                    <comment>Id Aviso</comment>
+                </column>
+            </key>
+            <one-to-many class="Models.XLlamadaModel" />
+        </set>
+    </class>
+</hibernate-mapping>

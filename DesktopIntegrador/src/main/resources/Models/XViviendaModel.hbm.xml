@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 18-feb-2019 19:03:52 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Models.XViviendaModel" table="x_vivienda_model" schema="public" optimistic-lock="version">
+        <comment>x_vivienda.model</comment>
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="XDependienteModel" class="Models.XDependienteModel" fetch="select">
+            <column name="id_dependiente" not-null="true">
+                <comment>Id Dependiente</comment>
+            </column>
+        </many-to-one>
+        <many-to-one name="XDireccionModel" class="Models.XDireccionModel" fetch="select">
+            <column name="id_direccion" not-null="true">
+                <comment>Id Direccion</comment>
+            </column>
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name">
+                <comment>Tipo_Vivienda</comment>
+            </column>
+        </property>
+        <property name="habitual" type="java.lang.Boolean">
+            <column name="habitual">
+                <comment>Habitual</comment>
+            </column>
+        </property>
+        <property name="modoAcceso" type="string">
+            <column name="modo_acceso">
+                <comment>Modo_Acceso</comment>
+            </column>
+        </property>
+        <property name="createUid" type="java.lang.Integer">
+            <column name="create_uid">
+                <comment>Created by</comment>
+            </column>
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="create_date" length="29">
+                <comment>Created on</comment>
+            </column>
+        </property>
+        <property name="writeUid" type="java.lang.Integer">
+            <column name="write_uid">
+                <comment>Last Updated by</comment>
+            </column>
+        </property>
+        <property name="writeDate" type="timestamp">
+            <column name="write_date" length="29">
+                <comment>Last Updated on</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

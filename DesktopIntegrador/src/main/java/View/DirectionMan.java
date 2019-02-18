@@ -7,17 +7,10 @@ import Models.XDireccionModel;
 import Models.XProvinciaModel;
 import Models.XViviendaModel;
 import Utils.SentenciasSQL;
-import com.opencsv.CSVReader;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.net.URL;
+import Utils.Utils;
 import java.util.List;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
-import jdk.nashorn.api.scripting.URLReader;
 
 /**
  *
@@ -26,7 +19,6 @@ import jdk.nashorn.api.scripting.URLReader;
 public class DirectionMan extends javax.swing.JDialog {
 
     private final String CITY = "CIUDADES", INIT = "DATOS DE ", HOME = "VIVIENDA";
-    private final URL FILE = DirectionMan.class.getResource("/Recursos/Tipos_Via.csv");
     private String name;
     private BLogic controller;
     private Object object;
@@ -158,6 +150,8 @@ public class DirectionMan extends javax.swing.JDialog {
         tfPiso.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PISO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfPiso.setPreferredSize(new java.awt.Dimension(80, 40));
 
+        jComboTipo.setBackground(new java.awt.Color(255, 255, 255));
+        jComboTipo.setForeground(new java.awt.Color(0, 0, 0));
         jComboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboTipo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "TIPO VÍA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         jComboTipo.setPreferredSize(new java.awt.Dimension(100, 40));
@@ -314,10 +308,9 @@ public class DirectionMan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jbtnSearchCityActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        object = null;
-        dispose();
-    }//GEN-LAST:event_btnCancelarActionPerformed
+    private void jbtnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAyudaActionPerformed
+        JOptionPane.showMessageDialog(this, "Los campos obligatorios son: La Ciudad, Nombre, Nombre de Via y el Numero");
+    }//GEN-LAST:event_jbtnAyudaActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         if (this.tfNomProv.getText().length() > 0 && this.tfNomVia.getText().length() > 0
@@ -337,9 +330,10 @@ public class DirectionMan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-    private void jbtnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAyudaActionPerformed
-        JOptionPane.showMessageDialog(this, "Los campos obligatorios son: La Ciudad, Nombre, Nombre de Via y el Numero");
-    }//GEN-LAST:event_jbtnAyudaActionPerformed
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        object = null;
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -374,7 +368,7 @@ public class DirectionMan extends javax.swing.JDialog {
             this.tfLetra.setVisible(false);
         }
         jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, INIT + name, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102)));
-        this.jComboTipo.setModel(listaTipo());
+        this.jComboTipo.setModel(Utils.listaTipo());
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
@@ -388,7 +382,7 @@ public class DirectionMan extends javax.swing.JDialog {
         if (name.equalsIgnoreCase(HOME)) {
             this.jCheckBox.setSelected(((XViviendaModel) object).getHabitual());
             this.tfAcceso.setText(((XViviendaModel) object).getModoAcceso() != null ? ((XViviendaModel) object).getModoAcceso() : "");
-            this.tfNomEdif.setText(((XViviendaModel) object).getTipo());
+            this.tfNomEdif.setText(((XViviendaModel) object).getName());
             this.tfNomVia.setText(((XViviendaModel) object).getXDireccionModel().getDireccion());
             this.tfNum.setText(((XViviendaModel) object).getXDireccionModel().getNum().toString());
             this.tfEsc.setText(((XViviendaModel) object).getXDireccionModel().getEscalera() != null ? ((XViviendaModel) object).getXDireccionModel().getEscalera() : "");
@@ -397,7 +391,7 @@ public class DirectionMan extends javax.swing.JDialog {
             this.tfNomCity.setText(((XViviendaModel) object).getXDireccionModel().getXCiudadModel().getName());
             this.tfNomProv.setText(((XViviendaModel) object).getXDireccionModel().getXCiudadModel().getXProvinciaModel().getName());
             this.jComboTipo.setSelectedItem(((XViviendaModel) object).getXDireccionModel().getTipovia());
-            this.ciudad=((XViviendaModel) object).getXDireccionModel().getXCiudadModel();
+            this.ciudad = ((XViviendaModel) object).getXDireccionModel().getXCiudadModel();
         } else {
             this.tfTelf.setText(((XCsModel) object).getTelefono() != null ? ((XCsModel) object).getTelefono() : "");
             this.tfNomEdif.setText(((XCsModel) object).getName());
@@ -406,7 +400,7 @@ public class DirectionMan extends javax.swing.JDialog {
             this.tfNomCity.setText(((XCsModel) object).getXDireccionModel().getXCiudadModel().getName());
             this.tfNomProv.setText(((XCsModel) object).getXDireccionModel().getXCiudadModel().getXProvinciaModel().getName());
             this.jComboTipo.setSelectedItem(((XCsModel) object).getXDireccionModel().getTipovia());
-            this.ciudad=((XCsModel) object).getXDireccionModel().getXCiudadModel();
+            this.ciudad = ((XCsModel) object).getXDireccionModel().getXCiudadModel();
         }
     }
 
@@ -426,25 +420,5 @@ public class DirectionMan extends javax.swing.JDialog {
             tempo.setPiso(Integer.valueOf(this.tfPiso.getText()));
         }
         return tempo;
-    }
-
-    private ComboBoxModel<String> listaTipo() {
-        DefaultComboBoxModel<String> vias = new DefaultComboBoxModel<>();
-        String[] line;
-        try {
-            CSVReader reader = new CSVReader( new BufferedReader(new URLReader(FILE)));
-            while ((line = reader.readNext()) != null) {
-                if (line != null) {
-                    for (String string : line) {
-                        vias.addElement(string);
-                    }
-                }
-            }
-        } catch (FileNotFoundException ex) {
-            System.out.println("FICHERO NO ENCONTRADO");
-        } catch (IOException ex) {
-            System.out.println("ERROR DE ENTRADA/SALIDA");
-        }
-        return vias;
     }
 }

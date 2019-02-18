@@ -40,25 +40,24 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-reverse-engineering>
-    <schema-selection match-catalog="BDgrup2" match-schema="public"/>
-    <table-filter match-name="x_vivienda_model"/>
-    <table-filter match-name="x_provincia_model"/>
-    <table-filter match-name="x_recursocom_model"/>
-    <table-filter match-name="x_histmedico_model"/>
-    <table-filter match-name="x_ciudad_model"/>
-    <table-filter match-name="x_contactofamiliar_model"/>
-    <table-filter match-name="x_cs_model"/>
-    <table-filter match-name="x_alarma_model"/>
-    <table-filter match-name="x_direccion_model"/>
-    <table-filter match-name="x_medico_model"/>
-    <table-filter match-name="x_ofrecerrc_model"/>
-    <table-filter match-name="x_familiar_model"/>
-    <table-filter match-name="x_aviso_model"/>
-    <table-filter match-name="x_geolocaliz_model"/>
-    <table-filter match-name="x_dependiente_model"/>
-    <table-filter match-name="x_estado_model"/>
-    <table-filter match-name="x_persona_model"/>
-    <table-filter match-name="x_asistente_model"/>
-    <table-filter match-name="x_llamada_model"/>
-    <table-filter match-name="x_ip"/>
+  <schema-selection match-catalog="BDgrup2"/>
+  <table-filter match-name="x_ofrecerrc_model"/>
+  <table-filter match-name="x_histmedico_model"/>
+  <table-filter match-name="x_cs_model"/>
+  <table-filter match-name="x_geolocaliz_model"/>
+  <table-filter match-name="x_medico_model"/>
+  <table-filter match-name="x_familiar_model"/>
+  <table-filter match-name="x_estado_model"/>
+  <table-filter match-name="x_contactofamiliar_model"/>
+  <table-filter match-name="x_vivienda_model"/>
+  <table-filter match-name="x_dependiente_model"/>
+  <table-filter match-name="x_ciudad_model"/>
+  <table-filter match-name="x_aviso_model"/>
+  <table-filter match-name="x_llamada_model"/>
+  <table-filter match-name="x_asistente_model"/>
+  <table-filter match-name="x_persona_model"/>
+  <table-filter match-name="x_recursocom_model"/>
+  <table-filter match-name="x_direccion_model"/>
+  <table-filter match-name="x_alarma_model"/>
+  <table-filter match-name="x_provincia_model"/>
 </hibernate-reverse-engineering>

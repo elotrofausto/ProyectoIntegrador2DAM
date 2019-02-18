@@ -43,7 +43,6 @@ public class DoctorMan extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanelMedico.setBackground(new java.awt.Color(153, 255, 255));
         jPanelMedico.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS DEL MEDICO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
         tfTelf.setBackground(new java.awt.Color(255, 255, 255));

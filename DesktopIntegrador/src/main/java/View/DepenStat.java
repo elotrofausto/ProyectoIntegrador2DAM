@@ -79,22 +79,27 @@ public class DepenStat extends javax.swing.JDialog {
         setMaximumSize(new java.awt.Dimension(800, 300));
         setPreferredSize(new java.awt.Dimension(800, 300));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("ESTADO DEL DEPENDIENTE"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ESTADO DEL DEPENDIENTE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(790, 220));
 
+        dateTimeApunte.setBackground(new java.awt.Color(255, 255, 255));
         dateTimeApunte.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FECHA/HORA DEL APUNTE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         dateTimeApunte.setForeground(new java.awt.Color(0, 0, 0));
         dateTimeApunte.setPreferredSize(new java.awt.Dimension(350, 60));
 
+        dateTimeSuceso.setBackground(new java.awt.Color(255, 255, 255));
         dateTimeSuceso.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FECHA/HORA DEL APUNTE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         dateTimeSuceso.setForeground(new java.awt.Color(0, 0, 0));
         dateTimeSuceso.setPreferredSize(new java.awt.Dimension(350, 60));
 
         jTFDescripcion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTFDescripcion.setBackground(new java.awt.Color(255, 255, 255));
         jTFDescripcion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DESCRIPCIÓN", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        jTFDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         jTFDescripcion.setPreferredSize(new java.awt.Dimension(73, 50));
 
         jButtonAceptar.setText("ACEPTAR");
+        jButtonAceptar.setForeground(new java.awt.Color(0, 102, 102));
         jButtonAceptar.setPreferredSize(new java.awt.Dimension(110, 35));
         jButtonAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,6 +108,7 @@ public class DepenStat extends javax.swing.JDialog {
         });
 
         jButtonCancelar.setText("CANCELAR");
+        jButtonCancelar.setForeground(new java.awt.Color(0, 102, 102));
         jButtonCancelar.setPreferredSize(new java.awt.Dimension(110, 35));
         jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

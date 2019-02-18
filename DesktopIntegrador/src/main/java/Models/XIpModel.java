@@ -1,21 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Models;
 
-/**
- *
- * @author vesprada
- */
 public class XIpModel implements java.io.Serializable {
 
     private int id;
     private String ip;
 
     public XIpModel() {
-       
+
     }
 
     public XIpModel(int id, String Ip) {
@@ -44,6 +35,4 @@ public class XIpModel implements java.io.Serializable {
         return "XIpModel{" + "id=" + id + ", ip=" + ip + '}';
     }
 
-    
-    
 }

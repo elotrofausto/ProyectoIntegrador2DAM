@@ -11320,3 +11320,245 @@ Caused by: com.sun.org.apache.xerces.internal.impl.io.MalformedByteSequenceExcep
 2 < Transfer-Encoding: chunked
 2 < X-XSS-Protection: 1; mode=block
 
+2019-02-18 15:13:00,499 org.hibernate.Version logVersion - HHH000412: Hibernate Core {5.4.0.Final}
+2019-02-18 15:13:00,504 org.hibernate.cfg.Environment <clinit> - HHH000206: hibernate.properties not found
+2019-02-18 15:13:00,863 org.hibernate.orm.deprecation resolveEntity - HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+2019-02-18 15:13:01,396 org.hibernate.annotations.common.Version <clinit> - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-02-18 15:13:02,626 org.hibernate.orm.connections.pooling configure - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2019-02-18 15:13:02,649 org.hibernate.orm.connections.pooling buildCreator - HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:9999/BDgrup2]
+2019-02-18 15:13:02,650 org.hibernate.orm.connections.pooling buildCreator - HHH10001001: Connection properties: {user=grup2, password=****}
+2019-02-18 15:13:02,650 org.hibernate.orm.connections.pooling buildCreator - HHH10001003: Autocommit mode: false
+2019-02-18 15:13:02,654 org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl <init> - HHH000115: Hibernate connection pool size: 20 (min=1)
+2019-02-18 15:13:02,861 org.hibernate.dialect.Dialect <init> - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2019-02-18 15:13:46,686 org.hibernate.type.BasicTypeRegistry register - HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@12c3301e
+2019-02-18 15:13:47,937 org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-02-18 15:13:48,098 org.hibernate.hql.internal.QueryTranslatorFactoryInitiator initiateService - HHH000397: Using ASTQueryTranslatorFactory
+2019-02-18 15:16:10,811 org.hibernate.Version logVersion - HHH000412: Hibernate Core {5.4.0.Final}
+2019-02-18 15:16:10,814 org.hibernate.cfg.Environment <clinit> - HHH000206: hibernate.properties not found
+2019-02-18 15:16:10,995 org.hibernate.orm.deprecation resolveEntity - HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+2019-02-18 15:16:11,282 org.hibernate.annotations.common.Version <clinit> - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-02-18 15:16:12,240 org.hibernate.orm.connections.pooling configure - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2019-02-18 15:16:12,249 org.hibernate.orm.connections.pooling buildCreator - HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:9999/BDgrup2]
+2019-02-18 15:16:12,250 org.hibernate.orm.connections.pooling buildCreator - HHH10001001: Connection properties: {user=grup2, password=****}
+2019-02-18 15:16:12,250 org.hibernate.orm.connections.pooling buildCreator - HHH10001003: Autocommit mode: false
+2019-02-18 15:16:12,254 org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl <init> - HHH000115: Hibernate connection pool size: 20 (min=1)
+2019-02-18 15:16:12,439 org.hibernate.dialect.Dialect <init> - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2019-02-18 15:16:57,387 org.hibernate.type.BasicTypeRegistry register - HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@38294b72
+2019-02-18 15:16:58,302 org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-02-18 15:17:17,152 org.hibernate.hql.internal.QueryTranslatorFactoryInitiator initiateService - HHH000397: Using ASTQueryTranslatorFactory
+2019-02-18 15:17:21,793 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 1 * Sending client request on thread main
+1 > POST http://149.202.8.235:8080/jasperserver/j_spring_security_check
+1 > Content-Type: application/x-www-form-urlencoded
+
+2019-02-18 15:17:21,909 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 1 * Client response received on thread main
+1 < 302
+1 < Connection: Keep-Alive
+1 < Content-Length: 0
+1 < Date: Mon, 18 Feb 2019 14:20:50 GMT
+1 < Location: /jasperserver/loginsuccess.html;jsessionid=AD457B4D550043A2D33E88DCEE085A33
+1 < P3P: CP="ALL"
+1 < Set-Cookie: userTimezone=Europe/Madrid;Expires=Tue, 19-Feb-2019 14:20:50 GMT;HttpOnly,userLocale=es_ES;Expires=Tue, 19-Feb-2019 14:20:50 GMT;Path=/jasperserver/;HttpOnly,JSESSIONID=AD457B4D550043A2D33E88DCEE085A33; Path=/jasperserver; HttpOnly
+1 < X-XSS-Protection: 1; mode=block
+
+2019-02-18 15:17:21,963 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 2 * Sending client request on thread main
+2 > GET http://149.202.8.235:8080/jasperserver/rest_v2/reports/reports/grup2/AnalisisGestion.pdf
+2 > Accept: application/json
+
+2019-02-18 15:17:22,225 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 2 * Client response received on thread main
+2 < 200
+2 < Cache-Control: private
+2 < Connection: Keep-Alive
+2 < Content-Disposition: attachment; filename="AnalisisGestion.pdf"
+2 < Content-Type: application/pdf
+2 < Date: Mon, 18 Feb 2019 14:20:50 GMT
+2 < Expires: Thu, 01 Jan 1970 00:00:00 UTC
+2 < output-final: true
+2 < P3P: CP="ALL"
+2 < Transfer-Encoding: chunked
+2 < X-XSS-Protection: 1; mode=block
+
+2019-02-18 15:17:22,357 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 1 * Sending client request on thread main
+1 > POST http://149.202.8.235:8080/jasperserver/j_spring_security_check
+1 > Content-Type: application/x-www-form-urlencoded
+
+2019-02-18 15:17:22,396 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 1 * Client response received on thread main
+1 < 302
+1 < Connection: Keep-Alive
+1 < Content-Length: 0
+1 < Date: Mon, 18 Feb 2019 14:20:50 GMT
+1 < Location: /jasperserver/loginsuccess.html;jsessionid=21BBB3985E18F50C6DC7CE151A8A5585
+1 < P3P: CP="ALL"
+1 < Set-Cookie: userTimezone=Europe/Madrid;Expires=Tue, 19-Feb-2019 14:20:50 GMT;HttpOnly,userLocale=es_ES;Expires=Tue, 19-Feb-2019 14:20:50 GMT;Path=/jasperserver/;HttpOnly,JSESSIONID=21BBB3985E18F50C6DC7CE151A8A5585; Path=/jasperserver; HttpOnly
+1 < X-XSS-Protection: 1; mode=block
+
+2019-02-18 15:17:22,421 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 2 * Sending client request on thread main
+2 > GET http://149.202.8.235:8080/jasperserver/rest_v2/reports/reports/grup2/AnalisisGestion.jrprint
+2 > Accept: application/json
+
+2019-02-18 15:17:22,556 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 2 * Client response received on thread main
+2 < 200
+2 < Cache-Control: private
+2 < Connection: Keep-Alive
+2 < Content-Type: application/octet-stream
+2 < Date: Mon, 18 Feb 2019 14:20:50 GMT
+2 < Expires: Thu, 01 Jan 1970 00:00:00 UTC
+2 < output-final: true
+2 < P3P: CP="ALL"
+2 < Transfer-Encoding: chunked
+2 < X-XSS-Protection: 1; mode=block
+
+2019-02-18 15:17:23,432 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 1 * Sending client request on thread main
+1 > POST http://149.202.8.235:8080/jasperserver/j_spring_security_check
+1 > Content-Type: application/x-www-form-urlencoded
+
+2019-02-18 15:17:23,473 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 1 * Client response received on thread main
+1 < 302
+1 < Connection: Keep-Alive
+1 < Content-Length: 0
+1 < Date: Mon, 18 Feb 2019 14:20:51 GMT
+1 < Location: /jasperserver/loginsuccess.html;jsessionid=957AB64D07800BA567A84F4A1F5B8BA1
+1 < P3P: CP="ALL"
+1 < Set-Cookie: userTimezone=Europe/Madrid;Expires=Tue, 19-Feb-2019 14:20:51 GMT;HttpOnly,userLocale=es_ES;Expires=Tue, 19-Feb-2019 14:20:51 GMT;Path=/jasperserver/;HttpOnly,JSESSIONID=957AB64D07800BA567A84F4A1F5B8BA1; Path=/jasperserver; HttpOnly
+1 < X-XSS-Protection: 1; mode=block
+
+2019-02-18 15:17:23,497 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 2 * Sending client request on thread main
+2 > GET http://149.202.8.235:8080/jasperserver/rest_v2/reports/reports/grup2/AnalisisGestion.jrprint
+2 > Accept: application/json
+
+2019-02-18 15:17:23,590 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 2 * Client response received on thread main
+2 < 200
+2 < Cache-Control: private
+2 < Connection: Keep-Alive
+2 < Content-Type: application/octet-stream
+2 < Date: Mon, 18 Feb 2019 14:20:51 GMT
+2 < Expires: Thu, 01 Jan 1970 00:00:00 UTC
+2 < output-final: true
+2 < P3P: CP="ALL"
+2 < Transfer-Encoding: chunked
+2 < X-XSS-Protection: 1; mode=block
+
+2019-02-18 17:04:52,949 org.hibernate.Version logVersion - HHH000412: Hibernate Core {5.4.0.Final}
+2019-02-18 17:04:52,953 org.hibernate.cfg.Environment <clinit> - HHH000206: hibernate.properties not found
+2019-02-18 17:04:53,150 org.hibernate.orm.deprecation resolveEntity - HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+2019-02-18 17:04:53,455 org.hibernate.annotations.common.Version <clinit> - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-02-18 17:11:02,773 org.hibernate.Version logVersion - HHH000412: Hibernate Core {5.4.0.Final}
+2019-02-18 17:11:02,776 org.hibernate.cfg.Environment <clinit> - HHH000206: hibernate.properties not found
+2019-02-18 17:11:02,973 org.hibernate.orm.deprecation resolveEntity - HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+2019-02-18 17:11:03,260 org.hibernate.annotations.common.Version <clinit> - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-02-18 17:12:26,758 org.hibernate.Version logVersion - HHH000412: Hibernate Core {5.4.0.Final}
+2019-02-18 17:12:26,762 org.hibernate.cfg.Environment <clinit> - HHH000206: hibernate.properties not found
+2019-02-18 17:12:26,950 org.hibernate.orm.deprecation resolveEntity - HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+2019-02-18 17:12:27,245 org.hibernate.annotations.common.Version <clinit> - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-02-18 17:12:28,220 org.hibernate.orm.connections.pooling configure - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2019-02-18 17:12:28,226 org.hibernate.orm.connections.pooling buildCreator - HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:9999/BDgrup2]
+2019-02-18 17:12:28,227 org.hibernate.orm.connections.pooling buildCreator - HHH10001001: Connection properties: {user=grup2, password=****}
+2019-02-18 17:12:28,227 org.hibernate.orm.connections.pooling buildCreator - HHH10001003: Autocommit mode: false
+2019-02-18 17:12:28,231 org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl <init> - HHH000115: Hibernate connection pool size: 20 (min=1)
+2019-02-18 17:12:28,405 org.hibernate.dialect.Dialect <init> - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2019-02-18 17:13:19,135 org.hibernate.type.BasicTypeRegistry register - HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@46fddf99
+2019-02-18 17:13:20,128 org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator initiateService - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-02-18 17:13:20,258 org.hibernate.hql.internal.QueryTranslatorFactoryInitiator initiateService - HHH000397: Using ASTQueryTranslatorFactory
+2019-02-18 17:13:25,062 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 1 * Sending client request on thread main
+1 > POST http://149.202.8.235:8080/jasperserver/j_spring_security_check
+1 > Content-Type: application/x-www-form-urlencoded
+
+2019-02-18 17:13:25,174 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 1 * Client response received on thread main
+1 < 302
+1 < Connection: Keep-Alive
+1 < Content-Length: 0
+1 < Date: Mon, 18 Feb 2019 16:16:53 GMT
+1 < Location: /jasperserver/loginsuccess.html;jsessionid=4691AFBAECDA075FD7FBD7008595FBBF
+1 < P3P: CP="ALL"
+1 < Set-Cookie: userTimezone=Europe/Madrid;Expires=Tue, 19-Feb-2019 16:16:53 GMT;HttpOnly,userLocale=es_ES;Expires=Tue, 19-Feb-2019 16:16:53 GMT;Path=/jasperserver/;HttpOnly,JSESSIONID=4691AFBAECDA075FD7FBD7008595FBBF; Path=/jasperserver; HttpOnly
+1 < X-XSS-Protection: 1; mode=block
+
+2019-02-18 17:13:25,208 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 2 * Sending client request on thread main
+2 > GET http://149.202.8.235:8080/jasperserver/rest_v2/reports/reports/grup2/AnalisisGestion.pdf
+2 > Accept: application/json
+
+2019-02-18 17:13:25,471 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 2 * Client response received on thread main
+2 < 200
+2 < Cache-Control: private
+2 < Connection: Keep-Alive
+2 < Content-Disposition: attachment; filename="AnalisisGestion.pdf"
+2 < Content-Type: application/pdf
+2 < Date: Mon, 18 Feb 2019 16:16:53 GMT
+2 < Expires: Thu, 01 Jan 1970 00:00:00 UTC
+2 < output-final: true
+2 < P3P: CP="ALL"
+2 < Transfer-Encoding: chunked
+2 < X-XSS-Protection: 1; mode=block
+
+2019-02-18 17:13:25,522 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 1 * Sending client request on thread main
+1 > POST http://149.202.8.235:8080/jasperserver/j_spring_security_check
+1 > Content-Type: application/x-www-form-urlencoded
+
+2019-02-18 17:13:25,563 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 1 * Client response received on thread main
+1 < 302
+1 < Connection: Keep-Alive
+1 < Content-Length: 0
+1 < Date: Mon, 18 Feb 2019 16:16:53 GMT
+1 < Location: /jasperserver/loginsuccess.html;jsessionid=F60289A48AFAD1CB0040B1473D5B2770
+1 < P3P: CP="ALL"
+1 < Set-Cookie: userTimezone=Europe/Madrid;Expires=Tue, 19-Feb-2019 16:16:53 GMT;HttpOnly,userLocale=es_ES;Expires=Tue, 19-Feb-2019 16:16:53 GMT;Path=/jasperserver/;HttpOnly,JSESSIONID=F60289A48AFAD1CB0040B1473D5B2770; Path=/jasperserver; HttpOnly
+1 < X-XSS-Protection: 1; mode=block
+
+2019-02-18 17:13:25,589 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 2 * Sending client request on thread main
+2 > GET http://149.202.8.235:8080/jasperserver/rest_v2/reports/reports/grup2/AnalisisGestion.jrprint
+2 > Accept: application/json
+
+2019-02-18 17:13:25,724 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 2 * Client response received on thread main
+2 < 200
+2 < Cache-Control: private
+2 < Connection: Keep-Alive
+2 < Content-Type: application/octet-stream
+2 < Date: Mon, 18 Feb 2019 16:16:53 GMT
+2 < Expires: Thu, 01 Jan 1970 00:00:00 UTC
+2 < output-final: true
+2 < P3P: CP="ALL"
+2 < Transfer-Encoding: chunked
+2 < X-XSS-Protection: 1; mode=block
+
+2019-02-18 17:13:26,328 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 1 * Sending client request on thread main
+1 > POST http://149.202.8.235:8080/jasperserver/j_spring_security_check
+1 > Content-Type: application/x-www-form-urlencoded
+
+2019-02-18 17:13:26,367 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 1 * Client response received on thread main
+1 < 302
+1 < Connection: Keep-Alive
+1 < Content-Length: 0
+1 < Date: Mon, 18 Feb 2019 16:16:54 GMT
+1 < Location: /jasperserver/loginsuccess.html;jsessionid=ACE04A52DB2B278C08787CF5E8964413
+1 < P3P: CP="ALL"
+1 < Set-Cookie: userTimezone=Europe/Madrid;Expires=Tue, 19-Feb-2019 16:16:54 GMT;HttpOnly,userLocale=es_ES;Expires=Tue, 19-Feb-2019 16:16:54 GMT;Path=/jasperserver/;HttpOnly,JSESSIONID=ACE04A52DB2B278C08787CF5E8964413; Path=/jasperserver; HttpOnly
+1 < X-XSS-Protection: 1; mode=block
+
+2019-02-18 17:13:26,394 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 2 * Sending client request on thread main
+2 > GET http://149.202.8.235:8080/jasperserver/rest_v2/reports/reports/grup2/AnalisisGestion.jrprint
+2 > Accept: application/json
+
+2019-02-18 17:13:26,483 com.jaspersoft.jasperserver.jaxrs.client.core.SessionStorage log - 2 * Client response received on thread main
+2 < 200
+2 < Cache-Control: private
+2 < Connection: Keep-Alive
+2 < Content-Type: application/octet-stream
+2 < Date: Mon, 18 Feb 2019 16:16:54 GMT
+2 < Expires: Thu, 01 Jan 1970 00:00:00 UTC
+2 < output-final: true
+2 < P3P: CP="ALL"
+2 < Transfer-Encoding: chunked
+2 < X-XSS-Protection: 1; mode=block
+
+2019-02-18 17:23:48,515 org.hibernate.internal.ExceptionMapperStandardImpl mapManagedFlushFailure - HHH000346: Error during managed flush [Row was updated or deleted by another transaction (or unsaved-value mapping was incorrect) : [Models.XViviendaModel#0]]
+2019-02-18 20:09:22,008 org.hibernate.Version logVersion - HHH000412: Hibernate Core {5.4.0.Final}
+2019-02-18 20:09:22,012 org.hibernate.cfg.Environment <clinit> - HHH000206: hibernate.properties not found
+2019-02-18 20:09:22,193 org.hibernate.orm.deprecation resolveEntity - HHH90000012: Recognized obsolete hibernate namespace http://hibernate.sourceforge.net/hibernate-configuration. Use namespace http://www.hibernate.org/dtd/hibernate-configuration instead.  Support for obsolete DTD/XSD namespaces may be removed at any time.
+2019-02-18 20:09:22,451 org.hibernate.annotations.common.Version <clinit> - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-02-18 20:09:23,399 org.hibernate.orm.connections.pooling configure - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+2019-02-18 20:09:23,406 org.hibernate.orm.connections.pooling buildCreator - HHH10001005: using driver [org.postgresql.Driver] at URL [jdbc:postgresql://localhost:9999/BDgrup2]
+2019-02-18 20:09:23,407 org.hibernate.orm.connections.pooling buildCreator - HHH10001001: Connection properties: {user=grup2, password=****}
+2019-02-18 20:09:23,408 org.hibernate.orm.connections.pooling buildCreator - HHH10001003: Autocommit mode: false
+2019-02-18 20:09:23,410 org.hibernate.engine.jdbc.connections.internal.DriverManagerConnectionProviderImpl <init> - HHH000115: Hibernate connection pool size: 20 (min=1)
+2019-02-18 20:09:23,591 org.hibernate.dialect.Dialect <init> - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQLDialect
+2019-02-18 20:10:14,419 org.hibernate.type.BasicTypeRegistry register - HHH000270: Type registration [java.util.UUID] overrides previous : org.hibernate.type.UUIDBinaryType@7b40020e
+2019-02-18 20:10:14,782 org.hibernate.orm.connections.pooling stop - HHH10001008: Cleaning up connection pool [jdbc:postgresql://localhost:9999/BDgrup2]

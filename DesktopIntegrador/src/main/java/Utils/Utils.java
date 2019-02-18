@@ -1,15 +1,24 @@
 package Utils;
 
+
+import com.opencsv.CSVReader;
 import java.awt.Component;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Vector;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
+import jdk.nashorn.api.scripting.URLReader;
 
 /**
  *
@@ -17,10 +26,7 @@ import javax.swing.table.TableModel;
  */
 public class Utils {
     
- /*   public static JTable buildTable(ResultSet rs) {
-        JTable table = new JTable(buildTableModel(rs));
-        return table;
-    }*/
+     private final static URL FILE = Utils.class.getResource("/Recursos/Tipos_Via.csv");
     
     //Genera la estructura y modelo de la tabla
     public static TableModel buildTableModel(ResultSet rs) {
@@ -74,5 +80,24 @@ public class Utils {
         String juegoCaracteres = "TRWAGMYFPDXBNJZSQVHLCKE";
         int modulo = Integer.valueOf(numeracion) % 23;
         return numeracion+juegoCaracteres.charAt(modulo);
+    }
+    public static ComboBoxModel<String> listaTipo() {
+        DefaultComboBoxModel<String> vias = new DefaultComboBoxModel<>();
+        String[] line;
+        try {
+            CSVReader reader = new CSVReader( new BufferedReader(new URLReader(FILE)));
+            while ((line = reader.readNext()) != null) {
+                if (line != null) {
+                    for (String string : line) {
+                        vias.addElement(string);
+                    }
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println("FICHERO NO ENCONTRADO");
+        } catch (IOException ex) {
+            System.out.println("ERROR DE ENTRADA/SALIDA");
+        }
+        return vias;
     }
 }

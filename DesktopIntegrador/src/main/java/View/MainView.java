@@ -248,14 +248,14 @@ public class MainView extends javax.swing.JFrame {
 
         jPanelPrincipal.setBackground(new java.awt.Color(204, 204, 204));
 
-        jPaneldependiente.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos principales del dependiente"));
+        jPaneldependiente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS PRINCIPALES", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
         jComboBoxDependienteVivienda.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxDependienteVivienda.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jComboBoxDependienteVivienda.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxDependienteVivienda.setModel(vivienda);
-        jComboBoxDependienteVivienda.setBorder(javax.swing.BorderFactory.createTitledBorder("Vivienda Actual"));
-        jComboBoxDependienteVivienda.setPreferredSize(new java.awt.Dimension(34, 60));
+        jComboBoxDependienteVivienda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "VIVIENDA ACTUAL", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        jComboBoxDependienteVivienda.setPreferredSize(new java.awt.Dimension(270, 55));
 
         tfDependienteId.setEditable(false);
         tfDependienteId.setBackground(new java.awt.Color(255, 255, 255));
@@ -263,72 +263,72 @@ public class MainView extends javax.swing.JFrame {
         tfDependienteId.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteId.setToolTipText("");
-        tfDependienteId.setBorder(javax.swing.BorderFactory.createTitledBorder("ID Dependiente"));
-        tfDependienteId.setPreferredSize(new java.awt.Dimension(150, 55));
+        tfDependienteId.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "ID DEPENDIENTE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDependienteId.setPreferredSize(new java.awt.Dimension(150, 50));
 
         tfDependientePass.setBackground(new java.awt.Color(255, 255, 255));
         tfDependientePass.setForeground(new java.awt.Color(0, 0, 0));
         tfDependientePass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependientePass.setText("jPasswordField1");
-        tfDependientePass.setBorder(javax.swing.BorderFactory.createTitledBorder("Password"));
-        tfDependientePass.setPreferredSize(new java.awt.Dimension(150, 55));
+        tfDependientePass.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "PASSWORD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDependientePass.setPreferredSize(new java.awt.Dimension(150, 50));
 
         jComboBoxDependienteGenero.setBackground(new java.awt.Color(255, 255, 255));
         jComboBoxDependienteGenero.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jComboBoxDependienteGenero.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxDependienteGenero.setModel(genero);
-        jComboBoxDependienteGenero.setBorder(javax.swing.BorderFactory.createTitledBorder("Género"));
-        jComboBoxDependienteGenero.setPreferredSize(new java.awt.Dimension(150, 60));
+        jComboBoxDependienteGenero.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "GÉNERO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        jComboBoxDependienteGenero.setPreferredSize(new java.awt.Dimension(150, 55));
 
         tfDependienteNSS.setBackground(new java.awt.Color(255, 255, 255));
         tfDependienteNSS.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDependienteNSS.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteNSS.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteNSS.setToolTipText("");
-        tfDependienteNSS.setBorder(javax.swing.BorderFactory.createTitledBorder("Nº Seg. Social"));
-        tfDependienteNSS.setPreferredSize(new java.awt.Dimension(150, 55));
+        tfDependienteNSS.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nº SEGURIDAD SOCIAL", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDependienteNSS.setPreferredSize(new java.awt.Dimension(150, 50));
 
         tfDependienteTelf.setBackground(new java.awt.Color(255, 255, 255));
         tfDependienteTelf.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDependienteTelf.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteTelf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteTelf.setToolTipText("");
-        tfDependienteTelf.setBorder(javax.swing.BorderFactory.createTitledBorder("Teléfono"));
-        tfDependienteTelf.setPreferredSize(new java.awt.Dimension(150, 55));
+        tfDependienteTelf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "TELÉFONO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDependienteTelf.setPreferredSize(new java.awt.Dimension(150, 50));
 
         tfDependienteNombre.setBackground(new java.awt.Color(255, 255, 255));
         tfDependienteNombre.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDependienteNombre.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteNombre.setToolTipText("");
-        tfDependienteNombre.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre"));
-        tfDependienteNombre.setPreferredSize(new java.awt.Dimension(150, 55));
+        tfDependienteNombre.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "NOMBRE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDependienteNombre.setPreferredSize(new java.awt.Dimension(150, 50));
 
         tfDependienteApe1.setBackground(new java.awt.Color(255, 255, 255));
         tfDependienteApe1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDependienteApe1.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteApe1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteApe1.setToolTipText("");
-        tfDependienteApe1.setBorder(javax.swing.BorderFactory.createTitledBorder("Primer Apellido"));
-        tfDependienteApe1.setPreferredSize(new java.awt.Dimension(150, 55));
+        tfDependienteApe1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "PRIMER APELLIDO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDependienteApe1.setPreferredSize(new java.awt.Dimension(150, 50));
 
         tfDependienteApe2.setBackground(new java.awt.Color(255, 255, 255));
         tfDependienteApe2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDependienteApe2.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteApe2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteApe2.setToolTipText("");
-        tfDependienteApe2.setBorder(javax.swing.BorderFactory.createTitledBorder("Segundo Apellido"));
-        tfDependienteApe2.setPreferredSize(new java.awt.Dimension(150, 55));
+        tfDependienteApe2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "SEGUNDO APELLIDO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDependienteApe2.setPreferredSize(new java.awt.Dimension(150, 50));
 
         tfDependienteEmail.setBackground(new java.awt.Color(255, 255, 255));
         tfDependienteEmail.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDependienteEmail.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteEmail.setToolTipText("");
-        tfDependienteEmail.setBorder(javax.swing.BorderFactory.createTitledBorder("email"));
-        tfDependienteEmail.setPreferredSize(new java.awt.Dimension(250, 55));
+        tfDependienteEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "EMAIL", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDependienteEmail.setPreferredSize(new java.awt.Dimension(250, 50));
 
-        dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha Alta"));
+        dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FECHA ALTA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         dateChooserDependienteAlta.setCalendarPreferredSize(new java.awt.Dimension(350, 250));
         dateChooserDependienteAlta.setFieldFont(new java.awt.Font("Dialog", java.awt.Font.BOLD, 14));
 
@@ -373,7 +373,7 @@ public class MainView extends javax.swing.JFrame {
                 (datechooser.view.BackRenderer)null,
                 false,
                 true)));
-    dateChooserDependienteNac.setBorder(javax.swing.BorderFactory.createTitledBorder("Fecha Nacimiento"));
+    dateChooserDependienteNac.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FECHA NACIMIENTO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
     dateChooserDependienteNac.setCalendarPreferredSize(new java.awt.Dimension(350, 250));
     dateChooserDependienteNac.setFieldFont(new java.awt.Font("Dialog", java.awt.Font.BOLD, 14));
 
@@ -382,19 +382,19 @@ public class MainView extends javax.swing.JFrame {
     tfDependienteDNI.setForeground(new java.awt.Color(0, 0, 0));
     tfDependienteDNI.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     tfDependienteDNI.setToolTipText("");
-    tfDependienteDNI.setBorder(javax.swing.BorderFactory.createTitledBorder("D.N.I"));
-    tfDependienteDNI.setPreferredSize(new java.awt.Dimension(150, 55));
+    tfDependienteDNI.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "D.N.I", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+    tfDependienteDNI.setPreferredSize(new java.awt.Dimension(150, 50));
     tfDependienteDNI.addFocusListener(new java.awt.event.FocusAdapter() {
         public void focusGained(java.awt.event.FocusEvent evt) {
             tfDependienteDNIFocusGained(evt);
         }
     });
     tfDependienteDNI.addKeyListener(new java.awt.event.KeyAdapter() {
-        public void keyReleased(java.awt.event.KeyEvent evt) {
-            tfDependienteDNIKeyReleased(evt);
-        }
         public void keyTyped(java.awt.event.KeyEvent evt) {
             tfDependienteDNIKeyTyped(evt);
+        }
+        public void keyReleased(java.awt.event.KeyEvent evt) {
+            tfDependienteDNIKeyReleased(evt);
         }
     });
 
@@ -438,7 +438,7 @@ public class MainView extends javax.swing.JFrame {
                         .addComponent(jbtnAddCasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jbtnModViv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jComboBoxDependienteVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxDependienteVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPaneldependienteLayout.createSequentialGroup()
                     .addComponent(tfDependienteNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(10, 10, 10)
@@ -476,8 +476,8 @@ public class MainView extends javax.swing.JFrame {
                 .addGroup(jPaneldependienteLayout.createSequentialGroup()
                     .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(dateChooserDependienteNac, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dateChooserDependienteAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dateChooserDependienteNac, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dateChooserDependienteAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jComboBoxDependienteVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPaneldependienteLayout.createSequentialGroup()
                             .addComponent(jbtnAddCasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -491,13 +491,13 @@ public class MainView extends javax.swing.JFrame {
 
     jComboBoxDependienteGenero.getAccessibleContext().setAccessibleName("Genero");
 
-    jPanelProfesionales.setBorder(javax.swing.BorderFactory.createTitledBorder("Centro de salud / Profesionales asociados"));
+    jPanelProfesionales.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CENTRO SALUD  /  PROFESIONALES ASOCIADOS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
     jComboBoxMedico.setBackground(new java.awt.Color(255, 255, 255));
     jComboBoxMedico.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
     jComboBoxMedico.setForeground(new java.awt.Color(0, 0, 0));
     jComboBoxMedico.setModel(medico);
-    jComboBoxMedico.setBorder(javax.swing.BorderFactory.createTitledBorder("Médico"));
+    jComboBoxMedico.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "MÉDICO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
     jComboBoxMedico.setPreferredSize(new java.awt.Dimension(240, 60));
     jComboBoxMedico.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -519,7 +519,7 @@ public class MainView extends javax.swing.JFrame {
     jComboBoxCS.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
     jComboBoxCS.setForeground(new java.awt.Color(0, 0, 0));
     jComboBoxCS.setModel(cSalud);
-    jComboBoxCS.setBorder(javax.swing.BorderFactory.createTitledBorder("Centro de Salud"));
+    jComboBoxCS.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CENTRO SALUD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
     jComboBoxCS.setPreferredSize(new java.awt.Dimension(240, 60));
 
     jLabelCS.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -639,7 +639,7 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
-    jPanelEstado.setBorder(javax.swing.BorderFactory.createTitledBorder("Estado del dependiente"));
+    jPanelEstado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ESTADO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
     jPanelEstado.setPreferredSize(new java.awt.Dimension(658, 120));
 
     jScrollPaneestado.setPreferredSize(new java.awt.Dimension(600, 403));
@@ -763,9 +763,9 @@ public class MainView extends javax.swing.JFrame {
                 .addComponent(jbtnAddDepen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPaneldependiente, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPaneldependiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+            .addComponent(jPanelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelProfesionales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
@@ -1139,7 +1139,7 @@ public class MainView extends javax.swing.JFrame {
     );
     jPanelAnalisisLayout.setVerticalGroup(
         jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 379, Short.MAX_VALUE)
+        .addGap(0, 380, Short.MAX_VALUE)
     );
 
     jBtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IconoCancelar25x25.png"))); // NOI18N
@@ -1205,7 +1205,7 @@ public class MainView extends javax.swing.JFrame {
 
     jPanelAlertas.setBackground(new java.awt.Color(204, 204, 204));
 
-    jPanelRecursos.setBorder(javax.swing.BorderFactory.createTitledBorder("Emergencias y otros recursos"));
+    jPanelRecursos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EMERGENCIA Y OTROS RECURSOS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
     jPanelRecursos.setPreferredSize(new java.awt.Dimension(655, 140));
 
     jScrollPaneRecursos.setPreferredSize(new java.awt.Dimension(540, 100));
@@ -1282,7 +1282,7 @@ public class MainView extends javax.swing.JFrame {
             .addContainerGap())
     );
 
-    jPanelAlarmas.setBorder(javax.swing.BorderFactory.createTitledBorder("Alarmas"));
+    jPanelAlarmas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ALARMAS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
     jTableAlarmas.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
@@ -1802,7 +1802,7 @@ public class MainView extends javax.swing.JFrame {
                 manipulateViviTable(dep, 0);
                 manipulateHome(null, 0);
             }
-        }else {
+        } else {
             JOptionPane.showMessageDialog(this, "Por favor, elija antes un registro de la tabla");
         }
     }//GEN-LAST:event_jbtnModViviendaActionPerformed
@@ -1812,7 +1812,7 @@ public class MainView extends javax.swing.JFrame {
             controller.borrarObjeto(controller.cargarDatos(XViviendaModel.class, SentenciasSQL.objectDatosId, this.jTableViviendas.getModel().getValueAt(this.jTableViviendas.getSelectedRow(), 0)));
             manipulateViviTable(dep, 0);
             manipulateHome(null, 0);
-        }else {
+        } else {
             JOptionPane.showMessageDialog(this, "Por favor, elija antes un registro de la tabla");
         }
     }//GEN-LAST:event_jbtnRemovViviendaActionPerformed
@@ -1884,7 +1884,7 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnRemovHisSocActionPerformed
 
     private void jbtnAddAlleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddAlleActionPerformed
-        FamilyMan fam = new FamilyMan(this, true);
+        FamilyMan fam = new FamilyMan(this, true, listaCiudades, controller);
         if (fam.getFamily() != null) {
 
             controller.guardarObjeto(fam.getFamily());
@@ -1894,7 +1894,7 @@ public class MainView extends javax.swing.JFrame {
 
     private void jbtnModAlleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModAlleActionPerformed
         if (this.jTableAllegados.getSelectedRow() >= 0) {
-            FamilyMan fam = new FamilyMan(this, true, controller.cargarDatos(XFamiliarModel.class, SentenciasSQL.objectDatosId,
+            FamilyMan fam = new FamilyMan(this, true, listaCiudades, controller, controller.cargarDatos(XFamiliarModel.class, SentenciasSQL.objectDatosId,
                     this.jTableAllegados.getModel().getValueAt(this.jTableAllegados.getSelectedRow(), 0)));
             if (fam.getFamily() != null) {
 

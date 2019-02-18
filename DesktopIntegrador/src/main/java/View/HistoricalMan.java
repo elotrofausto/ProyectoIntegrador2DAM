@@ -46,7 +46,7 @@ public class HistoricalMan extends javax.swing.JDialog {
 
         jBtnAccept.setForeground(new java.awt.Color(0, 102, 102));
         jBtnAccept.setText("ACEPTAR");
-        jBtnAccept.setPreferredSize(new java.awt.Dimension(100, 35));
+        jBtnAccept.setPreferredSize(new java.awt.Dimension(110, 40));
         jBtnAccept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnAcceptActionPerformed(evt);
@@ -55,13 +55,14 @@ public class HistoricalMan extends javax.swing.JDialog {
 
         jBtnCancel.setForeground(new java.awt.Color(0, 102, 102));
         jBtnCancel.setText("CANCELAR");
-        jBtnCancel.setPreferredSize(new java.awt.Dimension(100, 35));
+        jBtnCancel.setPreferredSize(new java.awt.Dimension(110, 40));
         jBtnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnCancelActionPerformed(evt);
             }
         });
 
+        jTFDescription.setBackground(new java.awt.Color(255, 255, 255));
         jTFDescription.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTFDescription.setToolTipText("");
         jTFDescription.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DESCRIPCIÓN", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
@@ -75,7 +76,7 @@ public class HistoricalMan extends javax.swing.JDialog {
                 .addGap(16, 16, 16)
                 .addGroup(jPanelHistoryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelHistoryLayout.createSequentialGroup()
-                        .addGap(0, 385, Short.MAX_VALUE)
+                        .addGap(0, 375, Short.MAX_VALUE)
                         .addComponent(jBtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16)
                         .addComponent(jBtnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
