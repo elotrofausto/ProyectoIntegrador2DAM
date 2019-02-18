@@ -9,7 +9,7 @@
       <generator class="identity"/>
     </id>
     <many-to-one class="Models.XDependienteModel" fetch="select" name="XDependienteModel">
-      <column name="id_dependiente" not-null="true">
+      <column name="id_dependiente" not-null="false">
         <comment>Id Dependiente</comment>
       </column>
     </many-to-one>
@@ -35,7 +35,7 @@
     </property>
     <set fetch="select" inverse="true" lazy="true" name="XDependienteModels" table="x_dependiente_model">
       <key>
-        <column name="id_vivienda_actual" not-null="true">
+        <column name="id_vivienda_actual" not-null="false">
           <comment>Id Vivienda Actual</comment>
         </column>
       </key>

@@ -25,12 +25,9 @@ public class DepenStat extends javax.swing.JDialog {
     
     private final URL URLIMAGECLOCK = DepenStat.class.getResource("/Recursos/reloj.png"), URLIMAGECALENDAR = DepenStat.class.getResource("/Recursos/calendar.png");
     private XEstadoModel estado;
-    private BLogic controller;
-    private Object opc;
     
     public DepenStat(java.awt.Frame parent, boolean modal, BLogic controller) {
         super(parent, modal);
-        this.controller = controller;
         estado = new XEstadoModel();
         initComponents();
         initUI();
@@ -38,7 +35,6 @@ public class DepenStat extends javax.swing.JDialog {
     
     public DepenStat(java.awt.Frame parent, boolean modal, BLogic controller, Object value) {
         super(parent, modal);
-        this.controller = controller;
         estado = (XEstadoModel) controller.cargarDatos(XEstadoModel.class, SentenciasSQL.objectDatosId, value);
         initComponents();
         fillUI();
@@ -237,6 +233,6 @@ public class DepenStat extends javax.swing.JDialog {
     }
     
     private Date generarFecha(DateTimePicker dateTime) {
-        return new Date(dateTime.getDateTimeStrict().toEpochSecond(ZoneOffset.UTC));
+        return java.util.Date.from(dateTime.getDateTimeStrict().toInstant(ZoneOffset.UTC));
     }
 }

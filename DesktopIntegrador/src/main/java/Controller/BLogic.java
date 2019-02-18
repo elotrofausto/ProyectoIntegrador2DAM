@@ -12,6 +12,7 @@ import View.AccessAsist;
 import View.MainView;
 import java.net.ServerSocket;
 import java.sql.SQLException;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.table.TableModel;
@@ -81,29 +82,32 @@ public class BLogic {
     public TableModel cargarResultSet(String query, Object dependiente) {
         return hibernate.getRs(query, dependiente);
     }
-    
+
     //Guardar un nuevo objeto en la base de datos
     public void guardarObjeto(Object object) {
         hibernate.save(object);
     }
-    
+
     //Actualizar registro
-    public void actualizarObjeto(Object object){
+    public void actualizarObjeto(Object object) {
         hibernate.update(object);
     }
-    
+
     //Eliminar registro
-    public void borrarObjeto(Object object){
+    public void borrarObjeto(Object object) {
         hibernate.remove(object);
     }
-    
+
     //Getters and Setters
     public HibernateController getHibernate() {
         return hibernate;
     }
-
-    public void asignarHabitual(XViviendaModel viv, XDependienteModel dep) {
-        
+    
+    public void reasignarHabitual(XDependienteModel dep) {
+        for (Iterator<XViviendaModel> iterator = dep.getXViviendaModels().iterator(); iterator.hasNext();) {
+            XViviendaModel next = iterator.next();
+            next.setHabitual(false);
+        }
     }
-
+    
 }

@@ -19,6 +19,14 @@ public class FamilyMan extends javax.swing.JDialog {
         initComponents();
     }
 
+    FamilyMan(MainView aThis, boolean b, String SOC, Object cargarDatos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    FamilyMan(MainView aThis, boolean b, Object cargarDatos) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -84,6 +92,10 @@ public class FamilyMan extends javax.swing.JDialog {
                 dialog.setVisible(true);
             }
         });
+    }
+
+    Object getFamily() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
