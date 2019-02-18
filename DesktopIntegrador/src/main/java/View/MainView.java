@@ -1140,7 +1140,7 @@ public class MainView extends javax.swing.JFrame {
     );
     jPanelAnalisisLayout.setVerticalGroup(
         jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 380, Short.MAX_VALUE)
+        .addGap(0, 379, Short.MAX_VALUE)
     );
 
     jBtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IconoCancelar25x25.png"))); // NOI18N
@@ -1249,6 +1249,8 @@ public class MainView extends javax.swing.JFrame {
     });
 
     jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/call.png"))); // NOI18N
+    jButton1.setMaximumSize(new java.awt.Dimension(50, 100));
+    jButton1.setMinimumSize(new java.awt.Dimension(50, 100));
     jButton1.setPreferredSize(new java.awt.Dimension(50, 100));
 
     javax.swing.GroupLayout jPanelRecursosLayout = new javax.swing.GroupLayout(jPanelRecursos);

@@ -509,6 +509,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="TEL&#xcb;FONO">
+                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>
@@ -535,6 +536,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="NOMBRE">
+                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>
@@ -561,6 +563,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="PRIMER APELLIDO">
+                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>
@@ -587,6 +590,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="SEGUNDO APELLIDO">
+                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>
@@ -613,6 +617,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="EMAIL">
+                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>
@@ -640,6 +645,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="RELACI&#xd3;N">
+                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>
@@ -667,6 +673,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="DISPONIBILIDAD">
+                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>
@@ -694,6 +701,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="OBSERVACIONES">
+                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>
@@ -720,6 +728,7 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="D.N.I">
+                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>

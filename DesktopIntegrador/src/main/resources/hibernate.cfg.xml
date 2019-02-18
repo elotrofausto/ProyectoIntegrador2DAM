@@ -67,5 +67,6 @@ Contributor(s):
     <mapping resource="Models/XProvinciaModel.hbm.xml"/>
     <mapping resource="Models/XFamiliarModel.hbm.xml"/>
     <mapping resource="Models/XContactofamiliarModel.hbm.xml"/>
+    <mapping resource="Models/XIpModel.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

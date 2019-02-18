@@ -60,4 +60,5 @@ Contributor(s):
   <table-filter match-name="x_direccion_model"/>
   <table-filter match-name="x_alarma_model"/>
   <table-filter match-name="x_provincia_model"/>
+  <table-filter match-name="x_ip_model"/>
 </hibernate-reverse-engineering>
