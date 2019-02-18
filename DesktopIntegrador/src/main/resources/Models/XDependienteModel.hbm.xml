@@ -7,7 +7,7 @@
         <comment>x_dependiente.model</comment>
         <id name="id" type="int">
             <column name="id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="XCsModel" class="Models.XCsModel" fetch="select">
             <column name="id_cs">
@@ -47,26 +47,6 @@
         <property name="fecAlta" type="date">
             <column name="fec_alta" length="13">
                 <comment>Fecha_Alta</comment>
-            </column>
-        </property>
-        <property name="createUid" type="java.lang.Integer">
-            <column name="create_uid">
-                <comment>Created by</comment>
-            </column>
-        </property>
-        <property name="createDate" type="timestamp">
-            <column name="create_date" length="29">
-                <comment>Created on</comment>
-            </column>
-        </property>
-        <property name="writeUid" type="java.lang.Integer">
-            <column name="write_uid">
-                <comment>Last Updated by</comment>
-            </column>
-        </property>
-        <property name="writeDate" type="timestamp">
-            <column name="write_date" length="29">
-                <comment>Last Updated on</comment>
             </column>
         </property>
         <set name="XLlamadaModels" table="x_llamada_model" inverse="true" lazy="true" fetch="select">

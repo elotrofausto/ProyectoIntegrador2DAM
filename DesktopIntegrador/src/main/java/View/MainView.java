@@ -29,6 +29,7 @@ import java.io.OutputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
@@ -2229,11 +2230,11 @@ public class MainView extends javax.swing.JFrame {
 
         //Fechas
         Calendar alta = Calendar.getInstance();
-        alta.setTime(dep.getFecAlta());
+        alta.setTime(dep.getFecAlta()!=null?dep.getFecAlta():new Date());
         this.dateChooserDependienteAlta.setSelectedDate(alta);
 
         Calendar nac = Calendar.getInstance();
-        nac.setTime(dep.getFecNacim());
+        nac.setTime(dep.getFecNacim()!=null?dep.getFecNacim():new Date());
         this.dateChooserDependienteNac.setSelectedDate(nac);
 
         //Se muestran los elementos asociados al dependiente en los comboBox

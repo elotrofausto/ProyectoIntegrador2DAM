@@ -27,7 +27,7 @@ public class SentenciasSQL {
 
     public static final String viviendasTM = "SELECT viv.id, "
             + "CONCAT(dir.tipovia,' ',dir.direccion,' ',dir.num,', ',ciu.name,' (',pro.name,')') AS direccion,"
-            + " viv.tipo AS vivienda,CASE WHEN viv.habitual = false THEN 'no' ELSE 'si' END"
+            + " viv.name AS vivienda,CASE WHEN viv.habitual = false THEN 'no' ELSE 'si' END"
             + " as \"vivienda actual\", viv.modo_acceso AS acceso FROM x_vivienda_model AS viv,"
             + " x_direccion_model AS dir, x_ciudad_model AS ciu, x_provincia_model AS pro WHERE"
             + " viv.id_direccion = dir.id and dir.id_ciudad = ciu.id AND ciu.id_provincia = pro.id"

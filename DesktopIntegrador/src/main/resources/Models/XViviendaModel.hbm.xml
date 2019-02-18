@@ -7,15 +7,15 @@
         <comment>x_vivienda.model</comment>
         <id name="id" type="int">
             <column name="id" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="XDependienteModel" class="Models.XDependienteModel" fetch="select">
-            <column name="id_dependiente" not-null="true">
+            <column name="id_dependiente" not-null="false">
                 <comment>Id Dependiente</comment>
             </column>
         </many-to-one>
         <many-to-one name="XDireccionModel" class="Models.XDireccionModel" fetch="select">
-            <column name="id_direccion" not-null="true">
+            <column name="id_direccion" not-null="false">
                 <comment>Id Direccion</comment>
             </column>
         </many-to-one>
@@ -32,26 +32,6 @@
         <property name="modoAcceso" type="string">
             <column name="modo_acceso">
                 <comment>Modo_Acceso</comment>
-            </column>
-        </property>
-        <property name="createUid" type="java.lang.Integer">
-            <column name="create_uid">
-                <comment>Created by</comment>
-            </column>
-        </property>
-        <property name="createDate" type="timestamp">
-            <column name="create_date" length="29">
-                <comment>Created on</comment>
-            </column>
-        </property>
-        <property name="writeUid" type="java.lang.Integer">
-            <column name="write_uid">
-                <comment>Last Updated by</comment>
-            </column>
-        </property>
-        <property name="writeDate" type="timestamp">
-            <column name="write_date" length="29">
-                <comment>Last Updated on</comment>
             </column>
         </property>
     </class>

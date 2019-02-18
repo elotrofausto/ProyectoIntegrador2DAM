@@ -1,6 +1,7 @@
 package Models;
 
-import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 public class XPersonaModel implements java.io.Serializable {
 
@@ -11,6 +12,9 @@ public class XPersonaModel implements java.io.Serializable {
     private String dni;
     private String telefono;
     private String email;
+    private Set XDependienteModels = new HashSet(0);
+    private Set XAsistenteModels = new HashSet(0);
+    private Set XFamiliarModels = new HashSet(0);
 
     public XPersonaModel() {
 
@@ -81,4 +85,29 @@ public class XPersonaModel implements java.io.Serializable {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public Set getXDependienteModels() {
+        return XDependienteModels;
+    }
+
+    public void setXDependienteModels(Set XDependienteModels) {
+        this.XDependienteModels = XDependienteModels;
+    }
+
+    public Set getXAsistenteModels() {
+        return XAsistenteModels;
+    }
+
+    public void setXAsistenteModels(Set XAsistenteModels) {
+        this.XAsistenteModels = XAsistenteModels;
+    }
+
+    public Set getXFamiliarModels() {
+        return XFamiliarModels;
+    }
+
+    public void setXFamiliarModels(Set XFamiliarModels) {
+        this.XFamiliarModels = XFamiliarModels;
+    }
+    
 }
