@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
 import java.io.IOException;
@@ -12,26 +7,29 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author vesprada
+ * @author yop
  */
 public class AppServer extends Thread {
 
     private static final int PORT = 4444;
     private ServerSocket server;
-
-    public AppServer() {
+    private BLogic controller;
+    private int count;
+    public AppServer(BLogic controller) {
+        count=1;
+        this.controller = controller;
         try {
             server = new ServerSocket(PORT);
         } catch (IOException ex) {
             Logger.getLogger(AppServer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @Override
-    public void run(){
-        while (true){
+    public void run() {
+        while (true) {
             try {
-                server.accept();
+                new ResponseServer(server.accept(), controller,"Alarma nº"+count++).start();
             } catch (IOException ex) {
                 Logger.getLogger(AppServer.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -45,6 +43,5 @@ public class AppServer extends Thread {
     public ServerSocket getServer() {
         return server;
     }
-    
-    
+
 }

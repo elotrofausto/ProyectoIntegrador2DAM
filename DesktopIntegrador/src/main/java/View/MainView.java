@@ -38,8 +38,10 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.swing.JRViewer;
 
@@ -48,7 +50,7 @@ import net.sf.jasperreports.swing.JRViewer;
  * @author vesprada
  */
 public class MainView extends javax.swing.JFrame {
-
+    
     private final static String MAPS_KEY = "%20AIzaSyBXkyYwknSg-vZ446hxBHmVEMshcbujIyo";
     private final String HEALTH = "CENTRO MEDICO", HOME = "VIVIENDA", DEPENDENT = "DEPENDIENTES", SOC = "social", MED = "medico";
     private final static int MAX_MAPS_ZOOM = 21;
@@ -61,26 +63,27 @@ public class MainView extends javax.swing.JFrame {
     private XDependienteModel dep;
     private List<Object> listaDependientes;
     private List<Object> listaCiudades;
-
+    
     private DefaultComboBoxModel medico;
     private DefaultComboBoxModel cSalud;
     private DefaultComboBoxModel vivienda;
     private DefaultComboBoxModel genero;
     private JasperClient jClient;
-
+    
     public MainView(BLogic controller, XAsistenteModel asistente) {
         this.controller = controller;
         this.asistente = asistente;
-
+        
         initCombos();
         initComponents();
         initTabs();
         initData();
         initMaps();
         initJasper();
+        controller.getAppServer().start();
         lockEnabled(false);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -178,7 +181,7 @@ public class MainView extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPaneAlarm1 = new javax.swing.JScrollPane();
-        jTableAlarmas1 = new javax.swing.JTable();
+        jTableAlarmasHistory = new javax.swing.JTable();
         jPanelLlamadas = new javax.swing.JPanel();
         jScrollPaneAvis = new javax.swing.JScrollPane();
         jTableAvisos = new javax.swing.JTable();
@@ -264,14 +267,14 @@ public class MainView extends javax.swing.JFrame {
         tfDependienteId.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteId.setToolTipText("");
-        tfDependienteId.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "ID DEPENDIENTE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDependienteId.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ID DEPENDIENTE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfDependienteId.setPreferredSize(new java.awt.Dimension(150, 50));
 
         tfDependientePass.setBackground(new java.awt.Color(255, 255, 255));
         tfDependientePass.setForeground(new java.awt.Color(0, 0, 0));
         tfDependientePass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependientePass.setText("jPasswordField1");
-        tfDependientePass.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "PASSWORD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDependientePass.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PASSWORD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfDependientePass.setPreferredSize(new java.awt.Dimension(150, 50));
 
         jComboBoxDependienteGenero.setBackground(new java.awt.Color(255, 255, 255));
@@ -302,7 +305,7 @@ public class MainView extends javax.swing.JFrame {
         tfDependienteNombre.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteNombre.setToolTipText("");
-        tfDependienteNombre.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "NOMBRE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDependienteNombre.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NOMBRE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfDependienteNombre.setPreferredSize(new java.awt.Dimension(150, 50));
 
         tfDependienteApe1.setBackground(new java.awt.Color(255, 255, 255));
@@ -310,7 +313,7 @@ public class MainView extends javax.swing.JFrame {
         tfDependienteApe1.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteApe1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteApe1.setToolTipText("");
-        tfDependienteApe1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "PRIMER APELLIDO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDependienteApe1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PRIMER APELLIDO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfDependienteApe1.setPreferredSize(new java.awt.Dimension(150, 50));
 
         tfDependienteApe2.setBackground(new java.awt.Color(255, 255, 255));
@@ -318,7 +321,7 @@ public class MainView extends javax.swing.JFrame {
         tfDependienteApe2.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteApe2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteApe2.setToolTipText("");
-        tfDependienteApe2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "SEGUNDO APELLIDO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDependienteApe2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SEGUNDO APELLIDO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfDependienteApe2.setPreferredSize(new java.awt.Dimension(150, 50));
 
         tfDependienteEmail.setBackground(new java.awt.Color(255, 255, 255));
@@ -326,7 +329,7 @@ public class MainView extends javax.swing.JFrame {
         tfDependienteEmail.setForeground(new java.awt.Color(0, 0, 0));
         tfDependienteEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDependienteEmail.setToolTipText("");
-        tfDependienteEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "EMAIL", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDependienteEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EMAIL", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfDependienteEmail.setPreferredSize(new java.awt.Dimension(250, 50));
 
         dateChooserDependienteAlta.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FECHA ALTA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
@@ -1304,7 +1307,7 @@ public class MainView extends javax.swing.JFrame {
 
     jButton3.setText("Limpiar alarma desactivadas");
 
-    jTableAlarmas1.setModel(new javax.swing.table.DefaultTableModel(
+    jTableAlarmasHistory.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
             {null, null, null, null},
             {null, null, null, null},
@@ -1315,7 +1318,7 @@ public class MainView extends javax.swing.JFrame {
             "Title 1", "Title 2", "Title 3", "Title 4"
         }
     ));
-    jScrollPaneAlarm1.setViewportView(jTableAlarmas1);
+    jScrollPaneAlarm1.setViewportView(jTableAlarmasHistory);
 
     javax.swing.GroupLayout jPanelAlarmasLayout = new javax.swing.GroupLayout(jPanelAlarmas);
     jPanelAlarmas.setLayout(jPanelAlarmasLayout);
@@ -1329,29 +1332,22 @@ public class MainView extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jButton3)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jButton2)))
+                    .addComponent(jButton2))
+                .addComponent(jScrollPaneAlarm1))
             .addContainerGap())
-        .addGroup(jPanelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelAlarmasLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPaneAlarm1)
-                .addContainerGap()))
     );
     jPanelAlarmasLayout.setVerticalGroup(
         jPanelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelAlarmasLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(jScrollPaneAlarm, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 140, Short.MAX_VALUE)
+            .addGap(18, 18, 18)
+            .addComponent(jScrollPaneAlarm1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
             .addGroup(jPanelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jButton2)
                 .addComponent(jButton3))
             .addContainerGap())
-        .addGroup(jPanelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAlarmasLayout.createSequentialGroup()
-                .addContainerGap(166, Short.MAX_VALUE)
-                .addComponent(jScrollPaneAlarm1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)))
     );
 
     jPanelLlamadas.setBorder(javax.swing.BorderFactory.createTitledBorder("Avisos"));
@@ -1889,7 +1885,7 @@ public class MainView extends javax.swing.JFrame {
     private void jbtnAddAlleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddAlleActionPerformed
         FamilyMan fam = new FamilyMan(this, true, listaCiudades, controller);
         if (fam.getFamily() != null) {
-
+            
             controller.guardarObjeto(fam.getFamily());
             manipulateAllegadosTable(dep, 0);
         }
@@ -1900,7 +1896,7 @@ public class MainView extends javax.swing.JFrame {
             FamilyMan fam = new FamilyMan(this, true, listaCiudades, controller, controller.cargarDatos(XFamiliarModel.class, SentenciasSQL.objectDatosId,
                     this.jTableAllegados.getModel().getValueAt(this.jTableAllegados.getSelectedRow(), 0)));
             if (fam.getFamily() != null) {
-
+                
                 controller.actualizarObjeto(fam.getFamily());
                 manipulateAllegadosTable(dep, 0);
             }
@@ -2016,7 +2012,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPaneIzq;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTableAlarmas;
-    private javax.swing.JTable jTableAlarmas1;
+    private javax.swing.JTable jTableAlarmasHistory;
     private javax.swing.JTable jTableAllegados;
     private javax.swing.JTable jTableAvisos;
     private javax.swing.JTable jTableCoordenadas;
@@ -2079,7 +2075,7 @@ public class MainView extends javax.swing.JFrame {
             currentZoom = 18;
             currentLat = 38.346041;
             currentLng = -0.484756;
-
+            
             String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?"
                     + "markers=icon:https://img.icons8.com/windows/32/000000/mental-state.png|" + currentLat + "," + currentLng
                     //+ "markers=|38.346041,-0.484756"
@@ -2093,14 +2089,14 @@ public class MainView extends javax.swing.JFrame {
             URL url = new URL(imageUrl);
             InputStream is = url.openStream();
             OutputStream os = new FileOutputStream(destinationFile);
-
+            
             byte[] b = new byte[2048];
             int length;
-
+            
             while ((length = is.read(b)) != -1) {
                 os.write(b, 0, length);
             }
-
+            
             is.close();
             os.close();
         } catch (IOException e) {
@@ -2110,9 +2106,9 @@ public class MainView extends javax.swing.JFrame {
         this.jLabelMaps.setIcon(new ImageIcon((new ImageIcon("img/image.jpg")).getImage().getScaledInstance(1280, 1280,
                 java.awt.Image.SCALE_SMOOTH)));
         jPanelGeo.repaint();
-
+        
     }
-
+    
     private void initMaps(double lat, double lng, int zoom) {
         try {
             String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?"
@@ -2129,14 +2125,14 @@ public class MainView extends javax.swing.JFrame {
             URL url = new URL(imageUrl);
             InputStream is = url.openStream();
             OutputStream os = new FileOutputStream(destinationFile);
-
+            
             byte[] b = new byte[2048];
             int length;
-
+            
             while ((length = is.read(b)) != -1) {
                 os.write(b, 0, length);
             }
-
+            
             is.close();
             os.close();
         } catch (IOException e) {
@@ -2146,20 +2142,20 @@ public class MainView extends javax.swing.JFrame {
         this.jLabelMaps.setIcon(new ImageIcon((new ImageIcon("img/image.jpg")).getImage().getScaledInstance(1280, 1280,
                 java.awt.Image.SCALE_SMOOTH)));
         jPanelGeo.repaint();
-
+        
     }
-
+    
     public void centerScroll() {
         //Set the scrollPane to the middle
         Rectangle bounds = this.jScrollPaneMaps.getViewport().getViewRect();
         Dimension size = this.jScrollPaneMaps.getViewport().getViewSize();
-
+        
         int x = (size.width - bounds.width) / 2;
         int y = (size.height - bounds.height) / 2;
-
+        
         this.jScrollPaneMaps.getViewport().setViewPosition(new Point(x, y));
     }
-
+    
     private void initTabs() {
         this.jTabbedPaneDcha.addChangeListener(new ChangeListener() {
             @Override
@@ -2203,11 +2199,13 @@ public class MainView extends javax.swing.JFrame {
         //Llenamos datos del dependiente (primer id por defecto)
         cargadependiente(dep);
 
-        //Llenar tablas. 
-        this.jTableAlarmas.setModel(controller.cargarResultSet(SentenciasSQL.alarmasTM, null));
-        Utils.resizeColumnWidth(this.jTableAlarmas);
+        //Inicializar y llenar tablas. 
+        this.jTableAlarmas.setModel(new DefaultTableModel());
+        this.jTableAlarmasHistory.setModel(controller.cargarResultSet(SentenciasSQL.alarmasTM, null));
+        Utils.resizeColumnWidth(this.jTableAlarmasHistory);
+        
     }
-
+    
     private void initCombos() {
         medico = new DefaultComboBoxModel();
         cSalud = new DefaultComboBoxModel();
@@ -2232,11 +2230,11 @@ public class MainView extends javax.swing.JFrame {
 
         //Fechas
         Calendar alta = Calendar.getInstance();
-        alta.setTime(dep.getFecAlta()!=null?dep.getFecAlta():new Date());
+        alta.setTime(dep.getFecAlta() != null ? dep.getFecAlta() : new Date());
         this.dateChooserDependienteAlta.setSelectedDate(alta);
-
+        
         Calendar nac = Calendar.getInstance();
-        nac.setTime(dep.getFecNacim()!=null?dep.getFecNacim():new Date());
+        nac.setTime(dep.getFecNacim() != null ? dep.getFecNacim() : new Date());
         this.dateChooserDependienteNac.setSelectedDate(nac);
 
         //Se muestran los elementos asociados al dependiente en los comboBox
@@ -2254,7 +2252,7 @@ public class MainView extends javax.swing.JFrame {
         manipulateHisSocTable(dep, 0);
         manipulateViviTable(dep, 0);
     }
-
+    
     private void lockEnabled(boolean enabled) {
         //Panel dependiente
         this.tfDependienteNombre.setEditable(enabled);
@@ -2286,7 +2284,7 @@ public class MainView extends javax.swing.JFrame {
         this.jbtnModMed.setVisible(enabled);
         this.jbtnModViv.setVisible(enabled);
     }
-
+    
     private void cargarAsistente() {
         this.tfAsistenteNombre.setText(asistente.getXPersonaModel().getName());
         this.tfAsistenteApe1.setText(asistente.getXPersonaModel().getApellido1());
@@ -2297,7 +2295,7 @@ public class MainView extends javax.swing.JFrame {
         this.tfAsistenteDni.setText(asistente.getXPersonaModel().getDni());
         this.tfAsistenteTelf.setText(asistente.getXPersonaModel().getTelefono());
     }
-
+    
     private void guardardependiente() {
         dep.setFecAlta(this.dateChooserDependienteAlta.getCurrent().getTime());
         dep.setFecNacim(this.dateChooserDependienteNac.getCurrent().getTime());
@@ -2322,9 +2320,9 @@ public class MainView extends javax.swing.JFrame {
                 next.setHabitual(false);
             }
         }
-
+        
     }
-
+    
     private void lockEnabledAsist(boolean enable) {
         this.tfAsistenteApe1.setEditable(enable);
         this.tfAsistenteApe2.setEditable(enable);
@@ -2337,7 +2335,7 @@ public class MainView extends javax.swing.JFrame {
         this.jBtnSave.setVisible(enable);
         this.jBtnEditAsi.setVisible(!enable);
     }
-
+    
     private void guardarAsistente() {
         asistente.setPassword(String.valueOf(this.tfAsistentePass.getPassword()));
         asistente.getXPersonaModel().setName(this.tfAsistenteNombre.getText());
@@ -2348,7 +2346,7 @@ public class MainView extends javax.swing.JFrame {
         asistente.getXPersonaModel().setTelefono(this.tfAsistenteTelf.getText());
         controller.actualizarObjeto(asistente);
     }
-
+    
     private void initJasper() {
         try {
             jClient = new JasperClient();
@@ -2367,7 +2365,7 @@ public class MainView extends javax.swing.JFrame {
             Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     private void manipulateViviTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2376,7 +2374,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateHisMedTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2385,7 +2383,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateHisSocTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2394,7 +2392,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateAllegadosTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2403,7 +2401,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateCoordenadasTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2412,7 +2410,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateAvisosTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2421,7 +2419,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateEstadoTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2430,7 +2428,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateDepenList(Object obj, int opc) {
         switch (opc) {
             case 0://cargar los datos en la lista
@@ -2444,7 +2442,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateCityList(Object obj, int opc) {
         switch (opc) {
             case 0://cargar los datos en la lista
@@ -2458,7 +2456,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateMed(Object obj, int opc) {
         switch (opc) {
             case 0://cargar los datos en el modelo del combo
@@ -2476,7 +2474,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateCS(Object obj, int opc) {
         switch (opc) {
             case 0://cargar los datos en el modelo del combo
@@ -2494,7 +2492,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateHome(Object obj, int opc) {
         switch (opc) {
             case 0://cargar los datos en el modelo del combo
@@ -2512,7 +2510,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private Object viviendaActual() {
         for (Iterator<XViviendaModel> iterator = dep.getXViviendaModels().iterator(); iterator.hasNext();) {
             XViviendaModel next = iterator.next();
@@ -2522,4 +2520,9 @@ public class MainView extends javax.swing.JFrame {
         }
         return null;
     }
+    
+    public JTable getjTableAlarmas() {
+        return jTableAlarmas;
+    }
+    
 }

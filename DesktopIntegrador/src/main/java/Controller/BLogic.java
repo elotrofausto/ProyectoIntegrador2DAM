@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import Models.XAlarmaModel;
 import Models.XAsistenteModel;
 import Models.XDependienteModel;
 import Models.XViviendaModel;
@@ -15,6 +16,7 @@ import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
 /**
@@ -22,32 +24,32 @@ import javax.swing.table.TableModel;
  * @author vesprada
  */
 public class BLogic {
-    
+
     private MainView mainView;
     private AppServer appServer;
     private HibernateController hibernate;
     private ServerSocket serverSocket;
     private XAsistenteModel asistente;
-    
+
     public BLogic() {
         initHibernate();
+        serverSocket = initServerSocket();
         asistente = getAssistant();
         initView();
-        serverSocket = initServerSocket();
         hibernate.logDesktopApp(serverSocket);
     }
-    
+
     private void initView() {
         mainView = new MainView(this, asistente);
         mainView.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mainView.setVisible(true);
     }
-    
+
     private void initHibernate() {
         hibernate = new HibernateController();
         hibernate.start();
     }
-    
+
     private XAsistenteModel getAssistant() {
         AccessAsist access = null;
         try {
@@ -57,10 +59,33 @@ public class BLogic {
         }
         return access.getAsistente();
     }
-    
+
     private ServerSocket initServerSocket() {
-        appServer = new AppServer();
+        appServer = new AppServer(this);
         return appServer.getServer();
+    }
+
+    //Insertamos la ALARMA en la tabla de alarmas activas
+    public synchronized void insertAlarm(XAlarmaModel alarm, ResponseServer resp) {
+        Object[] row = {resp, alarm.getFechaHora().toString(), alarm.getId()};
+        ((DefaultTableModel) mainView.getjTableAlarmas().getModel()).addRow(row);
+    }
+
+    //Eliminamos la ALARMA en la tabla de alarmas activas
+    public synchronized void removeAlarm(XAlarmaModel alarm, ResponseServer resp) {
+        for (int i = 0; i < mainView.getjTableAlarmas().getRowCount(); i++) {
+            if (mainView.getjTableAlarmas().getValueAt(i, 0).equals(resp)) {
+                ((DefaultTableModel) mainView.getjTableAlarmas().getModel()).removeRow(i);
+            }
+        }
+    }
+
+    //Recorre las viviendas del dependiente para ponerlas a false(no son la habitual)
+    public void reasignarHabitual(XDependienteModel dep) {
+        for (Iterator<XViviendaModel> iterator = dep.getXViviendaModels().iterator(); iterator.hasNext();) {
+            XViviendaModel next = iterator.next();
+            next.setHabitual(false);
+        }
     }
 
     //Gestión de la BD
@@ -74,11 +99,11 @@ public class BLogic {
     public List<Object> cargarDatos(String query) {
         return hibernate.readWithQuery(query);
     }
-    
+
     public Object cargarDatos(Class c, String critery, Object opc) {
         return hibernate.read(c, critery, opc);
     }
-    
+
     public TableModel cargarResultSet(String query, Object dependiente) {
         return hibernate.getRs(query, dependiente);
     }
@@ -102,12 +127,13 @@ public class BLogic {
     public HibernateController getHibernate() {
         return hibernate;
     }
-    
-    public void reasignarHabitual(XDependienteModel dep) {
-        for (Iterator<XViviendaModel> iterator = dep.getXViviendaModels().iterator(); iterator.hasNext();) {
-            XViviendaModel next = iterator.next();
-            next.setHabitual(false);
-        }
+
+    public AppServer getAppServer() {
+        return appServer;
     }
-    
+
+    public MainView getMainView() {
+        return mainView;
+    }
+
 }
