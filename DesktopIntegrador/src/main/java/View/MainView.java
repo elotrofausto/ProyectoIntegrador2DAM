@@ -7,7 +7,6 @@ package View;
 
 import Controller.BLogic;
 import Controller.ControlTask;
-import Controller.ResponseServer;
 import Models.XAlarmaModel;
 import Models.XAsistenteModel;
 import Models.XCiudadModel;
@@ -199,6 +198,7 @@ public class MainView extends javax.swing.JFrame {
         jButtonZoomIn = new javax.swing.JButton();
         jScrollPaneCoord = new javax.swing.JScrollPane();
         jTableCoordenadas = new javax.swing.JTable();
+        jBtnRefrescoMaps = new javax.swing.JButton();
         menuBarAsist = new javax.swing.JMenuBar();
         menuAsist = new javax.swing.JMenu();
         itemCerrarSesion = new javax.swing.JMenuItem();
@@ -1483,6 +1483,13 @@ public class MainView extends javax.swing.JFrame {
     ));
     jScrollPaneCoord.setViewportView(jTableCoordenadas);
 
+    jBtnRefrescoMaps.setText("REFRESCO");
+    jBtnRefrescoMaps.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jBtnRefrescoMapsActionPerformed(evt);
+        }
+    });
+
     javax.swing.GroupLayout jPanelGeoLayout = new javax.swing.GroupLayout(jPanelGeo);
     jPanelGeo.setLayout(jPanelGeoLayout);
     jPanelGeoLayout.setHorizontalGroup(
@@ -1498,11 +1505,14 @@ public class MainView extends javax.swing.JFrame {
                             .addGap(6, 6, 6)
                             .addComponent(jScrollPaneCoord)
                             .addGap(16, 16, 16)
-                            .addComponent(jButtonZoomOut, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButtonZoomIn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButtonCenterMap, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelGeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(jPanelGeoLayout.createSequentialGroup()
+                                    .addComponent(jButtonZoomOut, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jButtonZoomIn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jButtonCenterMap, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jBtnRefrescoMaps, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(jScrollPaneMaps))))
             .addContainerGap())
     );
@@ -1515,11 +1525,17 @@ public class MainView extends javax.swing.JFrame {
             .addComponent(jScrollPaneMaps, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanelGeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jButtonZoomIn)
-                .addComponent(jButtonZoomOut)
-                .addComponent(jButtonCenterMap)
-                .addComponent(jScrollPaneCoord, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanelGeoLayout.createSequentialGroup()
+                    .addGroup(jPanelGeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButtonZoomIn)
+                        .addComponent(jButtonZoomOut)
+                        .addComponent(jButtonCenterMap))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jBtnRefrescoMaps)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanelGeoLayout.createSequentialGroup()
+                    .addComponent(jScrollPaneCoord, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addContainerGap())))
     );
 
     jTabbedPaneDcha.addTab("Geolocalización", jPanelGeo);
@@ -1971,17 +1987,17 @@ public class MainView extends javax.swing.JFrame {
     private void jBtnAceptAlarmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAceptAlarmActionPerformed
         if (this.jTableAlarmas.getSelectedRow() >= 0) {
             ControlTask conn = (ControlTask) this.jTableAlarmas.getValueAt(this.jTableAlarmas.getSelectedRow(), 0);
-            dep = BLogic.getDependiente((String) this.jTableAlarmas.getValueAt(this.jTableAlarmas.getSelectedRow(), 2),listaDependientes);
+            dep = BLogic.getDependiente((String) this.jTableAlarmas.getValueAt(this.jTableAlarmas.getSelectedRow(), 2), listaDependientes);
             XAlarmaModel alarm = new XAlarmaModel(asistente, dep, (Date) this.jTableAlarmas.getValueAt(this.jTableAlarmas.getSelectedRow(), 1));
             controller.guardarObjeto(alarm);
-            manipulateAlarmHistory(null,0);
+            manipulateAlarmHistory(null, 0);
             controller.removeAlarm(((ControlTask) this.jTableAlarmas.getValueAt(this.jTableAlarmas.getSelectedRow(), 0)));
             conn.setStatus(true);
             conn.interrupt();
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, elija antes un registro de la tabla");
         }
-        
+
     }//GEN-LAST:event_jBtnAceptAlarmActionPerformed
 
     private void jBtnCancelAlarmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelAlarmActionPerformed
@@ -1992,6 +2008,10 @@ public class MainView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Por favor, elija antes un registro de la tabla");
         }
     }//GEN-LAST:event_jBtnCancelAlarmActionPerformed
+
+    private void jBtnRefrescoMapsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnRefrescoMapsActionPerformed
+        manipulateCoordenadasTable(dep, 0);
+    }//GEN-LAST:event_jBtnRefrescoMapsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -2004,6 +2024,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton jBtnCancel;
     private javax.swing.JButton jBtnCancelAlarm;
     private javax.swing.JButton jBtnEditAsi;
+    private javax.swing.JButton jBtnRefrescoMaps;
     private javax.swing.JButton jBtnSave;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
@@ -2476,7 +2497,7 @@ public class MainView extends javax.swing.JFrame {
     private void manipulateAlarmHistory(Object obj, int opc) {
         switch (opc) {
             case 0:
-                this.jTableAlarmasHistory.setModel(controller.cargarResultSet(SentenciasSQL.alarmasTM, null));
+                this.jTableAlarmasHistory.setModel(controller.cargarResultSet(SentenciasSQL.alarmasTM, obj));
                 Utils.resizeColumnWidth(this.jTableAlarmasHistory);
                 break;
         }

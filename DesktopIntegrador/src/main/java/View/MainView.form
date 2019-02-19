@@ -2296,11 +2296,16 @@
                                       <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
                                       <Component id="jScrollPaneCoord" max="32767" attributes="0"/>
                                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                                      <Component id="jButtonZoomOut" min="-2" pref="43" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButtonZoomIn" min="-2" pref="43" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButtonCenterMap" min="-2" pref="43" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="jButtonZoomOut" min="-2" pref="43" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jButtonZoomIn" min="-2" pref="43" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="jButtonCenterMap" min="-2" pref="43" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jBtnRefrescoMaps" min="-2" pref="139" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                                   <Component id="jScrollPaneMaps" max="32767" attributes="0"/>
                               </Group>
@@ -2319,12 +2324,21 @@
                       <Component id="jScrollPaneMaps" min="-2" pref="450" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonZoomIn" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonZoomOut" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButtonCenterMap" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPaneCoord" min="-2" pref="83" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jButtonZoomIn" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonZoomOut" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonCenterMap" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" max="-2" attributes="0"/>
+                              <Component id="jBtnRefrescoMaps" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="73" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="jScrollPaneCoord" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -2395,6 +2409,14 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JButton" name="jBtnRefrescoMaps">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="REFRESCO"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnRefrescoMapsActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
       </SubComponents>
