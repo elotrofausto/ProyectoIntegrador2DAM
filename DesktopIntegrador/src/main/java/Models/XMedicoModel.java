@@ -87,4 +87,9 @@ public class XMedicoModel implements java.io.Serializable {
         this.XDependienteModels = XDependienteModels;
     }
 
+    @Override
+    public String toString() {
+        return name + " " + apellido1 + " " + apellido2;
+    }
+
 }

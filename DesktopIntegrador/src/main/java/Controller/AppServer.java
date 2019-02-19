@@ -29,7 +29,7 @@ public class AppServer extends Thread {
     public void run() {
         while (true) {
             try {
-                new ResponseServer(server.accept(), controller,"Alarma nº"+count++).start();
+                new ResponseServer(server.accept(), controller,"Alarma N_"+count++).start();
             } catch (IOException ex) {
                 Logger.getLogger(AppServer.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -79,7 +79,7 @@ public class DepenStat extends javax.swing.JDialog {
         setMaximumSize(new java.awt.Dimension(800, 300));
         setPreferredSize(new java.awt.Dimension(800, 300));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ESTADO DEL DEPENDIENTE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "ESTADO DEL DEPENDIENTE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(790, 220));
 
         dateTimeApunte.setBackground(new java.awt.Color(255, 255, 255));

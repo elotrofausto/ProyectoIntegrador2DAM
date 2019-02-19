@@ -6,6 +6,9 @@
 package View;
 
 import Controller.BLogic;
+import Controller.ControlTask;
+import Controller.ResponseServer;
+import Models.XAlarmaModel;
 import Models.XAsistenteModel;
 import Models.XCiudadModel;
 import Models.XCsModel;
@@ -50,7 +53,7 @@ import net.sf.jasperreports.swing.JRViewer;
  * @author vesprada
  */
 public class MainView extends javax.swing.JFrame {
-    
+
     private final static String MAPS_KEY = "%20AIzaSyBXkyYwknSg-vZ446hxBHmVEMshcbujIyo";
     private final String HEALTH = "CENTRO MEDICO", HOME = "VIVIENDA", DEPENDENT = "DEPENDIENTES", SOC = "social", MED = "medico";
     private final static int MAX_MAPS_ZOOM = 21;
@@ -63,17 +66,17 @@ public class MainView extends javax.swing.JFrame {
     private XDependienteModel dep;
     private List<Object> listaDependientes;
     private List<Object> listaCiudades;
-    
+
     private DefaultComboBoxModel medico;
     private DefaultComboBoxModel cSalud;
     private DefaultComboBoxModel vivienda;
     private DefaultComboBoxModel genero;
     private JasperClient jClient;
-    
+
     public MainView(BLogic controller, XAsistenteModel asistente) {
         this.controller = controller;
         this.asistente = asistente;
-        
+
         initCombos();
         initComponents();
         initTabs();
@@ -83,7 +86,7 @@ public class MainView extends javax.swing.JFrame {
         controller.getAppServer().start();
         lockEnabled(false);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -178,8 +181,8 @@ public class MainView extends javax.swing.JFrame {
         jPanelAlarmas = new javax.swing.JPanel();
         jScrollPaneAlarm = new javax.swing.JScrollPane();
         jTableAlarmas = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jBtnAceptAlarm = new javax.swing.JButton();
+        jBtnCancelAlarm = new javax.swing.JButton();
         jScrollPaneAlarm1 = new javax.swing.JScrollPane();
         jTableAlarmasHistory = new javax.swing.JTable();
         jPanelLlamadas = new javax.swing.JPanel();
@@ -1143,7 +1146,7 @@ public class MainView extends javax.swing.JFrame {
     );
     jPanelAnalisisLayout.setVerticalGroup(
         jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 379, Short.MAX_VALUE)
+        .addGap(0, 380, Short.MAX_VALUE)
     );
 
     jBtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IconoCancelar25x25.png"))); // NOI18N
@@ -1303,9 +1306,23 @@ public class MainView extends javax.swing.JFrame {
     ));
     jScrollPaneAlarm.setViewportView(jTableAlarmas);
 
-    jButton2.setText("Desactivar alarma");
+    jBtnAceptAlarm.setText("ACEPTAR");
+    jBtnAceptAlarm.setPreferredSize(new java.awt.Dimension(100, 35));
+    jBtnAceptAlarm.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jBtnAceptAlarmActionPerformed(evt);
+        }
+    });
 
-    jButton3.setText("Limpiar alarma desactivadas");
+    jBtnCancelAlarm.setText("PASAR");
+    jBtnCancelAlarm.setPreferredSize(new java.awt.Dimension(100, 35));
+    jBtnCancelAlarm.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jBtnCancelAlarmActionPerformed(evt);
+        }
+    });
+
+    jScrollPaneAlarm1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "HISTORICO DE ALARMAS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
 
     jTableAlarmasHistory.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
@@ -1330,9 +1347,9 @@ public class MainView extends javax.swing.JFrame {
                 .addComponent(jScrollPaneAlarm)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAlarmasLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jButton3)
+                    .addComponent(jBtnCancelAlarm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jButton2))
+                    .addComponent(jBtnAceptAlarm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addComponent(jScrollPaneAlarm1))
             .addContainerGap())
     );
@@ -1341,12 +1358,12 @@ public class MainView extends javax.swing.JFrame {
         .addGroup(jPanelAlarmasLayout.createSequentialGroup()
             .addContainerGap()
             .addComponent(jScrollPaneAlarm, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(18, 18, 18)
-            .addComponent(jScrollPaneAlarm1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+            .addGap(6, 6, 6)
             .addGroup(jPanelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jButton2)
-                .addComponent(jButton3))
+                .addComponent(jBtnAceptAlarm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBtnCancelAlarm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(18, 18, Short.MAX_VALUE)
+            .addComponent(jScrollPaneAlarm1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
     );
 
@@ -1419,7 +1436,7 @@ public class MainView extends javax.swing.JFrame {
             .addGap(10, 10, 10)
             .addComponent(jPanelRecursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanelAlarmas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelAlarmas, javax.swing.GroupLayout.PREFERRED_SIZE, 293, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelLlamadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
@@ -1885,7 +1902,7 @@ public class MainView extends javax.swing.JFrame {
     private void jbtnAddAlleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddAlleActionPerformed
         FamilyMan fam = new FamilyMan(this, true, listaCiudades, controller);
         if (fam.getFamily() != null) {
-            
+
             controller.guardarObjeto(fam.getFamily());
             manipulateAllegadosTable(dep, 0);
         }
@@ -1896,7 +1913,7 @@ public class MainView extends javax.swing.JFrame {
             FamilyMan fam = new FamilyMan(this, true, listaCiudades, controller, controller.cargarDatos(XFamiliarModel.class, SentenciasSQL.objectDatosId,
                     this.jTableAllegados.getModel().getValueAt(this.jTableAllegados.getSelectedRow(), 0)));
             if (fam.getFamily() != null) {
-                
+
                 controller.actualizarObjeto(fam.getFamily());
                 manipulateAllegadosTable(dep, 0);
             }
@@ -1951,6 +1968,31 @@ public class MainView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jbtnRemovRecursoActionPerformed
 
+    private void jBtnAceptAlarmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAceptAlarmActionPerformed
+        if (this.jTableAlarmas.getSelectedRow() >= 0) {
+            ControlTask conn = (ControlTask) this.jTableAlarmas.getValueAt(this.jTableAlarmas.getSelectedRow(), 0);
+            dep = BLogic.getDependiente((String) this.jTableAlarmas.getValueAt(this.jTableAlarmas.getSelectedRow(), 2),listaDependientes);
+            XAlarmaModel alarm = new XAlarmaModel(asistente, dep, (Date) this.jTableAlarmas.getValueAt(this.jTableAlarmas.getSelectedRow(), 1));
+            controller.guardarObjeto(alarm);
+            manipulateAlarmHistory(null,0);
+            controller.removeAlarm(((ControlTask) this.jTableAlarmas.getValueAt(this.jTableAlarmas.getSelectedRow(), 0)));
+            conn.setStatus(true);
+            conn.interrupt();
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, elija antes un registro de la tabla");
+        }
+        
+    }//GEN-LAST:event_jBtnAceptAlarmActionPerformed
+
+    private void jBtnCancelAlarmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelAlarmActionPerformed
+        if (this.jTableAlarmas.getSelectedRow() >= 0) {
+            ((ControlTask) this.jTableAlarmas.getValueAt(this.jTableAlarmas.getSelectedRow(), 0)).interrupt();
+            controller.removeAlarm(((ControlTask) this.jTableAlarmas.getValueAt(this.jTableAlarmas.getSelectedRow(), 0)));
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, elija antes un registro de la tabla");
+        }
+    }//GEN-LAST:event_jBtnCancelAlarmActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private datechooser.beans.DateChooserCombo dateChooserDependienteAlta;
@@ -1958,12 +2000,12 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemCerrarSesion;
     private javax.swing.JMenuItem itemInfo;
     private javax.swing.JMenuItem itemSalir;
+    private javax.swing.JButton jBtnAceptAlarm;
     private javax.swing.JButton jBtnCancel;
+    private javax.swing.JButton jBtnCancelAlarm;
     private javax.swing.JButton jBtnEditAsi;
     private javax.swing.JButton jBtnSave;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonCancel;
@@ -2075,7 +2117,7 @@ public class MainView extends javax.swing.JFrame {
             currentZoom = 18;
             currentLat = 38.346041;
             currentLng = -0.484756;
-            
+
             String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?"
                     + "markers=icon:https://img.icons8.com/windows/32/000000/mental-state.png|" + currentLat + "," + currentLng
                     //+ "markers=|38.346041,-0.484756"
@@ -2089,14 +2131,14 @@ public class MainView extends javax.swing.JFrame {
             URL url = new URL(imageUrl);
             InputStream is = url.openStream();
             OutputStream os = new FileOutputStream(destinationFile);
-            
+
             byte[] b = new byte[2048];
             int length;
-            
+
             while ((length = is.read(b)) != -1) {
                 os.write(b, 0, length);
             }
-            
+
             is.close();
             os.close();
         } catch (IOException e) {
@@ -2106,9 +2148,9 @@ public class MainView extends javax.swing.JFrame {
         this.jLabelMaps.setIcon(new ImageIcon((new ImageIcon("img/image.jpg")).getImage().getScaledInstance(1280, 1280,
                 java.awt.Image.SCALE_SMOOTH)));
         jPanelGeo.repaint();
-        
+
     }
-    
+
     private void initMaps(double lat, double lng, int zoom) {
         try {
             String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?"
@@ -2125,14 +2167,14 @@ public class MainView extends javax.swing.JFrame {
             URL url = new URL(imageUrl);
             InputStream is = url.openStream();
             OutputStream os = new FileOutputStream(destinationFile);
-            
+
             byte[] b = new byte[2048];
             int length;
-            
+
             while ((length = is.read(b)) != -1) {
                 os.write(b, 0, length);
             }
-            
+
             is.close();
             os.close();
         } catch (IOException e) {
@@ -2142,20 +2184,20 @@ public class MainView extends javax.swing.JFrame {
         this.jLabelMaps.setIcon(new ImageIcon((new ImageIcon("img/image.jpg")).getImage().getScaledInstance(1280, 1280,
                 java.awt.Image.SCALE_SMOOTH)));
         jPanelGeo.repaint();
-        
+
     }
-    
+
     public void centerScroll() {
         //Set the scrollPane to the middle
         Rectangle bounds = this.jScrollPaneMaps.getViewport().getViewRect();
         Dimension size = this.jScrollPaneMaps.getViewport().getViewSize();
-        
+
         int x = (size.width - bounds.width) / 2;
         int y = (size.height - bounds.height) / 2;
-        
+
         this.jScrollPaneMaps.getViewport().setViewPosition(new Point(x, y));
     }
-    
+
     private void initTabs() {
         this.jTabbedPaneDcha.addChangeListener(new ChangeListener() {
             @Override
@@ -2200,12 +2242,14 @@ public class MainView extends javax.swing.JFrame {
         cargadependiente(dep);
 
         //Inicializar y llenar tablas. 
-        this.jTableAlarmas.setModel(new DefaultTableModel());
-        this.jTableAlarmasHistory.setModel(controller.cargarResultSet(SentenciasSQL.alarmasTM, null));
-        Utils.resizeColumnWidth(this.jTableAlarmasHistory);
-        
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ALARMAS");
+        model.addColumn("FECHA");
+        model.addColumn("NIF");
+        this.jTableAlarmas.setModel(model);
+        manipulateAlarmHistory(null, 0);
     }
-    
+
     private void initCombos() {
         medico = new DefaultComboBoxModel();
         cSalud = new DefaultComboBoxModel();
@@ -2232,7 +2276,7 @@ public class MainView extends javax.swing.JFrame {
         Calendar alta = Calendar.getInstance();
         alta.setTime(dep.getFecAlta() != null ? dep.getFecAlta() : new Date());
         this.dateChooserDependienteAlta.setSelectedDate(alta);
-        
+
         Calendar nac = Calendar.getInstance();
         nac.setTime(dep.getFecNacim() != null ? dep.getFecNacim() : new Date());
         this.dateChooserDependienteNac.setSelectedDate(nac);
@@ -2252,7 +2296,7 @@ public class MainView extends javax.swing.JFrame {
         manipulateHisSocTable(dep, 0);
         manipulateViviTable(dep, 0);
     }
-    
+
     private void lockEnabled(boolean enabled) {
         //Panel dependiente
         this.tfDependienteNombre.setEditable(enabled);
@@ -2284,7 +2328,7 @@ public class MainView extends javax.swing.JFrame {
         this.jbtnModMed.setVisible(enabled);
         this.jbtnModViv.setVisible(enabled);
     }
-    
+
     private void cargarAsistente() {
         this.tfAsistenteNombre.setText(asistente.getXPersonaModel().getName());
         this.tfAsistenteApe1.setText(asistente.getXPersonaModel().getApellido1());
@@ -2295,7 +2339,7 @@ public class MainView extends javax.swing.JFrame {
         this.tfAsistenteDni.setText(asistente.getXPersonaModel().getDni());
         this.tfAsistenteTelf.setText(asistente.getXPersonaModel().getTelefono());
     }
-    
+
     private void guardardependiente() {
         dep.setFecAlta(this.dateChooserDependienteAlta.getCurrent().getTime());
         dep.setFecNacim(this.dateChooserDependienteNac.getCurrent().getTime());
@@ -2320,9 +2364,9 @@ public class MainView extends javax.swing.JFrame {
                 next.setHabitual(false);
             }
         }
-        
+
     }
-    
+
     private void lockEnabledAsist(boolean enable) {
         this.tfAsistenteApe1.setEditable(enable);
         this.tfAsistenteApe2.setEditable(enable);
@@ -2335,7 +2379,7 @@ public class MainView extends javax.swing.JFrame {
         this.jBtnSave.setVisible(enable);
         this.jBtnEditAsi.setVisible(!enable);
     }
-    
+
     private void guardarAsistente() {
         asistente.setPassword(String.valueOf(this.tfAsistentePass.getPassword()));
         asistente.getXPersonaModel().setName(this.tfAsistenteNombre.getText());
@@ -2346,7 +2390,7 @@ public class MainView extends javax.swing.JFrame {
         asistente.getXPersonaModel().setTelefono(this.tfAsistenteTelf.getText());
         controller.actualizarObjeto(asistente);
     }
-    
+
     private void initJasper() {
         try {
             jClient = new JasperClient();
@@ -2365,7 +2409,7 @@ public class MainView extends javax.swing.JFrame {
             Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private void manipulateViviTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2374,7 +2418,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
     private void manipulateHisMedTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2383,7 +2427,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
     private void manipulateHisSocTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2392,7 +2436,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
     private void manipulateAllegadosTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2401,7 +2445,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
     private void manipulateCoordenadasTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2410,7 +2454,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
     private void manipulateAvisosTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2419,7 +2463,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
     private void manipulateEstadoTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2428,7 +2472,16 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
+    private void manipulateAlarmHistory(Object obj, int opc) {
+        switch (opc) {
+            case 0:
+                this.jTableAlarmasHistory.setModel(controller.cargarResultSet(SentenciasSQL.alarmasTM, null));
+                Utils.resizeColumnWidth(this.jTableAlarmasHistory);
+                break;
+        }
+    }
+
     private void manipulateDepenList(Object obj, int opc) {
         switch (opc) {
             case 0://cargar los datos en la lista
@@ -2442,7 +2495,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
     private void manipulateCityList(Object obj, int opc) {
         switch (opc) {
             case 0://cargar los datos en la lista
@@ -2456,7 +2509,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
     private void manipulateMed(Object obj, int opc) {
         switch (opc) {
             case 0://cargar los datos en el modelo del combo
@@ -2474,7 +2527,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
     private void manipulateCS(Object obj, int opc) {
         switch (opc) {
             case 0://cargar los datos en el modelo del combo
@@ -2492,7 +2545,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
     private void manipulateHome(Object obj, int opc) {
         switch (opc) {
             case 0://cargar los datos en el modelo del combo
@@ -2510,7 +2563,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-    
+
     private Object viviendaActual() {
         for (Iterator<XViviendaModel> iterator = dep.getXViviendaModels().iterator(); iterator.hasNext();) {
             XViviendaModel next = iterator.next();
@@ -2520,9 +2573,13 @@ public class MainView extends javax.swing.JFrame {
         }
         return null;
     }
-    
+
     public JTable getjTableAlarmas() {
         return jTableAlarmas;
     }
-    
+
+    public List<Object> getListaDependientes() {
+        return listaDependientes;
+    }
+
 }

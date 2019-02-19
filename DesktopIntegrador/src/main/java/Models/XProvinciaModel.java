@@ -47,4 +47,9 @@ public class XProvinciaModel implements java.io.Serializable {
         this.XCiudadModels = XCiudadModels;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
 }

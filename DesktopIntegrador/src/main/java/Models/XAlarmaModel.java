@@ -14,10 +14,10 @@ public class XAlarmaModel implements java.io.Serializable {
     public XAlarmaModel() {
     }
 
-    public XAlarmaModel(int id, XAsistenteModel XAsistenteModel, XDependienteModel XDependienteModel) {
-        this.id = id;
+    public XAlarmaModel(XAsistenteModel XAsistenteModel, XDependienteModel XDependienteModel, Date fechaHora) {
         this.XAsistenteModel = XAsistenteModel;
         this.XDependienteModel = XDependienteModel;
+        this.fechaHora = fechaHora;
     }
 
     public XAlarmaModel(int id, XAsistenteModel XAsistenteModel, XDependienteModel XDependienteModel, Date fechaHora, String descripcion, String tipo) {
@@ -27,6 +27,10 @@ public class XAlarmaModel implements java.io.Serializable {
         this.fechaHora = fechaHora;
         this.descripcion = descripcion;
         this.tipo = tipo;
+    }
+
+    public XAlarmaModel(XAsistenteModel asistente, XDependienteModel dep, String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getId() {

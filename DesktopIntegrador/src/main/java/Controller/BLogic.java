@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controller;
 
-import Models.XAlarmaModel;
 import Models.XAsistenteModel;
 import Models.XDependienteModel;
 import Models.XViviendaModel;
@@ -13,11 +7,14 @@ import View.AccessAsist;
 import View.MainView;
 import java.net.ServerSocket;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 
 /**
  *
@@ -65,16 +62,25 @@ public class BLogic {
         return appServer.getServer();
     }
 
+    public static XDependienteModel getDependiente(String dni, List<Object> listaDependientes) {
+        for (Object dependiente : listaDependientes) {
+            if (((XDependienteModel) dependiente).getXPersonaModel().getDni().equals(dni)) {
+                return ((XDependienteModel) dependiente);
+            }
+        }
+        return null;
+    }
+
     //Insertamos la ALARMA en la tabla de alarmas activas
-    public synchronized void insertAlarm(XAlarmaModel alarm, ResponseServer resp) {
-        Object[] row = {resp, alarm.getFechaHora().toString(), alarm.getId()};
+    public synchronized void insertAlarm(JSONObject alarm, ControlTask resp) throws JSONException {
+        Object[] row = {resp, new Date(alarm.getLong("fecha")), alarm.getString("idDependiente")};
         ((DefaultTableModel) mainView.getjTableAlarmas().getModel()).addRow(row);
     }
 
     //Eliminamos la ALARMA en la tabla de alarmas activas
-    public synchronized void removeAlarm(XAlarmaModel alarm, ResponseServer resp) {
+    public synchronized void removeAlarm(ControlTask resp) {
         for (int i = 0; i < mainView.getjTableAlarmas().getRowCount(); i++) {
-            if (mainView.getjTableAlarmas().getValueAt(i, 0).equals(resp)) {
+            if (((ControlTask)mainView.getjTableAlarmas().getValueAt(i, 0)).equals(resp)) {
                 ((DefaultTableModel) mainView.getjTableAlarmas().getModel()).removeRow(i);
             }
         }

@@ -73,4 +73,9 @@ public class XCsModel implements java.io.Serializable {
         this.XDependienteModels = XDependienteModels;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
 }

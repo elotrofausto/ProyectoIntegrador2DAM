@@ -109,5 +109,10 @@ public class XPersonaModel implements java.io.Serializable {
     public void setXFamiliarModels(Set XFamiliarModels) {
         this.XFamiliarModels = XFamiliarModels;
     }
+
+    @Override
+    public String toString() {
+        return name + " " + apellido1 + " " + apellido2;
+    }
     
 }

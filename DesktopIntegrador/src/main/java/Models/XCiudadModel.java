@@ -80,4 +80,9 @@ public class XCiudadModel implements java.io.Serializable {
         this.XOfrecerrcModels = XOfrecerrcModels;
     }
 
+    @Override
+    public String toString() {
+        return  name;
+    }
+
 }

@@ -189,4 +189,9 @@ public class XDependienteModel implements java.io.Serializable {
         this.XContactofamiliarModels = XContactofamiliarModels;
     }
 
+    @Override
+    public String toString() {
+        return this.XPersonaModel.toString();
+    }
+
 }

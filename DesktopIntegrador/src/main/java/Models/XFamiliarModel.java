@@ -1,6 +1,5 @@
 package Models;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -87,6 +86,11 @@ public class XFamiliarModel implements java.io.Serializable {
 
     public void setXContactofamiliarModels(Set XContactofamiliarModels) {
         this.XContactofamiliarModels = XContactofamiliarModels;
+    }
+
+    @Override
+    public String toString() {
+        return this.XPersonaModel.toString();
     }
 
 }
