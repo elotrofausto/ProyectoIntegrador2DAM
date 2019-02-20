@@ -2,6 +2,7 @@ package View;
 
 import Controller.BLogic;
 import Models.XCiudadModel;
+import Models.XDependienteModel;
 import Models.XFamiliarModel;
 import Models.XProvinciaModel;
 import Utils.SentenciasSQL;
@@ -21,19 +22,25 @@ public class FamilyMan extends javax.swing.JDialog {
     private List<Object> listaCiudades;
     private BLogic controller;
     private XCiudadModel ciudad;
+    private XDependienteModel dep;
+    private boolean opc;
 
-    public FamilyMan(java.awt.Frame parent, boolean modal, List<Object> listaCiudades, BLogic controller) {
+    public FamilyMan(java.awt.Frame parent, boolean modal, List<Object> listaCiudades, BLogic controller, XDependienteModel dep) {
         super(parent, modal);
         initComponents();
+        opc = false;
+        this.dep = dep;
         this.controller = controller;
         this.family = new XFamiliarModel();
         this.listaCiudades = listaCiudades;
         setUI();
     }
 
-    public FamilyMan(java.awt.Frame parent, boolean modal, List<Object> listaCiudades, BLogic controller, Object datos) {
+    public FamilyMan(java.awt.Frame parent, boolean modal, List<Object> listaCiudades, BLogic controller, Object datos, XDependienteModel dep) {
         super(parent, modal);
         initComponents();
+        opc = true;
+        this.dep = dep;
         this.controller = controller;
         this.family = (XFamiliarModel) datos;
         this.listaCiudades = listaCiudades;
@@ -69,18 +76,20 @@ public class FamilyMan extends javax.swing.JDialog {
         tfDisponibilidad = new javax.swing.JTextField();
         tfObserv = new javax.swing.JTextField();
         tfDNI = new javax.swing.JTextField();
+        tfPrioridad = new javax.swing.JTextField();
+        jbtnAyuda4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanelDireccion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DIRECCIÓN", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
-        tfNomVia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNomVia.setBackground(new java.awt.Color(255, 255, 255));
-        tfNomVia.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NOMBRE DE VÍA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfNomVia.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfNomVia.setForeground(new java.awt.Color(0, 0, 0));
-        tfNomVia.setPreferredSize(new java.awt.Dimension(300, 40));
+        tfNomVia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNomVia.setToolTipText("");
+        tfNomVia.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NOMBRE DE VÍA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfNomVia.setPreferredSize(new java.awt.Dimension(300, 40));
 
         btnAceptar.setForeground(new java.awt.Color(0, 102, 102));
         btnAceptar.setText("ACEPTAR");
@@ -91,8 +100,8 @@ public class FamilyMan extends javax.swing.JDialog {
             }
         });
 
-        btnCancelar.setText("CANCELAR");
         btnCancelar.setForeground(new java.awt.Color(0, 102, 102));
+        btnCancelar.setText("CANCELAR");
         btnCancelar.setPreferredSize(new java.awt.Dimension(150, 40));
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,37 +109,47 @@ public class FamilyMan extends javax.swing.JDialog {
             }
         });
 
-        tfNum.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNum.setBackground(new java.awt.Color(255, 255, 255));
-        tfNum.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NUMERO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfNum.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfNum.setForeground(new java.awt.Color(0, 0, 0));
-        tfNum.setPreferredSize(new java.awt.Dimension(80, 40));
+        tfNum.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNum.setToolTipText("");
+        tfNum.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NUMERO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfNum.setPreferredSize(new java.awt.Dimension(80, 40));
+        tfNum.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNumKeyTyped(evt);
+            }
+        });
 
-        tfEsc.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfEsc.setBackground(new java.awt.Color(255, 255, 255));
-        tfEsc.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ESCALERA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfEsc.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfEsc.setForeground(new java.awt.Color(0, 0, 0));
-        tfEsc.setPreferredSize(new java.awt.Dimension(80, 40));
+        tfEsc.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfEsc.setToolTipText("");
+        tfEsc.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ESCALERA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfEsc.setPreferredSize(new java.awt.Dimension(80, 40));
 
-        tfLetra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfLetra.setBackground(new java.awt.Color(255, 255, 255));
-        tfLetra.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LETRA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfLetra.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfLetra.setForeground(new java.awt.Color(0, 0, 0));
-        tfLetra.setPreferredSize(new java.awt.Dimension(80, 40));
+        tfLetra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfLetra.setToolTipText("");
+        tfLetra.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LETRA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfLetra.setPreferredSize(new java.awt.Dimension(80, 40));
 
-        tfPiso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfPiso.setBackground(new java.awt.Color(255, 255, 255));
-        tfPiso.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PISO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfPiso.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfPiso.setForeground(new java.awt.Color(0, 0, 0));
-        tfPiso.setPreferredSize(new java.awt.Dimension(80, 40));
+        tfPiso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfPiso.setToolTipText("");
+        tfPiso.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PISO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfPiso.setPreferredSize(new java.awt.Dimension(80, 40));
+        tfPiso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfPisoKeyTyped(evt);
+            }
+        });
 
         jComboTipo.setBackground(new java.awt.Color(255, 255, 255));
         jComboTipo.setForeground(new java.awt.Color(0, 0, 0));
@@ -139,22 +158,22 @@ public class FamilyMan extends javax.swing.JDialog {
         jComboTipo.setPreferredSize(new java.awt.Dimension(100, 40));
 
         tfNomCity.setEditable(false);
-        tfNomCity.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNomCity.setBackground(new java.awt.Color(255, 255, 255));
-        tfNomCity.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CIUDAD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfNomCity.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfNomCity.setForeground(new java.awt.Color(0, 0, 0));
-        tfNomCity.setPreferredSize(new java.awt.Dimension(150, 40));
+        tfNomCity.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNomCity.setToolTipText("");
+        tfNomCity.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CIUDAD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfNomCity.setPreferredSize(new java.awt.Dimension(150, 40));
 
         tfNomProv.setEditable(false);
-        tfNomProv.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNomProv.setBackground(new java.awt.Color(255, 255, 255));
-        tfNomProv.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PROVINCIA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfNomProv.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfNomProv.setForeground(new java.awt.Color(0, 0, 0));
-        tfNomProv.setPreferredSize(new java.awt.Dimension(150, 40));
+        tfNomProv.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNomProv.setToolTipText("");
+        tfNomProv.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PROVINCIA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfNomProv.setPreferredSize(new java.awt.Dimension(150, 40));
 
         jbtnSearchCity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add.png"))); // NOI18N
         jbtnSearchCity.setPreferredSize(new java.awt.Dimension(40, 40));
@@ -180,8 +199,8 @@ public class FamilyMan extends javax.swing.JDialog {
         jPanelDireccion.setLayout(jPanelDireccionLayout);
         jPanelDireccionLayout.setHorizontalGroup(
             jPanelDireccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelDireccionLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanelDireccionLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(jPanelDireccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelDireccionLayout.createSequentialGroup()
                         .addComponent(jComboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -210,7 +229,7 @@ public class FamilyMan extends javax.swing.JDialog {
                             .addGroup(jPanelDireccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(tfLetra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(tfEsc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(57, 57, 57))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelDireccionLayout.setVerticalGroup(
             jPanelDireccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,88 +263,114 @@ public class FamilyMan extends javax.swing.JDialog {
 
         jPanelAllegado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS DEL ALLEGADO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
-        tfTelf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfTelf.setBackground(new java.awt.Color(255, 255, 255));
-        tfTelf.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "TELËFONO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfTelf.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfTelf.setForeground(new java.awt.Color(0, 0, 0));
-        tfTelf.setPreferredSize(new java.awt.Dimension(150, 40));
+        tfTelf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfTelf.setToolTipText("");
+        tfTelf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "TELËFONO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfTelf.setPreferredSize(new java.awt.Dimension(150, 40));
+        tfTelf.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfTelfKeyTyped(evt);
+            }
+        });
 
-        tfNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNombre.setBackground(new java.awt.Color(255, 255, 255));
-        tfNombre.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "NOMBRE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfNombre.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfNombre.setForeground(new java.awt.Color(0, 0, 0));
-        tfNombre.setPreferredSize(new java.awt.Dimension(150, 40));
+        tfNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNombre.setToolTipText("");
+        tfNombre.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NOMBRE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfNombre.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        tfApe1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfApe1.setBackground(new java.awt.Color(255, 255, 255));
-        tfApe1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "PRIMER APELLIDO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfApe1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfApe1.setForeground(new java.awt.Color(0, 0, 0));
-        tfApe1.setPreferredSize(new java.awt.Dimension(150, 40));
+        tfApe1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfApe1.setToolTipText("");
+        tfApe1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PRIMER APELLIDO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfApe1.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        tfApe2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfApe2.setBackground(new java.awt.Color(255, 255, 255));
-        tfApe2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "SEGUNDO APELLIDO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfApe2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfApe2.setForeground(new java.awt.Color(0, 0, 0));
-        tfApe2.setPreferredSize(new java.awt.Dimension(150, 40));
+        tfApe2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfApe2.setToolTipText("");
+        tfApe2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SEGUNDO APELLIDO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfApe2.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        tfEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfEmail.setBackground(new java.awt.Color(255, 255, 255));
-        tfEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "EMAIL", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfEmail.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfEmail.setForeground(new java.awt.Color(0, 0, 0));
-        tfEmail.setPreferredSize(new java.awt.Dimension(150, 40));
+        tfEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfEmail.setToolTipText("");
+        tfEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EMAIL", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfEmail.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        tfRelacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfRelacion.setBackground(new java.awt.Color(255, 255, 255));
-        tfRelacion.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "RELACIÓN", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfRelacion.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfRelacion.setForeground(new java.awt.Color(0, 0, 0));
-        tfRelacion.setPreferredSize(new java.awt.Dimension(150, 40));
+        tfRelacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfRelacion.setToolTipText("");
+        tfRelacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "RELACIÓN", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfRelacion.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        tfDisponibilidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDisponibilidad.setBackground(new java.awt.Color(255, 255, 255));
-        tfDisponibilidad.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "DISPONIBILIDAD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfDisponibilidad.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDisponibilidad.setForeground(new java.awt.Color(0, 0, 0));
-        tfDisponibilidad.setPreferredSize(new java.awt.Dimension(150, 40));
+        tfDisponibilidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDisponibilidad.setToolTipText("");
+        tfDisponibilidad.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DISPONIBILIDAD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDisponibilidad.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        tfObserv.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfObserv.setBackground(new java.awt.Color(255, 255, 255));
-        tfObserv.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "OBSERVACIONES", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfObserv.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfObserv.setForeground(new java.awt.Color(0, 0, 0));
-        tfObserv.setPreferredSize(new java.awt.Dimension(150, 40));
+        tfObserv.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfObserv.setToolTipText("");
+        tfObserv.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "OBSERVACIONES", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfObserv.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        tfDNI.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDNI.setBackground(new java.awt.Color(255, 255, 255));
-        tfDNI.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "D.N.I", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfDNI.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDNI.setForeground(new java.awt.Color(0, 0, 0));
-        tfDNI.setPreferredSize(new java.awt.Dimension(150, 40));
+        tfDNI.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDNI.setToolTipText("");
+        tfDNI.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "D.N.I", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDNI.setPreferredSize(new java.awt.Dimension(150, 40));
         tfDNI.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 tfDNIFocusGained(evt);
             }
         });
         tfDNI.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfDNIKeyReleased(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 tfDNIKeyTyped(evt);
             }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tfDNIKeyReleased(evt);
+        });
+
+        tfPrioridad.setBackground(new java.awt.Color(255, 255, 255));
+        tfPrioridad.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
+        tfPrioridad.setForeground(new java.awt.Color(0, 0, 0));
+        tfPrioridad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfPrioridad.setToolTipText("");
+        tfPrioridad.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PRIORIDAD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfPrioridad.setPreferredSize(new java.awt.Dimension(100, 40));
+        tfPrioridad.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfPrioridadKeyTyped(evt);
+            }
+        });
+
+        jbtnAyuda4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/info.png"))); // NOI18N
+        jbtnAyuda4.setPreferredSize(new java.awt.Dimension(40, 40));
+        jbtnAyuda4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnAyuda4ActionPerformed(evt);
             }
         });
 
@@ -335,7 +380,7 @@ public class FamilyMan extends javax.swing.JDialog {
             jPanelAllegadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAllegadoLayout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(jPanelAllegadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanelAllegadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelAllegadoLayout.createSequentialGroup()
                         .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16)
@@ -343,17 +388,23 @@ public class FamilyMan extends javax.swing.JDialog {
                         .addGap(16, 16, 16)
                         .addComponent(tfApe2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16)
-                        .addComponent(tfDisponibilidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAllegadoLayout.createSequentialGroup()
-                        .addComponent(tfTelf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
-                        .addComponent(tfDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(16, 16, 16)
-                        .addComponent(tfEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(tfDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelAllegadoLayout.createSequentialGroup()
-                        .addComponent(tfRelacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfObserv, javax.swing.GroupLayout.PREFERRED_SIZE, 574, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanelAllegadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelAllegadoLayout.createSequentialGroup()
+                                .addComponent(tfTelf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16)
+                                .addComponent(tfRelacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelAllegadoLayout.createSequentialGroup()
+                                .addComponent(tfDisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(16, 16, 16)
+                                .addComponent(tfPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbtnAyuda4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanelAllegadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(tfObserv, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
+                            .addComponent(tfEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(16, 16, 16))
         );
         jPanelAllegadoLayout.setVerticalGroup(
@@ -364,17 +415,20 @@ public class FamilyMan extends javax.swing.JDialog {
                     .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfApe1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfApe2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfDisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(jPanelAllegadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfTelf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addGroup(jPanelAllegadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfObserv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfRelacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(17, 17, 17)
+                .addGroup(jPanelAllegadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanelAllegadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tfObserv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfDisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfPrioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbtnAyuda4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -386,7 +440,7 @@ public class FamilyMan extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanelAllegado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -440,12 +494,34 @@ public class FamilyMan extends javax.swing.JDialog {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
- 
+        if (comprobarDatos()) {
+
+        }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void jbtnAyuda3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAyuda3ActionPerformed
         JOptionPane.showMessageDialog(this, "Los campos obligatorios son: La Ciudad, Nombre de Via y el Numero");
     }//GEN-LAST:event_jbtnAyuda3ActionPerformed
+
+    private void tfTelfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTelfKeyTyped
+        Utils.soloNumeros(evt);
+    }//GEN-LAST:event_tfTelfKeyTyped
+
+    private void tfPrioridadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPrioridadKeyTyped
+        Utils.soloNumeros(evt);
+    }//GEN-LAST:event_tfPrioridadKeyTyped
+
+    private void tfNumKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNumKeyTyped
+        Utils.soloNumeros(evt);
+    }//GEN-LAST:event_tfNumKeyTyped
+
+    private void tfPisoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPisoKeyTyped
+        Utils.soloNumeros(evt);
+    }//GEN-LAST:event_tfPisoKeyTyped
+
+    private void jbtnAyuda4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAyuda4ActionPerformed
+        JOptionPane.showMessageDialog(this, "La prioridad es un numero, el cual, siendo 1 es maxima y 10 minima prioridad.");
+    }//GEN-LAST:event_jbtnAyuda4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -456,6 +532,7 @@ public class FamilyMan extends javax.swing.JDialog {
     private javax.swing.JPanel jPanelAllegado;
     private javax.swing.JPanel jPanelDireccion;
     private javax.swing.JButton jbtnAyuda3;
+    private javax.swing.JButton jbtnAyuda4;
     private javax.swing.JButton jbtnSearchCity;
     private javax.swing.JTextField tfApe1;
     private javax.swing.JTextField tfApe2;
@@ -471,6 +548,7 @@ public class FamilyMan extends javax.swing.JDialog {
     private javax.swing.JTextField tfNum;
     private javax.swing.JTextField tfObserv;
     private javax.swing.JTextField tfPiso;
+    private javax.swing.JTextField tfPrioridad;
     private javax.swing.JTextField tfRelacion;
     private javax.swing.JTextField tfTelf;
     // End of variables declaration//GEN-END:variables
@@ -488,6 +566,50 @@ public class FamilyMan extends javax.swing.JDialog {
 
     public XFamiliarModel getFamily() {
         return family;
+    }
+
+    private boolean comprobarDatos() {
+        boolean status = true;
+        if (this.tfApe1.getText().length() <= 0) {
+            return false;
+        }
+        if (this.tfApe2.getText().length() <= 0) {
+            return false;
+        }
+        if (this.tfDNI.getText().length() <= 0) {
+            return false;
+        }
+        if (this.tfDisponibilidad.getText().length() <= 0) {
+            return false;
+        }
+        if (this.tfEmail.getText().length() <= 0) {
+            return false;
+        }
+        if (this.tfNomProv.getText().length() <= 0) {
+            return false;
+        }
+        if (this.tfNomVia.getText().length() <= 0) {
+            return false;
+        }
+        if (this.tfNombre.getText().length() <= 0) {
+            return false;
+        }
+        if (this.tfNum.getText().length() <= 0) {
+            return false;
+        }
+        if (this.tfObserv.getText().length() <= 0) {
+            return false;
+        }
+        if (this.tfPrioridad.getText().length() <= 0) {
+            return false;
+        }
+        if (this.tfRelacion.getText().length() <= 0) {
+            return false;
+        }
+        if (this.tfTelf.getText().length() <= 0) {
+            return false;
+        }
+        return status;
     }
 
 }

@@ -189,7 +189,6 @@ public class DirectionMan extends javax.swing.JDialog {
         jCheckBox.setText("HABITUAL");
         jCheckBox.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        tfAcceso.setEditable(false);
         tfAcceso.setBackground(new java.awt.Color(255, 255, 255));
         tfAcceso.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfAcceso.setForeground(new java.awt.Color(0, 0, 0));

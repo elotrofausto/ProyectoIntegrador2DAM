@@ -176,7 +176,7 @@ public class MainView extends javax.swing.JFrame {
         jbtnAddRecurso = new javax.swing.JButton();
         jbtnModRecurso = new javax.swing.JButton();
         jbtnRemovRecurso = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jBtnLlamar = new javax.swing.JButton();
         jPanelAlarmas = new javax.swing.JPanel();
         jScrollPaneAlarm = new javax.swing.JScrollPane();
         jTableAlarmas = new javax.swing.JTable();
@@ -1249,10 +1249,11 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
-    jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/call.png"))); // NOI18N
-    jButton1.setMaximumSize(new java.awt.Dimension(50, 100));
-    jButton1.setMinimumSize(new java.awt.Dimension(50, 100));
-    jButton1.setPreferredSize(new java.awt.Dimension(50, 100));
+    jBtnLlamar.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+    jBtnLlamar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/call.png"))); // NOI18N
+    jBtnLlamar.setMaximumSize(new java.awt.Dimension(50, 100));
+    jBtnLlamar.setMinimumSize(new java.awt.Dimension(50, 100));
+    jBtnLlamar.setPreferredSize(new java.awt.Dimension(50, 100));
 
     javax.swing.GroupLayout jPanelRecursosLayout = new javax.swing.GroupLayout(jPanelRecursos);
     jPanelRecursos.setLayout(jPanelRecursosLayout);
@@ -1267,7 +1268,7 @@ public class MainView extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jScrollPaneRecursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jBtnLlamar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
     );
     jPanelRecursosLayout.setVerticalGroup(
@@ -1282,7 +1283,7 @@ public class MainView extends javax.swing.JFrame {
                     .addComponent(jbtnModRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jbtnRemovRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jBtnLlamar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addContainerGap())
     );
 
@@ -1906,7 +1907,7 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnRemovHisSocActionPerformed
 
     private void jbtnAddAlleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddAlleActionPerformed
-        FamilyMan fam = new FamilyMan(this, true, listaCiudades, controller);
+        FamilyMan fam = new FamilyMan(this, true, listaCiudades, controller,dep);
         if (fam.getFamily() != null) {
 
             controller.guardarObjeto(fam.getFamily());
@@ -1917,7 +1918,7 @@ public class MainView extends javax.swing.JFrame {
     private void jbtnModAlleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModAlleActionPerformed
         if (this.jTableAllegados.getSelectedRow() >= 0) {
             FamilyMan fam = new FamilyMan(this, true, listaCiudades, controller, controller.cargarDatos(XFamiliarModel.class, SentenciasSQL.objectDatosId,
-                    this.jTableAllegados.getModel().getValueAt(this.jTableAllegados.getSelectedRow(), 0)));
+                    this.jTableAllegados.getModel().getValueAt(this.jTableAllegados.getSelectedRow(), 0)),dep);
             if (fam.getFamily() != null) {
 
                 //TODO      controller.actualizarObjeto(fam.getFamily());
@@ -2014,9 +2015,9 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton jBtnCancel;
     private javax.swing.JButton jBtnCancelAlarm;
     private javax.swing.JButton jBtnEditAsi;
+    private javax.swing.JButton jBtnLlamar;
     private javax.swing.JButton jBtnRefrescoMaps;
     private javax.swing.JButton jBtnSave;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonCancel;

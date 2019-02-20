@@ -85,7 +85,7 @@ public class XViviendaModel implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "XViviendaModel{" + "name=" + name + '}';
+        return name;
     }
 
 }

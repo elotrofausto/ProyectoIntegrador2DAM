@@ -1,6 +1,5 @@
 package Utils;
 
-
 import com.opencsv.CSVReader;
 import java.awt.Component;
 import java.io.BufferedReader;
@@ -25,9 +24,9 @@ import jdk.nashorn.api.scripting.URLReader;
  * @author vesprada
  */
 public class Utils {
-    
-     private final static URL FILE = Utils.class.getResource("/Recursos/Tipos_Via.csv");
-    
+
+    private final static URL FILE = Utils.class.getResource("/Recursos/Tipos_Via.csv");
+
     //Genera la estructura y modelo de la tabla
     public static TableModel buildTableModel(ResultSet rs) {
         Vector<String> columnNames = new Vector<>();
@@ -49,13 +48,13 @@ public class Utils {
                 }
                 data.add(vector);
             }
-            
+
         } catch (SQLException ex) {
             System.err.println("Error generando la tabla. " + ex.getMessage());
         }
         return new DefaultTableModel(data, columnNames);
     }
-    
+
     //Ajusta automáticamente el tamaño de las columnas de la tabla
     public static void resizeColumnWidth(JTable table) {
         final TableColumnModel columnModel = table.getColumnModel();
@@ -74,18 +73,26 @@ public class Utils {
             columnModel.getColumn(column).setPreferredWidth(width);
         }
     }
-    
+
     //Asigna automaticamente la letra del dni
     public static String laLetra(String numeracion) {
         String juegoCaracteres = "TRWAGMYFPDXBNJZSQVHLCKE";
         int modulo = Integer.valueOf(numeracion) % 23;
-        return numeracion+juegoCaracteres.charAt(modulo);
+        return numeracion + juegoCaracteres.charAt(modulo);
     }
+
+    public static void soloNumeros(java.awt.event.KeyEvent evt) {
+        char caracter = evt.getKeyChar();
+        if (((caracter < '0') || (caracter > '9')) && (caracter != '\b')) {
+            evt.consume();
+        }
+    }
+
     public static ComboBoxModel<String> listaTipo() {
         DefaultComboBoxModel<String> vias = new DefaultComboBoxModel<>();
         String[] line;
         try {
-            CSVReader reader = new CSVReader( new BufferedReader(new URLReader(FILE)));
+            CSVReader reader = new CSVReader(new BufferedReader(new URLReader(FILE)));
             while ((line = reader.readNext()) != null) {
                 if (line != null) {
                     for (String string : line) {
