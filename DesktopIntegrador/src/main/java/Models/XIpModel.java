@@ -36,7 +36,7 @@ public class XIpModel implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "XIpModel{" + "id=" + id + ", ip=" + ip + '}';
+        return "ip= " + ip;
     }
 
     

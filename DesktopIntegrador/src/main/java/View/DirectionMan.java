@@ -17,36 +17,39 @@ import javax.swing.WindowConstants;
  * @author Yop
  */
 public class DirectionMan extends javax.swing.JDialog {
-
+    
     private final String CITY = "CIUDADES", INIT = "DATOS DE ", HOME = "VIVIENDA";
     private String name;
     private BLogic controller;
     private Object object;
     private XCiudadModel ciudad;
     private List<Object> listaCiudades;
-
+    private boolean opc;
+    
     public DirectionMan(MainView parent, boolean modal, BLogic controller, String name, List<Object> listaCiudades) {
         super(parent, modal);
         this.name = name;
+        opc = false;
         this.listaCiudades = listaCiudades;
         this.controller = controller;
         this.object = null;
         initComponents();
         initUI();
     }
-
+    
     DirectionMan(MainView parent, boolean modal, BLogic controller, String name, List<Object> listaCiudades, Object selectedItem) {
         super(parent, modal);
         this.object = selectedItem;
         this.name = name;
+        opc = true;
         this.listaCiudades = listaCiudades;
         this.controller = controller;
         initComponents();
         fillUI();
         initUI();
-
+        
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -316,14 +319,10 @@ public class DirectionMan extends javax.swing.JDialog {
         if (this.tfNomProv.getText().length() > 0 && this.tfNomVia.getText().length() > 0
                 && this.tfNum.getText().length() > 0 && this.tfNomEdif.getText().length() > 0) {
             XDireccionModel direc = crearDirecc();
-            controller.guardarObjeto(direc);
-            if (name.equals(HOME)) {
-                XViviendaModel vivi = new XViviendaModel(direc, this.tfNomEdif.getText(), this.jCheckBox.isSelected(), this.tfAcceso.getText());
-                object = vivi;
-            } else {
-                XCsModel cs = new XCsModel(direc, this.tfTelf.getText(), this.tfNomEdif.getText());
-                object = cs;
+            if (!opc) {
+                controller.guardarObjeto(direc);
             }
+            object = crearLugar(direc);
             dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, introduzca los campos obligatorios");
@@ -373,11 +372,11 @@ public class DirectionMan extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-
+    
     public Object getObject() {
         return object;
     }
-
+    
     private void fillUI() {
         if (name.equalsIgnoreCase(HOME)) {
             this.jCheckBox.setSelected(((XViviendaModel) object).getHabitual());
@@ -403,9 +402,19 @@ public class DirectionMan extends javax.swing.JDialog {
             this.ciudad = ((XCsModel) object).getXDireccionModel().getXCiudadModel();
         }
     }
-
+    
     private XDireccionModel crearDirecc() {
-        XDireccionModel tempo = new XDireccionModel();
+        XDireccionModel tempo;
+        if (opc) {
+            if (name.equalsIgnoreCase(HOME)) {
+                tempo = ((XViviendaModel) object).getXDireccionModel();
+            } else {
+                tempo = ((XCsModel) object).getXDireccionModel();
+            }
+            controller.abrirTransaccion();
+        } else {
+            tempo = new XDireccionModel();
+        }
         tempo.setXCiudadModel(ciudad);
         tempo.setDireccion(this.tfNomVia.getText());
         tempo.setNum(Integer.valueOf(this.tfNum.getText()));
@@ -419,6 +428,40 @@ public class DirectionMan extends javax.swing.JDialog {
         if (this.tfPiso.getText().length() > 0) {
             tempo.setPiso(Integer.valueOf(this.tfPiso.getText()));
         }
+        if (opc) {
+            controller.lanzarCommit();
+        }
         return tempo;
+    }
+    
+    private Object crearLugar(XDireccionModel direc) {
+        XViviendaModel vivi = null;
+        XCsModel cs = null;
+        if (name.equals(HOME)) {
+            if (opc) {
+                vivi = ((XViviendaModel) object);
+                controller.abrirTransaccion();
+                vivi.setXDireccionModel(direc);
+                vivi.setName(this.tfNomEdif.getText());
+                vivi.setHabitual(this.jCheckBox.isSelected());
+                vivi.setModoAcceso(this.tfAcceso.getText());
+                controller.lanzarCommit();
+            } else {
+                vivi = new XViviendaModel(direc, this.tfNomEdif.getText(), this.jCheckBox.isSelected(), this.tfAcceso.getText());
+            }
+            return vivi;
+        } else {
+            if (opc) {
+                cs = ((XCsModel) object);
+                controller.abrirTransaccion();
+                cs.setXDireccionModel(direc);
+                cs.setTelefono(this.tfTelf.getText());
+                cs.setName(this.tfNomEdif.getText());
+                controller.lanzarCommit();
+            } else {
+                cs = new XCsModel(direc, this.tfTelf.getText(), this.tfNomEdif.getText());
+            }
+            return cs;
+        }
     }
 }

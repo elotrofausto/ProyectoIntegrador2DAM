@@ -55,4 +55,9 @@ public class XHistmedicoModel implements java.io.Serializable {
         this.descripcion = descripcion;
     }
 
+    @Override
+    public String toString() {
+        return descripcion;
+    }
+
 }

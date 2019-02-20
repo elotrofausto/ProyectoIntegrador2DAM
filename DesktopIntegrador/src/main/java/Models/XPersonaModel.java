@@ -112,7 +112,7 @@ public class XPersonaModel implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return name + " " + apellido1 + " " + apellido2;
+         return name + " " + apellido1 + " " + apellido2 + " - " + dni ;
     }
     
 }

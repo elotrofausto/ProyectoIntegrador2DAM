@@ -80,7 +80,7 @@ public class BLogic {
     //Eliminamos la ALARMA en la tabla de alarmas activas
     public synchronized void removeAlarm(ControlTask resp) {
         for (int i = 0; i < mainView.getjTableAlarmas().getRowCount(); i++) {
-            if (((ControlTask)mainView.getjTableAlarmas().getValueAt(i, 0)).equals(resp)) {
+            if (((ControlTask) mainView.getjTableAlarmas().getValueAt(i, 0)).equals(resp)) {
                 ((DefaultTableModel) mainView.getjTableAlarmas().getModel()).removeRow(i);
             }
         }
@@ -88,10 +88,12 @@ public class BLogic {
 
     //Recorre las viviendas del dependiente para ponerlas a false(no son la habitual)
     public void reasignarHabitual(XDependienteModel dep) {
+        abrirTransaccion();
         for (Iterator<XViviendaModel> iterator = dep.getXViviendaModels().iterator(); iterator.hasNext();) {
             XViviendaModel next = iterator.next();
             next.setHabitual(false);
         }
+        lanzarCommit();
     }
 
     //Gestión de la BD
@@ -120,8 +122,14 @@ public class BLogic {
     }
 
     //Actualizar registro
-    public void actualizarObjeto(Object object) {
-        hibernate.update(object);
+    //--------------------------------------------------------------------------
+    //Abrir transaccion
+    public void abrirTransaccion() {
+        hibernate.openTransaction();
+    }
+
+    public void lanzarCommit() {
+        hibernate.commitTransaction();
     }
 
     //Eliminar registro

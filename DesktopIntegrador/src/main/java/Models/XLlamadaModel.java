@@ -69,4 +69,8 @@ public class XLlamadaModel implements java.io.Serializable {
         this.fechaHora = fechaHora;
     }
 
+    @Override
+    public String toString() {
+        return "id=" + id + ", Asistente=" + XAsistenteModel + ", Aviso=" + XAvisoModel + ", Dependiente=" + XDependienteModel + ", Fecha=" + fechaHora;
+    }
 }

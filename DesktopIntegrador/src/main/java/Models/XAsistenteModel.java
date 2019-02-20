@@ -25,8 +25,7 @@ public class XAsistenteModel implements java.io.Serializable {
         this.id = id;
         this.XPersonaModel = XPersonaModel;
         this.password = password;
-        this.XLlamadaModels = XLlamadaModels;
-        this.XAlarmaModels = XAlarmaModels;
+
     }
 
     public int getId() {
@@ -67,6 +66,11 @@ public class XAsistenteModel implements java.io.Serializable {
 
     public void setXAlarmaModels(Set XAlarmaModels) {
         this.XAlarmaModels = XAlarmaModels;
+    }
+
+    @Override
+    public String toString() {
+        return XPersonaModel.toString();
     }
 
 }

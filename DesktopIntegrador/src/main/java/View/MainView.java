@@ -506,11 +506,6 @@ public class MainView extends javax.swing.JFrame {
     jComboBoxMedico.setModel(medico);
     jComboBoxMedico.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "MÉDICO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
     jComboBoxMedico.setPreferredSize(new java.awt.Dimension(240, 60));
-    jComboBoxMedico.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jComboBoxMedicoActionPerformed(evt);
-        }
-    });
 
     jLabelMedico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
     jLabelMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/doctor.png"))); // NOI18N
@@ -1146,7 +1141,7 @@ public class MainView extends javax.swing.JFrame {
     );
     jPanelAnalisisLayout.setVerticalGroup(
         jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 380, Short.MAX_VALUE)
+        .addGap(0, 379, Short.MAX_VALUE)
     );
 
     jBtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IconoCancelar25x25.png"))); // NOI18N
@@ -1322,7 +1317,7 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
-    jScrollPaneAlarm1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "HISTORICO DE ALARMAS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+    jScrollPaneAlarm1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "HISTORICO DE ALARMAS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
 
     jTableAlarmasHistory.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
@@ -1436,7 +1431,7 @@ public class MainView extends javax.swing.JFrame {
             .addGap(10, 10, 10)
             .addComponent(jPanelRecursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanelAlarmas, javax.swing.GroupLayout.PREFERRED_SIZE, 293, Short.MAX_VALUE)
+            .addComponent(jPanelAlarmas, javax.swing.GroupLayout.PREFERRED_SIZE, 294, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelLlamadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
@@ -1621,17 +1616,14 @@ public class MainView extends javax.swing.JFrame {
         this.controller.getHibernate().logOffAndClose();
     }//GEN-LAST:event_CloseHandler
 
-    private void jComboBoxMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMedicoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxMedicoActionPerformed
-
     private void itemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSalirActionPerformed
         System.exit(0);
     }//GEN-LAST:event_itemSalirActionPerformed
 
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
+        controller.abrirTransaccion();
         guardardependiente();
-        controller.actualizarObjeto(dep);
+        controller.lanzarCommit();
         listaDependientes = this.controller.cargarDatos(XDependienteModel.class);
         cargadependiente(dep);
         lockEnabled(false);
@@ -1641,7 +1633,6 @@ public class MainView extends javax.swing.JFrame {
         if (this.jTableEstado.getSelectedRow() >= 0) {
             DepenStat estado = new DepenStat(this, true, controller, this.jTableEstado.getModel().getValueAt(this.jTableEstado.getSelectedRow(), 0));
             if (estado.getEstado() != null) {
-                controller.actualizarObjeto(estado.getEstado());
                 manipulateEstadoTable(dep, 0);
             }
         }
@@ -1752,9 +1743,8 @@ public class MainView extends javax.swing.JFrame {
 
     private void jbtnModMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModMedActionPerformed
         if (this.jComboBoxMedico.getModel().getSelectedItem() != null) {
-            DoctorMan doctorMan = new DoctorMan(this, true, (XMedicoModel) this.jComboBoxMedico.getModel().getSelectedItem());
+            DoctorMan doctorMan = new DoctorMan(this, true, (XMedicoModel) this.jComboBoxMedico.getModel().getSelectedItem(), controller);
             if (doctorMan.getMedico() != null) {
-                controller.guardarObjeto(doctorMan.getMedico());
                 manipulateMed(null, 0);
             }
         }
@@ -1764,7 +1754,6 @@ public class MainView extends javax.swing.JFrame {
         if (this.jComboBoxCS.getModel().getSelectedItem() != null) {
             DirectionMan center = new DirectionMan(this, true, controller, HEALTH, listaCiudades, (XCsModel) this.jComboBoxCS.getModel().getSelectedItem());
             if (center.getObject() != null) {
-                controller.actualizarObjeto(center.getObject());
                 manipulateCS(null, 0);
             }
         }
@@ -1777,7 +1766,6 @@ public class MainView extends javax.swing.JFrame {
                 if (((XViviendaModel) center.getObject()).getHabitual()) {
                     controller.reasignarHabitual(dep);
                 }
-                controller.actualizarObjeto(center.getObject());
                 manipulateViviTable(dep, 0);
                 manipulateHome(null, 0);
             }
@@ -1830,7 +1818,6 @@ public class MainView extends javax.swing.JFrame {
                 if (((XViviendaModel) center.getObject()).getHabitual()) {
                     controller.reasignarHabitual(dep);
                 }
-                controller.actualizarObjeto(center.getObject());
                 manipulateViviTable(dep, 0);
                 manipulateHome(null, 0);
             }
@@ -1841,9 +1828,14 @@ public class MainView extends javax.swing.JFrame {
 
     private void jbtnRemovViviendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRemovViviendaActionPerformed
         if (this.jTableViviendas.getSelectedRow() >= 0) {
-            controller.borrarObjeto(controller.cargarDatos(XViviendaModel.class, SentenciasSQL.objectDatosId, this.jTableViviendas.getModel().getValueAt(this.jTableViviendas.getSelectedRow(), 0)));
-            manipulateViviTable(dep, 0);
-            manipulateHome(null, 0);
+            XViviendaModel casa = (XViviendaModel) controller.cargarDatos(XViviendaModel.class, SentenciasSQL.objectDatosId, this.jTableViviendas.getModel().getValueAt(this.jTableViviendas.getSelectedRow(), 0));
+            if (casa.getHabitual()) {
+                JOptionPane.showMessageDialog(this, "La vivienda habitual no se puede eliminar. Debe asignar otra como habitual, para eliminar esta vivienda");
+            } else {
+                controller.borrarObjeto(casa);
+                manipulateViviTable(dep, 0);
+                manipulateHome(null, 0);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, elija antes un registro de la tabla");
         }
@@ -1860,11 +1852,10 @@ public class MainView extends javax.swing.JFrame {
 
     private void jbtnModHisMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModHisMedActionPerformed
         if (this.jTableHistorialMed.getSelectedRow() >= 0) {
-            HistoricalMan his = new HistoricalMan(this, true, MED,
+            HistoricalMan his = new HistoricalMan(this, true, MED, controller,
                     controller.cargarDatos(XHistmedicoModel.class, SentenciasSQL.objectDatosId,
                             this.jTableHistorialMed.getModel().getValueAt(this.jTableHistorialMed.getSelectedRow(), 0)));
             if (his.getHistory() != null) {
-                controller.actualizarObjeto(his.getHistory());
                 manipulateHisMedTable(dep, 0);
             }
         } else {
@@ -1893,11 +1884,10 @@ public class MainView extends javax.swing.JFrame {
 
     private void jbtnModHisSocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModHisSocActionPerformed
         if (this.jTableHistorialSoc.getSelectedRow() >= 0) {
-            HistoricalMan his = new HistoricalMan(this, true, SOC,
+            HistoricalMan his = new HistoricalMan(this, true, SOC, controller,
                     controller.cargarDatos(XHistmedicoModel.class, SentenciasSQL.objectDatosId,
                             this.jTableHistorialSoc.getModel().getValueAt(this.jTableHistorialSoc.getSelectedRow(), 0)));
             if (his.getHistory() != null) {
-                controller.actualizarObjeto(his.getHistory());
                 manipulateHisSocTable(dep, 0);
             }
         } else {
@@ -1930,7 +1920,7 @@ public class MainView extends javax.swing.JFrame {
                     this.jTableAllegados.getModel().getValueAt(this.jTableAllegados.getSelectedRow(), 0)));
             if (fam.getFamily() != null) {
 
-                controller.actualizarObjeto(fam.getFamily());
+                //TODO      controller.actualizarObjeto(fam.getFamily());
                 manipulateAllegadosTable(dep, 0);
             }
         } else {
@@ -2209,13 +2199,11 @@ public class MainView extends javax.swing.JFrame {
     }
 
     public void centerScroll() {
-        //Set the scrollPane to the middle
+        //Centrar el scrollPanel
         Rectangle bounds = this.jScrollPaneMaps.getViewport().getViewRect();
         Dimension size = this.jScrollPaneMaps.getViewport().getViewSize();
-
         int x = (size.width - bounds.width) / 2;
         int y = (size.height - bounds.height) / 2;
-
         this.jScrollPaneMaps.getViewport().setViewPosition(new Point(x, y));
     }
 
@@ -2389,6 +2377,7 @@ public class MainView extends javax.swing.JFrame {
     }
 
     private void lockEnabledAsist(boolean enable) {
+        //Panel del Asistente
         this.tfAsistenteApe1.setEditable(enable);
         this.tfAsistenteApe2.setEditable(enable);
         this.tfAsistenteEmail.setEditable(enable);
@@ -2402,6 +2391,7 @@ public class MainView extends javax.swing.JFrame {
     }
 
     private void guardarAsistente() {
+        controller.abrirTransaccion();
         asistente.setPassword(String.valueOf(this.tfAsistentePass.getPassword()));
         asistente.getXPersonaModel().setName(this.tfAsistenteNombre.getText());
         asistente.getXPersonaModel().setApellido1(this.tfAsistenteApe1.getText());
@@ -2409,7 +2399,7 @@ public class MainView extends javax.swing.JFrame {
         asistente.getXPersonaModel().setDni(this.tfAsistenteDni.getText());
         asistente.getXPersonaModel().setEmail(this.tfAsistenteEmail.getText());
         asistente.getXPersonaModel().setTelefono(this.tfAsistenteTelf.getText());
-        controller.actualizarObjeto(asistente);
+        controller.lanzarCommit();
     }
 
     private void initJasper() {

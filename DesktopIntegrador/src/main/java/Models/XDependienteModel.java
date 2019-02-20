@@ -194,4 +194,11 @@ public class XDependienteModel implements java.io.Serializable {
         return this.XPersonaModel.toString();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this.toString().toLowerCase().contains(((String) obj).toLowerCase())) {
+            return true;
+        }
+        return false;
+    }
 }

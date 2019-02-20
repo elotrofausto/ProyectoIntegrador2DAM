@@ -25,10 +25,13 @@ public class DepenStat extends javax.swing.JDialog {
     
     private final URL URLIMAGECLOCK = DepenStat.class.getResource("/Recursos/reloj.png"), URLIMAGECALENDAR = DepenStat.class.getResource("/Recursos/calendar.png");
     private XEstadoModel estado;
+    private BLogic controller;
+    private boolean opc;
     
     public DepenStat(java.awt.Frame parent, boolean modal, BLogic controller) {
         super(parent, modal);
         estado = new XEstadoModel();
+        opc = false;
         initComponents();
         initUI();
     }
@@ -36,6 +39,8 @@ public class DepenStat extends javax.swing.JDialog {
     public DepenStat(java.awt.Frame parent, boolean modal, BLogic controller, Object value) {
         super(parent, modal);
         estado = (XEstadoModel) controller.cargarDatos(XEstadoModel.class, SentenciasSQL.objectDatosId, value);
+        this.controller = controller;
+        opc = true;
         initComponents();
         fillUI();
         initUI();
@@ -79,7 +84,7 @@ public class DepenStat extends javax.swing.JDialog {
         setMaximumSize(new java.awt.Dimension(800, 300));
         setPreferredSize(new java.awt.Dimension(800, 300));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "ESTADO DEL DEPENDIENTE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ESTADO DEL DEPENDIENTE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(790, 220));
 
         dateTimeApunte.setBackground(new java.awt.Color(255, 255, 255));
@@ -173,9 +178,15 @@ public class DepenStat extends javax.swing.JDialog {
 
     private void jButtonAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAceptarActionPerformed
         if (this.jTFDescripcion.getText().length() > 0) {
+            if (opc) {
+                controller.abrirTransaccion();
+            }
             estado.setDescripcion(this.jTFDescripcion.getText());
             estado.setFechaHora(generarFecha(this.dateTimeApunte));
             estado.setFechaHoraInicio(generarFecha(this.dateTimeSuceso));
+            if (opc) {
+                controller.lanzarCommit();
+            }
             dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, introduzca que ha sucedido.");

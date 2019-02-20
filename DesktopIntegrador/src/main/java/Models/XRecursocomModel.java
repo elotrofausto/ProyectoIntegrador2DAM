@@ -56,4 +56,9 @@ public class XRecursocomModel implements java.io.Serializable {
         this.XOfrecerrcModels = XOfrecerrcModels;
     }
 
+    @Override
+    public String toString() {
+        return "XRecursocomModel{" + "name=" + name + '}';
+    }
+
 }

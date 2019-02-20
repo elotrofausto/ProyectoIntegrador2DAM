@@ -1,5 +1,6 @@
 package View;
 
+import Controller.BLogic;
 import Models.XMedicoModel;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
@@ -11,21 +12,26 @@ import javax.swing.WindowConstants;
 public class DoctorMan extends javax.swing.JDialog {
 
     private XMedicoModel medico;
+    private boolean opc;
+    private BLogic controller;
 
     public DoctorMan(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         medico = new XMedicoModel();
+        opc = false;
         initComponents();
         initUI();
     }
 
-    public DoctorMan(java.awt.Frame parent, boolean modal, XMedicoModel medico) {
+    public DoctorMan(java.awt.Frame parent, boolean modal, XMedicoModel medico, BLogic controller) {
         super(parent, modal);
         this.medico = medico;
+        this.controller = controller;
+        opc = true;
         initComponents();
         fillUI();
         initUI();
-        
+
     }
 
     @SuppressWarnings("unchecked")
@@ -161,6 +167,7 @@ public class DoctorMan extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        medico = null;
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -170,11 +177,17 @@ public class DoctorMan extends javax.swing.JDialog {
                 && this.tfApe2.getText().length() > 0
                 && this.tfTelf.getText().length() > 0
                 && this.tfDisponibilidad.getText().length() > 0) {
+            if (opc) {
+                controller.abrirTransaccion();
+            }
             medico.setName(this.tfNombre.getText());
             medico.setApellido1(this.tfApe1.getText());
             medico.setApellido2(this.tfApe2.getText());
             medico.setTelefono(this.tfTelf.getText());
             medico.setDisponibilidad(this.tfDisponibilidad.getText());
+            if (opc) {
+                controller.lanzarCommit();
+            }
             dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, rellene todos los campos.");

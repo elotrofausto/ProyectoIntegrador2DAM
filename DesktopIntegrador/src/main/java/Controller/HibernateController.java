@@ -77,11 +77,14 @@ public class HibernateController extends Thread {
         session.save(object);
         session.getTransaction().commit();
     }
-
     //Actualiza un objeto en la BD
-    public void update(Object object) throws HibernateException {
+    //--------------------------------------------------------------------------
+    //Abrimos transaccion
+    public void openTransaction() {
         session.beginTransaction();
-        session.update(object);
+    }
+    //Hacemos commit de los cambios
+    public void commitTransaction() {
         session.getTransaction().commit();
     }
 

@@ -29,10 +29,6 @@ public class XAlarmaModel implements java.io.Serializable {
         this.tipo = tipo;
     }
 
-    public XAlarmaModel(XAsistenteModel asistente, XDependienteModel dep, String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     public int getId() {
         return this.id;
     }

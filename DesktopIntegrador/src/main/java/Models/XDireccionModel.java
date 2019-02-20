@@ -127,4 +127,18 @@ public class XDireccionModel implements java.io.Serializable {
         this.XCsModels = XCsModels;
     }
 
+    @Override
+    public String toString() {
+        String respuesta = tipovia + " " + direccion + " " + num;
+        if (piso != null) {
+            respuesta += " " + piso;
+        }
+        if (letra != null) {
+            respuesta += " " + letra;
+        }
+        if (escalera != null) {
+            respuesta += " " + escalera;
+        }
+        return respuesta;
+    }
 }

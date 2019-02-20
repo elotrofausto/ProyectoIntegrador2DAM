@@ -83,4 +83,9 @@ public class XViviendaModel implements java.io.Serializable {
         this.modoAcceso = modoAcceso;
     }
 
+    @Override
+    public String toString() {
+        return "XViviendaModel{" + "name=" + name + '}';
+    }
+
 }

@@ -1,6 +1,5 @@
 package Models;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -85,4 +84,11 @@ public class XCiudadModel implements java.io.Serializable {
         return  name;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this.toString().toLowerCase().contains(((String)obj).toLowerCase())) {
+            return true;
+        }
+        return false;
+    }
 }

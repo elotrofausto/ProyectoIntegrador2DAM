@@ -1,5 +1,6 @@
 package View;
 
+import Controller.BLogic;
 import Models.XHistmedicoModel;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
@@ -13,19 +14,24 @@ public class HistoricalMan extends javax.swing.JDialog {
     private XHistmedicoModel history;
     private final String MED = "medico";
     private String name;
+    private boolean opc;
+    private BLogic controller;
 
     public HistoricalMan(java.awt.Frame parent, boolean modal, String name) {
         super(parent, modal);
         this.history = new XHistmedicoModel();
         this.name = name;
+        opc = false;
         initComponents();
         initUI();
     }
 
-    public HistoricalMan(java.awt.Frame parent, boolean modal, String name, Object datos) {
+    public HistoricalMan(java.awt.Frame parent, boolean modal, String name, BLogic controller, Object datos) {
         super(parent, modal);
         this.name = name;
         this.history = (XHistmedicoModel) datos;
+        opc = true;
+        this.controller = controller;
         initComponents();
         fillUI();
         initUI();
@@ -122,8 +128,14 @@ public class HistoricalMan extends javax.swing.JDialog {
 
     private void jBtnAcceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAcceptActionPerformed
         if (this.jTFDescription.getText().length() > 0) {
+            if (opc) {
+                controller.abrirTransaccion();
+            }
             history.setDescripcion(this.jTFDescription.getText());
             history.setName(name);
+            if (opc) {
+                controller.lanzarCommit();
+            }
             dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, introduzca la información pertinente.");

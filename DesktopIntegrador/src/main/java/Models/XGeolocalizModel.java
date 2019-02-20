@@ -66,4 +66,8 @@ public class XGeolocalizModel implements java.io.Serializable {
         this.fechaHora = fechaHora;
     }
 
+    @Override
+    public String toString() {
+        return "Dependiente= " + XDependienteModel + ", latitud=" + latitud + ", longitud=" + longitud + ", Fecha=" + fechaHora;
+    }
 }

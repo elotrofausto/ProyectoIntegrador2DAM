@@ -66,4 +66,8 @@ public class XEstadoModel implements java.io.Serializable {
         this.descripcion = descripcion;
     }
 
+    @Override
+    public String toString() {
+        return "Dependiente=" + XDependienteModel + ", Fecha Apunte=" + fechaHora + ", Fecha Inicio=" + fechaHoraInicio + ", Descripcion=" + descripcion;
+    }
 }
