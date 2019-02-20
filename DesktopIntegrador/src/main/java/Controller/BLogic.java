@@ -108,6 +108,10 @@ public class BLogic {
         return hibernate.readWithQuery(query);
     }
 
+    public Object cargarDatos(Class c, String critery, Object[] opc) {
+        return hibernate.read(c, critery, opc);
+    }
+
     public Object cargarDatos(Class c, String critery, Object opc) {
         return hibernate.read(c, critery, opc);
     }

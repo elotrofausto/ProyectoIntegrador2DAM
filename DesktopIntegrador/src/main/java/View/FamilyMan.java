@@ -18,16 +18,18 @@ import javax.swing.WindowConstants;
  * @author Yop
  */
 public class FamilyMan extends javax.swing.JDialog {
-    
+
     private final String CITY = "CIUDADES", RELATIVES = "ALLEGADOS";
     private XFamiliarModel family;
-    private List<Object> listaCiudades, listaAllegados;
-    private BLogic controller;
+    private XContactofamiliarModel contacto;
     private XCiudadModel ciudad;
     private XDependienteModel dep;
+    private XDireccionModel direccion;
+    private List<Object> listaCiudades, listaAllegados;
+    private BLogic controller;
+
     private boolean opc;
-    private XContactofamiliarModel contacto;
-    
+
     public FamilyMan(java.awt.Frame parent, boolean modal, List<Object> listaCiudades, List<Object> listaAllegados, BLogic controller, XDependienteModel dep) {
         super(parent, modal);
         initComponents();
@@ -36,10 +38,15 @@ public class FamilyMan extends javax.swing.JDialog {
         this.controller = controller;
         this.listaAllegados = listaAllegados;
         this.listaCiudades = listaCiudades;
+        this.family = null;
+        this.ciudad = null;
+        this.direccion = null;
+        this.contacto = null;
         fillUI();
         setUI();
+
     }
-    
+
     public FamilyMan(java.awt.Frame parent, boolean modal, List<Object> listaCiudades, BLogic controller, Object datos, XDependienteModel dep) {
         super(parent, modal);
         initComponents();
@@ -51,7 +58,7 @@ public class FamilyMan extends javax.swing.JDialog {
         fillUI();
         setUI();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -499,9 +506,15 @@ public class FamilyMan extends javax.swing.JDialog {
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         if (comprobarDatos()) {
-            XDireccionModel direc = crearDirecc();
-            
+            crearDirecc();
+            crearFamiliar();
+            crearRelacion();
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, introduzca todos los campo obligatorios.");
         }
+
+
     }//GEN-LAST:event_btnAceptarActionPerformed
 
     private void jbtnAyuda3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAyuda3ActionPerformed
@@ -559,14 +572,14 @@ public class FamilyMan extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void setUI() {
-        this.jComboTipo.setModel(Utils.listaTipo());
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-    
+
     private void fillUI() {
-        if (family != null) {
+        this.jComboTipo.setModel(Utils.listaTipo());
+        if (family == null) {
             Search search = new Search(null, true, listaAllegados, RELATIVES);
             if (search.getObject() != null) {
                 family = (XFamiliarModel) search.getObject();
@@ -582,23 +595,40 @@ public class FamilyMan extends javax.swing.JDialog {
         this.tfTelf.setText(family.getXPersonaModel() != null ? family.getXPersonaModel().getTelefono() : "");
         this.tfRelacion.setText(family.getRelacion() != null ? family.getRelacion() : "");
         this.tfObserv.setText(family.getObservaciones() != null ? family.getObservaciones() : "");
-        this.ciudad = family.getXDireccionModel() != null ? family.getXDireccionModel().getXCiudadModel() : null;
-        if (ciudad != null) {
-            this.tfNomCity.setText(ciudad.getName());
-            this.tfNomProv.setText(((XProvinciaModel) controller.cargarDatos(XProvinciaModel.class, SentenciasSQL.objectDatosId, ciudad.getXProvinciaModel().getId())).getName());
+        this.jCheckBox.setSelected(family.getLlaves() != null ? family.getLlaves() : false);
+        this.direccion = family.getXDireccionModel();
+        if (direccion != null) {
+
+            this.ciudad = family.getXDireccionModel() != null ? family.getXDireccionModel().getXCiudadModel() : null;
+            if (ciudad != null) {
+                this.tfNomCity.setText(ciudad.getName());
+
+                this.tfNomProv.setText(((XProvinciaModel) controller.cargarDatos(XProvinciaModel.class,
+                        SentenciasSQL.objectDatosId, ciudad.getXProvinciaModel().getId())).getName());
+            }
+            if (direccion.getTipovia() != null) {
+                this.jComboTipo.setSelectedItem(direccion.getTipovia().toString());
+            }
+            this.tfEsc.setText(direccion.getEscalera() != null ? direccion.getEscalera() : "");
+            this.tfLetra.setText(direccion.getLetra() != null ? direccion.getLetra() : "");
+            this.tfNomVia.setText(direccion.getDireccion() != null ? direccion.getDireccion() : "");
+            this.tfNum.setText(direccion.getNum() != null ? String.valueOf(direccion.getNum()) : "");
+            this.tfPiso.setText(direccion.getPiso() != null ? String.valueOf(direccion.getPiso()) : "");
         }
-        this.tfEsc.setText(family.getXDireccionModel() != null ? family.getXDireccionModel().getEscalera() : "");
-        this.tfLetra.setText(family.getXDireccionModel() != null ? family.getXDireccionModel().getLetra() : "");
-        this.tfNomVia.setText(family.getXDireccionModel() != null ? family.getXDireccionModel().getDireccion() : "");
-        this.tfNum.setText(family.getXDireccionModel() != null ?String.valueOf(family.getXDireccionModel().getNum()) : "");
-        this.tfPiso.setText(family.getXDireccionModel() != null ? String.valueOf(family.getXDireccionModel().getPiso()) : "");
-        //contacto
+
+        if (family.getXPersonaModel() != null) {
+            Object[] objetos = {family.getId(), dep.getId()};
+            contacto
+                    = ((XContactofamiliarModel) controller.cargarDatos(XContactofamiliarModel.class,
+                            SentenciasSQL.contactoDatos, objetos));
+        }
+
+        if (contacto != null) {
+            this.tfPrioridad.setText(String.valueOf(contacto.getPrioridad()));
+            this.tfDisponibilidad.setText(contacto.getDisponibilidad());
+        }
     }
-    
-    public XFamiliarModel getFamily() {
-        return family;
-    }
-    
+
     private boolean comprobarDatos() {
         boolean status = true;
         if (this.tfApe1.getText().length() <= 0) {
@@ -642,32 +672,79 @@ public class FamilyMan extends javax.swing.JDialog {
         }
         return status;
     }
-    
-    private XDireccionModel crearDirecc() {
-        XDireccionModel tempo;
-        if (opc) {
-            tempo = family.getXDireccionModel();
+
+    private void crearDirecc() {
+        boolean control = false;
+        if (direccion != null) {
             controller.abrirTransaccion();
+            control = true;
         } else {
-            tempo = new XDireccionModel();
+            direccion = new XDireccionModel();
         }
-        tempo.setXCiudadModel(ciudad);
-        tempo.setDireccion(this.tfNomVia.getText());
-        tempo.setNum(Integer.valueOf(this.tfNum.getText()));
-        tempo.setTipovia(this.jComboTipo.getSelectedItem().toString());
-        if (this.tfEsc.getText().length() > 0) {
-            tempo.setEscalera(this.tfEsc.getText());
-        }
-        if (this.tfLetra.getText().length() > 0) {
-            tempo.setLetra(this.tfLetra.getText());
-        }
+        direccion.setXCiudadModel(ciudad);
+        direccion.setDireccion(this.tfNomVia.getText());
+        direccion.setNum(Integer.valueOf(this.tfNum.getText()));
+        direccion.setTipovia(this.jComboTipo.getSelectedItem().toString());
+        direccion.setEscalera(this.tfEsc.getText().length() > 0 ? this.tfEsc.getText() : null);
+        direccion.setLetra(this.tfLetra.getText().length() > 0 ? this.tfLetra.getText() : null);
         if (this.tfPiso.getText().length() > 0) {
-            tempo.setPiso(Integer.valueOf(this.tfPiso.getText()));
+            direccion.setPiso(Integer.valueOf(this.tfPiso.getText()));
         }
-        if (opc) {
+        if (control) {
             controller.lanzarCommit();
         }
-        return tempo;
+    }
+
+    private void crearRelacion() {
+        boolean control = false;
+        if (contacto != null) {
+            controller.abrirTransaccion();
+            control = true;
+        } else {
+            contacto = new XContactofamiliarModel();
+        }
+        contacto.setDisponibilidad(this.tfDisponibilidad.getText());
+        contacto.setPrioridad(this.tfPrioridad.getText());
+        contacto.setXDependienteModel(dep);
+        contacto.setXFamiliarModel(family);
+        if (control) {
+            controller.lanzarCommit();
+        }
+    }
+
+    private void crearFamiliar() {
+        boolean control = false;
+        if (family != null) {
+            controller.abrirTransaccion();
+            control = true;
+        } else {
+            family = new XFamiliarModel();
+        }
+        family.setLlaves(this.jCheckBox.isSelected());
+        family.setObservaciones(this.tfObserv.getText());
+        family.setRelacion(this.tfRelacion.getText());
+        family.setXDireccionModel(direccion);
+        family.getXPersonaModel().setApellido1(this.tfApe1.getText());
+        family.getXPersonaModel().setApellido2(this.tfApe2.getText());
+        family.getXPersonaModel().setDni(this.tfDNI.getText());
+        family.getXPersonaModel().setEmail(this.tfEmail.getText());
+        family.getXPersonaModel().setName(this.tfNombre.getText());
+        family.getXPersonaModel().setTelefono(this.tfTelf.getText());
+        if (control) {
+            controller.lanzarCommit();
+        }
+    }
+    
+    public XFamiliarModel getFamily() {
+        return family;
+    }
+
+    public XContactofamiliarModel getContacto() {
+        return contacto;
+    }
+
+    public XDireccionModel getDireccion() {
+        return direccion;
     }
     
 }

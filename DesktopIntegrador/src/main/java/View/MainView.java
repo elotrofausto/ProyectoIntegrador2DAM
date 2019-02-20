@@ -1906,10 +1906,9 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnRemovHisSocActionPerformed
 
     private void jbtnAddAlleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddAlleActionPerformed
-        FamilyMan fam = new FamilyMan(this, true, listaCiudades,controller.cargarDatos(XFamiliarModel.class), controller,dep);
-        if (fam.getFamily() != null) {
-
-            controller.guardarObjeto(fam.getFamily());
+        FamilyMan fam = new FamilyMan(this, true, listaCiudades, controller.cargarDatos(XFamiliarModel.class), controller, dep);
+        if (fam.getContacto() != null) {
+            controller.guardarObjeto(fam.getContacto());
             manipulateAllegadosTable(dep, 0);
         }
     }//GEN-LAST:event_jbtnAddAlleActionPerformed
@@ -1917,10 +1916,8 @@ public class MainView extends javax.swing.JFrame {
     private void jbtnModAlleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModAlleActionPerformed
         if (this.jTableAllegados.getSelectedRow() >= 0) {
             FamilyMan fam = new FamilyMan(this, true, listaCiudades, controller, controller.cargarDatos(XFamiliarModel.class, SentenciasSQL.objectDatosId,
-                    this.jTableAllegados.getModel().getValueAt(this.jTableAllegados.getSelectedRow(), 0)),dep);
-            if (fam.getFamily() != null) {
-
-                //TODO      controller.actualizarObjeto(fam.getFamily());
+                    this.jTableAllegados.getModel().getValueAt(this.jTableAllegados.getSelectedRow(), 0)), dep);
+            if (fam.getContacto() != null) {
                 manipulateAllegadosTable(dep, 0);
             }
         } else {

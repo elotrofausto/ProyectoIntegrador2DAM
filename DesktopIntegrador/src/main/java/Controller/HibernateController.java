@@ -22,6 +22,7 @@ import javax.swing.table.TableModel;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.jdbc.ReturningWork;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -77,12 +78,14 @@ public class HibernateController extends Thread {
         session.save(object);
         session.getTransaction().commit();
     }
+
     //Actualiza un objeto en la BD
     //--------------------------------------------------------------------------
     //Abrimos transaccion
     public void openTransaction() {
         session.beginTransaction();
     }
+
     //Hacemos commit de los cambios
     public void commitTransaction() {
         session.getTransaction().commit();
@@ -92,6 +95,18 @@ public class HibernateController extends Thread {
     public List<Object> read(Class c) {
         List<Object> list = session.createQuery("from " + c.getName()).list();
         return list;
+    }
+
+    public Object read(Class c, String critery, Object[] opc) {
+        Query query = session.createQuery("from " + c.getName() + critery);
+        for (int i = 0; i < opc.length; i++) {
+            query.setParameter(i+1, opc[i]);
+        }
+        List<Object> list = query.list();
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
     }
 
     public Object read(Class c, String critery, Object opc) {

@@ -56,4 +56,6 @@ public class SentenciasSQL {
     public static final String asistenteDatos = " WHERE persona_id = ?1";
     
     public static final String objectDatosId = " WHERE id = ?1";
+    
+    public static final String contactoDatos=" WHERE familiar_id=?1 AND dependiente_id=?2";
 }
