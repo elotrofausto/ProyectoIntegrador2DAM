@@ -94,7 +94,6 @@ public class FamilyMan extends javax.swing.JDialog {
 
         jPanelDireccion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DIRECCIÓN", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
-        tfNomVia.setBackground(new java.awt.Color(255, 255, 255));
         tfNomVia.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfNomVia.setForeground(new java.awt.Color(0, 0, 0));
         tfNomVia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -120,7 +119,6 @@ public class FamilyMan extends javax.swing.JDialog {
             }
         });
 
-        tfNum.setBackground(new java.awt.Color(255, 255, 255));
         tfNum.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfNum.setForeground(new java.awt.Color(0, 0, 0));
         tfNum.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -133,7 +131,6 @@ public class FamilyMan extends javax.swing.JDialog {
             }
         });
 
-        tfEsc.setBackground(new java.awt.Color(255, 255, 255));
         tfEsc.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfEsc.setForeground(new java.awt.Color(0, 0, 0));
         tfEsc.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -141,7 +138,6 @@ public class FamilyMan extends javax.swing.JDialog {
         tfEsc.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ESCALERA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfEsc.setPreferredSize(new java.awt.Dimension(80, 40));
 
-        tfLetra.setBackground(new java.awt.Color(255, 255, 255));
         tfLetra.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfLetra.setForeground(new java.awt.Color(0, 0, 0));
         tfLetra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -149,7 +145,6 @@ public class FamilyMan extends javax.swing.JDialog {
         tfLetra.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LETRA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfLetra.setPreferredSize(new java.awt.Dimension(80, 40));
 
-        tfPiso.setBackground(new java.awt.Color(255, 255, 255));
         tfPiso.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfPiso.setForeground(new java.awt.Color(0, 0, 0));
         tfPiso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -163,7 +158,7 @@ public class FamilyMan extends javax.swing.JDialog {
         });
 
         jComboTipo.setBackground(new java.awt.Color(255, 255, 255));
-        jComboTipo.setForeground(new java.awt.Color(0, 0, 0));
+        jComboTipo.setForeground(new java.awt.Color(0, 102, 102));
         jComboTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboTipo.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "TIPO VÍA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         jComboTipo.setPreferredSize(new java.awt.Dimension(100, 40));
@@ -194,7 +189,7 @@ public class FamilyMan extends javax.swing.JDialog {
             }
         });
 
-        jCheckBox.setForeground(new java.awt.Color(0, 0, 0));
+        jCheckBox.setForeground(new java.awt.Color(0, 102, 102));
         jCheckBox.setText("Tiene llaves");
         jCheckBox.setPreferredSize(new java.awt.Dimension(150, 40));
 
@@ -274,7 +269,6 @@ public class FamilyMan extends javax.swing.JDialog {
 
         jPanelAllegado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS DEL ALLEGADO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
-        tfTelf.setBackground(new java.awt.Color(255, 255, 255));
         tfTelf.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfTelf.setForeground(new java.awt.Color(0, 0, 0));
         tfTelf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -287,7 +281,6 @@ public class FamilyMan extends javax.swing.JDialog {
             }
         });
 
-        tfNombre.setBackground(new java.awt.Color(255, 255, 255));
         tfNombre.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfNombre.setForeground(new java.awt.Color(0, 0, 0));
         tfNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -295,7 +288,6 @@ public class FamilyMan extends javax.swing.JDialog {
         tfNombre.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NOMBRE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfNombre.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        tfApe1.setBackground(new java.awt.Color(255, 255, 255));
         tfApe1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfApe1.setForeground(new java.awt.Color(0, 0, 0));
         tfApe1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -303,7 +295,6 @@ public class FamilyMan extends javax.swing.JDialog {
         tfApe1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PRIMER APELLIDO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfApe1.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        tfApe2.setBackground(new java.awt.Color(255, 255, 255));
         tfApe2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfApe2.setForeground(new java.awt.Color(0, 0, 0));
         tfApe2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -311,7 +302,6 @@ public class FamilyMan extends javax.swing.JDialog {
         tfApe2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SEGUNDO APELLIDO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfApe2.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        tfEmail.setBackground(new java.awt.Color(255, 255, 255));
         tfEmail.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfEmail.setForeground(new java.awt.Color(0, 0, 0));
         tfEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -319,7 +309,6 @@ public class FamilyMan extends javax.swing.JDialog {
         tfEmail.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EMAIL", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfEmail.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        tfRelacion.setBackground(new java.awt.Color(255, 255, 255));
         tfRelacion.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfRelacion.setForeground(new java.awt.Color(0, 0, 0));
         tfRelacion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -327,7 +316,6 @@ public class FamilyMan extends javax.swing.JDialog {
         tfRelacion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "RELACIÓN", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfRelacion.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        tfDisponibilidad.setBackground(new java.awt.Color(255, 255, 255));
         tfDisponibilidad.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDisponibilidad.setForeground(new java.awt.Color(0, 0, 0));
         tfDisponibilidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -335,7 +323,6 @@ public class FamilyMan extends javax.swing.JDialog {
         tfDisponibilidad.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DISPONIBILIDAD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfDisponibilidad.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        tfObserv.setBackground(new java.awt.Color(255, 255, 255));
         tfObserv.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfObserv.setForeground(new java.awt.Color(0, 0, 0));
         tfObserv.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -343,7 +330,6 @@ public class FamilyMan extends javax.swing.JDialog {
         tfObserv.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "OBSERVACIONES", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfObserv.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        tfDNI.setBackground(new java.awt.Color(255, 255, 255));
         tfDNI.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDNI.setForeground(new java.awt.Color(0, 0, 0));
         tfDNI.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -364,7 +350,6 @@ public class FamilyMan extends javax.swing.JDialog {
             }
         });
 
-        tfPrioridad.setBackground(new java.awt.Color(255, 255, 255));
         tfPrioridad.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfPrioridad.setForeground(new java.awt.Color(0, 0, 0));
         tfPrioridad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
