@@ -10,17 +10,20 @@ import javax.swing.WindowConstants;
  * @author Yop
  */
 public class Search extends javax.swing.JDialog {
-
+    
+    private final String CITY = "CIUDADES", RELATIVES = "ALLEGADOS";
     private ModelList modelo;
     private Object object;
-
+    private String name;
+    
     public Search(java.awt.Frame parent, boolean modal, List<Object> lista, String name) {
         super(parent, modal);
+        this.name = name.toUpperCase();
         initList(lista);
         initComponents();
-        setUI(name);
+        setUI();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -75,6 +78,7 @@ public class Search extends javax.swing.JDialog {
 
         jbtnAceptar.setForeground(new java.awt.Color(0, 102, 102));
         jbtnAceptar.setText("ACEPTAR");
+        jbtnAceptar.setPreferredSize(new java.awt.Dimension(120, 40));
         jbtnAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnAceptarActionPerformed(evt);
@@ -83,6 +87,7 @@ public class Search extends javax.swing.JDialog {
 
         jBtnCancelar.setForeground(new java.awt.Color(0, 102, 102));
         jBtnCancelar.setText("CANCELAR");
+        jBtnCancelar.setPreferredSize(new java.awt.Dimension(120, 40));
         jBtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnCancelarActionPerformed(evt);
@@ -94,25 +99,25 @@ public class Search extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jBtnCancelar)
+                        .addComponent(jBtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbtnAceptar)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                        .addComponent(jbtnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(16, Short.MAX_VALUE)
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnAceptar)
-                    .addComponent(jBtnCancelar))
-                .addContainerGap(16, Short.MAX_VALUE))
+                    .addComponent(jbtnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         pack();
@@ -124,13 +129,12 @@ public class Search extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jbtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAceptarActionPerformed
-
+        
         if (!jList.isSelectionEmpty()) {
             object = ((ModelList) jList.getModel()).getObject(jList.getSelectedIndex());
             dispose();
         } else {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningún dependiente");
-            jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("CIUDADES"));
         }
     }//GEN-LAST:event_jbtnAceptarActionPerformed
 
@@ -139,7 +143,7 @@ public class Search extends javax.swing.JDialog {
         ModelList tempo = new ModelList();
         if (jTfBuscar.getText().length() > 0) {
             for (Object object : lista) {
-                Class cla=object.getClass();
+                Class cla = object.getClass();
                 if ((cla.cast(object)).equals(this.jTfBuscar.getText())) {
                     tempo.addObject(object);
                 } else {
@@ -148,11 +152,11 @@ public class Search extends javax.swing.JDialog {
             jList.setModel(tempo);
             if (tempo.getSize() > 0) {
                 jList.setSelectedIndex(0);
-
+                
             }
         } else {
             jList.setModel(modelo);
-
+            
         }
     }//GEN-LAST:event_jTfBuscarKeyReleased
 
@@ -171,19 +175,25 @@ public class Search extends javax.swing.JDialog {
             modelo.addObject(object);
         }
     }
-
+    
     public Object getObject() {
         return object;
     }
-
-    private void setUI(String name) {
+    
+    private void setUI() {
         jList.setModel(modelo);
-        jList.setSelectedIndex(0);
+        if (jList.getModel().getSize() > 0) {
+            jList.setSelectedIndex(0);
+        }
         object = null;
-        jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, name, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
+        if (name.equals(RELATIVES)) {
+            this.jBtnCancelar.setText("NUEVO");
+            this.jbtnAceptar.setText("ELEGIR");
+        }
+        jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, name, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102)));
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-
+    
 }

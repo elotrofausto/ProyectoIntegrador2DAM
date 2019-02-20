@@ -121,6 +121,8 @@ public class MainView extends javax.swing.JFrame {
         jbtnAddMedico = new javax.swing.JButton();
         jbtnModMed = new javax.swing.JButton();
         jbtnModCen = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jButtonSearch = new javax.swing.JButton();
         jButtonSave = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
@@ -564,6 +566,10 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
+    jTextArea1.setColumns(20);
+    jTextArea1.setRows(5);
+    jScrollPane1.setViewportView(jTextArea1);
+
     javax.swing.GroupLayout jPanelProfesionalesLayout = new javax.swing.GroupLayout(jPanelProfesionales);
     jPanelProfesionales.setLayout(jPanelProfesionalesLayout);
     jPanelProfesionalesLayout.setHorizontalGroup(
@@ -571,16 +577,17 @@ public class MainView extends javax.swing.JFrame {
         .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfesionalesLayout.createSequentialGroup()
-                    .addComponent(jLabelCS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(260, 260, 260))
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfesionalesLayout.createSequentialGroup()
+                .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
                     .addComponent(jComboBoxCS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jbtnAddCenSal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jbtnModCen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(264, 264, 264)))
+                        .addComponent(jbtnModCen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabelCS, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(260, 260, 260)
             .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
                     .addComponent(jComboBoxMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -604,7 +611,9 @@ public class MainView extends javax.swing.JFrame {
                             .addGap(0, 0, 0)
                             .addComponent(jbtnModCen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jLabelCS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabelCS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1)))
                 .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
                     .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jComboBoxMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -750,7 +759,7 @@ public class MainView extends javax.swing.JFrame {
                     .addComponent(jButtonSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(34, 34, 34))
                 .addComponent(jPaneldependiente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelEstado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 842, Short.MAX_VALUE))
+                .addComponent(jPanelEstado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 886, Short.MAX_VALUE))
             .addGap(8, 8, 8))
     );
     jPanelPrincipalLayout.setVerticalGroup(
@@ -1032,7 +1041,7 @@ public class MainView extends javax.swing.JFrame {
 
     tfAsistenteNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
     tfAsistenteNombre.setToolTipText("");
-    tfAsistenteNombre.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre"));
+    tfAsistenteNombre.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
     tfAsistenteNombre.setPreferredSize(new java.awt.Dimension(150, 50));
 
     tfAsistenteApe1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -1141,7 +1150,7 @@ public class MainView extends javax.swing.JFrame {
     );
     jPanelAnalisisLayout.setVerticalGroup(
         jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 379, Short.MAX_VALUE)
+        .addGap(0, 380, Short.MAX_VALUE)
     );
 
     jBtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IconoCancelar25x25.png"))); // NOI18N
@@ -1250,7 +1259,6 @@ public class MainView extends javax.swing.JFrame {
     });
 
     jBtnLlamar.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-    jBtnLlamar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/call.png"))); // NOI18N
     jBtnLlamar.setMaximumSize(new java.awt.Dimension(50, 100));
     jBtnLlamar.setMinimumSize(new java.awt.Dimension(50, 100));
     jBtnLlamar.setPreferredSize(new java.awt.Dimension(50, 100));
@@ -1274,17 +1282,17 @@ public class MainView extends javax.swing.JFrame {
     jPanelRecursosLayout.setVerticalGroup(
         jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRecursosLayout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+            .addGap(10, 10, 10)
+            .addGroup(jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(jBtnLlamar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jScrollPaneRecursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanelRecursosLayout.createSequentialGroup()
                     .addComponent(jbtnAddRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(6, 6, 6)
                     .addComponent(jbtnModRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jbtnRemovRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jBtnLlamar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap())
+                    .addComponent(jbtnRemovRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addGap(10, 10, 10))
     );
 
     jPanelAlarmas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ALARMAS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
@@ -1358,7 +1366,7 @@ public class MainView extends javax.swing.JFrame {
             .addGroup(jPanelAlarmasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jBtnAceptAlarm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jBtnCancelAlarm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(18, 18, Short.MAX_VALUE)
+            .addGap(18, 18, 18)
             .addComponent(jScrollPaneAlarm1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
     );
@@ -1430,9 +1438,9 @@ public class MainView extends javax.swing.JFrame {
         jPanelAlertasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAlertasLayout.createSequentialGroup()
             .addGap(10, 10, 10)
-            .addComponent(jPanelRecursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanelRecursos, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanelAlarmas, javax.swing.GroupLayout.PREFERRED_SIZE, 294, Short.MAX_VALUE)
+            .addComponent(jPanelAlarmas, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelLlamadas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
@@ -1907,7 +1915,7 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnRemovHisSocActionPerformed
 
     private void jbtnAddAlleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddAlleActionPerformed
-        FamilyMan fam = new FamilyMan(this, true, listaCiudades, controller,dep);
+        FamilyMan fam = new FamilyMan(this, true, listaCiudades,controller.cargarDatos(XFamiliarModel.class), controller,dep);
         if (fam.getFamily() != null) {
 
             controller.guardarObjeto(fam.getFamily());
@@ -2050,6 +2058,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelTitle;
     private javax.swing.JPanel jPanelViviendas;
     private javax.swing.JPanel jPaneldependiente;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JScrollPane jScrollPaneAlarm;
     private javax.swing.JScrollPane jScrollPaneAlarm1;
@@ -2075,6 +2084,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JTable jTableHistorialSoc;
     private javax.swing.JTable jTableRecursos;
     private javax.swing.JTable jTableViviendas;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton jbtnAdd;
     private javax.swing.JButton jbtnAddAlle;
     private javax.swing.JButton jbtnAddCasa;
