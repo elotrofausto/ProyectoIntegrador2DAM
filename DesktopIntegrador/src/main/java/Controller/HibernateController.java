@@ -100,7 +100,7 @@ public class HibernateController extends Thread {
     public Object read(Class c, String critery, Object[] opc) {
         Query query = session.createQuery("from " + c.getName() + critery);
         for (int i = 0; i < opc.length; i++) {
-            query.setParameter(i+1, opc[i]);
+            query.setParameter(i + 1, opc[i]);
         }
         List<Object> list = query.list();
         if (list.isEmpty()) {
@@ -144,4 +144,22 @@ public class HibernateController extends Thread {
         return tm;
     }
 
+    public TableModel getRs(String query, int id) {
+        session.beginTransaction();
+        TableModel tm;
+        tm = session.doReturningWork(new ReturningWork<TableModel>() {
+            @Override
+            public TableModel execute(Connection connection) throws SQLException {
+                TableModel dtm;
+                try (PreparedStatement stmt = connection.prepareStatement(query)) {
+                    stmt.setInt(1, id);
+                    ResultSet rs = stmt.executeQuery();
+                    dtm = Utils.Utils.buildTableModel(rs);
+                }
+                return dtm;
+            }
+        });
+        session.getTransaction().commit();
+        return tm;
+    }
 }

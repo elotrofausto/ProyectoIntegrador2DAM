@@ -2,6 +2,7 @@ package Controller;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -29,7 +30,8 @@ public class AppServer extends Thread {
     public void run() {
         while (true) {
             try {
-                new ResponseServer(server.accept(), controller,"Alarma N_"+count++).start();
+                Socket socket=server.accept();
+                new ResponseServer(socket, controller,"Alarma N_"+count++).start();
             } catch (IOException ex) {
                 Logger.getLogger(AppServer.class.getName()).log(Level.SEVERE, null, ex);
             }

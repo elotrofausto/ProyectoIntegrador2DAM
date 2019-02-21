@@ -34,7 +34,8 @@ public class ResponseServer extends Thread {
     public void run() {
         try {
             br = new BufferedReader(new InputStreamReader(accept.getInputStream(), Charset.forName("UTF-8")));
-            jsonText = leer(br);
+            //crear bufReader
+            jsonText = br.readLine();
             resp = new JSONObject(jsonText);
             ControlTask control = new ControlTask(controller, accept, name);
             controller.insertAlarm(resp, control);
@@ -54,8 +55,10 @@ public class ResponseServer extends Thread {
 
     private String leer(BufferedReader br) throws IOException {
         StringBuilder sb = new StringBuilder();
-        while ((unByte = br.read()) != -1) {
-            sb.append((char) unByte);
+        String line = "";
+        while ((line = br.readLine()) != null) {
+            sb.append(line);
+            //sb.append((char) unByte);
         }
         return sb.toString();
     }

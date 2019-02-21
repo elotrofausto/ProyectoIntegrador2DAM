@@ -41,6 +41,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -2013,6 +2014,7 @@ public class MainView extends javax.swing.JFrame {
             controller.removeAlarm(((ControlTask) this.jTableAlarmas.getValueAt(this.jTableAlarmas.getSelectedRow(), 0)));
             conn.setStatus(true);
             conn.interrupt();
+            cargadependiente(dep);
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, elija antes un registro de la tabla");
         }
@@ -2345,6 +2347,8 @@ public class MainView extends javax.swing.JFrame {
         manipulateHisMedTable(dep, 0);
         manipulateHisSocTable(dep, 0);
         manipulateViviTable(dep, 0);
+        int id=((XViviendaModel)jComboBoxDependienteVivienda.getSelectedItem()).getXDireccionModel().getXCiudadModel().getId();
+        manipulateRecursosTable(id,0);
     }
 
     private void lockEnabled(boolean enabled) {
@@ -2549,6 +2553,15 @@ public class MainView extends javax.swing.JFrame {
         }
     }
 
+    private void manipulateRecursosTable(int obj, int opc) {
+        switch (opc) {
+            case 0:
+                this.jTableRecursos.setModel(controller.cargarResultSet(SentenciasSQL.estadoTM, obj));
+                Utils.resizeColumnWidth(this.jTableRecursos);
+                break;
+        }
+    }
+
     private void manipulateAlarmHistory(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2650,14 +2663,6 @@ public class MainView extends javax.swing.JFrame {
         return null;
     }
 
-    public JTable getjTableAlarmas() {
-        return jTableAlarmas;
-    }
-
-    public List<Object> getListaDependientes() {
-        return listaDependientes;
-    }
-
     private boolean controlDatos() {
         if (this.jComboBoxDependienteVivienda.getSelectedItem() == null) {
             return false;
@@ -2707,4 +2712,16 @@ public class MainView extends javax.swing.JFrame {
         this.tfDependientePass.setText("");
         this.tfDependienteId.setText("");
     }
+        public JTable getjTableAlarmas() {
+        return jTableAlarmas;
+    }
+
+    public List<Object> getListaDependientes() {
+        return listaDependientes;
+    }
+
+    public JTabbedPane getjTabbedPaneDcha() {
+        return jTabbedPaneDcha;
+    }
+    
 }

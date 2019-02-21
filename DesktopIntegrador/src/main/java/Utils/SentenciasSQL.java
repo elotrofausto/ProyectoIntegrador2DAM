@@ -40,6 +40,10 @@ public class SentenciasSQL {
             + " x_contactofamiliar_model AS con WHERE fam.persona_id = per.id AND"
             + " fam.id = con.familiar_id AND con.dependiente_id=? Order by con.prioridad desc, fam.llaves desc";
 
+    public static final String recursosTM = "SELECT rec.name, rec.descripcion, ofr.telefono FROM"
+            + " x_ofrecerrc_model AS ofr inner join x_recursocom_model rec ON"
+            + " ofr.id_rc=rec.id WHERE ofr.id_ciudad=?1";
+
     public static final String historialMedicoTM = "SELECT id, descripcion FROM public.x_histmedico_model WHERE name = 'medico' AND"
             + " id_dependiente=?";
 
@@ -48,14 +52,14 @@ public class SentenciasSQL {
 
     public static final String estadoTM = "SELECT id, fecha_hora AS \"Registro de llamada\", fecha_hora_inicio AS \"Registro de Suceso\","
             + " descripcion AS \"Descripción\"	FROM x_estado_model WHERE id_dependiente =? ";
-    
+
     public static final String coordenadasTM = "SELECT id, fecha_hora, latitud, longitud FROM x_geolocaliz_model WHERE id_dependiente=?";
-    
+
     public static final String personaDatos = " WHERE dni =?1";
-    
+
     public static final String asistenteDatos = " WHERE persona_id = ?1";
-    
+
     public static final String objectDatosId = " WHERE id = ?1";
-    
-    public static final String contactoDatos=" WHERE familiar_id=?1 AND dependiente_id=?2";
+
+    public static final String contactoDatos = " WHERE familiar_id=?1 AND dependiente_id=?2";
 }

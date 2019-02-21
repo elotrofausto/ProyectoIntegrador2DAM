@@ -75,6 +75,7 @@ public class BLogic {
     public synchronized void insertAlarm(JSONObject alarm, ControlTask resp) throws JSONException {
         Object[] row = {resp, new Date(alarm.getLong("fecha")), alarm.getString("idDependiente")};
         ((DefaultTableModel) mainView.getjTableAlarmas().getModel()).addRow(row);
+        mainView.getjTabbedPaneDcha().setSelectedIndex(0);
     }
 
     //Eliminamos la ALARMA en la tabla de alarmas activas
@@ -118,6 +119,10 @@ public class BLogic {
 
     public TableModel cargarResultSet(String query, Object dependiente) {
         return hibernate.getRs(query, dependiente);
+    }
+
+    public TableModel cargarResultSet(String query, int id) {
+        return hibernate.getRs(query, id);
     }
 
     //Guardar un nuevo objeto en la base de datos

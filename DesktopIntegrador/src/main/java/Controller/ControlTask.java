@@ -27,10 +27,10 @@ public class ControlTask extends Thread {
 
     @Override
     public void run() {
-        try {
+      /*  try {
             sleep(LIMIT);
         } catch (InterruptedException ex) {
-        }
+        }*/
         try {
             if (status) {
                 positiveReply();
@@ -44,14 +44,16 @@ public class ControlTask extends Thread {
 
     private void negativeReply() throws IOException {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(accept.getOutputStream()));
-        bw.write(0);
+        bw.write("0");
+        bw.newLine();
         bw.flush();
         bw.close();
     }
 
     private void positiveReply() throws IOException {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(accept.getOutputStream()));
-        bw.write(1);
+        bw.write("1");
+        bw.newLine();
         bw.flush();
         bw.close();
     }
