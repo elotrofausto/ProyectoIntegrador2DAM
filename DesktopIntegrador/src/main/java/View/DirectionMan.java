@@ -79,6 +79,7 @@ public class DirectionMan extends javax.swing.JDialog {
 
         jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS DE CENTRO MEDICO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
+        tfTelf.setBackground(new java.awt.Color(255, 255, 255));
         tfTelf.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfTelf.setForeground(new java.awt.Color(0, 0, 0));
         tfTelf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -86,18 +87,20 @@ public class DirectionMan extends javax.swing.JDialog {
         tfTelf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "TELÉFONO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfTelf.setPreferredSize(new java.awt.Dimension(150, 40));
 
+        tfNomEdif.setBackground(new java.awt.Color(255, 255, 255));
         tfNomEdif.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfNomEdif.setForeground(new java.awt.Color(0, 0, 0));
         tfNomEdif.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNomEdif.setToolTipText("");
-        tfNomEdif.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NOMBRE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfNomEdif.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* NOMBRE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfNomEdif.setPreferredSize(new java.awt.Dimension(200, 40));
 
+        tfNomVia.setBackground(new java.awt.Color(255, 255, 255));
         tfNomVia.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfNomVia.setForeground(new java.awt.Color(0, 0, 0));
         tfNomVia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNomVia.setToolTipText("");
-        tfNomVia.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NOMBRE DE VÍA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfNomVia.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* NOMBRE DE VÍA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfNomVia.setPreferredSize(new java.awt.Dimension(300, 40));
 
         btnAceptar.setForeground(new java.awt.Color(0, 102, 102));
@@ -118,13 +121,15 @@ public class DirectionMan extends javax.swing.JDialog {
             }
         });
 
+        tfNum.setBackground(new java.awt.Color(255, 255, 255));
         tfNum.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfNum.setForeground(new java.awt.Color(0, 0, 0));
         tfNum.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNum.setToolTipText("");
-        tfNum.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NUMERO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfNum.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* NUMERO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfNum.setPreferredSize(new java.awt.Dimension(80, 40));
 
+        tfEsc.setBackground(new java.awt.Color(255, 255, 255));
         tfEsc.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfEsc.setForeground(new java.awt.Color(0, 0, 0));
         tfEsc.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -132,6 +137,7 @@ public class DirectionMan extends javax.swing.JDialog {
         tfEsc.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ESCALERA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfEsc.setPreferredSize(new java.awt.Dimension(80, 40));
 
+        tfLetra.setBackground(new java.awt.Color(255, 255, 255));
         tfLetra.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfLetra.setForeground(new java.awt.Color(0, 0, 0));
         tfLetra.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -139,6 +145,7 @@ public class DirectionMan extends javax.swing.JDialog {
         tfLetra.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LETRA", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfLetra.setPreferredSize(new java.awt.Dimension(80, 40));
 
+        tfPiso.setBackground(new java.awt.Color(255, 255, 255));
         tfPiso.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfPiso.setForeground(new java.awt.Color(0, 0, 0));
         tfPiso.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -158,7 +165,7 @@ public class DirectionMan extends javax.swing.JDialog {
         tfNomCity.setForeground(new java.awt.Color(0, 0, 0));
         tfNomCity.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNomCity.setToolTipText("");
-        tfNomCity.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CIUDAD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfNomCity.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* CIUDAD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfNomCity.setPreferredSize(new java.awt.Dimension(150, 40));
 
         tfNomProv.setEditable(false);
@@ -182,6 +189,7 @@ public class DirectionMan extends javax.swing.JDialog {
         jCheckBox.setText("HABITUAL");
         jCheckBox.setPreferredSize(new java.awt.Dimension(150, 40));
 
+        tfAcceso.setBackground(new java.awt.Color(255, 255, 255));
         tfAcceso.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfAcceso.setForeground(new java.awt.Color(0, 0, 0));
         tfAcceso.setHorizontalAlignment(javax.swing.JTextField.CENTER);

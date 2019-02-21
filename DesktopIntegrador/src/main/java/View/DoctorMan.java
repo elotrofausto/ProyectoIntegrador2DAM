@@ -55,35 +55,35 @@ public class DoctorMan extends javax.swing.JDialog {
         tfTelf.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfTelf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfTelf.setToolTipText("");
-        tfTelf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "TELÉFONO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfTelf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* TELÉFONO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfTelf.setPreferredSize(new java.awt.Dimension(150, 40));
 
         tfNombre.setBackground(new java.awt.Color(255, 255, 255));
         tfNombre.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfNombre.setToolTipText("");
-        tfNombre.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NOMBRE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfNombre.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* NOMBRE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfNombre.setPreferredSize(new java.awt.Dimension(150, 40));
 
         tfApe1.setBackground(new java.awt.Color(255, 255, 255));
         tfApe1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfApe1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfApe1.setToolTipText("");
-        tfApe1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "PRIMER APELLIDO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfApe1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* PRIMER APELLIDO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfApe1.setPreferredSize(new java.awt.Dimension(150, 40));
 
         tfApe2.setBackground(new java.awt.Color(255, 255, 255));
         tfApe2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfApe2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfApe2.setToolTipText("");
-        tfApe2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "SEGUNDO APELLIDO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfApe2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* SEGUNDO APELLIDO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfApe2.setPreferredSize(new java.awt.Dimension(150, 40));
 
         tfDisponibilidad.setBackground(new java.awt.Color(255, 255, 255));
         tfDisponibilidad.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDisponibilidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDisponibilidad.setToolTipText("");
-        tfDisponibilidad.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DISPONIBILIDAD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDisponibilidad.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* DISPONIBILIDAD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfDisponibilidad.setPreferredSize(new java.awt.Dimension(320, 40));
 
         btnAceptar.setForeground(new java.awt.Color(0, 102, 102));

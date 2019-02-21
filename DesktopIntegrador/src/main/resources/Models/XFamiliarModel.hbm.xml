@@ -34,7 +34,7 @@
                 <comment>Observaciones</comment>
             </column>
         </property>
-        <set name="XContactofamiliarModels" table="x_contactofamiliar_model" inverse="true" lazy="true" fetch="select">
+        <set name="XContactofamiliarModels" cascade="delete" table="x_contactofamiliar_model" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="familiar_id" not-null="true">
                     <comment>Familiar</comment>

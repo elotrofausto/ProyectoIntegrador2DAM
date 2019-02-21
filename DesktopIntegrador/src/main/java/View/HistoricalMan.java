@@ -71,7 +71,7 @@ public class HistoricalMan extends javax.swing.JDialog {
         jTFDescription.setBackground(new java.awt.Color(255, 255, 255));
         jTFDescription.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTFDescription.setToolTipText("");
-        jTFDescription.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DESCRIPCIÓN", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        jTFDescription.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* DESCRIPCIÓN", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         jTFDescription.setPreferredSize(new java.awt.Dimension(10, 45));
 
         javax.swing.GroupLayout jPanelHistoryLayout = new javax.swing.GroupLayout(jPanelHistory);

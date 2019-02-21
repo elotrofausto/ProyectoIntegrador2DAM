@@ -155,6 +155,9 @@
       <SubComponents>
         <Component class="javax.swing.JTextField" name="tfTelf">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="0"/>
             </Property>
@@ -178,6 +181,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tfNomEdif">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="0"/>
             </Property>
@@ -188,7 +194,7 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder justification="1" position="2" title="NOMBRE">
+                <TitledBorder justification="1" position="2" title="* NOMBRE">
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>
@@ -201,6 +207,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tfNomVia">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="0"/>
             </Property>
@@ -211,7 +220,7 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder justification="1" position="2" title="NOMBRE DE V&#xcd;A">
+                <TitledBorder justification="1" position="2" title="* NOMBRE DE V&#xcd;A">
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>
@@ -252,6 +261,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tfNum">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="0"/>
             </Property>
@@ -262,7 +274,7 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder justification="1" position="2" title="NUMERO">
+                <TitledBorder justification="1" position="2" title="* NUMERO">
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>
@@ -275,6 +287,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tfEsc">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="0"/>
             </Property>
@@ -298,6 +313,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tfLetra">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="0"/>
             </Property>
@@ -321,6 +339,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tfPiso">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="0"/>
             </Property>
@@ -390,7 +411,7 @@
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                <TitledBorder justification="1" position="2" title="CIUDAD">
+                <TitledBorder justification="1" position="2" title="* CIUDAD">
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>
@@ -454,6 +475,9 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tfAcceso">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Dialog" size="14" style="0"/>
             </Property>

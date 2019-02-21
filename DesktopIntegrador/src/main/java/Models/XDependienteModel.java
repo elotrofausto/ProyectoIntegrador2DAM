@@ -53,6 +53,10 @@ public class XDependienteModel implements java.io.Serializable {
         this.XContactofamiliarModels = XContactofamiliarModels;
     }
 
+    public XDependienteModel(XPersonaModel xPersonaModel) {
+        this.XPersonaModel = XPersonaModel;
+    }
+
     public int getId() {
         return this.id;
     }
