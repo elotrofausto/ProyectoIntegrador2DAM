@@ -54,7 +54,7 @@ public class XDependienteModel implements java.io.Serializable {
     }
 
     public XDependienteModel(XPersonaModel xPersonaModel) {
-        this.XPersonaModel = XPersonaModel;
+        this.XPersonaModel = xPersonaModel;
     }
 
     public int getId() {

@@ -962,7 +962,7 @@ public class MainView extends javax.swing.JFrame {
                     .addComponent(jbtnRemovAlle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGap(6, 6, 6)
             .addGroup(jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPaneAlleg, javax.swing.GroupLayout.DEFAULT_SIZE, 777, Short.MAX_VALUE)
+                .addComponent(jScrollPaneAlleg, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE)
                 .addComponent(jScrollPaneHsoc, javax.swing.GroupLayout.Alignment.TRAILING)
                 .addComponent(jScrollPaneViv)
                 .addComponent(jScrollPaneHmed))
@@ -1148,14 +1148,14 @@ public class MainView extends javax.swing.JFrame {
             .addGap(19, 19, 19))
     );
 
-    jPanelAnalisis.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ANALISIS", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
+    jPanelAnalisis.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ANALISIS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
     jPanelAnalisis.setPreferredSize(new java.awt.Dimension(840, 440));
 
     javax.swing.GroupLayout jPanelAnalisisLayout = new javax.swing.GroupLayout(jPanelAnalisis);
     jPanelAnalisis.setLayout(jPanelAnalisisLayout);
     jPanelAnalisisLayout.setHorizontalGroup(
         jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 819, Short.MAX_VALUE)
+        .addGap(0, 0, Short.MAX_VALUE)
     );
     jPanelAnalisisLayout.setVerticalGroup(
         jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1192,18 +1192,17 @@ public class MainView extends javax.swing.JFrame {
     jPanelAsistenteLayout.setHorizontalGroup(
         jPanelAsistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelAsistenteLayout.createSequentialGroup()
-            .addContainerGap()
-            .addGroup(jPanelAsistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanelAsistenteMod, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelAnalisis, javax.swing.GroupLayout.Alignment.TRAILING, 829, 829, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAsistenteLayout.createSequentialGroup()
+            .addGap(16, 16, 16)
+            .addGroup(jPanelAsistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addComponent(jPanelAsistenteMod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelAsistenteLayout.createSequentialGroup()
                     .addComponent(jBtnEditAsi, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jBtnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jBtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-            .addContainerGap())
+                    .addComponent(jBtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanelAnalisis, javax.swing.GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE))
+            .addGap(16, 16, 16))
     );
     jPanelAsistenteLayout.setVerticalGroup(
         jPanelAsistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1650,7 +1649,8 @@ public class MainView extends javax.swing.JFrame {
         if (controlDatos()) {
             guardardependiente();
             nuevo = false;
-            listaDependientes = this.controller.cargarDatos(XDependienteModel.class);
+            manipulateDepenList(dep, 1);
+            // listaDependientes = this.controller.cargarDatos(XDependienteModel.class);
             cargadependiente(dep);
             lockEnabled(false);
         } else {
@@ -1705,6 +1705,7 @@ public class MainView extends javax.swing.JFrame {
 
     private void jbtnAddDepenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddDepenActionPerformed
         lockEnabled(true);
+        limpiarPanel();
         nuevo = true;
     }//GEN-LAST:event_jbtnAddDepenActionPerformed
 
@@ -2382,6 +2383,7 @@ public class MainView extends javax.swing.JFrame {
         this.jTabbedPaneDcha.setEnabledAt(1, !enabled);
         this.jTabbedPaneDcha.setSelectedIndex(1);
         this.jTableCoordenadas.setVisible(!enabled);
+        this.jTableEstado.setVisible(!enabled);
     }
 
     private void cargarAsistente() {
@@ -2426,7 +2428,7 @@ public class MainView extends javax.swing.JFrame {
                 }
             }
         } else {
-            dep.getXViviendaModels().add((XViviendaModel)this.jComboBoxDependienteVivienda.getSelectedItem());
+            dep.getXViviendaModels().add((XViviendaModel) this.jComboBoxDependienteVivienda.getSelectedItem());
         }
         if (nuevo) {
             controller.guardarObjeto(dep);
@@ -2469,7 +2471,7 @@ public class MainView extends javax.swing.JFrame {
         try {
             jClient = new JasperClient();
             JRViewer jrv = jClient.insertReport();
-            jrv.setSize(840, 440);
+            jrv.setSize(800, 400);
             this.jPanelAnalisis.add(jrv, BorderLayout.CENTER);
             jrv.setVisible(true);
             jrv.setZoomRatio(0.5F);
@@ -2657,6 +2659,52 @@ public class MainView extends javax.swing.JFrame {
     }
 
     private boolean controlDatos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (this.jComboBoxDependienteVivienda.getSelectedItem() == null) {
+            return false;
+        }
+        if (this.tfDependienteApe1.getText().length() == 0) {
+            return false;
+        }
+        if (this.tfDependienteApe2.getText().length() == 0) {
+            return false;
+        }
+        if (this.tfDependienteDNI.getText().length() == 0) {
+            return false;
+        }
+        if (this.tfDependienteEmail.getText().length() == 0) {
+            return false;
+        }
+        if (this.tfDependienteNSS.getText().length() == 0) {
+            return false;
+        }
+        if (this.tfDependienteNombre.getText().length() == 0) {
+            return false;
+        }
+        if (this.tfDependienteTelf.getText().length() == 0) {
+            return false;
+        }
+        if (this.tfDependientePass.getPassword().length == 0) {
+            return false;
+        }
+        if (this.jComboBoxCS.getSelectedItem() == null) {
+            return false;
+        }
+        if (this.jComboBoxMedico.getSelectedItem() == null) {
+            return false;
+        }
+        return true;
+    }
+
+    private void limpiarPanel() {
+        this.jComboBoxDependienteVivienda.setModel(new DefaultComboBoxModel());
+        this.tfDependienteApe1.setText("");
+        this.tfDependienteApe2.setText("");
+        this.tfDependienteDNI.setText("");
+        this.tfDependienteEmail.setText("");
+        this.tfDependienteNSS.setText("");
+        this.tfDependienteNombre.setText("");
+        this.tfDependienteTelf.setText("");
+        this.tfDependientePass.setText("");
+        this.tfDependienteId.setText("");
     }
 }

@@ -19,7 +19,7 @@
                 <comment>Id Medico</comment>
             </column>
         </many-to-one>
-        <many-to-one name="XPersonaModel" class="Models.XPersonaModel" fetch="select">
+        <many-to-one name="XPersonaModel" class="Models.XPersonaModel" fetch="select" cascade="save-update">
             <column name="persona_id" not-null="true" unique="true">
                 <comment>Persona</comment>
             </column>
@@ -65,7 +65,7 @@
             </key>
             <one-to-many class="Models.XAlarmaModel" />
         </set>
-        <set name="XViviendaModels" table="x_vivienda_model" inverse="true" lazy="true" fetch="select">
+        <set name="XViviendaModels" cascade="delete" table="x_vivienda_model" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="id_dependiente" not-null="true">
                     <comment>Id Dependiente</comment>
@@ -89,7 +89,7 @@
             </key>
             <one-to-many class="Models.XEstadoModel" />
         </set>
-        <set name="XGeolocalizModels" table="x_geolocaliz_model" inverse="true" lazy="true" fetch="select">
+        <set name="XGeolocalizModels" cascade="delete" table="x_geolocaliz_model" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="id_dependiente" not-null="true">
                     <comment>Id Dependiente</comment>
@@ -105,7 +105,7 @@
             </key>
             <one-to-many class="Models.XHistmedicoModel" />
         </set>
-        <set name="XContactofamiliarModels" table="x_contactofamiliar_model" inverse="true" lazy="true" fetch="select">
+        <set name="XContactofamiliarModels" cascade="delete" table="x_contactofamiliar_model" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="dependiente_id" not-null="true">
                     <comment>Dependiente</comment>
