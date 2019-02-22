@@ -225,6 +225,7 @@ public class MainView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1600, 900));
         setResizable(false);
         setSize(new java.awt.Dimension(1600, 900));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -774,7 +775,7 @@ public class MainView extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPaneldependiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
+            .addComponent(jPanelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelProfesionales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
@@ -1189,7 +1190,7 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
-    jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ANÁLISIS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
+    jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "ANÁLISIS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
     jPanel1.setPreferredSize(new java.awt.Dimension(840, 500));
 
     jPanelAnalisis.setPreferredSize(new java.awt.Dimension(830, 490));
@@ -2079,7 +2080,7 @@ public class MainView extends javax.swing.JFrame {
     private void jBtnCancelAlarmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelAlarmActionPerformed
         if (this.jTableAlarmas.getSelectedRow() >= 0) {
             ((ControlTask) this.jTableAlarmas.getValueAt(this.jTableAlarmas.getSelectedRow(), 0)).interrupt();
-            controller.removeAlarm(((ControlTask) this.jTableAlarmas.getValueAt(this.jTableAlarmas.getSelectedRow(), 0)));
+            //controller.removeAlarm(((ControlTask) this.jTableAlarmas.getValueAt(this.jTableAlarmas.getSelectedRow(), 0)));
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, elija antes un registro de la tabla");
         }

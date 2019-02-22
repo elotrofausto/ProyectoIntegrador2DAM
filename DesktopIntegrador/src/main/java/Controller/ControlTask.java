@@ -1,8 +1,8 @@
 package Controller;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -18,19 +18,25 @@ public class ControlTask extends Thread {
     private boolean status;
     private Socket accept;
     private String name;
+    private BufferedReader br;
+    private BufferedWriter bw;
+    private BLogic controller;
 
-    ControlTask(BLogic controller, Socket accept, String name) {
+    ControlTask(BLogic controller, Socket accept, String name, BufferedReader br, BufferedWriter bw) {
         this.status = false;
+        this.controller = controller;
         this.name = name;
         this.accept = accept;
+        this.br = br;
+        this.bw = bw;
     }
 
     @Override
     public void run() {
-      /*  try {
+        try {
             sleep(LIMIT);
         } catch (InterruptedException ex) {
-        }*/
+        }
         try {
             if (status) {
                 positiveReply();
@@ -43,19 +49,20 @@ public class ControlTask extends Thread {
     }
 
     private void negativeReply() throws IOException {
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(accept.getOutputStream()));
         bw.write("0");
         bw.newLine();
         bw.flush();
         bw.close();
+        br.close();
+        controller.removeAlarm(this);
     }
 
     private void positiveReply() throws IOException {
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(accept.getOutputStream()));
         bw.write("1");
         bw.newLine();
         bw.flush();
         bw.close();
+        br.close();
     }
 
     @Override

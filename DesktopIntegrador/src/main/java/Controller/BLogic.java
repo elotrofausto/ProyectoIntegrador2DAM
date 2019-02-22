@@ -74,7 +74,7 @@ public class BLogic {
 
     //Insertamos la ALARMA en la tabla de alarmas activas
     public synchronized void insertAlarm(JSONObject alarm, ControlTask resp) throws JSONException {
-        Object[] row = {resp, new Date(alarm.getLong("fecha")), alarm.getString("idDependiente")};
+        Object[] row = {resp, new Date(alarm.getLong("fecha")), alarm.getString("idDependiente"),alarm.getString("tipo")};
         ((DefaultTableModel) mainView.getjTableAlarmas().getModel()).addRow(row);
         mainView.getjTabbedPaneDcha().setSelectedIndex(0);
     }
