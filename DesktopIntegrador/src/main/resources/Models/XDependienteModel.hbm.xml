@@ -65,7 +65,7 @@
             </key>
             <one-to-many class="Models.XAlarmaModel" />
         </set>
-        <set name="XViviendaModels" cascade="delete" table="x_vivienda_model" inverse="true" lazy="true" fetch="select">
+        <set name="XViviendaModels" cascade="delete" table="x_vivienda_model" inverse="true" lazy="false" fetch="select">
             <key>
                 <column name="id_dependiente" not-null="true">
                     <comment>Id Dependiente</comment>

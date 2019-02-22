@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -97,6 +98,18 @@ public class BLogic {
         lanzarCommit();
     }
 
+    //Recorre las viviendas del dependiente para ponerlas a false y luego define la actual
+    public void reasignarHabitual(XDependienteModel dep, XViviendaModel hab) {
+        abrirTransaccion();
+        for (Iterator<XViviendaModel> iterator = dep.getXViviendaModels().iterator(); iterator.hasNext();) {
+            XViviendaModel next = iterator.next();
+            next.setHabitual(false);
+        }
+        hab.setHabitual(true);
+        lanzarCommit();
+
+    }
+
     //Gestión de la BD
     //--------------------------------------------------------------------------
     //Consultas recurrentes
@@ -159,4 +172,14 @@ public class BLogic {
         return mainView;
     }
 
+    public int obtenerIdCiudad(XDependienteModel dep) {
+       Set viv=dep.getXViviendaModels();
+        for (Iterator iterator = viv.iterator(); iterator.hasNext();) {
+            Object next = iterator.next();
+            if(((XViviendaModel)next).getHabitual()){
+                return ((XViviendaModel)next).getXDireccionModel().getXCiudadModel().getId();
+            }
+        }
+        return 1;
+    }
 }

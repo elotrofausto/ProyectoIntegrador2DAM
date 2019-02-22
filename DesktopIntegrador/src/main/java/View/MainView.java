@@ -65,7 +65,7 @@ public class MainView extends javax.swing.JFrame {
     private boolean nuevo;
     private BLogic controller;
     private XAsistenteModel asistente;
-    private XDependienteModel dep;
+    private XDependienteModel dep, tempo;
     private List<Object> listaDependientes;
     private List<Object> listaCiudades;
 
@@ -167,10 +167,11 @@ public class MainView extends javax.swing.JFrame {
         tfAsistentePass = new javax.swing.JPasswordField();
         tfAsistenteDni = new javax.swing.JTextField();
         tfAsistenteTelf = new javax.swing.JTextField();
-        jPanelAnalisis = new javax.swing.JPanel();
         jBtnCancel = new javax.swing.JButton();
         jBtnSave = new javax.swing.JButton();
         jBtnEditAsi = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jPanelAnalisis = new javax.swing.JPanel();
         jTabbedPaneDcha = new javax.swing.JTabbedPane();
         jPanelAlertas = new javax.swing.JPanel();
         jPanelRecursos = new javax.swing.JPanel();
@@ -179,7 +180,7 @@ public class MainView extends javax.swing.JFrame {
         jbtnAddRecurso = new javax.swing.JButton();
         jbtnModRecurso = new javax.swing.JButton();
         jbtnRemovRecurso = new javax.swing.JButton();
-        jBtnLlamar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanelAlarmas = new javax.swing.JPanel();
         jScrollPaneAlarm = new javax.swing.JScrollPane();
         jTableAlarmas = new javax.swing.JTable();
@@ -773,17 +774,22 @@ public class MainView extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPaneldependiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)
+            .addComponent(jPanelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelProfesionales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
 
     jTabbedPaneIzq.addTab("Dependiente (Datos principales)", null, jPanelPrincipal, "");
 
+    jPanelHistorial.setBackground(new java.awt.Color(204, 204, 204));
+
+    jPanelViviendas.setBackground(new java.awt.Color(204, 204, 204));
     jPanelViviendas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos adicionales del dependiente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
+    jScrollPaneViv.setBackground(new java.awt.Color(255, 255, 255));
     jScrollPaneViv.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Viviendas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
+    jTableViviendas.setBackground(new java.awt.Color(255, 255, 255));
     jTableViviendas.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
             {null, null, null, null},
@@ -797,8 +803,10 @@ public class MainView extends javax.swing.JFrame {
     ));
     jScrollPaneViv.setViewportView(jTableViviendas);
 
+    jScrollPaneHmed.setBackground(new java.awt.Color(255, 255, 255));
     jScrollPaneHmed.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Historial medico", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
+    jTableHistorialMed.setBackground(new java.awt.Color(255, 255, 255));
     jTableHistorialMed.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
             {null, null, null, null},
@@ -812,8 +820,10 @@ public class MainView extends javax.swing.JFrame {
     ));
     jScrollPaneHmed.setViewportView(jTableHistorialMed);
 
+    jScrollPaneHsoc.setBackground(new java.awt.Color(255, 255, 255));
     jScrollPaneHsoc.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Historial social", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
+    jTableHistorialSoc.setBackground(new java.awt.Color(255, 255, 255));
     jTableHistorialSoc.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
             {null, null, null, null},
@@ -827,8 +837,10 @@ public class MainView extends javax.swing.JFrame {
     ));
     jScrollPaneHsoc.setViewportView(jTableHistorialSoc);
 
+    jScrollPaneAlleg.setBackground(new java.awt.Color(255, 255, 255));
     jScrollPaneAlleg.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Allegados", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
+    jTableAllegados.setBackground(new java.awt.Color(255, 255, 255));
     jTableAllegados.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
             {null, null, null, null},
@@ -963,7 +975,7 @@ public class MainView extends javax.swing.JFrame {
                     .addComponent(jbtnRemovAlle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGap(6, 6, 6)
             .addGroup(jPanelViviendasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jScrollPaneAlleg, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE)
+                .addComponent(jScrollPaneAlleg, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
                 .addComponent(jScrollPaneHsoc, javax.swing.GroupLayout.Alignment.TRAILING)
                 .addComponent(jScrollPaneViv)
                 .addComponent(jScrollPaneHmed))
@@ -1027,14 +1039,17 @@ public class MainView extends javax.swing.JFrame {
     jPanelHistorialLayout.setVerticalGroup(
         jPanelHistorialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelHistorialLayout.createSequentialGroup()
-            .addContainerGap()
+            .addGap(0, 0, 0)
             .addComponent(jPanelViviendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(111, Short.MAX_VALUE))
+            .addContainerGap(120, Short.MAX_VALUE))
     );
 
     jTabbedPaneIzq.addTab("Dependiente (Historial, vivienda y allegados)", jPanelHistorial);
 
+    jPanelAsistente.setBackground(new java.awt.Color(204, 204, 204));
+
     jPanelAsistenteMod.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Datos del asistente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
+    jPanelAsistenteMod.setPreferredSize(new java.awt.Dimension(840, 174));
 
     tfAsistenteNombre.setBackground(java.awt.Color.white);
     tfAsistenteNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -1149,20 +1164,6 @@ public class MainView extends javax.swing.JFrame {
             .addGap(19, 19, 19))
     );
 
-    jPanelAnalisis.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ANALISIS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
-    jPanelAnalisis.setPreferredSize(new java.awt.Dimension(840, 440));
-
-    javax.swing.GroupLayout jPanelAnalisisLayout = new javax.swing.GroupLayout(jPanelAnalisis);
-    jPanelAnalisis.setLayout(jPanelAnalisisLayout);
-    jPanelAnalisisLayout.setHorizontalGroup(
-        jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 0, Short.MAX_VALUE)
-    );
-    jPanelAnalisisLayout.setVerticalGroup(
-        jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 379, Short.MAX_VALUE)
-    );
-
     jBtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/IconoCancelar25x25.png"))); // NOI18N
     jBtnCancel.setPreferredSize(new java.awt.Dimension(50, 40));
     jBtnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -1188,22 +1189,55 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
+    jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ANÁLISIS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
+
+    jPanelAnalisis.setPreferredSize(new java.awt.Dimension(840, 440));
+
+    javax.swing.GroupLayout jPanelAnalisisLayout = new javax.swing.GroupLayout(jPanelAnalisis);
+    jPanelAnalisis.setLayout(jPanelAnalisisLayout);
+    jPanelAnalisisLayout.setHorizontalGroup(
+        jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 818, Short.MAX_VALUE)
+    );
+    jPanelAnalisisLayout.setVerticalGroup(
+        jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGap(0, 366, Short.MAX_VALUE)
+    );
+
+    javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+    jPanel1.setLayout(jPanel1Layout);
+    jPanel1Layout.setHorizontalGroup(
+        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jPanel1Layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jPanelAnalisis, javax.swing.GroupLayout.PREFERRED_SIZE, 818, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap())
+    );
+    jPanel1Layout.setVerticalGroup(
+        jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addContainerGap()
+            .addComponent(jPanelAnalisis, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap())
+    );
+
     javax.swing.GroupLayout jPanelAsistenteLayout = new javax.swing.GroupLayout(jPanelAsistente);
     jPanelAsistente.setLayout(jPanelAsistenteLayout);
     jPanelAsistenteLayout.setHorizontalGroup(
         jPanelAsistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelAsistenteLayout.createSequentialGroup()
-            .addGap(16, 16, 16)
-            .addGroup(jPanelAsistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                .addComponent(jPanelAsistenteMod, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelAsistenteLayout.createSequentialGroup()
+            .addGap(6, 6, 6)
+            .addGroup(jPanelAsistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelAsistenteLayout.createSequentialGroup()
                     .addComponent(jBtnEditAsi, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jBtnSave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jBtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jPanelAnalisis, javax.swing.GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE))
-            .addGap(16, 16, 16))
+                .addGroup(jPanelAsistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelAsistenteMod, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGap(6, 6, 6))
     );
     jPanelAsistenteLayout.setVerticalGroup(
         jPanelAsistenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1217,8 +1251,8 @@ public class MainView extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelAsistenteMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanelAnalisis, 402, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGap(16, 16, 16))
     );
 
     jTabbedPaneIzq.addTab("Asistente", null, jPanelAsistente, "");
@@ -1230,8 +1264,10 @@ public class MainView extends javax.swing.JFrame {
     jPanelRecursos.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "EMERGENCIA Y OTROS RECURSOS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
     jPanelRecursos.setPreferredSize(new java.awt.Dimension(655, 140));
 
+    jScrollPaneRecursos.setBackground(new java.awt.Color(255, 255, 255));
     jScrollPaneRecursos.setPreferredSize(new java.awt.Dimension(540, 100));
 
+    jTableRecursos.setBackground(new java.awt.Color(255, 255, 255));
     jTableRecursos.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
             {null, null, null, null},
@@ -1269,45 +1305,50 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
-    jBtnLlamar.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
-    jBtnLlamar.setMaximumSize(new java.awt.Dimension(50, 100));
-    jBtnLlamar.setMinimumSize(new java.awt.Dimension(50, 100));
-    jBtnLlamar.setPreferredSize(new java.awt.Dimension(50, 100));
+    jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/call.png"))); // NOI18N
+    jButton1.setPreferredSize(new java.awt.Dimension(40, 40));
 
     javax.swing.GroupLayout jPanelRecursosLayout = new javax.swing.GroupLayout(jPanelRecursos);
     jPanelRecursos.setLayout(jPanelRecursosLayout);
     jPanelRecursosLayout.setHorizontalGroup(
         jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelRecursosLayout.createSequentialGroup()
-            .addContainerGap()
+            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jbtnAddRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jbtnRemovRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jbtnModRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRecursosLayout.createSequentialGroup()
+                    .addComponent(jbtnRemovRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(6, 6, 6)
+                    .addComponent(jbtnModRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jbtnAddRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jScrollPaneRecursos, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jBtnLlamar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(7, 7, 7))
+            .addComponent(jScrollPaneRecursos, javax.swing.GroupLayout.PREFERRED_SIZE, 537, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap())
     );
     jPanelRecursosLayout.setVerticalGroup(
         jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelRecursosLayout.createSequentialGroup()
-            .addGap(10, 10, 10)
+            .addGap(6, 6, 6)
             .addGroup(jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(jBtnLlamar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jScrollPaneRecursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanelRecursosLayout.createSequentialGroup()
-                    .addComponent(jbtnAddRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(6, 6, 6)
-                    .addComponent(jbtnModRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jbtnRemovRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addGap(10, 10, 10))
+                    .addComponent(jScrollPaneRecursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap())
+                .addGroup(jPanelRecursosLayout.createSequentialGroup()
+                    .addGroup(jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jbtnModRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbtnRemovRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jbtnAddRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(32, 32, 32)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(16, 16, 16))))
     );
 
     jPanelAlarmas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ALARMAS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
+    jScrollPaneAlarm.setBackground(new java.awt.Color(255, 255, 255));
+
+    jTableAlarmas.setBackground(new java.awt.Color(255, 255, 255));
     jTableAlarmas.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
             {null, null, null, null},
@@ -1339,8 +1380,10 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
+    jScrollPaneAlarm1.setBackground(new java.awt.Color(255, 255, 255));
     jScrollPaneAlarm1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "HISTORICO DE ALARMAS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 10), new java.awt.Color(0, 102, 102))); // NOI18N
 
+    jTableAlarmasHistory.setBackground(new java.awt.Color(255, 255, 255));
     jTableAlarmasHistory.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
             {null, null, null, null},
@@ -1386,6 +1429,9 @@ public class MainView extends javax.swing.JFrame {
 
     jPanelLlamadas.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Avisos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
+    jScrollPaneAvis.setBackground(new java.awt.Color(255, 255, 255));
+
+    jTableAvisos.setBackground(new java.awt.Color(255, 255, 255));
     jTableAvisos.setModel(new javax.swing.table.DefaultTableModel(
         new Object [][] {
             {null, null, null, null},
@@ -1445,7 +1491,7 @@ public class MainView extends javax.swing.JFrame {
             .addContainerGap()
             .addGroup(jPanelAlertasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanelAlarmas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelRecursos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelRecursos, javax.swing.GroupLayout.Alignment.TRAILING, 667, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jPanelLlamadas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addContainerGap())
     );
@@ -1518,7 +1564,7 @@ public class MainView extends javax.swing.JFrame {
         .addGroup(jPanelGeoLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(jPanelGeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabelMapcaption, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
+                .addComponent(jLabelMapcaption, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
                 .addGroup(jPanelGeoLayout.createSequentialGroup()
                     .addGap(6, 6, 6)
                     .addGroup(jPanelGeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1649,8 +1695,11 @@ public class MainView extends javax.swing.JFrame {
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
         if (controlDatos()) {
             guardardependiente();
+            if (nuevo) {
+                manipulateDepenList(dep, 1);
+            }
             nuevo = false;
-            manipulateDepenList(dep, 1);
+
             // listaDependientes = this.controller.cargarDatos(XDependienteModel.class);
             cargadependiente(dep);
             lockEnabled(false);
@@ -1708,6 +1757,7 @@ public class MainView extends javax.swing.JFrame {
         lockEnabled(true);
         limpiarPanel();
         nuevo = true;
+        tempo = new XDependienteModel(new XPersonaModel());
     }//GEN-LAST:event_jbtnAddDepenActionPerformed
 
     private void jbtnAddCenSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddCenSalActionPerformed
@@ -1760,13 +1810,17 @@ public class MainView extends javax.swing.JFrame {
     private void jbtnAddCasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddCasaActionPerformed
         DirectionMan center = new DirectionMan(this, true, controller, HOME, listaCiudades);
         if (center.getObject() != null) {
-            if (((XViviendaModel) center.getObject()).getHabitual()) {
-                controller.reasignarHabitual(dep);
+            ((XViviendaModel) center.getObject()).setXDependienteModel(nuevo ? tempo : dep);
+            if (!nuevo) {
+                if (((XViviendaModel) center.getObject()).getHabitual()) {
+                    controller.reasignarHabitual(dep);
+                }
+                controller.guardarObjeto(center.getObject());
+                manipulateViviTable(dep, 0);
+                manipulateHome(null, 0);
+            } else {
+                manipulateHome(((XViviendaModel) center.getObject()), 1);
             }
-            ((XViviendaModel) center.getObject()).setXDependienteModel(dep);
-            controller.guardarObjeto(center.getObject());
-            manipulateViviTable(dep, 0);
-            manipulateHome(null, 0);
         }
     }//GEN-LAST:event_jbtnAddCasaActionPerformed
 
@@ -1797,7 +1851,7 @@ public class MainView extends javax.swing.JFrame {
             DirectionMan center = new DirectionMan(this, true, controller, HOME, listaCiudades, (XViviendaModel) this.jComboBoxDependienteVivienda.getModel().getSelectedItem());
             if (center.getObject() != null) {
                 if (((XViviendaModel) center.getObject()).getHabitual()) {
-                    controller.reasignarHabitual(dep);
+                    controller.reasignarHabitual(dep, ((XViviendaModel) center.getObject()));
                 }
                 manipulateViviTable(dep, 0);
                 manipulateHome(null, 0);
@@ -2057,9 +2111,9 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton jBtnCancel;
     private javax.swing.JButton jBtnCancelAlarm;
     private javax.swing.JButton jBtnEditAsi;
-    private javax.swing.JButton jBtnLlamar;
     private javax.swing.JButton jBtnRefrescoMaps;
     private javax.swing.JButton jBtnSave;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButtonCancel;
@@ -2077,6 +2131,7 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelMaps;
     private javax.swing.JLabel jLabelMedico;
     private javax.swing.JLabel jLabelTitle;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelAlarmas;
     private javax.swing.JPanel jPanelAlertas;
     private javax.swing.JPanel jPanelAnalisis;
@@ -2306,7 +2361,7 @@ public class MainView extends javax.swing.JFrame {
         medico = new DefaultComboBoxModel();
         cSalud = new DefaultComboBoxModel();
         vivienda = new DefaultComboBoxModel();
-        String[] sex = {"Hobre", "Mujer", "Indefinido"};
+        String[] sex = {"Hombre", "Mujer", "Indefinido"};
         genero = new DefaultComboBoxModel(sex);
     }
 
@@ -2347,8 +2402,8 @@ public class MainView extends javax.swing.JFrame {
         manipulateHisMedTable(dep, 0);
         manipulateHisSocTable(dep, 0);
         manipulateViviTable(dep, 0);
-        int id=((XViviendaModel)jComboBoxDependienteVivienda.getSelectedItem()).getXDireccionModel().getXCiudadModel().getId();
-        manipulateRecursosTable(id,0);
+        int id = controller.obtenerIdCiudad(dep);
+        manipulateRecursosTable(id, 0);
     }
 
     private void lockEnabled(boolean enabled) {
@@ -2403,7 +2458,7 @@ public class MainView extends javax.swing.JFrame {
 
     private void guardardependiente() {
         if (nuevo) {
-            dep = new XDependienteModel(new XPersonaModel());
+            dep = tempo;
         } else {
             controller.abrirTransaccion();
         }
@@ -2422,20 +2477,10 @@ public class MainView extends javax.swing.JFrame {
         dep.getXPersonaModel().setDni(this.tfDependienteDNI.getText());
         dep.setXCsModel((XCsModel) this.jComboBoxCS.getSelectedItem());
         dep.setXMedicoModel((XMedicoModel) this.jComboBoxMedico.getSelectedItem());
-        if (!nuevo) {
-            for (Iterator<XViviendaModel> iterator = dep.getXViviendaModels().iterator(); iterator.hasNext();) {
-                XViviendaModel next = iterator.next();
-                if (next.getId() == ((XViviendaModel) this.jComboBoxDependienteVivienda.getSelectedItem()).getId()) {
-                    next.setHabitual(true);
-                } else {
-                    next.setHabitual(false);
-                }
-            }
-        } else {
-            dep.getXViviendaModels().add((XViviendaModel) this.jComboBoxDependienteVivienda.getSelectedItem());
-        }
         if (nuevo) {
+            dep.getXViviendaModels().add((XViviendaModel) this.jComboBoxDependienteVivienda.getSelectedItem());
             controller.guardarObjeto(dep);
+            controller.guardarObjeto((XViviendaModel) this.jComboBoxDependienteVivienda.getSelectedItem());
         } else {
             controller.lanzarCommit();
         }
@@ -2475,7 +2520,7 @@ public class MainView extends javax.swing.JFrame {
         try {
             jClient = new JasperClient();
             JRViewer jrv = jClient.insertReport();
-            jrv.setSize(800, 400);
+            jrv.setSize(810, 360);
             this.jPanelAnalisis.add(jrv, BorderLayout.CENTER);
             jrv.setVisible(true);
             jrv.setZoomRatio(0.5F);
@@ -2556,7 +2601,7 @@ public class MainView extends javax.swing.JFrame {
     private void manipulateRecursosTable(int obj, int opc) {
         switch (opc) {
             case 0:
-                this.jTableRecursos.setModel(controller.cargarResultSet(SentenciasSQL.estadoTM, obj));
+                this.jTableRecursos.setModel(controller.cargarResultSet(SentenciasSQL.recursosTM, obj));
                 Utils.resizeColumnWidth(this.jTableRecursos);
                 break;
         }
@@ -2712,7 +2757,8 @@ public class MainView extends javax.swing.JFrame {
         this.tfDependientePass.setText("");
         this.tfDependienteId.setText("");
     }
-        public JTable getjTableAlarmas() {
+
+    public JTable getjTableAlarmas() {
         return jTableAlarmas;
     }
 
@@ -2723,5 +2769,5 @@ public class MainView extends javax.swing.JFrame {
     public JTabbedPane getjTabbedPaneDcha() {
         return jTabbedPaneDcha;
     }
-    
+
 }
