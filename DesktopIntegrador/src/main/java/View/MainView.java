@@ -228,11 +228,6 @@ public class MainView extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1600, 900));
         setResizable(false);
         setSize(new java.awt.Dimension(1600, 900));
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosed(java.awt.event.WindowEvent evt) {
-                CloseHandler(evt);
-            }
-        });
 
         jPanelTitle.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -1190,7 +1185,7 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
-    jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "ANÁLISIS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
+    jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ANÁLISIS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
     jPanel1.setPreferredSize(new java.awt.Dimension(840, 500));
 
     jPanelAnalisis.setPreferredSize(new java.awt.Dimension(830, 490));
@@ -1449,6 +1444,11 @@ public class MainView extends javax.swing.JFrame {
 
     jButton4.setForeground(new java.awt.Color(0, 102, 102));
     jButton4.setText("CREAR AVISO");
+    jButton4.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton4ActionPerformed(evt);
+        }
+    });
 
     jButton5.setForeground(new java.awt.Color(0, 102, 102));
     jButton5.setText("REFRESCO");
@@ -1686,11 +1686,8 @@ public class MainView extends javax.swing.JFrame {
         mapButtonsAvailable();
     }//GEN-LAST:event_jButtonZoomInActionPerformed
 
-    private void CloseHandler(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_CloseHandler
-        this.controller.getHibernate().logOffAndClose();
-    }//GEN-LAST:event_CloseHandler
-
     private void itemSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemSalirActionPerformed
+        this.controller.getHibernate().logOffAndClose();
         System.exit(0);
     }//GEN-LAST:event_itemSalirActionPerformed
 
@@ -2080,7 +2077,6 @@ public class MainView extends javax.swing.JFrame {
     private void jBtnCancelAlarmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelAlarmActionPerformed
         if (this.jTableAlarmas.getSelectedRow() >= 0) {
             ((ControlTask) this.jTableAlarmas.getValueAt(this.jTableAlarmas.getSelectedRow(), 0)).interrupt();
-            //controller.removeAlarm(((ControlTask) this.jTableAlarmas.getValueAt(this.jTableAlarmas.getSelectedRow(), 0)));
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, elija antes un registro de la tabla");
         }
@@ -2102,6 +2098,10 @@ public class MainView extends javax.swing.JFrame {
             jLabelCS.setText(cs.datos());
         }
     }//GEN-LAST:event_jComboBoxCSActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        new NotificationMan(this, true);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private datechooser.beans.DateChooserCombo dateChooserDependienteAlta;
@@ -2355,6 +2355,7 @@ public class MainView extends javax.swing.JFrame {
         model.addColumn("ALARMAS");
         model.addColumn("FECHA");
         model.addColumn("NIF");
+        model.addColumn("TIPO");
         this.jTableAlarmas.setModel(model);
         manipulateAlarmHistory(null, 0);
     }
@@ -2442,7 +2443,6 @@ public class MainView extends javax.swing.JFrame {
         this.jTabbedPaneIzq.setEnabledAt(2, !enabled);
         this.jTabbedPaneDcha.setEnabledAt(0, !enabled);
         this.jTabbedPaneDcha.setEnabledAt(1, !enabled);
-        this.jTabbedPaneDcha.setSelectedIndex(1);
         this.jTableCoordenadas.setVisible(!enabled);
         this.jTableEstado.setVisible(!enabled);
     }

@@ -140,7 +140,6 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="FECHA/HORA DEL SUCESO">
-                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>

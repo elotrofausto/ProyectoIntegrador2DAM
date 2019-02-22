@@ -93,7 +93,7 @@ public class DepenStat extends javax.swing.JDialog {
         dateTimeApunte.setPreferredSize(new java.awt.Dimension(350, 60));
 
         dateTimeSuceso.setBackground(new java.awt.Color(255, 255, 255));
-        dateTimeSuceso.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FECHA/HORA DEL SUCESO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        dateTimeSuceso.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "FECHA/HORA DEL SUCESO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         dateTimeSuceso.setForeground(new java.awt.Color(0, 0, 0));
         dateTimeSuceso.setPreferredSize(new java.awt.Dimension(350, 60));
 
