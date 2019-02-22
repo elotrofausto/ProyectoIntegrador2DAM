@@ -231,7 +231,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPaneldependiente" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanelEstado" pref="144" max="32767" attributes="0"/>
+                      <Component id="jPanelEstado" pref="244" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanelProfesionales" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -1168,7 +1168,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Component id="jPanelViviendas" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="120" max="32767" attributes="0"/>
+                      <EmptySpace pref="220" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -1964,6 +1964,9 @@
                     </TitledBorder>
                   </Border>
                 </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[840, 500]"/>
+                </Property>
               </Properties>
 
               <Layout>
@@ -1978,9 +1981,9 @@
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanelAnalisis" min="-2" pref="366" max="-2" attributes="0"/>
+                          <Component id="jPanelAnalisis" min="-2" pref="465" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1990,7 +1993,7 @@
                 <Container class="javax.swing.JPanel" name="jPanelAnalisis">
                   <Properties>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[840, 440]"/>
+                      <Dimension value="[830, 490]"/>
                     </Property>
                   </Properties>
 
@@ -2002,7 +2005,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="366" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="465" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>

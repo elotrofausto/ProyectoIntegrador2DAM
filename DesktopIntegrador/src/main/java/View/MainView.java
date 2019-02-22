@@ -774,7 +774,7 @@ public class MainView extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPaneldependiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+            .addComponent(jPanelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelProfesionales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
@@ -1041,7 +1041,7 @@ public class MainView extends javax.swing.JFrame {
         .addGroup(jPanelHistorialLayout.createSequentialGroup()
             .addGap(0, 0, 0)
             .addComponent(jPanelViviendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(120, Short.MAX_VALUE))
+            .addContainerGap(220, Short.MAX_VALUE))
     );
 
     jTabbedPaneIzq.addTab("Dependiente (Historial, vivienda y allegados)", jPanelHistorial);
@@ -1190,8 +1190,9 @@ public class MainView extends javax.swing.JFrame {
     });
 
     jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ANÁLISIS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
+    jPanel1.setPreferredSize(new java.awt.Dimension(840, 500));
 
-    jPanelAnalisis.setPreferredSize(new java.awt.Dimension(840, 440));
+    jPanelAnalisis.setPreferredSize(new java.awt.Dimension(830, 490));
 
     javax.swing.GroupLayout jPanelAnalisisLayout = new javax.swing.GroupLayout(jPanelAnalisis);
     jPanelAnalisis.setLayout(jPanelAnalisisLayout);
@@ -1201,7 +1202,7 @@ public class MainView extends javax.swing.JFrame {
     );
     jPanelAnalisisLayout.setVerticalGroup(
         jPanelAnalisisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGap(0, 366, Short.MAX_VALUE)
+        .addGap(0, 465, Short.MAX_VALUE)
     );
 
     javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -1215,9 +1216,9 @@ public class MainView extends javax.swing.JFrame {
     );
     jPanel1Layout.setVerticalGroup(
         jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        .addGroup(jPanel1Layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jPanelAnalisis, javax.swing.GroupLayout.PREFERRED_SIZE, 366, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanelAnalisis, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
     );
 
@@ -2520,7 +2521,7 @@ public class MainView extends javax.swing.JFrame {
         try {
             jClient = new JasperClient();
             JRViewer jrv = jClient.insertReport();
-            jrv.setSize(810, 360);
+            jrv.setSize(820, 480);
             this.jPanelAnalisis.add(jrv, BorderLayout.CENTER);
             jrv.setVisible(true);
             jrv.setZoomRatio(0.5F);
