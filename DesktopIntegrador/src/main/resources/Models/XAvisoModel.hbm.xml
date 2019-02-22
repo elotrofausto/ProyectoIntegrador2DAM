@@ -44,9 +44,19 @@
                 <comment>Recibido</comment>
             </column>
         </property>
+        <property name="llamada" type="java.lang.Boolean">
+            <column name="x_llamda">
+                <comment>llamada</comment>
+            </column>
+        </property>
         <property name="tomas" type="java.lang.Integer">
             <column name="tomas">
                 <comment>Num_Tomas</comment>
+            </column>
+        </property>
+                <property name="tomas_constantes" type="java.lang.Integer">
+            <column name="x_tomas_constantes">
+                <comment>tomas_constantes</comment>
             </column>
         </property>
         <set name="XLlamadaModels" table="x_llamada_model" inverse="true" lazy="true" fetch="select">

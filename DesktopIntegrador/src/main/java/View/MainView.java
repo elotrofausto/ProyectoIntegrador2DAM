@@ -2100,7 +2100,7 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxCSActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        new NotificationMan(this, true);
+        new NotificationMan(this, true,controller);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

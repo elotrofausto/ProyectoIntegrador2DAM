@@ -15,6 +15,8 @@ public class XAvisoModel implements java.io.Serializable {
     private String periodicidad;
     private Boolean recibido;
     private Integer tomas;
+    private Integer tomas_constantes;
+    private Boolean llamada;
     private Set XLlamadaModels = new HashSet(0);
 
     public XAvisoModel() {
@@ -117,6 +119,22 @@ public class XAvisoModel implements java.io.Serializable {
 
     public void setXLlamadaModels(Set XLlamadaModels) {
         this.XLlamadaModels = XLlamadaModels;
+    }
+
+    public Integer getTomas_constantes() {
+        return tomas_constantes;
+    }
+
+    public void setTomas_constantes(Integer tomas_constantes) {
+        this.tomas_constantes = tomas_constantes;
+    }
+
+    public Boolean getLlamada() {
+        return llamada;
+    }
+
+    public void setLlamada(Boolean llamada) {
+        this.llamada = llamada;
     }
 
 }
