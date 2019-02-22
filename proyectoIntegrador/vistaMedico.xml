@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <openerp>
+            <record id="view_form_medico" model="ir.ui.view">        
+                <field name="name">Ficha del Medico</field>
+                <field name="model">x_medico.model</field>
+                <field name="arch" type="xml">
+                    <form>
+                        <sheet>
+                            <group name="group_top">
+                                <group name="group_left">
+                                    <field name="name"/>
+                                    <field name="apellido1"/>
+                                    <field name="apellido2"/>
+                                </group>
+                                <group name="group_right">
+                                    <field name="disponibilidad"/>
+                                    <field name="telefono"/>
+                                </group>
+                            </group>
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+            <record id="view_tree_medico" model="ir.ui.view">        
+                <field name="name">Lista de Medicos</field>
+                <field name="model">x_medico.model</field>
+                <field name="arch" type="xml">
+                    <tree>
+                        <field name="name"/>
+                        <field name="apellido1"/>
+                        <field name="apellido2"/>
+                        <field name="disponibilidad"/>
+                        <field name="telefono"/>
+                    </tree>
+                </field>
+            </record>
+    <data>   
+             <act_window
+                id="action_medico"
+                name="Medicos"
+                res_model="x_medico.model"
+                view_mode="tree,kanban,form"
+            />
+    </data>
+</openerp>

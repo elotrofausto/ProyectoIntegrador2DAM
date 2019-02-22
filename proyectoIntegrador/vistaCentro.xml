@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <openerp>
+            <record id="view_form_centro" model="ir.ui.view">        
+                <field name="name">Ficha del Centro</field>
+                <field name="model">x_cs.model</field>
+                <field name="arch" type="xml">
+                    <form>
+                        <sheet>
+                            <group name="group_top">
+                                <group name="group_left">
+                                    <field name="name"/>
+                                    <field name="telefono"/>
+                                    <field name="id_direccion"/>
+                                </group>
+                            </group>
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+            <record id="view_tree_centro" model="ir.ui.view">        
+                <field name="name">Lista de Centros</field>
+                <field name="model">x_cs.model</field>
+                <field name="arch" type="xml">
+                    <tree>
+                        <field name="name"/>
+                        <field name="id_direccion"/> 
+                        <field name="telefono"/>
+                    </tree>
+                </field>
+            </record>
+    <data>   
+             <act_window
+                id="action_centro_salud"
+                name="Centros"
+                res_model="x_cs.model"
+                view_mode="tree,kanban,form"
+            />
+    </data>
+</openerp>
