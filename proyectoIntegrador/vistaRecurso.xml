@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <openerp>
+            <record id="view_form_recurso" model="ir.ui.view">        
+                <field name="name">Ficha del Recurso</field>
+                <field name="model">x_recursocom.model</field>
+                <field name="arch" type="xml">
+                    <form>
+                        <sheet>
+                            <group name="group_top">
+                                <group name="group_left">
+                                    <field name="name"/>
+                                    <field name="descripcion"/>
+                                </group>
+                            </group>
+                        </sheet>
+                    </form>
+                </field>
+            </record>
+            <record id="view_tree_recurso" model="ir.ui.view">        
+                <field name="name">Lista de Recursos</field>
+                <field name="model">x_recursocom.model</field>
+                <field name="arch" type="xml">
+                    <tree>
+                        <field name="name"/>
+                        <field name="descripcion"/>
+                    </tree>
+                </field>
+            </record>
+    <data>   
+             <act_window
+                id="action_recurso"
+                name="Recursos"
+                res_model="x_recursocom.model"
+                view_mode="tree,kanban,form"
+            />
+    </data>
+</openerp>

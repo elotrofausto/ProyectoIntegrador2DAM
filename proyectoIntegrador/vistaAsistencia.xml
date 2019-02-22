@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <openerp>
+        <data>   
+            <act_window
+                id="action_centro_salud"
+                name="Centros"
+                res_model="x_cs.model"
+                view_mode="tree,kanban,form"
+            />
+                         <act_window
+                id="action_provincia"
+                name="Provincias"
+                res_model="x_provincia.model"
+                view_mode="tree,kanban,form"
+            />
+                         <act_window
+                id="action_recurso"
+                name="Recursos"
+                res_model="x_recursocom.model"
+                view_mode="tree,kanban,form"
+            />
+                         <act_window
+                id="action_ciudad"
+                name="Ciudades"
+                res_model="x_ciudad.model"
+                view_mode="tree,kanban,form"
+            />
+                         <act_window
+                id="action_medico"
+                name="Medicos"
+                res_model="x_medico.model"
+                view_mode="tree,kanban,form"
+            />
+            <menuitem id="menu_Asistencia" name="Asistencia" action="action_centro_salud"/>
+            <menuitem id="menu_Provincia" name="Provincias" parent="menu_Asistencia" action="action_provincia"/>
+            <menuitem id="menu_Ciudad" name="Ciudades" parent="menu_Asistencia" action="action_ciudad"/>
+            <menuitem id="menu_Recursos" name="Recursos" parent="menu_Asistencia" action="action_recurso"/>
+            <menuitem id="menu_Centro_Salud" name="Centros" parent="menu_Asistencia" action="action_centro_salud"/>
+            <menuitem id="menu_Medico" name="Medicos" parent="menu_Asistencia" action="action_medico"/>
+        </data>
+    </openerp>
