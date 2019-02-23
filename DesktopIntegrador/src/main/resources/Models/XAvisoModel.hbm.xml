@@ -45,7 +45,7 @@
             </column>
         </property>
         <property name="llamada" type="java.lang.Boolean">
-            <column name="x_llamda">
+            <column name="x_llamada">
                 <comment>llamada</comment>
             </column>
         </property>

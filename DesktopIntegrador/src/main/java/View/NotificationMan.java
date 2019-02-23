@@ -2,6 +2,7 @@ package View;
 
 import Controller.BLogic;
 import Models.XAvisoModel;
+import Models.XDependienteModel;
 import com.github.lgooddatepicker.components.DatePickerSettings;
 import java.awt.Dimension;
 import java.net.URL;
@@ -9,6 +10,7 @@ import java.time.ZoneId;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
 /**
@@ -20,10 +22,13 @@ public class NotificationMan extends javax.swing.JDialog {
     private final URL URLIMAGECALENDAR = NotificationMan.class.getResource("/Recursos/calendar.png");
     private XAvisoModel aviso;
     private BLogic controller;
+    private XDependienteModel dep;
 
-    public NotificationMan(java.awt.Frame parent, boolean modal, BLogic controller) {
+    public NotificationMan(java.awt.Frame parent, boolean modal, BLogic controller, XDependienteModel dep) {
         super(parent, modal);
         this.aviso = new XAvisoModel();
+        this.dep = dep;
+        this.controller = controller;
         initComponents();
         initUI();
     }
@@ -74,12 +79,17 @@ public class NotificationMan extends javax.swing.JDialog {
         dPHasta.setPreferredSize(new java.awt.Dimension(231, 50));
 
         jTFNom.setBackground(new java.awt.Color(255, 255, 255));
-        jTFNom.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NOMBRE ELEMENTO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        jTFNom.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* NOMBRE ELEMENTO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         jTFNom.setPreferredSize(new java.awt.Dimension(150, 40));
 
         jTFDesc.setBackground(new java.awt.Color(255, 255, 255));
-        jTFDesc.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DESCRIPCIÓN", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        jTFDesc.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* DESCRIPCIÓN", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         jTFDesc.setPreferredSize(new java.awt.Dimension(150, 40));
+        jTFDesc.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTFDescKeyTyped(evt);
+            }
+        });
 
         jCBTomas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9" }));
         jCBTomas.setBackground(new java.awt.Color(255, 255, 255));
@@ -155,7 +165,7 @@ public class NotificationMan extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -183,18 +193,42 @@ public class NotificationMan extends javax.swing.JDialog {
     }//GEN-LAST:event_jBtnCancelActionPerformed
 
     private void jBtnAceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAceptActionPerformed
-        aviso.setRecibido(false);
-        aviso.setTipo(this.jCBTipo.getSelectedItem().toString());
-        aviso.setName(this.jTFNom.getText());
-        aviso.setPeriodicidad(this.jTFDesc.getText());
-        aviso.setTomas(Integer.valueOf(this.jCBTomas.getSelectedItem().toString()));
-        aviso.setTomas_constantes(Integer.valueOf(this.jCBTomas.getSelectedItem().toString()));
-        aviso.setFecDesde(Date.from(this.dPDesde.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        aviso.setFecHasta(Date.from(this.dPHasta.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        aviso.setLlamada(false);
-        controller.guardarObjeto(aviso);
-        dispose();
+        if (this.jTFNom.getText().length() > 0 && this.jTFDesc.getText().length() > 0) {
+            aviso.setName(this.jTFNom.getText());
+            aviso.setPeriodicidad(this.jTFDesc.getText());
+            aviso.setRecibido(false);
+            aviso.setTipo(this.jCBTipo.getSelectedItem().toString());
+            if (aviso.getTipo().equals("medicinas")) {
+                int tomas = Integer.valueOf(this.jCBTomas.getSelectedItem().toString());
+                aviso.setTomas(tomas);
+                aviso.setTomas_constantes(tomas);
+            } else {
+                aviso.setTomas(1);
+                aviso.setTomas_constantes(1);
+            }
+            if (aviso.getTipo().equals("medico")) {
+                aviso.setLlamada(true);
+            } else {
+                aviso.setLlamada(false);
+            }
+            Date tempo = Date.from(this.dPDesde.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+            aviso.setFecDesde(tempo);
+            tempo = Date.from(this.dPHasta.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+            aviso.setFecHasta(tempo);
+            aviso.setXDependienteModel(dep);
+            controller.guardarObjeto(aviso);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, rellene los campos obligatorios.");
+        }
     }//GEN-LAST:event_jBtnAceptActionPerformed
+
+    private void jTFDescKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTFDescKeyTyped
+        char caracter = evt.getKeyChar();
+        if (this.jTFDesc.getText().length() >= 40 && caracter != '\b') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTFDescKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.github.lgooddatepicker.components.DatePicker dPDesde;
@@ -216,12 +250,12 @@ public class NotificationMan extends javax.swing.JDialog {
         dateButtonAp.setText("");
         dateButtonAp.setIcon(dateIcon);
         dateButtonAp.setPreferredSize(dateSize);
-
+        this.dPDesde.setDateToToday();
         JButton dateButtonAp2 = this.dPHasta.getComponentToggleCalendarButton();
         dateButtonAp2.setText("");
         dateButtonAp2.setIcon(dateIcon);
         dateButtonAp2.setPreferredSize(dateSize);
-
+        this.dPHasta.setDateToToday();
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);

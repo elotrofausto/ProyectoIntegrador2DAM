@@ -80,7 +80,7 @@ public class Utils {
         int modulo = Integer.valueOf(numeracion) % 23;
         return numeracion + juegoCaracteres.charAt(modulo);
     }
-
+    //Solo acepta numeros
     public static void soloNumeros(java.awt.event.KeyEvent evt) {
         char caracter = evt.getKeyChar();
         if (((caracter < '0') || (caracter > '9')) && (caracter != '\b')) {
