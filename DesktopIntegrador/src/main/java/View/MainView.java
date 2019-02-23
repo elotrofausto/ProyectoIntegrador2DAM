@@ -16,12 +16,14 @@ import Models.XEstadoModel;
 import Models.XFamiliarModel;
 import Models.XHistmedicoModel;
 import Models.XMedicoModel;
+import Models.XOfrecerrcModel;
 import Models.XPersonaModel;
 import Models.XViviendaModel;
 import Utils.JasperClient;
 import Utils.SentenciasSQL;
 import Utils.Utils;
 import java.awt.BorderLayout;
+import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -87,6 +89,7 @@ public class MainView extends javax.swing.JFrame {
         initJasper();
         controller.getAppServer().start();
         lockEnabled(false);
+        lockEnabledAsist(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -101,6 +104,7 @@ public class MainView extends javax.swing.JFrame {
         jPanelPrincipal = new javax.swing.JPanel();
         jPaneldependiente = new javax.swing.JPanel();
         jComboBoxDependienteVivienda = new javax.swing.JComboBox<>();
+        this.jComboBoxDependienteVivienda.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         tfDependienteId = new javax.swing.JTextField();
         tfDependientePass = new javax.swing.JPasswordField();
         jComboBoxDependienteGenero = new javax.swing.JComboBox<>();
@@ -117,13 +121,16 @@ public class MainView extends javax.swing.JFrame {
         jbtnModViv = new javax.swing.JButton();
         jPanelProfesionales = new javax.swing.JPanel();
         jComboBoxMedico = new javax.swing.JComboBox<>();
-        jLabelMedico = new javax.swing.JLabel();
+        this.jComboBoxMedico.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
         jComboBoxCS = new javax.swing.JComboBox<>();
-        jLabelCS = new javax.swing.JLabel();
         jbtnAddCenSal = new javax.swing.JButton();
         jbtnAddMedico = new javax.swing.JButton();
         jbtnModMed = new javax.swing.JButton();
         jbtnModCen = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTACentro = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTAMedico = new javax.swing.JTextArea();
         jButtonSearch = new javax.swing.JButton();
         jButtonSave = new javax.swing.JButton();
         jButtonCancel = new javax.swing.JButton();
@@ -261,7 +268,7 @@ public class MainView extends javax.swing.JFrame {
         jComboBoxDependienteVivienda.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jComboBoxDependienteVivienda.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxDependienteVivienda.setModel(vivienda);
-        jComboBoxDependienteVivienda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* VIVIENDA ACTUAL", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        jComboBoxDependienteVivienda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* VIVIENDA ACTUAL", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         jComboBoxDependienteVivienda.setPreferredSize(new java.awt.Dimension(270, 55));
 
         tfDependienteId.setEditable(false);
@@ -457,9 +464,9 @@ public class MainView extends javax.swing.JFrame {
                     .addGap(10, 10, 10)
                     .addGroup(jPaneldependienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPaneldependienteLayout.createSequentialGroup()
-                            .addGap(28, 28, 28)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                             .addComponent(tfDependienteNSS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(tfDependienteDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(tfDependienteEmail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addContainerGap())
@@ -500,23 +507,20 @@ public class MainView extends javax.swing.JFrame {
 
     jComboBoxDependienteGenero.getAccessibleContext().setAccessibleName("Genero");
 
-    jPanelProfesionales.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CENTRO SALUD  /  PROFESIONALES ASOCIADOS", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
+    jPanelProfesionales.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CENTRO SALUD  /  PROFESIONALES ASOCIADOS", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
     jComboBoxMedico.setBackground(new java.awt.Color(255, 255, 255));
     jComboBoxMedico.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
     jComboBoxMedico.setForeground(new java.awt.Color(0, 0, 0));
     jComboBoxMedico.setModel(medico);
-    jComboBoxMedico.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* MÉDICO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+    jComboBoxMedico.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* MÉDICO", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+    jComboBoxMedico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     jComboBoxMedico.setPreferredSize(new java.awt.Dimension(240, 60));
-
-    jLabelMedico.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-    jLabelMedico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/doctor.png"))); // NOI18N
-    jLabelMedico.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-    jLabelMedico.setMaximumSize(new java.awt.Dimension(0, 0));
-    jLabelMedico.setMinimumSize(new java.awt.Dimension(0, 0));
-    jLabelMedico.setOpaque(true);
-    jLabelMedico.setPreferredSize(new java.awt.Dimension(280, 110));
-    jLabelMedico.setRequestFocusEnabled(false);
+    jComboBoxMedico.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jComboBoxMedicoActionPerformed(evt);
+        }
+    });
 
     jComboBoxCS.setBackground(new java.awt.Color(255, 255, 255));
     jComboBoxCS.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -529,14 +533,6 @@ public class MainView extends javax.swing.JFrame {
             jComboBoxCSActionPerformed(evt);
         }
     });
-
-    jLabelCS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-    jLabelCS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/centrosalud.png"))); // NOI18N
-    jLabelCS.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
-    jLabelCS.setMaximumSize(new java.awt.Dimension(0, 0));
-    jLabelCS.setMinimumSize(new java.awt.Dimension(0, 0));
-    jLabelCS.setPreferredSize(new java.awt.Dimension(280, 110));
-    jLabelCS.setRequestFocusEnabled(false);
 
     jbtnAddCenSal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add.png"))); // NOI18N
     jbtnAddCenSal.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -570,36 +566,57 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
+    jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+    jScrollPane1.setPreferredSize(new java.awt.Dimension(238, 80));
+
+    jTACentro.setColumns(20);
+    jTACentro.setRows(5);
+    jTACentro.setBorder(null);
+    jTACentro.setPreferredSize(new java.awt.Dimension(200, 80));
+    jScrollPane1.setViewportView(jTACentro);
+
+    jScrollPane2.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+    jScrollPane2.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+    jScrollPane2.setPreferredSize(new java.awt.Dimension(238, 80));
+
+    jTAMedico.setEditable(false);
+    jTAMedico.setColumns(20);
+    jTAMedico.setRows(5);
+    jTAMedico.setBorder(null);
+    jTAMedico.setPreferredSize(new java.awt.Dimension(200, 80));
+    jScrollPane2.setViewportView(jTAMedico);
+
     javax.swing.GroupLayout jPanelProfesionalesLayout = new javax.swing.GroupLayout(jPanelProfesionales);
     jPanelProfesionales.setLayout(jPanelProfesionalesLayout);
     jPanelProfesionalesLayout.setHorizontalGroup(
         jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
             .addContainerGap()
+            .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBoxCS, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
-                    .addComponent(jComboBoxCS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jbtnAddCenSal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jbtnModCen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addComponent(jLabelCS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGap(260, 260, 260)
-            .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
-                    .addComponent(jComboBoxMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnModCen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jbtnAddMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jbtnModMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addComponent(jLabelMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jbtnModMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jComboBoxMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfesionalesLayout.createSequentialGroup()
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addContainerGap())
     );
     jPanelProfesionalesLayout.setVerticalGroup(
         jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
-            .addGap(0, 0, 0)
-            .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
                     .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jComboBoxCS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -608,15 +625,17 @@ public class MainView extends javax.swing.JFrame {
                             .addGap(0, 0, 0)
                             .addComponent(jbtnModCen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
                     .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabelMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabelCS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addComponent(jComboBoxMedico, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelProfesionalesLayout.createSequentialGroup()
-                    .addComponent(jbtnAddMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, 0)
-                    .addComponent(jbtnModMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addContainerGap())
+                        .addComponent(jComboBoxMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
+                            .addComponent(jbtnAddMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(jbtnModMed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addContainerGap(33, Short.MAX_VALUE))
     );
 
     jButtonSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/iconoBuscar25x25.png"))); // NOI18N
@@ -769,7 +788,7 @@ public class MainView extends javax.swing.JFrame {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPaneldependiente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jPanelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 246, Short.MAX_VALUE)
+            .addComponent(jPanelEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jPanelProfesionales, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
@@ -1036,7 +1055,7 @@ public class MainView extends javax.swing.JFrame {
         .addGroup(jPanelHistorialLayout.createSequentialGroup()
             .addGap(0, 0, 0)
             .addComponent(jPanelViviendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(220, Short.MAX_VALUE))
+            .addContainerGap(239, Short.MAX_VALUE))
     );
 
     jTabbedPaneIzq.addTab("Dependiente (Historial, vivienda y allegados)", jPanelHistorial);
@@ -1565,7 +1584,7 @@ public class MainView extends javax.swing.JFrame {
         .addGroup(jPanelGeoLayout.createSequentialGroup()
             .addContainerGap()
             .addGroup(jPanelGeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jLabelMapcaption, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
+                .addComponent(jLabelMapcaption, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)
                 .addGroup(jPanelGeoLayout.createSequentialGroup()
                     .addGap(6, 6, 6)
                     .addGroup(jPanelGeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2045,15 +2064,22 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_tfAsistenteDniKeyReleased
 
     private void jbtnAddRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddRecursoActionPerformed
-        // TODO add your handling code here:
+        XCiudadModel city = (XCiudadModel) controller.cargarDatos(XCiudadModel.class, SentenciasSQL.objectDatosId,
+                controller.obtenerIdCiudad(dep));
+        new ResourceStat(this, true, controller, city);
+        manipulateRecursosTable(city.getId(), 0);
     }//GEN-LAST:event_jbtnAddRecursoActionPerformed
 
     private void jbtnModRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModRecursoActionPerformed
+        ResourceStat recurso = null;
         if (this.jTableRecursos.getSelectedRow() < 0) {
-            JOptionPane.showMessageDialog(this, "Por favor, seleccione a quien desea llamar");
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione el recurso que desea modificar.");
         } else {
-
+            XOfrecerrcModel oferta = (XOfrecerrcModel) controller.cargarDatos(XOfrecerrcModel.class, SentenciasSQL.objectDatosId,
+                    this.jTableRecursos.getModel().getValueAt(this.jTableRecursos.getSelectedRow(), 0));
+            recurso = new ResourceStat(this, true, controller, oferta);
         }
+        manipulateRecursosTable(recurso.getCiudad().getId(), 0);
     }//GEN-LAST:event_jbtnModRecursoActionPerformed
 
     private void jBtnAceptAlarmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAceptAlarmActionPerformed
@@ -2090,11 +2116,9 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_tfAsistenteNombreActionPerformed
 
     private void jComboBoxCSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCSActionPerformed
-
-        // Falta probar esto
         if (jComboBoxCS.getModel().getSelectedItem() != null) {
             XCsModel cs = (XCsModel) jComboBoxCS.getModel().getSelectedItem();
-            jLabelCS.setText(cs.datos());
+           this.jTACentro.setText(cs.datos());
         }
     }//GEN-LAST:event_jComboBoxCSActionPerformed
 
@@ -2112,6 +2136,13 @@ public class MainView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Se está llamando a " + elemento + ".", "Llamando a " + numero, JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBoxMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMedicoActionPerformed
+         if (jComboBoxMedico.getModel().getSelectedItem() != null) {
+            XMedicoModel med = (XMedicoModel) jComboBoxMedico.getModel().getSelectedItem();
+           this.jTAMedico.setText(med.datos());
+        }
+    }//GEN-LAST:event_jComboBoxMedicoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private datechooser.beans.DateChooserCombo dateChooserDependienteAlta;
@@ -2138,10 +2169,8 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxDependienteGenero;
     private javax.swing.JComboBox<XViviendaModel> jComboBoxDependienteVivienda;
     private javax.swing.JComboBox<XMedicoModel> jComboBoxMedico;
-    private javax.swing.JLabel jLabelCS;
     private javax.swing.JLabel jLabelMapcaption;
     private javax.swing.JLabel jLabelMaps;
-    private javax.swing.JLabel jLabelMedico;
     private javax.swing.JLabel jLabelTitle;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelAlarmas;
@@ -2159,6 +2188,8 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelTitle;
     private javax.swing.JPanel jPanelViviendas;
     private javax.swing.JPanel jPaneldependiente;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JScrollPane jScrollPaneAlarm;
     private javax.swing.JScrollPane jScrollPaneAlarm1;
@@ -2171,6 +2202,8 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPaneRecursos;
     private javax.swing.JScrollPane jScrollPaneViv;
     private javax.swing.JScrollPane jScrollPaneestado;
+    private javax.swing.JTextArea jTACentro;
+    private javax.swing.JTextArea jTAMedico;
     private javax.swing.JTabbedPane jTabbedPaneDcha;
     private javax.swing.JTabbedPane jTabbedPaneIzq;
     private javax.swing.JTable jTable1;

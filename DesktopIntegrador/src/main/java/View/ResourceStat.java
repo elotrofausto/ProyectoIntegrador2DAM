@@ -4,7 +4,6 @@ import Controller.BLogic;
 import Models.XCiudadModel;
 import Models.XOfrecerrcModel;
 import Models.XRecursocomModel;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
 
@@ -13,42 +12,42 @@ import javax.swing.WindowConstants;
  * @author Yop
  */
 public class ResourceStat extends javax.swing.JDialog {
-
-    private final String CITY = "CIUDADES";
+    
     private BLogic controller;
     private XOfrecerrcModel oferta;
     private XCiudadModel ciudad;
     private XRecursocomModel recurso;
-    private List<Object> listaCiudades;
-
-    public ResourceStat(java.awt.Frame parent, boolean modal, BLogic controller, XCiudadModel city, List<Object> listaCiudades) {
+    private boolean opc;
+    
+    public ResourceStat(java.awt.Frame parent, boolean modal, BLogic controller, XCiudadModel city) {
         super(parent, modal);
         initComponents();
+        this.opc = false;
         this.controller = controller;
         this.oferta = new XOfrecerrcModel();
         this.ciudad = city;
         this.recurso = new XRecursocomModel();
         initUI();
     }
-
-    public ResourceStat(java.awt.Frame parent, boolean modal, BLogic controller, XOfrecerrcModel oferta, List<Object> listaCiudades) {
+    
+    public ResourceStat(java.awt.Frame parent, boolean modal, BLogic controller, XOfrecerrcModel oferta) {
         super(parent, modal);
         initComponents();
+        this.opc = true;
         this.controller = controller;
         this.oferta = oferta;
         this.recurso = oferta.getXRecursocomModel();
         this.ciudad = oferta.getXCiudadModel();
-        initUI();
         fillUI();
+        initUI();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         tfCity = new javax.swing.JTextField();
-        jbtnSearchCity = new javax.swing.JButton();
         tfName = new javax.swing.JTextField();
         tfDescrip = new javax.swing.JTextField();
         tfTelf = new javax.swing.JTextField();
@@ -58,54 +57,43 @@ public class ResourceStat extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "RECURSOS DE LA CIUDAD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "RECURSOS DE LA CIUDAD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
         tfCity.setEditable(false);
-        tfCity.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfCity.setBackground(new java.awt.Color(255, 255, 255));
-        tfCity.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* CIUDAD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfCity.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfCity.setForeground(new java.awt.Color(0, 0, 0));
-        tfCity.setPreferredSize(new java.awt.Dimension(150, 40));
+        tfCity.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfCity.setToolTipText("");
+        tfCity.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* CIUDAD", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfCity.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        jbtnSearchCity.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/add.png"))); // NOI18N
-        jbtnSearchCity.setPreferredSize(new java.awt.Dimension(40, 40));
-        jbtnSearchCity.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnSearchCityActionPerformed(evt);
-            }
-        });
-
-        tfName.setEditable(false);
-        tfName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfName.setBackground(new java.awt.Color(255, 255, 255));
-        tfName.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* NOMBRE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfName.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfName.setForeground(new java.awt.Color(0, 0, 0));
-        tfName.setPreferredSize(new java.awt.Dimension(150, 40));
+        tfName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfName.setToolTipText("");
+        tfName.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* NOMBRE", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfName.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        tfDescrip.setEditable(false);
-        tfDescrip.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDescrip.setBackground(new java.awt.Color(255, 255, 255));
-        tfDescrip.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* DESCRIPCIÓN", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfDescrip.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfDescrip.setForeground(new java.awt.Color(0, 0, 0));
-        tfDescrip.setPreferredSize(new java.awt.Dimension(150, 40));
+        tfDescrip.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfDescrip.setToolTipText("");
+        tfDescrip.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* DESCRIPCIÓN", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfDescrip.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        tfTelf.setEditable(false);
-        tfTelf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfTelf.setBackground(new java.awt.Color(255, 255, 255));
-        tfTelf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* TELÉFONO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         tfTelf.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         tfTelf.setForeground(new java.awt.Color(0, 0, 0));
-        tfTelf.setPreferredSize(new java.awt.Dimension(150, 40));
+        tfTelf.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfTelf.setToolTipText("");
+        tfTelf.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* TELÉFONO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        tfTelf.setPreferredSize(new java.awt.Dimension(150, 40));
 
-        jBtnAcept.setText("ACEPTAR");
         jBtnAcept.setForeground(new java.awt.Color(0, 102, 102));
+        jBtnAcept.setText("ACEPTAR");
         jBtnAcept.setPreferredSize(new java.awt.Dimension(110, 40));
         jBtnAcept.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,8 +101,8 @@ public class ResourceStat extends javax.swing.JDialog {
             }
         });
 
-        jBtnCancel.setText("CANCELAR");
         jBtnCancel.setForeground(new java.awt.Color(0, 102, 102));
+        jBtnCancel.setText("CANCELAR");
         jBtnCancel.setPreferredSize(new java.awt.Dimension(110, 40));
         jBtnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,33 +116,28 @@ public class ResourceStat extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(tfDescrip, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(tfTelf, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jBtnAcept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jbtnSearchCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(6, 6, 6)
-                        .addComponent(tfCity, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(14, 14, 14))
+                        .addComponent(tfDescrip, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfTelf, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jBtnAcept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(tfCity, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(32, 32, 32)
+                        .addComponent(tfName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(16, 16, 16))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tfCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jbtnSearchCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfDescrip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -186,14 +169,6 @@ public class ResourceStat extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbtnSearchCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSearchCityActionPerformed
-        Search search = new Search(null, true, listaCiudades, CITY);
-        if (search.getObject() != null) {
-            ciudad = (XCiudadModel) search.getObject();
-            this.tfCity.setText(ciudad.getName());
-        }
-    }//GEN-LAST:event_jbtnSearchCityActionPerformed
-
     private void jBtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelActionPerformed
         oferta = null;
         dispose();
@@ -201,7 +176,22 @@ public class ResourceStat extends javax.swing.JDialog {
 
     private void jBtnAceptActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAceptActionPerformed
         if (control()) {
-
+            if (opc) {
+                controller.abrirTransaccion();
+            } else {
+                recurso.setName(this.tfName.getText());
+                recurso.setDescripcion(this.tfDescrip.getText());
+                controller.guardarObjeto(recurso);
+            }
+            oferta.setXCiudadModel(ciudad);
+            oferta.setTelefono(this.tfTelf.getText());
+            oferta.setXRecursocomModel(recurso);
+            if (opc) {
+                controller.lanzarCommit();
+            } else {
+                controller.guardarObjeto(oferta);
+            }
+            dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, rellene los campos obligatorios.");
         }
@@ -211,31 +201,25 @@ public class ResourceStat extends javax.swing.JDialog {
     private javax.swing.JButton jBtnAcept;
     private javax.swing.JButton jBtnCancel;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton jbtnSearchCity;
     private javax.swing.JTextField tfCity;
     private javax.swing.JTextField tfDescrip;
     private javax.swing.JTextField tfName;
     private javax.swing.JTextField tfTelf;
     // End of variables declaration//GEN-END:variables
 
-    public XOfrecerrcModel getOferta() {
-        return oferta;
-    }
-
     private void initUI() {
+        this.tfCity.setText(ciudad.getName());
         this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-
+    
     private void fillUI() {
-        this.tfCity.setText(ciudad.getName());
         this.tfName.setText(recurso.getName());
         this.tfDescrip.setText(recurso.getDescripcion());
         this.tfTelf.setText(oferta.getTelefono());
-        this.jbtnSearchCity.setEnabled(false);
     }
-
+    
     private boolean control() {
         if (this.tfCity.getText().length() == 0) {
             return false;
@@ -251,5 +235,12 @@ public class ResourceStat extends javax.swing.JDialog {
         }
         return true;
     }
+        public XOfrecerrcModel getOferta() {
+        return oferta;
+    }
 
+    public XCiudadModel getCiudad() {
+        return ciudad;
+    }
+        
 }

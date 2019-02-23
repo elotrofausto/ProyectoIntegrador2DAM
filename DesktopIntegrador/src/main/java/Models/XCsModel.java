@@ -77,16 +77,17 @@ public class XCsModel implements java.io.Serializable {
     public String toString() {
         return name;
     }
+
     public String datos() {
         String respuesta = name + ",";
-        if(XDireccionModel!=null){
-            respuesta += System.getProperty("line.separator") 
-                    + XDireccionModel.getXCiudadModel().getName()+System.getProperty("line.separator")
-                    + XDireccionModel.getDireccion()+System.getProperty("line.separator")
-                    + XDireccionModel.getXCiudadModel().getCp();
+        if (XDireccionModel != null) {
+            respuesta += System.getProperty("line.separator") + XDireccionModel.getTipovia()
+                    + " " + XDireccionModel.getDireccion() + ", num: " + XDireccionModel.getNum()+"."
+                    + System.getProperty("line.separator") + XDireccionModel.getXCiudadModel().getName()
+                    + " (" + XDireccionModel.getXCiudadModel().getXProvinciaModel().getName() + ").";
         }
         if (telefono != null) {
-            respuesta += System.getProperty("line.separator") + telefono;
+            respuesta += System.getProperty("line.separator") +"Telf. "+ telefono;
         }
         return respuesta;
     }

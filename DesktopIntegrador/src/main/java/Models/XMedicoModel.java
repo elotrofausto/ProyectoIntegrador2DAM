@@ -93,12 +93,12 @@ public class XMedicoModel implements java.io.Serializable {
     }
 
     public String datos() {
-        String respuesta = name + "," + System.getProperty("line.separator") + apellido1 + " " + apellido2;
+        String respuesta = name + "," + System.getProperty("line.separator") + apellido1 + " " + apellido2+".";
         if (disponibilidad != null) {
-            respuesta += System.getProperty("line.separator") + disponibilidad;
+            respuesta += System.getProperty("line.separator") + disponibilidad+".";
         }
         if (telefono != null) {
-            respuesta += System.getProperty("line.separator") + telefono;
+            respuesta += System.getProperty("line.separator") +"Telf."+ telefono;
         }
         return respuesta;
     }

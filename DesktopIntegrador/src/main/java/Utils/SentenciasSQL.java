@@ -53,7 +53,8 @@ public class SentenciasSQL {
     public static final String estadoTM = "SELECT id, fecha_hora AS \"Registro de llamada\", fecha_hora_inicio AS \"Registro de Suceso\","
             + " descripcion AS \"Descripción\"	FROM x_estado_model WHERE id_dependiente =? ";
 
-    public static final String coordenadasTM = "SELECT id, fecha_hora, latitud, longitud FROM x_geolocaliz_model WHERE id_dependiente=?";
+    public static final String coordenadasTM = "SELECT id, fecha_hora, latitud, longitud FROM x_geolocaliz_model WHERE"
+            + " id_dependiente=? ORDER BY fecha_hora DESC";
 
     public static final String personaDatos = " WHERE dni =?1";
 
