@@ -256,7 +256,7 @@ public class NotificationMan extends javax.swing.JDialog {
         dateButtonAp2.setIcon(dateIcon);
         dateButtonAp2.setPreferredSize(dateSize);
         this.dPHasta.setDateToToday();
-        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }

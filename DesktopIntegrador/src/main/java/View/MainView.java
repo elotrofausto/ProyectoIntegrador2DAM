@@ -1778,8 +1778,8 @@ public class MainView extends javax.swing.JFrame {
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
         Search search = new Search(null, true, listaDependientes, DEPENDENT);
-        if (search.getObject() != null) {
-            dep = (XDependienteModel) search.getObject();
+        if (search.getElemento() != null) {
+            dep = (XDependienteModel) search.getElemento();
             lockEnabled(true);
             cargadependiente(dep);
             initMaps();
@@ -2104,8 +2104,8 @@ public class MainView extends javax.swing.JFrame {
             XOfrecerrcModel oferta = (XOfrecerrcModel) controller.cargarDatos(XOfrecerrcModel.class, SentenciasSQL.objectDatosId,
                     this.jTableRecursos.getModel().getValueAt(this.jTableRecursos.getSelectedRow(), 0));
             recurso = new ResourceStat(this, true, controller, oferta);
+            manipulateRecursosTable(recurso.getCiudad().getId(), 0);
         }
-        manipulateRecursosTable(recurso.getCiudad().getId(), 0);
     }//GEN-LAST:event_jbtnModRecursoActionPerformed
 
     private void jBtnAceptAlarmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnAceptAlarmActionPerformed
@@ -2123,7 +2123,6 @@ public class MainView extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, elija antes un registro de la tabla");
         }
-
     }//GEN-LAST:event_jBtnAceptAlarmActionPerformed
 
     private void jBtnCancelAlarmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelAlarmActionPerformed

@@ -12,13 +12,14 @@ import javax.swing.WindowConstants;
  * @author Yop
  */
 public class ResourceStat extends javax.swing.JDialog {
-    
+
+    private final String RESOURCES = "recursos";
     private BLogic controller;
     private XOfrecerrcModel oferta;
     private XCiudadModel ciudad;
     private XRecursocomModel recurso;
     private boolean opc;
-    
+
     public ResourceStat(java.awt.Frame parent, boolean modal, BLogic controller, XCiudadModel city) {
         super(parent, modal);
         initComponents();
@@ -26,10 +27,10 @@ public class ResourceStat extends javax.swing.JDialog {
         this.controller = controller;
         this.oferta = new XOfrecerrcModel();
         this.ciudad = city;
-        this.recurso = new XRecursocomModel();
+        fillUI();
         initUI();
     }
-    
+
     public ResourceStat(java.awt.Frame parent, boolean modal, BLogic controller, XOfrecerrcModel oferta) {
         super(parent, modal);
         initComponents();
@@ -41,7 +42,7 @@ public class ResourceStat extends javax.swing.JDialog {
         fillUI();
         initUI();
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -209,17 +210,23 @@ public class ResourceStat extends javax.swing.JDialog {
 
     private void initUI() {
         this.tfCity.setText(ciudad.getName());
-        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-    
+
     private void fillUI() {
-        this.tfName.setText(recurso.getName());
-        this.tfDescrip.setText(recurso.getDescripcion());
-        this.tfTelf.setText(oferta.getTelefono());
+        if (!opc) {
+            Search elec = new Search(null, true, controller.cargarDatos(XRecursocomModel.class), RESOURCES);
+            this.recurso = (XRecursocomModel) elec.getElemento();
+        }
+        if (recurso != null) {
+            this.tfName.setText(recurso.getName());
+            this.tfDescrip.setText(recurso.getDescripcion());
+            this.tfTelf.setText(oferta.getTelefono());
+        }
     }
-    
+
     private boolean control() {
         if (this.tfCity.getText().length() == 0) {
             return false;
@@ -235,12 +242,13 @@ public class ResourceStat extends javax.swing.JDialog {
         }
         return true;
     }
-        public XOfrecerrcModel getOferta() {
+
+    public XOfrecerrcModel getOferta() {
         return oferta;
     }
 
     public XCiudadModel getCiudad() {
         return ciudad;
     }
-        
+
 }

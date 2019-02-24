@@ -13,7 +13,7 @@ public class Search extends javax.swing.JDialog {
     
     private final String CITY = "CIUDADES", RELATIVES = "ALLEGADOS";
     private ModelList modelo;
-    private Object object;
+    private Object elemento;
     private String name;
     
     public Search(java.awt.Frame parent, boolean modal, List<Object> lista, String name) {
@@ -125,14 +125,14 @@ public class Search extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCancelarActionPerformed
-        object = null;
+        elemento = null;
         dispose();
     }//GEN-LAST:event_jBtnCancelarActionPerformed
 
     private void jbtnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAceptarActionPerformed
         
         if (!jList.isSelectionEmpty()) {
-            object = ((ModelList) jList.getModel()).getObject(jList.getSelectedIndex());
+            elemento = ((ModelList) jList.getModel()).getObject(jList.getSelectedIndex());
             dispose();
         } else {
             JOptionPane.showMessageDialog(this, "No ha seleccionado ningún dependiente");
@@ -177,8 +177,8 @@ public class Search extends javax.swing.JDialog {
         }
     }
     
-    public Object getObject() {
-        return object;
+    public Object getElemento() {
+        return elemento;
     }
     
     private void setUI() {
@@ -186,13 +186,13 @@ public class Search extends javax.swing.JDialog {
         if (jList.getModel().getSize() > 0) {
             jList.setSelectedIndex(0);
         }
-        object = null;
-        if (name.equals(RELATIVES)) {
+        elemento = null;
+        if (!name.equals(CITY)) {
             this.jBtnCancelar.setText("NUEVO");
             this.jbtnAceptar.setText("ELEGIR");
         }
         jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, name, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102)));
-        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }

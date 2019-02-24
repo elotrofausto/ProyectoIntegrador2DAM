@@ -454,8 +454,8 @@ public class FamilyMan extends javax.swing.JDialog {
 
     private void jbtnSearchCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSearchCityActionPerformed
         Search search = new Search(null, true, listaCiudades, CITY);
-        if (search.getObject() != null) {
-            ciudad = (XCiudadModel) search.getObject();
+        if (search.getElemento() != null) {
+            ciudad = (XCiudadModel) search.getElemento();
             this.tfNomCity.setText(ciudad.getName());
             this.tfNomProv.setText(((XProvinciaModel) controller.cargarDatos(XProvinciaModel.class, SentenciasSQL.objectDatosId, ciudad.getXProvinciaModel().getId())).getName());
         }
@@ -558,7 +558,7 @@ public class FamilyMan extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void setUI() {
-        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
@@ -567,8 +567,8 @@ public class FamilyMan extends javax.swing.JDialog {
         this.jComboTipo.setModel(Utils.listaTipo());
         if (family == null) {
             Search search = new Search(null, true, listaAllegados, RELATIVES);
-            if (search.getObject() != null) {
-                family = (XFamiliarModel) search.getObject();
+            if (search.getElemento() != null) {
+                family = (XFamiliarModel) search.getElemento();
                 opc = true;
             } else {
                 family = new XFamiliarModel();
@@ -679,7 +679,7 @@ public class FamilyMan extends javax.swing.JDialog {
         }
         if (control) {
             controller.lanzarCommit();
-        }else{
+        } else {
             controller.guardarObjeto(direccion);
         }
     }

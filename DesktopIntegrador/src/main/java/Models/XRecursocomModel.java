@@ -58,7 +58,14 @@ public class XRecursocomModel implements java.io.Serializable {
 
     @Override
     public String toString() {
-        return "XRecursocomModel{" + "name=" + name + '}';
+        return id + ": " + name;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (this.toString().toLowerCase().contains(((String) obj).toLowerCase())) {
+            return true;
+        }
+        return false;
+    }
 }

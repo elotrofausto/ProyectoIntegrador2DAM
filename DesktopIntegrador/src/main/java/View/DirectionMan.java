@@ -8,7 +8,6 @@ import Models.XProvinciaModel;
 import Models.XViviendaModel;
 import Utils.SentenciasSQL;
 import Utils.Utils;
-import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
@@ -306,8 +305,8 @@ public class DirectionMan extends javax.swing.JDialog {
 
     private void jbtnSearchCityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSearchCityActionPerformed
         Search search = new Search(null, true, listaCiudades, CITY);
-        if (search.getObject() != null) {
-            ciudad = (XCiudadModel) search.getObject();
+        if (search.getElemento() != null) {
+            ciudad = (XCiudadModel) search.getElemento();
             this.tfNomCity.setText(ciudad.getName());
             this.tfNomProv.setText(((XProvinciaModel) controller.cargarDatos(XProvinciaModel.class, SentenciasSQL.objectDatosId, ciudad.getXProvinciaModel().getId())).getName());
         }
@@ -367,7 +366,7 @@ public class DirectionMan extends javax.swing.JDialog {
         }
         jPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, INIT + name, javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102)));
         this.jComboTipo.setModel(Utils.listaTipo());
-        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }

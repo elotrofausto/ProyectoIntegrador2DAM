@@ -22,7 +22,7 @@ public class AccessAsist extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.controler = controler;
-        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }

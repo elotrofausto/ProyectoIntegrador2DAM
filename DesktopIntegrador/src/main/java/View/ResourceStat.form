@@ -122,7 +122,6 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="* CIUDAD">
-                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>
@@ -149,7 +148,6 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="* NOMBRE">
-                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>
@@ -176,7 +174,6 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="* DESCRIPCI&#xd3;N">
-                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>
@@ -203,7 +200,6 @@
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder justification="1" position="2" title="* TEL&#xc9;FONO">
-                  <Border PropertyName="innerBorder" info="null"/>
                   <Font PropertyName="font" name="Dialog" size="10" style="0"/>
                   <Color PropertyName="color" blue="66" green="66" red="0" type="rgb"/>
                 </TitledBorder>

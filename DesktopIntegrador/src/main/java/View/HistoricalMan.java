@@ -157,7 +157,7 @@ public class HistoricalMan extends javax.swing.JDialog {
         jPanelHistory.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "HISTORIAL " + name.toUpperCase(),
                 javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP,
                 new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102)));
-        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }

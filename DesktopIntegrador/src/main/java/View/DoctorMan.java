@@ -210,7 +210,7 @@ public class DoctorMan extends javax.swing.JDialog {
     }
 
     private void initUI() {
-        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
