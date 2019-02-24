@@ -1777,6 +1777,7 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnRemovActionPerformed
 
     private void jButtonSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchActionPerformed
+        listaDependientes = this.controller.cargarDatos(XDependienteModel.class);
         Search search = new Search(null, true, listaDependientes, DEPENDENT);
         if (search.getElemento() != null) {
             dep = (XDependienteModel) search.getElemento();
@@ -1940,14 +1941,16 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnAddViviendaActionPerformed
 
     private void jbtnModViviendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnModViviendaActionPerformed
+        XViviendaModel actual = null;
         if (this.jTableViviendas.getSelectedRow() >= 0) {
-            DirectionMan center = new DirectionMan(this, true, controller, HOME, listaCiudades,
-                    controller.cargarDatos(XViviendaModel.class, SentenciasSQL.objectDatosId,
-                            this.jTableViviendas.getModel().getValueAt(this.jTableViviendas.getSelectedRow(), 0)));
+            actual = (XViviendaModel) controller.cargarDatos(XViviendaModel.class, SentenciasSQL.objectDatosId,
+                    this.jTableViviendas.getModel().getValueAt(this.jTableViviendas.getSelectedRow(), 0));
+            DirectionMan center = new DirectionMan(this, true, controller, HOME, listaCiudades, actual);
             if (center.getObject() != null) {
                 if (((XViviendaModel) center.getObject()).getHabitual()) {
-                    controller.reasignarHabitual(dep);
+                    controller.reasignarHabitual(dep,((XViviendaModel) center.getObject()));
                 }
+
                 manipulateViviTable(dep, 0);
                 manipulateHome(null, 0);
             }
@@ -2335,8 +2338,10 @@ public class MainView extends javax.swing.JFrame {
         URL fileIcon = MainView.class.getResource("/Recursos/image.jpg");
         this.jLabelMaps.setIcon(new ImageIcon((new ImageIcon(fileIcon)).getImage().getScaledInstance(1280, 1280,
                 java.awt.Image.SCALE_SMOOTH)));
+        jPanelGeo.validate();
         jPanelGeo.repaint();
         jLabelMaps.repaint();
+        jLabelMaps.validate();
     }
 
     private void initMaps(double lat, double lng, int zoom) {
@@ -2344,8 +2349,10 @@ public class MainView extends javax.swing.JFrame {
         URL fileIcon = MainView.class.getResource("/Recursos/image.jpg");
         this.jLabelMaps.setIcon(new ImageIcon((new ImageIcon(fileIcon)).getImage().getScaledInstance(1280, 1280,
                 java.awt.Image.SCALE_SMOOTH)));
+        jPanelGeo.validate();
         jPanelGeo.repaint();
         jLabelMaps.repaint();
+        jLabelMaps.validate();
 
     }
 

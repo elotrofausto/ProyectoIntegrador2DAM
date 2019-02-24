@@ -39,7 +39,7 @@ public class BLogic {
 
     private void initView() {
         mainView = new MainView(this, asistente);
-        //mainView.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        mainView.setExtendedState(JFrame.MAXIMIZED_BOTH);
         mainView.setVisible(true);
     }
 
