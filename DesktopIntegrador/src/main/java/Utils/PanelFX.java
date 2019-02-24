@@ -1,5 +1,6 @@
 package Utils;
 
+import java.awt.Dimension;
 import java.net.MalformedURLException;
 import java.net.URL;
 import javafx.application.Platform;
@@ -13,7 +14,6 @@ public class PanelFX extends JFXPanel {
     //Variable encargada de renderizar la web
     private WebEngine engine;
 
-
     public PanelFX() {
         Platform.runLater(new Runnable() {
             @Override
@@ -23,10 +23,12 @@ public class PanelFX extends JFXPanel {
                 setScene(new Scene(view));
             }
         });
+        this.setMaximumSize(new Dimension(1440, 900));
+        this.setMinimumSize(new Dimension(144, 90));
         setVisible(true);
     }
 
-    //Método para cargar la URL de la página web
+    //Metodo para cargar la URL de la pagina web
     public void loadURL(final String url) {
         Platform.runLater(new Runnable() {
             @Override
@@ -40,7 +42,7 @@ public class PanelFX extends JFXPanel {
             }
         });
     }
-
+    //Metodo para parsear la String a URL
     private String toURL(String str) {
         try {
             return new URL(str).toExternalForm();

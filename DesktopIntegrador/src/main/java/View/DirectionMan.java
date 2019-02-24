@@ -34,6 +34,8 @@ public class DirectionMan extends javax.swing.JDialog {
         this.controller = controller;
         this.object = null;
         initComponents();
+        this.jCheckBox.setSelected(true);
+        this.jCheckBox.setEnabled(false);
         initUI();
     }
     

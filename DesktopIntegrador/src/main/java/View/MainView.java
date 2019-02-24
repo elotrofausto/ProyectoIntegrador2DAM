@@ -179,7 +179,7 @@ public class MainView extends javax.swing.JFrame {
         jTableRecursos = new javax.swing.JTable();
         jbtnAddRecurso = new javax.swing.JButton();
         jbtnModRecurso = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jBtnLlamar = new javax.swing.JButton();
         jPanelAlarmas = new javax.swing.JPanel();
         jScrollPaneAlarm = new javax.swing.JScrollPane();
         jTableAlarmas = new javax.swing.JTable();
@@ -202,8 +202,8 @@ public class MainView extends javax.swing.JFrame {
         jScrollPaneCoord = new javax.swing.JScrollPane();
         jTableCoordenadas = new javax.swing.JTable();
         jBtnRefrescoMaps = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jBtnSelecCoord = new javax.swing.JButton();
+        jBtnGoHome = new javax.swing.JButton();
         menuBarAsist = new javax.swing.JMenuBar();
         menuAsist = new javax.swing.JMenu();
         itemCerrarSesion = new javax.swing.JMenuItem();
@@ -262,7 +262,7 @@ public class MainView extends javax.swing.JFrame {
         jComboBoxDependienteVivienda.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jComboBoxDependienteVivienda.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxDependienteVivienda.setModel(vivienda);
-        jComboBoxDependienteVivienda.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "* VIVIENDA ACTUAL", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        jComboBoxDependienteVivienda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* VIVIENDA ACTUAL", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         jComboBoxDependienteVivienda.setPreferredSize(new java.awt.Dimension(270, 55));
 
         tfDependienteId.setEditable(false);
@@ -507,7 +507,7 @@ public class MainView extends javax.swing.JFrame {
     jComboBoxMedico.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
     jComboBoxMedico.setForeground(new java.awt.Color(0, 0, 0));
     jComboBoxMedico.setModel(medico);
-    jComboBoxMedico.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "* MÉDICO", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+    jComboBoxMedico.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* MÉDICO", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
     jComboBoxMedico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     jComboBoxMedico.setPreferredSize(new java.awt.Dimension(240, 60));
     jComboBoxMedico.addActionListener(new java.awt.event.ActionListener() {
@@ -1306,12 +1306,12 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
-    jButton1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-    jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/call.png"))); // NOI18N
-    jButton1.setPreferredSize(new java.awt.Dimension(35, 35));
-    jButton1.addActionListener(new java.awt.event.ActionListener() {
+    jBtnLlamar.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+    jBtnLlamar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/call.png"))); // NOI18N
+    jBtnLlamar.setPreferredSize(new java.awt.Dimension(35, 35));
+    jBtnLlamar.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton1ActionPerformed(evt);
+            jBtnLlamarActionPerformed(evt);
         }
     });
 
@@ -1326,9 +1326,9 @@ public class MainView extends javax.swing.JFrame {
                     .addComponent(jbtnModRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jbtnAddRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jBtnLlamar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGap(16, 16, 16)
-            .addComponent(jScrollPaneRecursos, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+            .addComponent(jScrollPaneRecursos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addContainerGap())
     );
     jPanelRecursosLayout.setVerticalGroup(
@@ -1338,7 +1338,7 @@ public class MainView extends javax.swing.JFrame {
             .addComponent(jScrollPaneRecursos, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
             .addContainerGap())
         .addGroup(jPanelRecursosLayout.createSequentialGroup()
-            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jBtnLlamar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGap(16, 16, 16)
             .addGroup(jPanelRecursosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                 .addComponent(jbtnAddRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1412,7 +1412,7 @@ public class MainView extends javax.swing.JFrame {
                     .addComponent(jBtnCancelAlarm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jBtnAceptAlarm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(jScrollPaneAlarm1))
+                .addComponent(jScrollPaneAlarm1, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE))
             .addContainerGap())
     );
     jPanelAlarmasLayout.setVerticalGroup(
@@ -1498,8 +1498,8 @@ public class MainView extends javax.swing.JFrame {
             .addContainerGap()
             .addGroup(jPanelAlertasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jPanelAlarmas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanelRecursos, javax.swing.GroupLayout.Alignment.TRAILING, 667, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jPanelLlamadas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelLlamadas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanelRecursos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE))
             .addContainerGap())
     );
     jPanelAlertasLayout.setVerticalGroup(
@@ -1572,18 +1572,23 @@ public class MainView extends javax.swing.JFrame {
         }
     });
 
-    jButton2.setForeground(new java.awt.Color(0, 102, 102));
-    jButton2.setText("ELEGIR PUNTO");
-    jButton2.setPreferredSize(new java.awt.Dimension(140, 35));
-    jButton2.addActionListener(new java.awt.event.ActionListener() {
+    jBtnSelecCoord.setForeground(new java.awt.Color(0, 102, 102));
+    jBtnSelecCoord.setText("ELEGIR PUNTO");
+    jBtnSelecCoord.setPreferredSize(new java.awt.Dimension(140, 35));
+    jBtnSelecCoord.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButton2ActionPerformed(evt);
+            jBtnSelecCoordActionPerformed(evt);
         }
     });
 
-    jButton3.setForeground(new java.awt.Color(0, 102, 102));
-    jButton3.setText("LLEVAR A CASA");
-    jButton3.setPreferredSize(new java.awt.Dimension(140, 35));
+    jBtnGoHome.setForeground(new java.awt.Color(0, 102, 102));
+    jBtnGoHome.setText("LLEVAR A CASA");
+    jBtnGoHome.setPreferredSize(new java.awt.Dimension(140, 35));
+    jBtnGoHome.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jBtnGoHomeActionPerformed(evt);
+        }
+    });
 
     javax.swing.GroupLayout jPanelGeoLayout = new javax.swing.GroupLayout(jPanelGeo);
     jPanelGeo.setLayout(jPanelGeoLayout);
@@ -1608,9 +1613,9 @@ public class MainView extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jButtonCenterMap, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanelGeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBtnSelecCoord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jBtnRefrescoMaps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jBtnGoHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addComponent(jScrollPaneMaps))))
             .addContainerGap())
     );
@@ -1631,9 +1636,9 @@ public class MainView extends javax.swing.JFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jBtnRefrescoMaps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnSelecCoord, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnGoHome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 85, Short.MAX_VALUE))
                 .addComponent(jScrollPaneCoord, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
             .addContainerGap())
@@ -2153,7 +2158,7 @@ public class MainView extends javax.swing.JFrame {
         manipulateAvisosTable(dep, 0);
     }//GEN-LAST:event_jBtnCrearAvisoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBtnLlamarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnLlamarActionPerformed
         if (this.jTableRecursos.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(this, "Por favor, seleccione a quien desea llamar");
         } else {
@@ -2161,7 +2166,7 @@ public class MainView extends javax.swing.JFrame {
             String numero = (String) this.jTableRecursos.getModel().getValueAt(jTableRecursos.getSelectedRow(), 3);
             JOptionPane.showMessageDialog(this, "Se está llamando a " + elemento + ".", "Llamando a " + numero, JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBtnLlamarActionPerformed
 
     private void jComboBoxMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMedicoActionPerformed
         if (jComboBoxMedico.getModel().getSelectedItem() != null) {
@@ -2170,7 +2175,7 @@ public class MainView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComboBoxMedicoActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jBtnSelecCoordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSelecCoordActionPerformed
         if (this.jTableCoordenadas.getSelectedRow() < 0) {
             JOptionPane.showMessageDialog(this, "Por favor, elija unaposicion de la tabla.");
         } else {
@@ -2178,7 +2183,29 @@ public class MainView extends javax.swing.JFrame {
             longitude = (Double) this.jTableCoordenadas.getModel().getValueAt(this.jTableCoordenadas.getSelectedRow(), 3);
             initMaps(latitude, longitude, currentZoom);
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jBtnSelecCoordActionPerformed
+
+    private void jBtnGoHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnGoHomeActionPerformed
+        String origen = "";
+        String destino = "";
+        if (this.jTableCoordenadas.getModel().getRowCount() > 0) {
+            origen = (Double) this.jTableCoordenadas.getModel().getValueAt(0, 2)
+                    + "," + (Double) this.jTableCoordenadas.getModel().getValueAt(0, 3);
+            XViviendaModel habitual = controller.getActualHome(dep);
+            if (habitual != null) {
+                destino=habitual.getXDireccionModel().getXCiudadModel().getName()+"+"+
+                        habitual.getXDireccionModel().getDireccion()+"+"+
+                        habitual.getXDireccionModel().getNum();
+                new GoHome(this, false, origen, destino);
+            } else {
+                JOptionPane.showMessageDialog(this, "El dependiente no tiene definida su vivienda actual");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay coordenadas del dependiente");
+        }
+
+
+    }//GEN-LAST:event_jBtnGoHomeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private datechooser.beans.DateChooserCombo dateChooserDependienteAlta;
@@ -2191,12 +2218,12 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton jBtnCancelAlarm;
     private javax.swing.JButton jBtnCrearAviso;
     private javax.swing.JButton jBtnEditAsi;
+    private javax.swing.JButton jBtnGoHome;
+    private javax.swing.JButton jBtnLlamar;
     private javax.swing.JButton jBtnRefrescoAviso;
     private javax.swing.JButton jBtnRefrescoMaps;
     private javax.swing.JButton jBtnSave;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jBtnSelecCoord;
     private javax.swing.JButton jButtonCancel;
     private javax.swing.JButton jButtonCenterMap;
     private javax.swing.JButton jButtonSave;

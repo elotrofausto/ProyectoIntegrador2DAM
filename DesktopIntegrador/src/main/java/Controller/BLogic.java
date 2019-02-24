@@ -74,7 +74,7 @@ public class BLogic {
 
     //Insertamos la ALARMA en la tabla de alarmas activas
     public synchronized void insertAlarm(JSONObject alarm, ControlTask resp) throws JSONException {
-        Object[] row = {resp, new Date(alarm.getLong("fecha")), alarm.getString("idDependiente"),alarm.getString("tipo")};
+        Object[] row = {resp, new Date(alarm.getLong("fecha")), alarm.getString("idDependiente"), alarm.getString("tipo")};
         ((DefaultTableModel) mainView.getjTableAlarmas().getModel()).addRow(row);
         mainView.getjTabbedPaneDcha().setSelectedIndex(0);
     }
@@ -110,9 +110,20 @@ public class BLogic {
 
     }
 
+    //Recorre las viviendas del dependiente y devuelve la actual
+    public XViviendaModel getActualHome(XDependienteModel dep) {
+        for (Iterator<XViviendaModel> iterator = dep.getXViviendaModels().iterator(); iterator.hasNext();) {
+            XViviendaModel next = iterator.next();
+            if (next.getHabitual()) {
+                return next;
+            }
+        }
+        return null;
+    }
     //Gestión de la BD
     //--------------------------------------------------------------------------
     //Consultas recurrentes
+
     public List<Object> cargarDatos(Class c) {
         return hibernate.read(c);
     }
@@ -173,11 +184,11 @@ public class BLogic {
     }
 
     public int obtenerIdCiudad(XDependienteModel dep) {
-       Set viv=dep.getXViviendaModels();
+        Set viv = dep.getXViviendaModels();
         for (Iterator iterator = viv.iterator(); iterator.hasNext();) {
             Object next = iterator.next();
-            if(((XViviendaModel)next).getHabitual()){
-                return ((XViviendaModel)next).getXDireccionModel().getXCiudadModel().getId();
+            if (((XViviendaModel) next).getHabitual()) {
+                return ((XViviendaModel) next).getXDireccionModel().getXCiudadModel().getId();
             }
         }
         return 1;
