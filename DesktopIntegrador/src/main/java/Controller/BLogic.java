@@ -103,11 +103,14 @@ public class BLogic {
         abrirTransaccion();
         for (Iterator<XViviendaModel> iterator = dep.getXViviendaModels().iterator(); iterator.hasNext();) {
             XViviendaModel next = iterator.next();
-            next.setHabitual(false);
-        }
-        hab.setHabitual(true);
-        lanzarCommit();
+            if (next.getId() == hab.getId()) {
+                next.setHabitual(true);
+            } else {
+                next.setHabitual(false);
+            }
 
+        }
+        lanzarCommit();
     }
 
     //Recorre las viviendas del dependiente y devuelve la actual

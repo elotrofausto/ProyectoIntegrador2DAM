@@ -8,6 +8,7 @@ import Models.XProvinciaModel;
 import Models.XViviendaModel;
 import Utils.SentenciasSQL;
 import Utils.Utils;
+import java.util.Iterator;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.WindowConstants;
@@ -17,7 +18,7 @@ import javax.swing.WindowConstants;
  * @author Yop
  */
 public class DirectionMan extends javax.swing.JDialog {
-    
+
     private final String CITY = "CIUDADES", INIT = "DATOS DE ", HOME = "VIVIENDA";
     private String name;
     private BLogic controller;
@@ -25,8 +26,8 @@ public class DirectionMan extends javax.swing.JDialog {
     private XCiudadModel ciudad;
     private List<Object> listaCiudades;
     private boolean opc;
-    
-    public DirectionMan(MainView parent, boolean modal, BLogic controller, String name, List<Object> listaCiudades) {
+
+    public DirectionMan(MainView parent, boolean modal, BLogic controller, String name, List<Object> listaCiudades, boolean nuevo) {
         super(parent, modal);
         this.name = name;
         opc = false;
@@ -34,11 +35,11 @@ public class DirectionMan extends javax.swing.JDialog {
         this.controller = controller;
         this.object = null;
         initComponents();
-        this.jCheckBox.setSelected(true);
-        this.jCheckBox.setEnabled(false);
+        this.jCheckBox.setSelected(nuevo);
+        this.jCheckBox.setEnabled(!nuevo);
         initUI();
     }
-    
+
     DirectionMan(MainView parent, boolean modal, BLogic controller, String name, List<Object> listaCiudades, Object selectedItem) {
         super(parent, modal);
         this.object = selectedItem;
@@ -49,9 +50,9 @@ public class DirectionMan extends javax.swing.JDialog {
         initComponents();
         fillUI();
         initUI();
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -320,9 +321,6 @@ public class DirectionMan extends javax.swing.JDialog {
         if (this.tfNomProv.getText().length() > 0 && this.tfNomVia.getText().length() > 0
                 && this.tfNum.getText().length() > 0 && this.tfNomEdif.getText().length() > 0) {
             XDireccionModel direc = crearDirecc();
-            if (!opc) {
-                controller.guardarObjeto(direc);
-            }
             object = crearLugar(direc);
             dispose();
         } else {
@@ -373,11 +371,11 @@ public class DirectionMan extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
-    
+
     public Object getObject() {
         return object;
     }
-    
+
     private void fillUI() {
         if (name.equalsIgnoreCase(HOME)) {
             this.jCheckBox.setSelected(((XViviendaModel) object).getHabitual());
@@ -390,7 +388,7 @@ public class DirectionMan extends javax.swing.JDialog {
             this.tfPiso.setText(((XViviendaModel) object).getXDireccionModel().getPiso() != null ? ((XViviendaModel) object).getXDireccionModel().getPiso().toString() : "");
             this.tfNomCity.setText(((XViviendaModel) object).getXDireccionModel().getXCiudadModel().getName());
             this.tfNomProv.setText(((XViviendaModel) object).getXDireccionModel().getXCiudadModel().getXProvinciaModel().getName());
-            this.jComboTipo.setSelectedItem(((XViviendaModel) object).getXDireccionModel().getTipovia());
+            this.jComboTipo.getModel().getElementAt(eleccion(((XViviendaModel) object).getXDireccionModel().getTipovia()));
             this.ciudad = ((XViviendaModel) object).getXDireccionModel().getXCiudadModel();
         } else {
             this.tfTelf.setText(((XCsModel) object).getTelefono() != null ? ((XCsModel) object).getTelefono() : "");
@@ -399,11 +397,11 @@ public class DirectionMan extends javax.swing.JDialog {
             this.tfNum.setText(((XCsModel) object).getXDireccionModel().getNum().toString());
             this.tfNomCity.setText(((XCsModel) object).getXDireccionModel().getXCiudadModel().getName());
             this.tfNomProv.setText(((XCsModel) object).getXDireccionModel().getXCiudadModel().getXProvinciaModel().getName());
-            this.jComboTipo.setSelectedItem(((XCsModel) object).getXDireccionModel().getTipovia());
+            this.jComboTipo.getModel().getElementAt(eleccion(((XCsModel) object).getXDireccionModel().getTipovia()));
             this.ciudad = ((XCsModel) object).getXDireccionModel().getXCiudadModel();
         }
     }
-    
+
     private XDireccionModel crearDirecc() {
         XDireccionModel tempo;
         if (opc) {
@@ -431,10 +429,12 @@ public class DirectionMan extends javax.swing.JDialog {
         }
         if (opc) {
             controller.lanzarCommit();
+        } else {
+            controller.guardarObjeto(tempo);
         }
         return tempo;
     }
-    
+
     private Object crearLugar(XDireccionModel direc) {
         XViviendaModel vivi = null;
         XCsModel cs = null;
@@ -464,5 +464,15 @@ public class DirectionMan extends javax.swing.JDialog {
             }
             return cs;
         }
+    }
+
+    private int eleccion(String tipovia) {
+        int limit = this.jComboTipo.getItemCount();
+        for (int i = 0; i < limit; i++) {
+            if (this.jComboTipo.getModel().getElementAt(i).equalsIgnoreCase(tipovia)) {
+                return i;
+            }
+        }
+        return 0;
     }
 }

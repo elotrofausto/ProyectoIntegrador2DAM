@@ -137,6 +137,7 @@ public class HibernateController extends Thread {
 
     //Hacemos commit de los cambios
     public void commitTransaction() {
+        session.flush();
         session.getTransaction().commit();
     }
 

@@ -1741,12 +1741,9 @@ public class MainView extends javax.swing.JFrame {
     private void jButtonSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveActionPerformed
         if (controlDatos()) {
             guardardependiente();
-            if (nuevo) {
-                manipulateDepenList(dep, 1);
-            }
+            listaDependientes = this.controller.cargarDatos(XDependienteModel.class);
             nuevo = false;
 
-            // listaDependientes = this.controller.cargarDatos(XDependienteModel.class);
             cargadependiente(dep);
             lockEnabled(false);
         } else {
@@ -1808,7 +1805,7 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnAddDepenActionPerformed
 
     private void jbtnAddCenSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddCenSalActionPerformed
-        DirectionMan center = new DirectionMan(this, true, controller, HEALTH, listaCiudades);
+        DirectionMan center = new DirectionMan(this, true, controller, HEALTH, listaCiudades, nuevo);
         if (center.getObject() != null) {
             controller.guardarObjeto(center.getObject());
             manipulateCS(null, 0);
@@ -1855,7 +1852,7 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_itemCerrarSesionActionPerformed
 
     private void jbtnAddCasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddCasaActionPerformed
-        DirectionMan center = new DirectionMan(this, true, controller, HOME, listaCiudades);
+        DirectionMan center = new DirectionMan(this, true, controller, HOME, listaCiudades, nuevo);
         if (center.getObject() != null) {
             ((XViviendaModel) center.getObject()).setXDependienteModel(nuevo ? tempo : dep);
             if (!nuevo) {
@@ -1864,10 +1861,9 @@ public class MainView extends javax.swing.JFrame {
                 }
                 controller.guardarObjeto(center.getObject());
                 manipulateViviTable(dep, 0);
-                manipulateHome(null, 0);
-            } else {
-                manipulateHome(((XViviendaModel) center.getObject()), 1);
+                //  manipulateHome(null, 0);
             }
+            manipulateHome(((XViviendaModel) center.getObject()), 1);
         }
     }//GEN-LAST:event_jbtnAddCasaActionPerformed
 
@@ -1897,10 +1893,10 @@ public class MainView extends javax.swing.JFrame {
         if (this.jComboBoxDependienteVivienda.getModel().getSelectedItem() != null) {
             DirectionMan center = new DirectionMan(this, true, controller, HOME, listaCiudades, (XViviendaModel) this.jComboBoxDependienteVivienda.getModel().getSelectedItem());
             if (center.getObject() != null) {
+                manipulateViviTable(dep, 0);
                 if (((XViviendaModel) center.getObject()).getHabitual()) {
                     controller.reasignarHabitual(dep, ((XViviendaModel) center.getObject()));
                 }
-                manipulateViviTable(dep, 0);
                 manipulateHome(null, 0);
             }
         }
@@ -1931,7 +1927,7 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_tfDependienteDNIFocusGained
 
     private void jbtnAddViviendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnAddViviendaActionPerformed
-        DirectionMan center = new DirectionMan(this, true, controller, HOME, listaCiudades);
+        DirectionMan center = new DirectionMan(this, true, controller, HOME, listaCiudades, nuevo);
         if (center.getObject() != null) {
             if (((XViviendaModel) center.getObject()).getHabitual()) {
                 controller.reasignarHabitual(dep);
@@ -2193,9 +2189,9 @@ public class MainView extends javax.swing.JFrame {
                     + "," + (Double) this.jTableCoordenadas.getModel().getValueAt(0, 3);
             XViviendaModel habitual = controller.getActualHome(dep);
             if (habitual != null) {
-                destino=habitual.getXDireccionModel().getXCiudadModel().getName()+"+"+
-                        habitual.getXDireccionModel().getDireccion()+"+"+
-                        habitual.getXDireccionModel().getNum();
+                destino = habitual.getXDireccionModel().getXCiudadModel().getName() + "+"
+                        + habitual.getXDireccionModel().getDireccion() + "+"
+                        + habitual.getXDireccionModel().getNum();
                 new GoHome(this, false, origen, destino);
             } else {
                 JOptionPane.showMessageDialog(this, "El dependiente no tiene definida su vivienda actual");
