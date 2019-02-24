@@ -93,6 +93,7 @@ public class FamilyMan extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jPanelDireccion.setBackground(new java.awt.Color(204, 204, 204));
         jPanelDireccion.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DIRECCIÓN", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
         tfNomVia.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -268,6 +269,7 @@ public class FamilyMan extends javax.swing.JDialog {
                 .addGap(16, 16, 16))
         );
 
+        jPanelAllegado.setBackground(new java.awt.Color(204, 204, 204));
         jPanelAllegado.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "DATOS DEL ALLEGADO", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 1, 12), new java.awt.Color(0, 102, 102))); // NOI18N
 
         tfTelf.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N

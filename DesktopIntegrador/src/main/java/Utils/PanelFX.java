@@ -14,7 +14,7 @@ public class PanelFX extends JFXPanel {
     //Variable encargada de renderizar la web
     private WebEngine engine;
 
-    public PanelFX() {
+    public PanelFX(int ancho, int alto) {
         Platform.runLater(new Runnable() {
             @Override
             public void run() {
@@ -23,9 +23,7 @@ public class PanelFX extends JFXPanel {
                 setScene(new Scene(view));
             }
         });
-        this.setMaximumSize(new Dimension(1440, 900));
-        this.setMinimumSize(new Dimension(144, 90));
-        setVisible(true);
+        initUI(ancho, alto);
     }
 
     //Metodo para cargar la URL de la pagina web
@@ -38,10 +36,10 @@ public class PanelFX extends JFXPanel {
                     tmp = toURL(url);
                 }
                 engine.load(tmp);
-
             }
         });
     }
+
     //Metodo para parsear la String a URL
     private String toURL(String str) {
         try {
@@ -49,5 +47,15 @@ public class PanelFX extends JFXPanel {
         } catch (MalformedURLException exception) {
             return null;
         }
+    }
+
+    private void initUI(int ancho, int alto) {
+        this.setMaximumSize(new Dimension(ancho, alto));
+        this.setMinimumSize(new Dimension(ancho / 10, alto / 10));
+        setVisible(true);
+    }
+
+    public WebEngine getEngine() {
+        return engine;
     }
 }

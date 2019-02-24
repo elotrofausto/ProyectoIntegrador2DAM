@@ -48,7 +48,7 @@ import net.sf.jasperreports.swing.JRViewer;
  * @author vesprada
  */
 public class MainView extends javax.swing.JFrame {
-
+    
     private final String HEALTH = "CENTRO MEDICO", HOME = "VIVIENDA", DEPENDENT = "DEPENDIENTES", SOC = "social", MED = "medico";
     private final static int MAX_MAPS_ZOOM = 21;
     private final static int MIN_MAPS_ZOOM = 5;
@@ -62,13 +62,13 @@ public class MainView extends javax.swing.JFrame {
     private XDependienteModel dep, tempo;
     private List<Object> listaDependientes;
     private List<Object> listaCiudades;
-
+    private GoHome ruta;
     private DefaultComboBoxModel medico;
     private DefaultComboBoxModel cSalud;
     private DefaultComboBoxModel vivienda;
     private DefaultComboBoxModel genero;
     private JasperClient jClient;
-
+    
     public MainView(BLogic controller, XAsistenteModel asistente) {
         this.controller = controller;
         this.asistente = asistente;
@@ -83,8 +83,9 @@ public class MainView extends javax.swing.JFrame {
         controller.getAppServer().start();
         lockEnabled(false);
         lockEnabledAsist(false);
+        ruta=null;
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -1564,7 +1565,7 @@ public class MainView extends javax.swing.JFrame {
     jScrollPaneCoord.setViewportView(jTableCoordenadas);
 
     jBtnRefrescoMaps.setForeground(new java.awt.Color(0, 102, 102));
-    jBtnRefrescoMaps.setText("REFRESCO");
+    jBtnRefrescoMaps.setText("REFRESCAR TABLA");
     jBtnRefrescoMaps.setPreferredSize(new java.awt.Dimension(140, 35));
     jBtnRefrescoMaps.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1743,7 +1744,7 @@ public class MainView extends javax.swing.JFrame {
             guardardependiente();
             listaDependientes = this.controller.cargarDatos(XDependienteModel.class);
             nuevo = false;
-
+            
             cargadependiente(dep);
             lockEnabled(false);
         } else {
@@ -1948,9 +1949,9 @@ public class MainView extends javax.swing.JFrame {
             DirectionMan center = new DirectionMan(this, true, controller, HOME, listaCiudades, actual);
             if (center.getObject() != null) {
                 if (((XViviendaModel) center.getObject()).getHabitual()) {
-                    controller.reasignarHabitual(dep,((XViviendaModel) center.getObject()));
+                    controller.reasignarHabitual(dep, ((XViviendaModel) center.getObject()));
                 }
-
+                
                 manipulateViviTable(dep, 0);
                 manipulateHome(null, 0);
             }
@@ -2194,14 +2195,18 @@ public class MainView extends javax.swing.JFrame {
                 destino = habitual.getXDireccionModel().getXCiudadModel().getName() + "+"
                         + habitual.getXDireccionModel().getDireccion() + "+"
                         + habitual.getXDireccionModel().getNum();
-                new GoHome(this, false, origen, destino);
+                if (ruta == null) {
+                    ruta = new GoHome(this, false, origen, destino);
+                } else {
+                    ruta.initUI(origen, destino);
+                }
             } else {
                 JOptionPane.showMessageDialog(this, "El dependiente no tiene definida su vivienda actual");
             }
         } else {
             JOptionPane.showMessageDialog(this, "No hay coordenadas del dependiente");
         }
-
+        
 
     }//GEN-LAST:event_jBtnGoHomeActionPerformed
 
@@ -2333,29 +2338,27 @@ public class MainView extends javax.swing.JFrame {
             longitude = (Double) this.jTableCoordenadas.getModel().getValueAt(0, 3);
             Utils.generatingMap(latitude, longitude, currentZoom);
         } else {
-            Utils.generatingMap(CURRENTLAT, CURRENTLNG, currentZoom);
+            latitude = CURRENTLAT;
+            longitude = CURRENTLNG;
+            Utils.generatingMap(latitude, longitude, currentZoom);
         }
         URL fileIcon = MainView.class.getResource("/Recursos/image.jpg");
+        this.jLabelMaps.setVisible(false);
         this.jLabelMaps.setIcon(new ImageIcon((new ImageIcon(fileIcon)).getImage().getScaledInstance(1280, 1280,
                 java.awt.Image.SCALE_SMOOTH)));
-        jPanelGeo.validate();
-        jPanelGeo.repaint();
-        jLabelMaps.repaint();
-        jLabelMaps.validate();
+        this.jLabelMaps.setVisible(true);
+        //  initMaps(latitude, longitude, currentZoom);
     }
-
+    
     private void initMaps(double lat, double lng, int zoom) {
         Utils.generatingMap(lat, lng, zoom);
         URL fileIcon = MainView.class.getResource("/Recursos/image.jpg");
         this.jLabelMaps.setIcon(new ImageIcon((new ImageIcon(fileIcon)).getImage().getScaledInstance(1280, 1280,
                 java.awt.Image.SCALE_SMOOTH)));
-        jPanelGeo.validate();
-        jPanelGeo.repaint();
-        jLabelMaps.repaint();
-        jLabelMaps.validate();
-
+        this.jLabelMaps.setVisible(true);
+        
     }
-
+    
     public void centerScroll() {
         //Centrar el scrollPanel
         Rectangle bounds = this.jScrollPaneMaps.getViewport().getViewRect();
@@ -2364,7 +2367,7 @@ public class MainView extends javax.swing.JFrame {
         int y = (size.height - bounds.height) / 2;
         this.jScrollPaneMaps.getViewport().setViewPosition(new Point(x, y));
     }
-
+    
     private void initTabs() {
         this.jTabbedPaneDcha.addChangeListener(new ChangeListener() {
             @Override
@@ -2417,7 +2420,7 @@ public class MainView extends javax.swing.JFrame {
         this.jTableAlarmas.setModel(model);
         manipulateAlarmHistory(null, 0);
     }
-
+    
     private void initCombos() {
         medico = new DefaultComboBoxModel();
         cSalud = new DefaultComboBoxModel();
@@ -2444,7 +2447,7 @@ public class MainView extends javax.swing.JFrame {
         Calendar alta = Calendar.getInstance();
         alta.setTime(dep.getFecAlta() != null ? dep.getFecAlta() : new Date());
         this.dateChooserDependienteAlta.setSelectedDate(alta);
-
+        
         Calendar nac = Calendar.getInstance();
         nac.setTime(dep.getFecNacim() != null ? dep.getFecNacim() : new Date());
         this.dateChooserDependienteNac.setSelectedDate(nac);
@@ -2466,7 +2469,7 @@ public class MainView extends javax.swing.JFrame {
         int id = controller.obtenerIdCiudad(dep);
         manipulateRecursosTable(id, 0);
     }
-
+    
     private void lockEnabled(boolean enabled) {
         //Panel dependiente
         this.tfDependienteNombre.setEditable(enabled);
@@ -2504,7 +2507,7 @@ public class MainView extends javax.swing.JFrame {
         this.jTableCoordenadas.setVisible(!enabled);
         this.jTableEstado.setVisible(!enabled);
     }
-
+    
     private void cargarAsistente() {
         this.tfAsistenteNombre.setText(asistente.getXPersonaModel().getName());
         this.tfAsistenteApe1.setText(asistente.getXPersonaModel().getApellido1());
@@ -2515,7 +2518,7 @@ public class MainView extends javax.swing.JFrame {
         this.tfAsistenteDni.setText(asistente.getXPersonaModel().getDni());
         this.tfAsistenteTelf.setText(asistente.getXPersonaModel().getTelefono());
     }
-
+    
     private void guardardependiente() {
         if (nuevo) {
             dep = tempo;
@@ -2545,7 +2548,7 @@ public class MainView extends javax.swing.JFrame {
             controller.lanzarCommit();
         }
     }
-
+    
     private void lockEnabledAsist(boolean enable) {
         //Panel del Asistente
         this.tfAsistenteApe1.setEditable(enable);
@@ -2563,7 +2566,7 @@ public class MainView extends javax.swing.JFrame {
         this.jTabbedPaneDcha.setEnabledAt(0, !enable);
         this.jTabbedPaneDcha.setEnabledAt(1, !enable);
     }
-
+    
     private void guardarAsistente() {
         controller.abrirTransaccion();
         asistente.setPassword(String.valueOf(this.tfAsistentePass.getPassword()));
@@ -2575,7 +2578,7 @@ public class MainView extends javax.swing.JFrame {
         asistente.getXPersonaModel().setTelefono(this.tfAsistenteTelf.getText());
         controller.lanzarCommit();
     }
-
+    
     private void initJasper() {
         try {
             jClient = new JasperClient();
@@ -2594,7 +2597,7 @@ public class MainView extends javax.swing.JFrame {
             Logger.getLogger(MainView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     private void manipulateViviTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2603,7 +2606,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateHisMedTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2612,7 +2615,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateHisSocTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2621,7 +2624,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateAllegadosTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2630,7 +2633,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateCoordenadasTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2639,7 +2642,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateAvisosTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2648,7 +2651,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateEstadoTable(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2657,7 +2660,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateRecursosTable(int obj, int opc) {
         switch (opc) {
             case 0:
@@ -2666,7 +2669,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateAlarmHistory(Object obj, int opc) {
         switch (opc) {
             case 0:
@@ -2675,7 +2678,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateDepenList(Object obj, int opc) {
         switch (opc) {
             case 0://cargar los datos en la lista
@@ -2689,7 +2692,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateCityList(Object obj, int opc) {
         switch (opc) {
             case 0://cargar los datos en la lista
@@ -2703,7 +2706,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateMed(Object obj, int opc) {
         switch (opc) {
             case 0://cargar los datos en el modelo del combo
@@ -2721,7 +2724,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateCS(Object obj, int opc) {
         switch (opc) {
             case 0://cargar los datos en el modelo del combo
@@ -2739,7 +2742,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private void manipulateHome(Object obj, int opc) {
         switch (opc) {
             case 0://cargar los datos en el modelo del combo
@@ -2757,7 +2760,7 @@ public class MainView extends javax.swing.JFrame {
                 break;
         }
     }
-
+    
     private Object viviendaActual() {
         for (Iterator<XViviendaModel> iterator = dep.getXViviendaModels().iterator(); iterator.hasNext();) {
             XViviendaModel next = iterator.next();
@@ -2767,7 +2770,7 @@ public class MainView extends javax.swing.JFrame {
         }
         return null;
     }
-
+    
     private boolean controlDatos() {
         if (this.jComboBoxDependienteVivienda.getSelectedItem() == null) {
             return false;
@@ -2804,7 +2807,7 @@ public class MainView extends javax.swing.JFrame {
         }
         return true;
     }
-
+    
     private void limpiarPanel() {
         this.jComboBoxDependienteVivienda.setModel(new DefaultComboBoxModel());
         this.tfDependienteApe1.setText("");
@@ -2817,17 +2820,17 @@ public class MainView extends javax.swing.JFrame {
         this.tfDependientePass.setText("");
         this.tfDependienteId.setText("");
     }
-
+    
     public JTable getjTableAlarmas() {
         return jTableAlarmas;
     }
-
+    
     public List<Object> getListaDependientes() {
         return listaDependientes;
     }
-
+    
     public JTabbedPane getjTabbedPaneDcha() {
         return jTabbedPaneDcha;
     }
-
+    
 }
