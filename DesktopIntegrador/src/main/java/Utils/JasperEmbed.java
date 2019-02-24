@@ -15,7 +15,7 @@ import java.net.URL;
  *
  * @author vesprada
  */
-public class PdfFromXmlFile {
+public class JasperEmbed {
 
     private final String INIT = "http:";
     private final String HOST = "//149.202.8.235";
@@ -31,7 +31,7 @@ public class PdfFromXmlFile {
     private URL url;
     private HttpURLConnection conection;
 
-    public PdfFromXmlFile(String DOC) throws MalformedURLException, IOException {
+    public JasperEmbed(String DOC) throws MalformedURLException, IOException {
         this.DOC = DOC;
         SetUI();
     }

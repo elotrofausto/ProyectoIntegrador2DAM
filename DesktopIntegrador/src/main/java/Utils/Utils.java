@@ -4,7 +4,10 @@ import com.opencsv.CSVReader;
 import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -25,6 +28,8 @@ import jdk.nashorn.api.scripting.URLReader;
  */
 public class Utils {
 
+    private final static String FILEMAP = "src/main/resources/Recursos/image.jpg";
+    private final static String MAPS_KEY = "%20AIzaSyBXkyYwknSg-vZ446hxBHmVEMshcbujIyo";
     private final static URL FILE = Utils.class.getResource("/Recursos/Tipos_Via.csv");
 
     //Genera la estructura y modelo de la tabla
@@ -80,6 +85,7 @@ public class Utils {
         int modulo = Integer.valueOf(numeracion) % 23;
         return numeracion + juegoCaracteres.charAt(modulo);
     }
+
     //Solo acepta numeros
     public static void soloNumeros(java.awt.event.KeyEvent evt) {
         char caracter = evt.getKeyChar();
@@ -88,6 +94,7 @@ public class Utils {
         }
     }
 
+    //Carga los tipos de vias de un CSV.
     public static ComboBoxModel<String> listaTipo() {
         DefaultComboBoxModel<String> vias = new DefaultComboBoxModel<>();
         String[] line;
@@ -101,10 +108,34 @@ public class Utils {
                 }
             }
         } catch (FileNotFoundException ex) {
-            System.out.println("FICHERO NO ENCONTRADO");
+            System.out.println("FICHERO NO ENCONTRADO. " + ex.getMessage());
         } catch (IOException ex) {
-            System.out.println("ERROR DE ENTRADA/SALIDA");
+            System.out.println("ERROR DE ENTRADA/SALIDA. " + ex.getMessage());
         }
         return vias;
+    }
+
+    //Carga las coordenadas en el mapa de geolocalizacion
+    public static void generatingMap(double lat, double lng, int zoom) {
+        try {
+            String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?"
+                    + "markers=icon:http://img.fenixzone.net/i/RUpTJIG.png|" + lat + "," + lng
+                    + "&zoom=" + zoom + "&size=1612x1612" + "&scale=2" + "&maptype=roadmap" + "&key=" + MAPS_KEY + "&format=jpg";
+
+            URL url = new URL(imageUrl);
+            InputStream is = url.openStream();
+            OutputStream os = new FileOutputStream(FILEMAP);
+
+            byte[] b = new byte[2048];
+            int length;
+
+            while ((length = is.read(b)) != -1) {
+                os.write(b, 0, length);
+            }
+            is.close();
+            os.close();
+        } catch (IOException e) {
+            System.out.println("ERORR DE I/O. " + e.getMessage());
+        }
     }
 }

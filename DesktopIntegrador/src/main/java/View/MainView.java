@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package View;
 
 import Controller.BLogic;
@@ -27,10 +22,7 @@ import java.awt.ComponentOrientation;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Calendar;
@@ -57,12 +49,12 @@ import net.sf.jasperreports.swing.JRViewer;
  */
 public class MainView extends javax.swing.JFrame {
 
-    private final static String MAPS_KEY = "%20AIzaSyBXkyYwknSg-vZ446hxBHmVEMshcbujIyo";
     private final String HEALTH = "CENTRO MEDICO", HOME = "VIVIENDA", DEPENDENT = "DEPENDIENTES", SOC = "social", MED = "medico";
     private final static int MAX_MAPS_ZOOM = 21;
     private final static int MIN_MAPS_ZOOM = 5;
-    private double currentLat;
-    private double currentLng;
+    private final double CURRENTLAT = 38.6915899;
+    private final double CURRENTLNG = -0.4948671;
+    private double latitude, longitude;
     private int currentZoom;
     private boolean nuevo;
     private BLogic controller;
@@ -81,6 +73,7 @@ public class MainView extends javax.swing.JFrame {
         this.controller = controller;
         this.asistente = asistente;
         this.nuevo = false;
+        this.currentZoom = 17;
         initCombos();
         initComponents();
         initTabs();
@@ -209,6 +202,8 @@ public class MainView extends javax.swing.JFrame {
         jScrollPaneCoord = new javax.swing.JScrollPane();
         jTableCoordenadas = new javax.swing.JTable();
         jBtnRefrescoMaps = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         menuBarAsist = new javax.swing.JMenuBar();
         menuAsist = new javax.swing.JMenu();
         itemCerrarSesion = new javax.swing.JMenuItem();
@@ -231,7 +226,6 @@ public class MainView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(204, 204, 204));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1600, 900));
         setResizable(false);
         setSize(new java.awt.Dimension(1600, 900));
 
@@ -268,7 +262,7 @@ public class MainView extends javax.swing.JFrame {
         jComboBoxDependienteVivienda.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jComboBoxDependienteVivienda.setForeground(new java.awt.Color(0, 0, 0));
         jComboBoxDependienteVivienda.setModel(vivienda);
-        jComboBoxDependienteVivienda.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* VIVIENDA ACTUAL", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+        jComboBoxDependienteVivienda.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "* VIVIENDA ACTUAL", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
         jComboBoxDependienteVivienda.setPreferredSize(new java.awt.Dimension(270, 55));
 
         tfDependienteId.setEditable(false);
@@ -513,7 +507,7 @@ public class MainView extends javax.swing.JFrame {
     jComboBoxMedico.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
     jComboBoxMedico.setForeground(new java.awt.Color(0, 0, 0));
     jComboBoxMedico.setModel(medico);
-    jComboBoxMedico.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "* MÉDICO", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
+    jComboBoxMedico.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(41, 43, 45)), "* MÉDICO", javax.swing.border.TitledBorder.RIGHT, javax.swing.border.TitledBorder.TOP, new java.awt.Font("Dialog", 0, 10), new java.awt.Color(0, 102, 102))); // NOI18N
     jComboBoxMedico.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
     jComboBoxMedico.setPreferredSize(new java.awt.Dimension(240, 60));
     jComboBoxMedico.addActionListener(new java.awt.event.ActionListener() {
@@ -596,9 +590,9 @@ public class MainView extends javax.swing.JFrame {
             .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jComboBoxCS, 0, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelProfesionalesLayout.createSequentialGroup()
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(jPanelProfesionalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jbtnAddCenSal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jbtnModCen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -609,7 +603,7 @@ public class MainView extends javax.swing.JFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jComboBoxMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProfesionalesLayout.createSequentialGroup()
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addContainerGap())
     );
@@ -1571,11 +1565,25 @@ public class MainView extends javax.swing.JFrame {
 
     jBtnRefrescoMaps.setForeground(new java.awt.Color(0, 102, 102));
     jBtnRefrescoMaps.setText("REFRESCO");
+    jBtnRefrescoMaps.setPreferredSize(new java.awt.Dimension(140, 35));
     jBtnRefrescoMaps.addActionListener(new java.awt.event.ActionListener() {
         public void actionPerformed(java.awt.event.ActionEvent evt) {
             jBtnRefrescoMapsActionPerformed(evt);
         }
     });
+
+    jButton2.setForeground(new java.awt.Color(0, 102, 102));
+    jButton2.setText("ELEGIR PUNTO");
+    jButton2.setPreferredSize(new java.awt.Dimension(140, 35));
+    jButton2.addActionListener(new java.awt.event.ActionListener() {
+        public void actionPerformed(java.awt.event.ActionEvent evt) {
+            jButton2ActionPerformed(evt);
+        }
+    });
+
+    jButton3.setForeground(new java.awt.Color(0, 102, 102));
+    jButton3.setText("LLEVAR A CASA");
+    jButton3.setPreferredSize(new java.awt.Dimension(140, 35));
 
     javax.swing.GroupLayout jPanelGeoLayout = new javax.swing.GroupLayout(jPanelGeo);
     jPanelGeo.setLayout(jPanelGeoLayout);
@@ -1599,7 +1607,10 @@ public class MainView extends javax.swing.JFrame {
                                     .addComponent(jButtonZoomIn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jButtonCenterMap, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jBtnRefrescoMaps, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanelGeoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jBtnRefrescoMaps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addComponent(jScrollPaneMaps))))
             .addContainerGap())
     );
@@ -1618,11 +1629,14 @@ public class MainView extends javax.swing.JFrame {
                         .addComponent(jButtonZoomOut)
                         .addComponent(jButtonCenterMap))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jBtnRefrescoMaps)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(jPanelGeoLayout.createSequentialGroup()
-                    .addComponent(jScrollPaneCoord, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addContainerGap())))
+                    .addComponent(jBtnRefrescoMaps, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(18, 18, 18)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 85, Short.MAX_VALUE))
+                .addComponent(jScrollPaneCoord, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+            .addContainerGap())
     );
 
     jTabbedPaneDcha.addTab("Geolocalización", jPanelGeo);
@@ -1691,7 +1705,12 @@ public class MainView extends javax.swing.JFrame {
     private void jButtonZoomOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZoomOutActionPerformed
         if (currentZoom > MIN_MAPS_ZOOM) {
             currentZoom--;
-            initMaps(currentLat, currentLng, currentZoom);
+            if (this.jTableCoordenadas.getModel().getRowCount() > 0) {
+                initMaps(latitude, longitude, currentZoom);
+            } else {
+                initMaps(CURRENTLAT, CURRENTLNG, currentZoom);
+            }
+            initMaps(latitude, longitude, currentZoom);
         }
         mapButtonsAvailable();
     }//GEN-LAST:event_jButtonZoomOutActionPerformed
@@ -1699,7 +1718,12 @@ public class MainView extends javax.swing.JFrame {
     private void jButtonZoomInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonZoomInActionPerformed
         if (currentZoom < MAX_MAPS_ZOOM) {
             currentZoom++;
-            initMaps(currentLat, currentLng, currentZoom);
+            if (this.jTableCoordenadas.getModel().getRowCount() > 0) {
+                initMaps(latitude, longitude, currentZoom);
+            } else {
+                initMaps(CURRENTLAT, CURRENTLNG, currentZoom);
+            }
+            initMaps(latitude, longitude, currentZoom);
         }
         mapButtonsAvailable();
     }//GEN-LAST:event_jButtonZoomInActionPerformed
@@ -1756,6 +1780,7 @@ public class MainView extends javax.swing.JFrame {
             dep = (XDependienteModel) search.getObject();
             lockEnabled(true);
             cargadependiente(dep);
+            initMaps();
             lockEnabled(false);
         }
     }//GEN-LAST:event_jButtonSearchActionPerformed
@@ -2093,6 +2118,7 @@ public class MainView extends javax.swing.JFrame {
             conn.setStatus(true);
             conn.interrupt();
             cargadependiente(dep);
+            initMaps();
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, elija antes un registro de la tabla");
         }
@@ -2118,7 +2144,7 @@ public class MainView extends javax.swing.JFrame {
     private void jComboBoxCSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCSActionPerformed
         if (jComboBoxCS.getModel().getSelectedItem() != null) {
             XCsModel cs = (XCsModel) jComboBoxCS.getModel().getSelectedItem();
-           this.jTACentro.setText(cs.datos());
+            this.jTACentro.setText(cs.datos());
         }
     }//GEN-LAST:event_jComboBoxCSActionPerformed
 
@@ -2138,11 +2164,21 @@ public class MainView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jComboBoxMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMedicoActionPerformed
-         if (jComboBoxMedico.getModel().getSelectedItem() != null) {
+        if (jComboBoxMedico.getModel().getSelectedItem() != null) {
             XMedicoModel med = (XMedicoModel) jComboBoxMedico.getModel().getSelectedItem();
-           this.jTAMedico.setText(med.datos());
+            this.jTAMedico.setText(med.datos());
         }
     }//GEN-LAST:event_jComboBoxMedicoActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if (this.jTableCoordenadas.getSelectedRow() < 0) {
+            JOptionPane.showMessageDialog(this, "Por favor, elija unaposicion de la tabla.");
+        } else {
+            latitude = (Double) this.jTableCoordenadas.getModel().getValueAt(this.jTableCoordenadas.getSelectedRow(), 2);
+            longitude = (Double) this.jTableCoordenadas.getModel().getValueAt(this.jTableCoordenadas.getSelectedRow(), 3);
+            initMaps(latitude, longitude, currentZoom);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private datechooser.beans.DateChooserCombo dateChooserDependienteAlta;
@@ -2159,6 +2195,8 @@ public class MainView extends javax.swing.JFrame {
     private javax.swing.JButton jBtnRefrescoMaps;
     private javax.swing.JButton jBtnSave;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonCancel;
     private javax.swing.JButton jButtonCenterMap;
     private javax.swing.JButton jButtonSave;
@@ -2265,78 +2303,27 @@ public class MainView extends javax.swing.JFrame {
 
     //Métodos de la vista
     private void initMaps() {
-        try {
-            //iniciamos el mapa en una ubicación preestablecida
-            currentZoom = 18;
-            currentLat = 38.346041;
-            currentLng = -0.484756;
-
-            String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?"
-                    + "markers=icon:https://img.icons8.com/windows/32/000000/mental-state.png|" + currentLat + "," + currentLng
-                    //+ "markers=|38.346041,-0.484756"
-                    + "&zoom=" + currentZoom
-                    + "&size=1612x1612"
-                    + "&scale=2"
-                    + "&maptype=roadmap"
-                    + "&key=%20AIzaSyBXkyYwknSg-vZ446hxBHmVEMshcbujIyo&format=jpg";
-            String destinationFile = "img/image.jpg";
-            String str = destinationFile;
-            URL url = new URL(imageUrl);
-            InputStream is = url.openStream();
-            OutputStream os = new FileOutputStream(destinationFile);
-
-            byte[] b = new byte[2048];
-            int length;
-
-            while ((length = is.read(b)) != -1) {
-                os.write(b, 0, length);
-            }
-
-            is.close();
-            os.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(1);
+        if (this.jTableCoordenadas.getModel().getRowCount() > 0) {
+            latitude = (Double) this.jTableCoordenadas.getModel().getValueAt(0, 2);
+            longitude = (Double) this.jTableCoordenadas.getModel().getValueAt(0, 3);
+            Utils.generatingMap(latitude, longitude, currentZoom);
+        } else {
+            Utils.generatingMap(CURRENTLAT, CURRENTLNG, currentZoom);
         }
-        this.jLabelMaps.setIcon(new ImageIcon((new ImageIcon("img/image.jpg")).getImage().getScaledInstance(1280, 1280,
+        URL fileIcon = MainView.class.getResource("/Recursos/image.jpg");
+        this.jLabelMaps.setIcon(new ImageIcon((new ImageIcon(fileIcon)).getImage().getScaledInstance(1280, 1280,
                 java.awt.Image.SCALE_SMOOTH)));
         jPanelGeo.repaint();
-
+        jLabelMaps.repaint();
     }
 
     private void initMaps(double lat, double lng, int zoom) {
-        try {
-            String imageUrl = "https://maps.googleapis.com/maps/api/staticmap?"
-                    + "markers=icon:https://img.icons8.com/windows/32/000000/mental-state.png|" + lat + "," + lng
-                    //+ "markers=|38.346041,-0.484756"
-                    + "&zoom=" + zoom
-                    + "&size=1612x1612"
-                    + "&scale=2"
-                    + "&maptype=roadmap"
-                    + "&key=" + MAPS_KEY
-                    + "&format=jpg";
-            String destinationFile = "img/image.jpg";
-            String str = destinationFile;
-            URL url = new URL(imageUrl);
-            InputStream is = url.openStream();
-            OutputStream os = new FileOutputStream(destinationFile);
-
-            byte[] b = new byte[2048];
-            int length;
-
-            while ((length = is.read(b)) != -1) {
-                os.write(b, 0, length);
-            }
-
-            is.close();
-            os.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-        this.jLabelMaps.setIcon(new ImageIcon((new ImageIcon("img/image.jpg")).getImage().getScaledInstance(1280, 1280,
+        Utils.generatingMap(lat, lng, zoom);
+        URL fileIcon = MainView.class.getResource("/Recursos/image.jpg");
+        this.jLabelMaps.setIcon(new ImageIcon((new ImageIcon(fileIcon)).getImage().getScaledInstance(1280, 1280,
                 java.awt.Image.SCALE_SMOOTH)));
         jPanelGeo.repaint();
+        jLabelMaps.repaint();
 
     }
 
@@ -2360,7 +2347,7 @@ public class MainView extends javax.swing.JFrame {
         });
     }
 
-    //Crontolamos los botones del zoom del maps, en base a la valor de la variable currentZoom
+    //Controlamos los botones del zoom del maps, en base a la valor de la variable currentZoom
     private void mapButtonsAvailable() {
         if (currentZoom > MIN_MAPS_ZOOM && currentZoom < MAX_MAPS_ZOOM) {
             this.jButtonZoomOut.setEnabled(true);
