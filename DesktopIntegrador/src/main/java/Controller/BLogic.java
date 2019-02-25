@@ -5,6 +5,8 @@ import Models.XDependienteModel;
 import Models.XViviendaModel;
 import View.AccessAsist;
 import View.MainView;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.net.ServerSocket;
 import java.sql.SQLException;
 import java.util.Date;
@@ -38,8 +40,12 @@ public class BLogic {
     }
 
     private void initView() {
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice gd = ge.getDefaultScreenDevice();
+
         mainView = new MainView(this, asistente);
-        mainView.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        // mainView.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        gd.setFullScreenWindow(mainView);
         mainView.setVisible(true);
     }
 
@@ -196,5 +202,5 @@ public class BLogic {
         }
         return 1;
     }
-    
+
 }

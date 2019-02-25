@@ -43,8 +43,8 @@ Contributor(s):
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
     <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-    <property name="hibernate.connection.url">jdbc:postgresql://149.202.8.235:5432/BDgrup2</property> 
-    <!--<property name="hibernate.connection.url">jdbc:postgresql://localhost:9999/BDgrup2</property>-->
+    <!--<property name="hibernate.connection.url">jdbc:postgresql://149.202.8.235:5432/BDgrup2</property> -->
+    <property name="hibernate.connection.url">jdbc:postgresql://localhost:9999/BDgrup2</property>
     <property name="hibernate.connection.username">grup2</property>
     <property name="hibernate.connection.password">Grupo-312</property>
     <property name="hibernate.show_sql">true</property>
